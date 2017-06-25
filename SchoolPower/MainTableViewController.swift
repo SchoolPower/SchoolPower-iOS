@@ -23,19 +23,33 @@ class MainTableViewController: UITableViewController {
     let kOpenCellHeight: CGFloat = 315
     let kCloseCellHeight: CGFloat = 125
     var storedOffsets = [Int: CGFloat]()
+    fileprivate var bar: Bar!
     
-    let testDataList: Array<MainListItem> =
-        [MainListItem(_subjectTitle: "Science 10", _teacherName: "Grainne Smith", _blockLetter: "A", _roomNumber: "311", _periodGradeItemArray: [
-            PeriodGradeItem(_termIndicator: "T1", _termLetterGrade: "A", _termPercentageGrade: "100",                                                                                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS1", _assignmentDate: "6/4", _assignmentPercentage: "100", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
-            PeriodGradeItem(_termIndicator: "T2", _termLetterGrade: "F", _termPercentageGrade: "16",
-                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "100", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")])]),
+    let dataList: Array<MainListItem> =
+        [MainListItem(_subjectTitle: "Foundation of Mathematics and Pre-Calculus 10", _teacherName: "Susan Holcapek", _blockLetter: "A", _roomNumber: "311", _periodGradeItemArray: [
+            PeriodGradeItem(_termIndicator: "T3", _termLetterGrade: "F", _termPercentageGrade: "10",                                                                                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS1", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
+            PeriodGradeItem(_termIndicator: "T4", _termLetterGrade: "F", _termPercentageGrade: "10",
+                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "100", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
+            PeriodGradeItem(_termIndicator: "S2", _termLetterGrade: "F", _termPercentageGrade: "10",
+                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS3", _assignmentDate: "6/4", _assignmentPercentage: "100", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")])]),
          MainListItem(_subjectTitle: "Planning 10", _teacherName: "Grainne Smith", _blockLetter: "B", _roomNumber: "311", _periodGradeItemArray: [
-            PeriodGradeItem(_termIndicator: "T1", _termLetterGrade: "A", _termPercentageGrade: "100",                                                                                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS1", _assignmentDate: "6/4", _assignmentPercentage: "100", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
-            PeriodGradeItem(_termIndicator: "T2", _termLetterGrade: "F", _termPercentageGrade: "16",
-                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "100", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")])])]
+            PeriodGradeItem(_termIndicator: "T1", _termLetterGrade: "A", _termPercentageGrade: "10",                                                                                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS1", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
+            PeriodGradeItem(_termIndicator: "T2", _termLetterGrade: "C-", _termPercentageGrade: "55",
+                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
+            PeriodGradeItem(_termIndicator: "S2", _termLetterGrade: "C-", _termPercentageGrade: "55",
+                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")])])]
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.navigationBar.barTintColor = Utils().hexStringToUIColor(hex: Colors().primary)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.navigationBar.isTranslucent = false
+
+    }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         setup()
     }
@@ -46,23 +60,17 @@ class MainTableViewController: UITableViewController {
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        tableView.backgroundColor = Utils().hexStringToUIColor(hex: "#eeeeee")
+        tableView.backgroundColor = Utils().hexStringToUIColor(hex: Colors().foreground_material_dark)
         tableView.separatorColor = UIColor.clear
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
-        
-        self.navigationController?.navigationBar.barTintColor = Utils().hexStringToUIColor(hex: "#09314b");
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        self.navigationController?.navigationBar.isTranslucent = false;
     }
-    
-    
 }
 
 //MARK: Table View
 extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testDataList.count
+        return dataList.count
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -73,9 +81,8 @@ extension MainTableViewController {
         if cellHeights[indexPath.row] == kCloseCellHeight { cell.unfold(false, animated: false, completion:nil) }
         else { cell.unfold(true, animated: false, completion: nil) }
         cell.backgroundColor = .clear
-        
         cell.number = indexPath.row
-        cell.infoItem = testDataList[indexPath.row]
+        cell.infoItem = dataList[indexPath.row]
     }
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -105,7 +112,7 @@ extension MainTableViewController {
         
         let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: .white)
         button.pulseColor = .white
-        button.backgroundColor = Utils().hexStringToUIColor(hex: "#00c4cf")
+        button.backgroundColor = Utils().hexStringToUIColor(hex: Colors().accent)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = indexPath.row
         button.addTarget(self, action: #selector(MainTableViewController.fabOnClick), for: .touchUpInside)
@@ -139,15 +146,24 @@ extension MainTableViewController {
     }
     
     func fabOnClick(sender: UIButton) {
-        //TODO fab onc
+        
+        performSegue(withIdentifier: "gotoDetail", sender: sender)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoDetail" {
+            (segue.destination as? CourseDetailTableViewController)?.infoItem = dataList[(sender as! UIButton).tag]
+            (segue.destination as? CourseDetailTableViewController)?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        }
+    }
+    
 }
 
 //MARK: Collection View
 extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testDataList[1].periodGradeItemArray.count
+        return dataList[1].periodGradeItemArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -160,9 +176,10 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         collectionCell.layer.cornerRadius = 7.0
         collectionCell.layer.masksToBounds = true
         
-        (collectionCell.viewWithTag(1) as! UILabel).text = testDataList[collectionView.tag].periodGradeItemArray[indexPath.row].termIndicator
-        (collectionCell.viewWithTag(2) as! UILabel).text = testDataList[collectionView.tag].periodGradeItemArray[indexPath.row].termLetterGrade
-        (collectionCell.viewWithTag(3) as! UILabel).text = testDataList[collectionView.tag].periodGradeItemArray[indexPath.row].termPercentageGrade
+        (collectionCell.viewWithTag(1) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termIndicator
+        (collectionCell.viewWithTag(2) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termLetterGrade
+        (collectionCell.viewWithTag(3) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termPercentageGrade
+        collectionCell.backgroundColor = Utils().getColorByPeriodItem(item: dataList[collectionView.tag].periodGradeItemArray[indexPath.row])
         
         return collectionCell
     }
@@ -170,10 +187,5 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
     }
-    
-    func printST() {
-        print("ST")
-    }
-    
 }
 

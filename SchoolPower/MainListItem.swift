@@ -34,7 +34,7 @@ class MainListItem {
         return periodGradeItemArray[periodGradeItemArray.index(where: {$0 === requiredTerm})!].termPercentageGrade
     }
     
-    func getAssignmentItemArray(term: String) -> Array<Any>? {
+    func getAssignmentItemArray(term: String) -> Array<AssignmentItem>? {
         for item in periodGradeItemArray { if(term == item.termIndicator){ return item.assignmentItemArrayList } }
         return nil
     }
