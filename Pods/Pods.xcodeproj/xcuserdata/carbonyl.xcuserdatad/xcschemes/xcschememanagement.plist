@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MDFTextAccessibility.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Material-com.cosmicmind.material.fonts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,6 +24,46 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_arrow_back.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_check.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_check_circle.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_chevron_right.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_info.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_radio_button_unchecked.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MaterialComponents-MaterialIcons_ic_reorder.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MaterialComponents.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SchoolPower.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,7 +72,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0E7749332485287F24F856C9126F4A38</key>
+		<key>2E3D26E52A383D76D4D6630B94B55F87</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E87DD2E167E2DE6B497493ADBA237AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,7 +92,47 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>621AB35EDE4ACAF0A6697D6E1863962A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>720487FB13EB2F8F9F288432A36AA85A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7A716FD5CC20B1C80A563C8E202E933D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8172EDE4AD0ACC5F242F7C24D21B8D9E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>89801A6A80E8A659C972726980EC0B4D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8D511562A8961C5B7A5DD87BAE2374F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A5A634358D6A1141B61FA18E5E6A0508</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D979C8DF4FF1B2424FFFB48E8D256815</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E80D93237C7D1C306C38E2EF85B93207</key>
 		<dict>
 			<key>primary</key>
 			<true/>

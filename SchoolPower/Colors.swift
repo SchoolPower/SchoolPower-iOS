@@ -17,6 +17,7 @@ class Colors{
     let primary = "#09314b"
     let primary_dark = "#07263b"
     let accent = "#00c4cf"
+    let white = "#FFFFFF"
     let white_0_5 = "#32FFFFFF"
     let white_0_10 = "#64FFFFFF"
     let white_0_20 = "#C8FFFFFF"

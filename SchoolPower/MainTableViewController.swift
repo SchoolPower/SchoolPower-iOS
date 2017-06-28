@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Material
+import MaterialComponents
+import FoldingCell
 
 struct ButtonLayout {
     
@@ -23,7 +24,6 @@ class MainTableViewController: UITableViewController {
     let kOpenCellHeight: CGFloat = 315
     let kCloseCellHeight: CGFloat = 125
     var storedOffsets = [Int: CGFloat]()
-    fileprivate var bar: Bar!
     
     let dataList: Array<MainListItem> =
         [MainListItem(_subjectTitle: "Foundation of Mathematics and Pre-Calculus 10", _teacherName: "Susan Holcapek", _blockLetter: "A", _roomNumber: "311", _periodGradeItemArray: [
@@ -41,11 +41,16 @@ class MainTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal) , style: .plain ,target: self, action: #selector(menuOnClick))
+        let gpaItem = UIBarButtonItem(image: UIImage(named: "ic_grade_white")?.withRenderingMode(.alwaysOriginal) , style: .plain ,target: self, action: #selector(gpaOnClick))
+
+        self.navigationItem.leftBarButtonItems = [menuItem]
+        self.navigationItem.rightBarButtonItems = [gpaItem]
+        
         self.navigationController?.navigationBar.barTintColor = Utils().hexStringToUIColor(hex: Colors().primary)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationController?.navigationBar.isTranslucent = false
-
     }
     
     override func viewDidLoad() {
@@ -63,6 +68,8 @@ class MainTableViewController: UITableViewController {
         tableView.backgroundColor = Utils().hexStringToUIColor(hex: Colors().foreground_material_dark)
         tableView.separatorColor = UIColor.clear
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
+        
+        
     }
 }
 
@@ -110,8 +117,10 @@ extension MainTableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
         if cell.isAnimating() { return }
         
-        let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: .white)
-        button.pulseColor = .white
+        let button = MDCFloatingButton()
+        button.setImage(UIImage(named: "ic_keyboard_arrow_right_white_36pt"), for: UIControlState.normal)
+        button.tintColor = UIColor.white
+        button.inkColor = UIColor.white
         button.backgroundColor = Utils().hexStringToUIColor(hex: Colors().accent)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = indexPath.row
@@ -145,6 +154,15 @@ extension MainTableViewController {
         }, completion: nil)
     }
     
+    func menuOnClick(sender: UINavigationItem) {
+        
+        navigationDrawerController?.toggleLeftView()
+    }
+    
+    func gpaOnClick(sender: UINavigationItem) {
+        //TODO GPA
+    }
+    
     func fabOnClick(sender: UIButton) {
         
         performSegue(withIdentifier: "gotoDetail", sender: sender)
@@ -169,10 +187,9 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         collectionView.register(UINib(nibName: "PeriodGradeListItem", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: 75.0, height: 96.0)
         
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        collectionCell.width = 75.0
-        collectionCell.height = 96.0
         collectionCell.layer.cornerRadius = 7.0
         collectionCell.layer.masksToBounds = true
         

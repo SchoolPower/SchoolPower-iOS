@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DA1B61EFD01A300EFAB5A /* Utils.swift */; };
-		621DA1B81EFD030700EFAB5A /* FoldingCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628EF6441EFB3362008E0C4D /* FoldingCell.framework */; };
-		621DA1BB1EFD08CC00EFAB5A /* FoldingCell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 628EF6441EFB3362008E0C4D /* FoldingCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		621F99761EFB34BD00C20013 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621F99751EFB34BD00C20013 /* Main.storyboard */; };
 		624BDC211EFE2F6A0052EC5D /* AssignmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */; };
 		624BDC231EFE46110052EC5D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC221EFE46110052EC5D /* Colors.swift */; };
 		624BDC531EFE77440052EC5D /* CourseDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */; };
 		62A8FA441EFB66DA00751ACD /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 62A8FA431EFB66DA00751ACD /* Podfile */; };
+		62AA4E2D1F028537009C8CFC /* FoldingCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628EF6441EFB3362008E0C4D /* FoldingCell.framework */; };
+		62AA4E2E1F028537009C8CFC /* FoldingCell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 628EF6441EFB3362008E0C4D /* FoldingCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		62AA4E3C1F033B57009C8CFC /* AppNavigationDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AA4E391F033B57009C8CFC /* AppNavigationDrawerController.swift */; };
+		62AA4E3D1F033B57009C8CFC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */; };
+		62AA4E3E1F033B57009C8CFC /* TransitionedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AA4E3B1F033B57009C8CFC /* TransitionedViewController.swift */; };
 		62C7867C1EFB95CC00CB28ED /* PeriodGradeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C7867B1EFB95CC00CB28ED /* PeriodGradeItem.swift */; };
 		62C7867E1EFB98AE00CB28ED /* AssignmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C7867D1EFB98AE00CB28ED /* AssignmentItem.swift */; };
 		62C786801EFB998D00CB28ED /* MainListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C7867F1EFB998D00CB28ED /* MainListItem.swift */; };
@@ -49,13 +52,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		62CFC9E81EFB349B00D034C6 /* Embed Frameworks */ = {
+		62AA4E2F1F028537009C8CFC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				621DA1BB1EFD08CC00EFAB5A /* FoldingCell.framework in Embed Frameworks */,
+				62AA4E2E1F028537009C8CFC /* FoldingCell.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +75,9 @@
 		624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailHeaderCell.swift; sourceTree = "<group>"; };
 		628EF6441EFB3362008E0C4D /* FoldingCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FoldingCell.framework; sourceTree = "<group>"; };
 		62A8FA431EFB66DA00751ACD /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		62AA4E391F033B57009C8CFC /* AppNavigationDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationDrawerController.swift; sourceTree = "<group>"; };
+		62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		62AA4E3B1F033B57009C8CFC /* TransitionedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionedViewController.swift; sourceTree = "<group>"; };
 		62C7867B1EFB95CC00CB28ED /* PeriodGradeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodGradeItem.swift; sourceTree = "<group>"; };
 		62C7867D1EFB98AE00CB28ED /* AssignmentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentItem.swift; sourceTree = "<group>"; };
 		62C7867F1EFB998D00CB28ED /* MainListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListItem.swift; sourceTree = "<group>"; };
@@ -99,7 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				621DA1B81EFD030700EFAB5A /* FoldingCell.framework in Frameworks */,
+				62AA4E2D1F028537009C8CFC /* FoldingCell.framework in Frameworks */,
 				967E2B0F6E4AFA12D7421ACD /* Pods_SchoolPower.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +150,9 @@
 			children = (
 				62CFC9C11EFA9972002B4A8D /* MainTableViewController.swift */,
 				62CFC9931EFA9940002B4A8D /* CourseDetailTableViewController.swift */,
+				62AA4E391F033B57009C8CFC /* AppNavigationDrawerController.swift */,
+				62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */,
+				62AA4E3B1F033B57009C8CFC /* TransitionedViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -271,9 +280,9 @@
 				62CFC98A1EFA9940002B4A8D /* Sources */,
 				62CFC98B1EFA9940002B4A8D /* Frameworks */,
 				62CFC98C1EFA9940002B4A8D /* Resources */,
-				62CFC9E81EFB349B00D034C6 /* Embed Frameworks */,
 				CD7CEA7401774E26DF625D24 /* [CP] Embed Pods Frameworks */,
 				AB168965C7D195BED0FB0181 /* [CP] Copy Pods Resources */,
+				62AA4E2F1F028537009C8CFC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -328,7 +337,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = CarbonylGroup.com;
+				ORGANIZATIONNAME = carbonylgroup.studio;
 				TargetAttributes = {
 					62CFC98D1EFA9940002B4A8D = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -337,13 +346,13 @@
 					};
 					62CFC9A11EFA9940002B4A8D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = TF8Z26XE78;
+						DevelopmentTeam = MPW443922D;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 62CFC98D1EFA9940002B4A8D;
 					};
 					62CFC9AC1EFA9940002B4A8D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = TF8Z26XE78;
+						DevelopmentTeam = MPW443922D;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 62CFC98D1EFA9940002B4A8D;
 					};
@@ -456,11 +465,14 @@
 				62CFC9C21EFA9972002B4A8D /* MainTableViewController.swift in Sources */,
 				62C7867E1EFB98AE00CB28ED /* AssignmentItem.swift in Sources */,
 				624BDC531EFE77440052EC5D /* CourseDetailHeaderCell.swift in Sources */,
+				62AA4E3D1F033B57009C8CFC /* LeftViewController.swift in Sources */,
 				621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */,
+				62AA4E3C1F033B57009C8CFC /* AppNavigationDrawerController.swift in Sources */,
 				62CFC9C51EFA99BE002B4A8D /* FoldingCell.swift in Sources */,
 				62CFC9941EFA9940002B4A8D /* CourseDetailTableViewController.swift in Sources */,
 				62C7867C1EFB95CC00CB28ED /* PeriodGradeItem.swift in Sources */,
 				62C786801EFB998D00CB28ED /* MainListItem.swift in Sources */,
+				62AA4E3E1F033B57009C8CFC /* TransitionedViewController.swift in Sources */,
 				62CFC9C01EFA996C002B4A8D /* DashboardCell.swift in Sources */,
 				62CFC9921EFA9940002B4A8D /* AppDelegate.swift in Sources */,
 			);
@@ -617,6 +629,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = SchoolPower/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.carbonylgroup.SchoolPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -639,6 +652,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = SchoolPower/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.carbonylgroup.SchoolPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -651,7 +665,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = TF8Z26XE78;
+				DEVELOPMENT_TEAM = MPW443922D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SchoolPowerTests",
@@ -670,7 +684,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = TF8Z26XE78;
+				DEVELOPMENT_TEAM = MPW443922D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SchoolPowerTests",
@@ -688,7 +702,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = TF8Z26XE78;
+				DEVELOPMENT_TEAM = MPW443922D;
 				INFOPLIST_FILE = SchoolPowerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CarbonylGroup.com.SchoolPowerUITests;
@@ -702,7 +716,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = TF8Z26XE78;
+				DEVELOPMENT_TEAM = MPW443922D;
 				INFOPLIST_FILE = SchoolPowerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CarbonylGroup.com.SchoolPowerUITests;
