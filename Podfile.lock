@@ -275,18 +275,21 @@ PODS:
   - MaterialComponents/Typography (25.0.1):
     - MaterialComponents/private/Application
   - MDFTextAccessibility (1.2.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - FoldingCell (~> 2.1.3)
+  - FoldingCell
   - Material
   - MaterialComponents
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   FoldingCell: f3073f8b24cf20866a35198f31e3b67aea64e96e
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   MaterialComponents: 0d7b73247ca502e4e2753d48b1a7aa54fda05471
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 574edeb9f06773ded9127812c53442628dcc13b4
+PODFILE CHECKSUM: c72977c7b251339dad0e0dd7c50defb8ee86f3ad
 
 COCOAPODS: 1.2.1

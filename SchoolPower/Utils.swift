@@ -1,13 +1,14 @@
-//
+
 //  Utils.swift
 //  SchoolPower
-//
+
 //  Created by carbonyl on 2017-06-23.
 //  Copyright © 2017 CarbonylGroup.com. All rights reserved.
-//
+
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 class Utils {
     
@@ -51,10 +52,11 @@ class Utils {
         var forLatestSemester = false
         var latestTerm: String
         var periodGradeItemList = item.periodGradeItemArray
-        var termsList: Array<String> = Array()
+        var termsList = [String]()
         termsList.append("ALL TERMS")
         
         if userDefaults.integer(forKey: keyName) == 1 { forLatestSemester = true }
+        
         for item in periodGradeItemList.indices { termsList.append(periodGradeItemList[item].termIndicator) }
         
         if (forLatestSemester){
@@ -74,61 +76,47 @@ class Utils {
         return nil
     }
     
-//    func parseJsonResult(jsonStr: String) -> Array<MainListItem>? {
-//        
-//        let jsonData = try? JSONSerialization.jsonObject(with: jsonStr, options: [])
-//        let dataMap = HashMap<String, MainListItem>()
-//        
-//        if let jsonData = json
-//        
-//        for i in 0..jsonData.length() - 1 {
-//        
-//        let termObj = jsonData.getJSONObject(i)
-//        // Turns assignments into an ArrayList
-//        let assignmentList = ArrayList<AssignmentItem>()
-//        if(!termObj.has("assignments")) continue;
-//        let asmArray = termObj.getJSONArray("assignments")
-//        for (j in 0..asmArray.length() - 1) {
-//        let asmObj = asmArray.getJSONObject(j)
-//        let dates = asmObj.getString("date").split("/")
-//        let date = dates[2] + "/" + dates[0] + "/" + dates[1]
-//        assignmentList.add(AssignmentItem(asmObj.getString("assignment"),
-//        date, if (asmObj.getString("grade") == "") "--" else asmObj.getString("percent"),
-//        if (asmObj.getString("score").endsWith("d")) context.getString(R.string.unpublished) else asmObj.getString("score"),
-//        if (asmObj.getString("grade") == "") "--" else asmObj.getString("grade"), asmObj.getString("category"), termObj.getString("term")))
-//        }
-//        
-//        let periodGradeItem = PeriodGradeItem(termObj.getString("term"),
-//        if (termObj.getString("grade") == "") "--" else termObj.getString("grade"), termObj.getString("mark"), assignmentList)
-//        
-//        // Put the term data into the course data, either already exists or be going to be created.
-//        let mainListItem = dataMap[termObj.getString("name")]
-//        if (mainListItem == null) { // The course data does not exist yet.
-//        
-//        let periodGradeList = ArrayList<PeriodGradeItem>()
-//        periodGradeList.add(periodGradeItem)
-//        
-//        dataMap.put(termObj.getString("name"),
-//        MainListItem(termObj.getString("name"), termObj.getString("teacher"),
-//        termObj.getString("block"), termObj.getString("room"), periodGradeList))
-//        
-//        } else { // Already exist. Just insert into it.
-//        
-//        mainListItem.addPeriodGradeItem(periodGradeItem)
-//        
-//        }
-//        }
-//        
-//        // Convert from HashMap to ArrayList
-//        let dataList = ArrayList<MainListItem>()
-//        dataList.addAll(dataMap.letues)
-//        Collections.sort(dataList, Comparator<MainListItem> { o1, o2 ->
-//        if (o1.blockLetter == "HR(1)") return@Comparator -1
-//        if (o2.blockLetter == "HR(1)") return@Comparator 1
-//        o1.blockLetter.compareTo(o2.blockLetter)
-//        })
-//        return dataList
-//        
-//        return nil
-//    }
+    func parseJsonResult(jsonStr: String) -> [MainListItem] {
+        
+        let jsonData = JSON(jsonStr).arrayValue
+        var dataMap = [String : MainListItem]()
+        
+        
+        for termObj in jsonData {
+        
+            // Turns assignments into an ArrayList
+            var assignmentList = [AssignmentItem]()
+            if let asmArray = termObj["assignments"].array {
+                for asmObj in asmArray {
+                    let dates = asmObj["date"].stringValue.components(separatedBy: "/")
+                    let date = dates[2] + "/" + dates[0] + "/" + dates[1]
+                    let grade = asmObj["grade"].stringValue
+                    assignmentList.append(AssignmentItem(_assignmentTitle: asmObj["assignment"].stringValue, _assignmentDate: date, _assignmentPercentage: grade == "" ? "--" : asmObj["percent"].stringValue, _assignmentDividedScore: asmObj["score"].stringValue.hasSuffix("d") ? "Unpublished":asmObj["score"].stringValue, _assignmentGrade: grade == "" ? "--" :grade, _assignmentCategory: asmObj["category"].stringValue, _assignmentTerm: termObj["term"].stringValue))
+                }
+                
+                let periodGradeItem = PeriodGradeItem(_termIndicator: termObj["term"].stringValue, _termLetterGrade: termObj["grade"].stringValue == "" ? "--" : termObj["grade"].stringValue, _termPercentageGrade: termObj["mark"].stringValue, _assignmentItemArrayList: assignmentList)
+        
+                //  Put the term data into the course data, either already exists or be going to be created.
+                let name = termObj["name"].stringValue
+                if let mainListItem = dataMap[name] {
+                    
+                    // The course data already exist. Just insert into it.
+                    mainListItem.addPeriodGradeItem(_periodGradeItem: periodGradeItem)
+                    
+                } else {
+                    
+                    // The course data does not exist yet.
+                    
+                    dataMap[name] = MainListItem(_subjectTitle: name, _teacherName: termObj["teacher"].stringValue, _blockLetter: termObj["block"].stringValue, _roomNumber: termObj["room"].stringValue, _periodGradeItemArray: [periodGradeItem])
+        
+                }
+            }
+        }
+        
+        // Convert from HashMap to ArrayList
+        var dataList = [MainListItem]()
+        for (_, value) in dataMap { dataList.append(value) }
+        dataList = dataList.sorted(by: { $0.blockLetter<$1.blockLetter })
+        return dataList
+    }
 }
