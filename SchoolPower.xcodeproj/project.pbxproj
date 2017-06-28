@@ -30,7 +30,6 @@
 		62CFC9B21EFA9940002B4A8D /* SchoolPowerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC9B11EFA9940002B4A8D /* SchoolPowerUITests.swift */; };
 		62CFC9C01EFA996C002B4A8D /* DashboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC9BF1EFA996C002B4A8D /* DashboardCell.swift */; };
 		62CFC9C21EFA9972002B4A8D /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC9C11EFA9972002B4A8D /* MainTableViewController.swift */; };
-		62CFC9C51EFA99BE002B4A8D /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC9C41EFA99BE002B4A8D /* FoldingCell.swift */; };
 		967E2B0F6E4AFA12D7421ACD /* Pods_SchoolPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0716409FF68D18F6B2A17B63 /* Pods_SchoolPower.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +57,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				62AA4E2E1F028537009C8CFC /* FoldingCell.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,7 +71,6 @@
 		624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentCell.swift; sourceTree = "<group>"; };
 		624BDC221EFE46110052EC5D /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailHeaderCell.swift; sourceTree = "<group>"; };
-		628EF6441EFB3362008E0C4D /* FoldingCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FoldingCell.framework; sourceTree = "<group>"; };
 		62A8FA431EFB66DA00751ACD /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		62AA4E391F033B57009C8CFC /* AppNavigationDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationDrawerController.swift; sourceTree = "<group>"; };
 		62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +93,6 @@
 		62CFC9B31EFA9940002B4A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62CFC9BF1EFA996C002B4A8D /* DashboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCell.swift; sourceTree = "<group>"; };
 		62CFC9C11EFA9972002B4A8D /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
-		62CFC9C41EFA99BE002B4A8D /* FoldingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoldingCell.swift; path = ../FoldingCell/FoldingCell.swift; sourceTree = "<group>"; };
 		AF182FAFC8DA239CF1FB62B9 /* Pods-SchoolPower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolPower.release.xcconfig"; path = "Pods/Target Support Files/Pods-SchoolPower/Pods-SchoolPower.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62AA4E2D1F028537009C8CFC /* FoldingCell.framework in Frameworks */,
 				967E2B0F6E4AFA12D7421ACD /* Pods_SchoolPower.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,7 +125,6 @@
 		48B1477E4041E727FB2F12C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				628EF6441EFB3362008E0C4D /* FoldingCell.framework */,
 				0716409FF68D18F6B2A17B63 /* Pods_SchoolPower.framework */,
 			);
 			name = Frameworks;
@@ -193,7 +187,6 @@
 				62CFC9BF1EFA996C002B4A8D /* DashboardCell.swift */,
 				624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */,
 				624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */,
-				62CFC9C41EFA99BE002B4A8D /* FoldingCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -468,7 +461,6 @@
 				62AA4E3D1F033B57009C8CFC /* LeftViewController.swift in Sources */,
 				621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */,
 				62AA4E3C1F033B57009C8CFC /* AppNavigationDrawerController.swift in Sources */,
-				62CFC9C51EFA99BE002B4A8D /* FoldingCell.swift in Sources */,
 				62CFC9941EFA9940002B4A8D /* CourseDetailTableViewController.swift in Sources */,
 				62C7867C1EFB95CC00CB28ED /* PeriodGradeItem.swift in Sources */,
 				62C786801EFB998D00CB28ED /* MainListItem.swift in Sources */,
