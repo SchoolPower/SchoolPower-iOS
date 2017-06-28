@@ -11,6 +11,9 @@ import UIKit
 
 class Utils {
     
+    let userDefaults = UserDefaults.standard
+    let keyName = "dashboarddisplays"
+    
     let gradeColorIds = [Colors().A_score_green, Colors().B_score_green, Colors().Cp_score_yellow, Colors().C_score_orange, Colors().Cm_score_red, Colors().primary_dark, Colors().primary, Colors().primary]
     let gradeColorIdsPlain = [Colors().A_score_green, Colors().B_score_green, Colors().Cp_score_yellow, Colors().C_score_orange, Colors().Cm_score_red, Colors().primary_dark, Colors().primary]
     func indexOfString (searchString: String, domain: Array<String>) -> Int {
@@ -45,14 +48,13 @@ class Utils {
     /* Others */
     func getLatestItem(item: MainListItem) -> PeriodGradeItem? {
         
-        //TODO last semester setting
-        let forLatestSemester = false
+        var forLatestSemester = false
         var latestTerm: String
         var periodGradeItemList = item.periodGradeItemArray
         var termsList: Array<String> = Array()
         termsList.append("ALL TERMS")
         
-        //        if (getSettingsPreference(context.getString(R.string.list_preference_dashboard_display)) == "1") {forLatestSemester = true }
+        if userDefaults.integer(forKey: keyName) == 1 { forLatestSemester = true }
         for item in periodGradeItemList.indices { termsList.append(periodGradeItemList[item].termIndicator) }
         
         if (forLatestSemester){

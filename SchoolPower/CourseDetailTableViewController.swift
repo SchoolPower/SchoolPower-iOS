@@ -62,9 +62,9 @@ class CourseDetailTableViewController: UITableViewController {
 extension CourseDetailTableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "CourseDetailHeaderCell") as! CourseDetailHeaderCell
         headerCell.infoItem = infoItem
+        headerCell.backgroundColor = UIColor.clear
         return headerCell
     }
     
@@ -75,6 +75,7 @@ extension CourseDetailTableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
         let footerCell = tableView.dequeueReusableCell(withIdentifier: "CourseDetailFooterCell")
+        footerCell?.backgroundColor = UIColor.clear
         return footerCell
     }
     

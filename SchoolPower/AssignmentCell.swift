@@ -48,5 +48,4 @@ class AssignmentCell: UITableViewCell {
             }
         }
     }
-    
 }

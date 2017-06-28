@@ -8,6 +8,7 @@
 
 import UIKit
 import MaterialComponents
+import Material
 import FoldingCell
 
 struct ButtonLayout {
@@ -34,7 +35,7 @@ class MainTableViewController: UITableViewController {
                             _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS3", _assignmentDate: "6/4", _assignmentPercentage: "100", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")])]),
          MainListItem(_subjectTitle: "Planning 10", _teacherName: "Grainne Smith", _blockLetter: "B", _roomNumber: "311", _periodGradeItemArray: [
             PeriodGradeItem(_termIndicator: "T1", _termLetterGrade: "A", _termPercentageGrade: "10",                                                                                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS1", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
-            PeriodGradeItem(_termIndicator: "T2", _termLetterGrade: "C-", _termPercentageGrade: "55",
+            PeriodGradeItem(_termIndicator: "T2", _termLetterGrade: "C+", _termPercentageGrade: "73",
                             _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
             PeriodGradeItem(_termIndicator: "S2", _termLetterGrade: "C-", _termPercentageGrade: "55",
                             _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")])])]
@@ -51,6 +52,8 @@ class MainTableViewController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationController?.navigationBar.isTranslucent = false
+        
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -68,8 +71,6 @@ class MainTableViewController: UITableViewController {
         tableView.backgroundColor = Utils().hexStringToUIColor(hex: Colors().foreground_material_dark)
         tableView.separatorColor = UIColor.clear
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
-        
-        
     }
 }
 
@@ -117,10 +118,8 @@ extension MainTableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
         if cell.isAnimating() { return }
         
-        let button = MDCFloatingButton()
-        button.setImage(UIImage(named: "ic_keyboard_arrow_right_white_36pt"), for: UIControlState.normal)
-        button.tintColor = UIColor.white
-        button.inkColor = UIColor.white
+        let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: UIColor.white)
+        button.pulseColor = UIColor.white
         button.backgroundColor = Utils().hexStringToUIColor(hex: Colors().accent)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = indexPath.row

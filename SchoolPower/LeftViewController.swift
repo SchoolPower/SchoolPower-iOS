@@ -31,37 +31,118 @@
 import UIKit
 import Material
 
-class LeftViewController: UIViewController {
-    fileprivate var transitionButton: FlatButton!
+class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var presentFragment: Int?
+    
+    @IBOutlet weak var table: UITableView?
+    @IBOutlet weak var headerUsername: UILabel?
+    @IBOutlet weak var headerUserID: UILabel?
     
     open override func viewDidLoad() {
+        
         super.viewDidLoad()
-        
-        prepareTransitionButton()
-    }
-}
-
-extension LeftViewController {
-    fileprivate func prepareTransitionButton() {
-        transitionButton = FlatButton(title: "Transition VC", titleColor: .white)
-        transitionButton.pulseColor = .white
-        transitionButton.addTarget(self, action: #selector(handleTransitionButton), for: .touchUpInside)
-        
-        view.layout(transitionButton).horizontally().center()
-    }
-}
-
-extension LeftViewController {
-    @objc
-    fileprivate func handleTransitionButton() {
-        // Transition the entire NavigationDrawer rootViewController.
-        //        navigationDrawerController?.transition(to: TransitionedViewController(), completion: closeNavigationDrawer)
-        
-        // Transition the ToolbarController rootViewController that is in the NavigationDrawer rootViewController.
-        (navigationDrawerController?.rootViewController as? ToolbarController)?.transition(to: TransitionedViewController(), completion: closeNavigationDrawer)
+        setup()
     }
     
-    fileprivate func closeNavigationDrawer(result: Bool) {
+    func setup(){
+        
+        table?.delegate = self
+        table?.dataSource = self
+        table?.separatorColor = UIColor.clear
+        table?.contentInset = UIEdgeInsetsMake(16, 0, 0, 0)
+        
+        headerUsername?.text = "//TODO USERNAME"
+        headerUserID?.text = "User ID: " + "//TODO USERID"
+    }
+}
+
+//MARK: Drawer
+extension LeftViewController {
+    @objc
+    func gotoFragment(section: Int, location: Int) {
+        
+        let mainStory = UIStoryboard(name: "Main", bundle: nil)
+        let settingsStory = UIStoryboard(name: "Settings", bundle: nil)
+        if section == 0 {
+            switch location {
+            case 0:
+                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), duration: 0, options: [], animations: nil, completion: nil)
+            case 1:
+                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "ChartsNav"), duration: 0, options: [], animations: nil, completion: nil)
+            default:
+                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), duration: 0, options: [], animations: nil, completion: nil)
+            }
+        } else {
+            switch location {
+            case 0:
+                (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(settingsStory.instantiateViewController(withIdentifier: "Settings"), animated: true)
+//                navigationDrawerController?.rootViewController.present(story.instantiateViewController(withIdentifier: "SettingsNav"), animated: true, completion: nil)
+            
+            default:
+                print("NoViewToGoTo")
+            }
+        }
+        
+        closeNavigationDrawer()
+    }
+    
+    public func closeNavigationDrawer() {
         navigationDrawerController?.closeLeftView()
+    }
+}
+
+//MARK: Table View
+extension LeftViewController {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if (section == 1) {
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: "DrawerHeaderCell") as! DrawerHeaderCell
+            headerCell.categoryStr = "Preference"
+            return headerCell
+        } else { return nil }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if (section == 1) { return 56 }
+        else { return 0 }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        switch section {
+        case 0: return 2
+        case 1: return 2
+        default: return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 48
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DrawerFragmentCell", for: indexPath) as! DrawerFragmentCell
+        cell.section = indexPath.section
+        cell.location = indexPath.row
+        cell.presentSelected = presentFragment ?? 0
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! DrawerFragmentCell
+        cell.isSelected = false
+        if cell.section == 0 {
+            presentFragment = cell.location
+            tableView.reloadData()
+        }
+        gotoFragment(section: cell.section, location: cell.location)
     }
 }

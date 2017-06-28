@@ -31,16 +31,26 @@
 import UIKit
 import Material
 
-class TransitionedViewController: UIViewController {
+class ChartsViewController: UIViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal) , style: .plain ,target: self, action: #selector(menuOnClick))
+        self.navigationItem.leftBarButtonItems = [menuItem]
+        self.navigationController?.navigationBar.barTintColor = Utils().hexStringToUIColor(hex: Colors().primary)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Color.purple.base
         
-        prepareToolbar()
+//        prepareToolbar()
     }
 }
 
-extension TransitionedViewController {
+extension ChartsViewController {
     fileprivate func prepareToolbar() {
         guard let tc = toolbarController else {
             return
@@ -48,6 +58,11 @@ extension TransitionedViewController {
         
         tc.toolbar.title = "Transitioned"
         tc.toolbar.detail = "View Controller"
+    }
+    
+    func menuOnClick(sender: UINavigationItem) {
+        
+        navigationDrawerController?.toggleLeftView()
     }
 }
 
