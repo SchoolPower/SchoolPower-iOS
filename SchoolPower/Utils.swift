@@ -80,40 +80,36 @@ class Utils {
         
         let jsonData = JSON(jsonStr).arrayValue
         var dataMap = [String : MainListItem]()
-        
-        
         for termObj in jsonData {
-        
+            
             // Turns assignments into an ArrayList
             var assignmentList = [AssignmentItem]()
             if let asmArray = termObj["assignments"].array {
+                
                 for asmObj in asmArray {
+                    
                     let dates = asmObj["date"].stringValue.components(separatedBy: "/")
                     let date = dates[2] + "/" + dates[0] + "/" + dates[1]
                     let grade = asmObj["grade"].stringValue
                     assignmentList.append(AssignmentItem(_assignmentTitle: asmObj["assignment"].stringValue, _assignmentDate: date, _assignmentPercentage: grade == "" ? "--" : asmObj["percent"].stringValue, _assignmentDividedScore: asmObj["score"].stringValue.hasSuffix("d") ? "Unpublished":asmObj["score"].stringValue, _assignmentGrade: grade == "" ? "--" :grade, _assignmentCategory: asmObj["category"].stringValue, _assignmentTerm: termObj["term"].stringValue))
                 }
-                
                 let periodGradeItem = PeriodGradeItem(_termIndicator: termObj["term"].stringValue, _termLetterGrade: termObj["grade"].stringValue == "" ? "--" : termObj["grade"].stringValue, _termPercentageGrade: termObj["mark"].stringValue, _assignmentItemArrayList: assignmentList)
-        
-                //  Put the term data into the course data, either already exists or be going to be created.
+                
+                //  Put the term data into the course data, either already exists or will be created
                 let name = termObj["name"].stringValue
                 if let mainListItem = dataMap[name] {
                     
-                    // The course data already exist. Just insert into it.
+                    // The course data already exist, just insert into it
                     mainListItem.addPeriodGradeItem(_periodGradeItem: periodGradeItem)
                     
                 } else {
                     
-                    // The course data does not exist yet.
-                    
+                    // The course data is not yet existing
                     dataMap[name] = MainListItem(_subjectTitle: name, _teacherName: termObj["teacher"].stringValue, _blockLetter: termObj["block"].stringValue, _roomNumber: termObj["room"].stringValue, _periodGradeItemArray: [periodGradeItem])
-        
                 }
             }
         }
-        
-        // Convert from HashMap to ArrayList
+        // Convert HashMap into ArrayList
         var dataList = [MainListItem]()
         for (_, value) in dataMap { dataList.append(value) }
         dataList = dataList.sorted(by: { $0.blockLetter<$1.blockLetter })

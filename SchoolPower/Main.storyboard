@@ -267,7 +267,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ZN-rQ-Ck7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-206" y="-2905"/>
+            <point key="canvasLocation" x="-208" y="-3057"/>
         </scene>
         <!--Course Detail-->
         <scene sceneID="ePX-kH-SIw">
@@ -519,7 +519,51 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oid-dc-nUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="610" y="-2905"/>
+            <point key="canvasLocation" x="609" y="-3057"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="n8j-jM-81e">
+            <objects>
+                <viewController storyboardIdentifier="login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MsG-xO-eut" customClass="LoginViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bj6-Ry-FhF"/>
+                        <viewControllerLayoutGuide type="bottom" id="k0P-VV-bVe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q6X-rj-jTv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_light" translatesAutoresizingMaskIntoConstraints="NO" id="EXI-SL-jkQ">
+                                <rect key="frame" x="112.5" y="258.5" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="1c2-wj-Fqp"/>
+                                    <constraint firstAttribute="height" constant="150" id="ieg-p7-nmM"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017 SchoolPower Studio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GqY-RN-TuR">
+                                <rect key="frame" x="16" y="627" width="343" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.023529411764705882" green="0.11372549019607843" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.035294117649999998" green="0.19215686269999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EXI-SL-jkQ" firstAttribute="centerX" secondItem="q6X-rj-jTv" secondAttribute="centerX" id="EDw-ht-iOC"/>
+                            <constraint firstItem="EXI-SL-jkQ" firstAttribute="centerY" secondItem="q6X-rj-jTv" secondAttribute="centerY" id="UbU-0N-d98"/>
+                            <constraint firstItem="k0P-VV-bVe" firstAttribute="top" secondItem="GqY-RN-TuR" secondAttribute="bottom" constant="24" id="fk7-Fb-6jZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GqY-RN-TuR" secondAttribute="trailing" id="hrv-RP-ZgA"/>
+                            <constraint firstItem="GqY-RN-TuR" firstAttribute="leading" secondItem="q6X-rj-jTv" secondAttribute="leadingMargin" id="uWc-I5-ILI"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="appIcon" destination="EXI-SL-jkQ" id="JRT-iu-Nkd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P5u-eh-2IP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1039" y="-1313"/>
         </scene>
         <!--Item-->
         <scene sceneID="jMb-C3-VIV">
@@ -531,7 +575,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Qud-Hm-2ul">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Qud-Hm-2ul">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -542,7 +586,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Jv-H0-maf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1036" y="-2905"/>
+            <point key="canvasLocation" x="-1038" y="-3057"/>
         </scene>
         <!--Left View Controller-->
         <scene sceneID="VrH-MD-nOQ">
@@ -698,7 +742,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-1036" y="-1434"/>
+            <point key="canvasLocation" x="-208" y="-1313"/>
         </scene>
         <!--Charts-->
         <scene sceneID="Sbn-R0-XeT">
@@ -731,7 +775,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hc8-rU-frg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hc8-rU-frg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -746,5 +790,6 @@
     </scenes>
     <resources>
         <image name="ic_launcher-web" width="512" height="512"/>
+        <image name="icon_light" width="1024" height="1024"/>
     </resources>
 </document>

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
         let story = UIStoryboard(name: "Main", bundle: nil)
-        let mainController = story.instantiateViewController(withIdentifier: "DashboardNav")
+        let mainController = story.instantiateViewController(withIdentifier: "login")
         let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
         
         window = UIWindow(frame: Screen.bounds)

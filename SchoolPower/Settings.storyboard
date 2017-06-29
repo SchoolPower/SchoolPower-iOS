@@ -22,7 +22,7 @@
                             <tableViewSection headerTitle="Display" id="phv-UG-4VK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="EAY-Lq-1iy" detailTextLabel="R0z-vl-aRg" style="IBUITableViewCellStyleValue1" id="Cgp-8k-gbF" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cgp-8k-gbF" id="sYx-rX-FLj">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -51,7 +51,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="YXK-PK-zPr" detailTextLabel="rh8-4e-39Z" style="IBUITableViewCellStyleValue1" id="hIN-dn-mmE" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hIN-dn-mmE" id="NhS-ia-1qQ">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -181,9 +181,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dd7-pn-ted" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="SettingsNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Vp-9p-JKN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JMk-t3-bE9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JMk-t3-bE9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

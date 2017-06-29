@@ -11,13 +11,6 @@ import MaterialComponents
 import Material
 import FoldingCell
 
-struct ButtonLayout {
-    
-    struct Fab {
-        static let diameter: CGFloat = 48
-    }
-}
-
 class MainTableViewController: UITableViewController {
     
     let kRowsCount = 10

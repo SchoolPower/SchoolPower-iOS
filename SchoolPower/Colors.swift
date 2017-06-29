@@ -16,6 +16,7 @@ class Colors{
     let Cm_score_red = "#D32F2F"
     let primary = "#09314b"
     let primary_dark = "#07263b"
+    let primary_darker = "#061d2f"
     let accent = "#00c4cf"
     let white = "#FFFFFF"
     let white_0_5 = "#32FFFFFF"

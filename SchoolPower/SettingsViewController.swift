@@ -37,11 +37,11 @@ class SettingsTableViewController: UITableViewController {
     
     func registerDefaults(){
         
-        if (userDefaults.object(forKey: "language") == nil) {
-            userDefaults.register(defaults: ["language": 0])
+        if (userDefaults.object(forKey: keySets[0]) == nil) {
+            userDefaults.register(defaults: [keySets[0]: 0])
         }
-        if (userDefaults.object(forKey: "dashboarddisplays") == nil) {
-            userDefaults.register(defaults: ["dashboarddisplays": 1])
+        if (userDefaults.object(forKey: keySets[1]) == nil) {
+            userDefaults.register(defaults: [keySets[1]: 1])
         }
         userDefaults.synchronize()
     }
