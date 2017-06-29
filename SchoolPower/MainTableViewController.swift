@@ -259,7 +259,7 @@ extension MainTableViewController {
 extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataList[1].periodGradeItemArray.count
+        return dataList[collectionView.tag].periodGradeItemArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -270,6 +270,8 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         collectionCell.layer.cornerRadius = 7.0
         collectionCell.layer.masksToBounds = true
+        
+        print(collectionView.tag)
         
         (collectionCell.viewWithTag(1) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termIndicator
         (collectionCell.viewWithTag(2) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termLetterGrade

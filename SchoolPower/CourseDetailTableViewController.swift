@@ -102,6 +102,7 @@ extension CourseDetailTableViewController {
         
         guard case let cell as AssignmentCell = cell else { return }
         cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         cell.location = indexPath.row
         cell.list = list
     }

@@ -138,7 +138,7 @@ extension Utils {
     
     func parseJsonResult(jsonStr: String) -> Array<MainListItem> {
         
-        let jsonData = JSON(jsonStr).arrayValue
+        let jsonData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!).arrayValue
         var dataMap = [String : MainListItem]()
         for termObj in jsonData {
             
@@ -174,6 +174,7 @@ extension Utils {
         for (_, value) in dataMap { dataList.append(value) }
         
         dataList = dataList.sorted(by: { $0.blockLetter < $1.blockLetter })
+        print(dataList.count)
         return dataList
     }
 }
