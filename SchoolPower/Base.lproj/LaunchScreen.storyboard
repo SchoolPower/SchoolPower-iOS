@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="width" constant="200" id="tQT-Cr-js4"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Copyright © 2017 SchoolPower Studio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l82-bo-KLm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017 SchoolPower Studio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l82-bo-KLm">
                                 <rect key="frame" x="16" y="627" width="343" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.023529411760000001" green="0.1137254902" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,6 +40,7 @@
                         <constraints>
                             <constraint firstItem="l82-bo-KLm" firstAttribute="leading" secondItem="WRP-kD-osN" secondAttribute="leadingMargin" id="9kp-Om-g4X"/>
                             <constraint firstItem="aig-UW-Aem" firstAttribute="centerY" secondItem="WRP-kD-osN" secondAttribute="centerY" id="K7j-kS-0nu"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="l82-bo-KLm" secondAttribute="bottom" constant="24" id="STm-0e-IOe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="l82-bo-KLm" secondAttribute="trailing" id="cti-GL-Abc"/>
                             <constraint firstItem="aig-UW-Aem" firstAttribute="centerX" secondItem="WRP-kD-osN" secondAttribute="centerX" id="txn-co-xS7"/>
                         </constraints>

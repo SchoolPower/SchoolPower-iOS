@@ -13,15 +13,19 @@ import SwiftyJSON
 class Utils {
     
     let userDefaults = UserDefaults.standard
-    let keyName = "dashboarddisplays"
+    let KEY_NAME = "dashboarddisplays"
+    let JSON_FILE_NAME = "dataMap.json"
     
     let gradeColorIds = [Colors().A_score_green, Colors().B_score_green, Colors().Cp_score_yellow, Colors().C_score_orange, Colors().Cm_score_red, Colors().primary_dark, Colors().primary, Colors().primary]
     let gradeColorIdsPlain = [Colors().A_score_green, Colors().B_score_green, Colors().Cp_score_yellow, Colors().C_score_orange, Colors().Cm_score_red, Colors().primary_dark, Colors().primary]
     func indexOfString (searchString: String, domain: Array<String>) -> Int {
         return domain.index(of: searchString)!
     }
+}
+
+//MARK: Color Handler
+extension Utils {
     
-    /* Color Handler */
     func getColorByLetterGrade(letterGrade: String) -> UIColor {
         return hexStringToUIColor(hex: gradeColorIds[indexOfString(searchString: letterGrade, domain: ["A", "B", "C+", "C", "C-", "F", "I", "--"])])
     }
@@ -33,8 +37,8 @@ class Utils {
     func hexStringToUIColor (hex:String) -> UIColor {
         
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        if (cString.hasPrefix("#")) { cString.remove(at: cString.startIndex) }
-        if ((cString.characters.count) != 6) { return UIColor.gray }
+        if cString.hasPrefix("#") { cString.remove(at: cString.startIndex) }
+        if (cString.characters.count) != 6 { return UIColor.gray }
         var rgbletue:UInt32 = 0
         Scanner(string: cString).scanHexInt32(&rgbletue)
         
@@ -45,8 +49,64 @@ class Utils {
             alpha: CGFloat(1.0)
         )
     }
+}
+
+//MARK: I/O
+extension Utils {
     
-    /* Others */
+    func saveStringToFile(filename: String, data: String) {
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = dir.appendingPathComponent(filename)
+            do { try data.write(to: path, atomically: false, encoding: String.Encoding.utf8) }
+            catch { print("JSON INPUT ERROR") }
+        }
+    }
+    
+    func readFileFromString(filename: String) -> String{
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = dir.appendingPathComponent(filename)
+            do { return try String(contentsOf: path, encoding: String.Encoding.utf8) }
+            catch { print("JSON OUTPUT ERROR") }
+        }
+        return ""
+    }
+    
+    func readDataArrayList() -> Array<MainListItem>?{
+        return parseJsonResult(jsonStr: readFileFromString(filename: JSON_FILE_NAME))
+    }
+}
+
+//MARK: Post
+extension Utils {
+    
+    func sendPost(url: String, params: String, completion: @escaping (_ retResponse: String) -> ()) {
+
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.httpBody = params.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                //networking error
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+            }
+            let responseString = String(data: data, encoding: .utf8)
+            completion(responseString!)
+        }
+        task.resume()
+    }
+}
+
+//MARK: Others
+extension Utils {
+    
     func getLatestItem(item: MainListItem) -> PeriodGradeItem? {
         
         var forLatestSemester = false
@@ -55,28 +115,28 @@ class Utils {
         var termsList = [String]()
         termsList.append("ALL TERMS")
         
-        if userDefaults.integer(forKey: keyName) == 1 { forLatestSemester = true }
+        if userDefaults.integer(forKey: KEY_NAME) == 1 { forLatestSemester = true }
         
         for item in periodGradeItemList.indices { termsList.append(periodGradeItemList[item].termIndicator) }
         
-        if (forLatestSemester){
-            if (termsList.contains("S2")) {latestTerm = "S2"}
-            else if (termsList.contains("S1")) {latestTerm = "S1"}
-            else if (termsList.contains("T4")) {latestTerm = "T4"}
-            else if (termsList.contains("T3")) {latestTerm = "T3"}
-            else if (termsList.contains("T2")) {latestTerm = "T2"}
+        if forLatestSemester{
+            if termsList.contains("S2") {latestTerm = "S2"}
+            else if termsList.contains("S1") {latestTerm = "S1"}
+            else if termsList.contains("T4") {latestTerm = "T4"}
+            else if termsList.contains("T3") {latestTerm = "T3"}
+            else if termsList.contains("T2") {latestTerm = "T2"}
             else {latestTerm = "T1"}}
         else{
-            if (termsList.contains("T4")) {latestTerm = "T4"}
-            else if (termsList.contains("T3")) {latestTerm = "T3"}
-            else if (termsList.contains("T2")) {latestTerm = "T2"}
+            if termsList.contains("T4") {latestTerm = "T4"}
+            else if termsList.contains("T3") {latestTerm = "T3"}
+            else if termsList.contains("T2") {latestTerm = "T2"}
             else {latestTerm = "T1"}}
         
-        for item in periodGradeItemList { if (item.termIndicator == latestTerm) {return item} }
+        for item in periodGradeItemList { if item.termIndicator == latestTerm {return item} }
         return nil
     }
     
-    func parseJsonResult(jsonStr: String) -> [MainListItem] {
+    func parseJsonResult(jsonStr: String) -> Array<MainListItem> {
         
         let jsonData = JSON(jsonStr).arrayValue
         var dataMap = [String : MainListItem]()
@@ -112,7 +172,8 @@ class Utils {
         // Convert HashMap into ArrayList
         var dataList = [MainListItem]()
         for (_, value) in dataMap { dataList.append(value) }
-        dataList = dataList.sorted(by: { $0.blockLetter<$1.blockLetter })
+        
+        dataList = dataList.sorted(by: { $0.blockLetter < $1.blockLetter })
         return dataList
     }
 }

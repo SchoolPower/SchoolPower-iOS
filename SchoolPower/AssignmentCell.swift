@@ -37,7 +37,7 @@ class AssignmentCell: UITableViewCell {
             assignmentPercentageGrade.text = assignmentItem.assignmentPercentage
             assignmentDividedGrade.text = assignmentItem.assignmentDividedScore
             gradeBackground.backgroundColor = Utils().getColorByLetterGrade(letterGrade: assignmentItem.assignmentGrade)
-            if (assignmentItem.isNew) {
+            if assignmentItem.isNew {
                 foreBackground.backgroundColor = Utils().hexStringToUIColor(hex: Colors().accent)
                 assignmentTitle.textColor = UIColor.white
                 assignmentDate.textColor = Utils().hexStringToUIColor(hex: Colors().white_0_20)

@@ -39,6 +39,9 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var headerUsername: UILabel?
     @IBOutlet weak var headerUserID: UILabel?
     
+    let userDefaults = UserDefaults.standard
+    let KEY_NAME = "loggedin"
+    
     open override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -54,6 +57,24 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         headerUsername?.text = "//TODO USERNAME"
         headerUserID?.text = "User ID: " + "//TODO USERID"
+    }
+    
+    func logOut() {
+        
+        userDefaults.set(false, forKey: KEY_NAME)
+        startLoginController()
+    }
+    
+    func startLoginController() {
+        
+        UIApplication.shared.delegate?.window??.rootViewController!.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "login"), animated: true, completion: updateRootViewController)
+    }
+    
+    func updateRootViewController() {
+        
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let loginController = story.instantiateViewController(withIdentifier: "login")
+        UIApplication.shared.delegate?.window??.rootViewController = loginController
     }
 }
 
@@ -77,7 +98,9 @@ extension LeftViewController {
             switch location {
             case 0:
                 (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(settingsStory.instantiateViewController(withIdentifier: "Settings"), animated: true)
-//                navigationDrawerController?.rootViewController.present(story.instantiateViewController(withIdentifier: "SettingsNav"), animated: true, completion: nil)
+                
+            case 1:
+                logOut()
             
             default:
                 print("NoViewToGoTo")
@@ -97,7 +120,7 @@ extension LeftViewController {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        if (section == 1) {
+        if section == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "DrawerHeaderCell") as! DrawerHeaderCell
             headerCell.categoryStr = "Preference"
             return headerCell
@@ -106,7 +129,7 @@ extension LeftViewController {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if (section == 1) { return 56 }
+        if section == 1 { return 56 }
         else { return 0 }
     }
     

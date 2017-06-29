@@ -18,34 +18,54 @@ class LoginViewController: UIViewController {
     fileprivate var button: FABButton!
     
     let userDefaults = UserDefaults.standard
-    let keyName = "loggedin"
+    let JSON_FILE_NAME = "dataMap.json"
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        checkIfLoggedIn()
-        
         prepareUI()
-    }
-    
-    func checkIfLoggedIn() {
-        
-        if userDefaults.object(forKey: keyName) == nil {
-            userDefaults.register(defaults: [keyName: false])
-        }
-        if userDefaults.bool(forKey: keyName) {
-            startMainActivity()
-        }
     }
     
     func loginAction(sender: UIButton) {
         
+        let username = usernameField.text
+        let password = passwordField.text
+        Utils().sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
+            
+            let response = value
+            let messages = response.components(separatedBy: "\n")
+            
+            if response.contains("{\"error\":1,\"") {
+                //TODO SNACKBAR
+            } else if response.contains("[{\"") {
+                
+                self.userDefaults.set(username, forKey: "username")
+                self.userDefaults.set(password, forKey: "password")
+                self.userDefaults.set(true, forKey: "loggedin")
+                self.userDefaults.set(messages[0], forKey: "studentName")
+                self.userDefaults.synchronize()
+                Utils().saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
+                self.startMainViewController()
+                
+            } else {
+                //TODO SNACKBAR
+            }
+        }
     }
     
-    func startMainActivity() {
+    func startMainViewController() {
         
-//        startActivity(Intent(application, MainActivity::class.java))
-//        self.fini
+        OperationQueue.main.addOperation {
+            UIApplication.shared.delegate?.window??.rootViewController!.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardNav"), animated: true, completion: self.updateRootViewController)
+        }
+    }
+    
+    func updateRootViewController() {
+        
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let mainController = story.instantiateViewController(withIdentifier: "DashboardNav")
+        let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
+        UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(rootViewController: mainController, leftViewController: leftViewController, rightViewController: nil)
     }
 }
 
