@@ -56,6 +56,7 @@ class LoginViewController: UIViewController {
                 self.userDefaults.set(messages[0], forKey: "studentName")
                 self.userDefaults.synchronize()
                 Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
+                
                 self.startMainViewController()
                 
             } else {
@@ -67,7 +68,8 @@ class LoginViewController: UIViewController {
     func startMainViewController() {
         
         OperationQueue.main.addOperation {
-            UIApplication.shared.delegate?.window??.rootViewController!.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardNav"), animated: true, completion: self.updateRootViewController)
+           
+            self.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardNav"), animated: true, completion: self.updateRootViewController)
         }
     }
     
@@ -77,6 +79,7 @@ class LoginViewController: UIViewController {
         let mainController = story.instantiateViewController(withIdentifier: "DashboardNav")
         let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
         UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(rootViewController: mainController, leftViewController: leftViewController, rightViewController: nil)
+//        (navigationDrawerController?.rootViewController as! MainTableViewController).justLoggedIn = true
     }
 }
 

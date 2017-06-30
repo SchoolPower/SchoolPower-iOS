@@ -24,7 +24,6 @@ var dataList: Array<MainListItem>!
 class MainTableViewController: UITableViewController {
     
     let kRowsCount = 10
-    
     var cellHeights: [CGFloat] = []
     let kOpenCellHeight: CGFloat = 315
     let kCloseCellHeight: CGFloat = 125
@@ -62,7 +61,6 @@ class MainTableViewController: UITableViewController {
         let input = Utils.readDataArrayList()
         if input != nil { dataList = input! }
         initDataJson()
-        
         initUI()
     }
     
@@ -106,6 +104,8 @@ extension MainTableViewController {
             
             let response = value
             let messages = response.components(separatedBy: "\n")
+            
+            if !response.contains("assignments") { return }
             
             if response.contains("{\"error\":1,\"") {
                 //TODO SNACKBAR

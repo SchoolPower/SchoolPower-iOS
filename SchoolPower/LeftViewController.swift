@@ -87,7 +87,6 @@ extension LeftViewController {
             switch location {
             case 0:
                 (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(settingsStory.instantiateViewController(withIdentifier: "Settings"), animated: true)
-                
             case 1:
                 logOut()
             
