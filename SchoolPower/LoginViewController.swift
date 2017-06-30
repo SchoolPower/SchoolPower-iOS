@@ -38,6 +38,9 @@ class LoginViewController: UIViewController {
         
         let username = usernameField.text
         let password = passwordField.text
+        
+        //TODO DIALOG
+        
         Utils.sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
             let response = value

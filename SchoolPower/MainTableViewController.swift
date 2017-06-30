@@ -273,11 +273,6 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         collectionCell.layer.cornerRadius = 7.0
         collectionCell.layer.masksToBounds = true
         
-<<<<<<< HEAD
-=======
-        //print(collectionView.tag)
-        
->>>>>>> 9233ac3483098b14a1d409bf182cfb57d667d965
         (collectionCell.viewWithTag(1) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termIndicator
         (collectionCell.viewWithTag(2) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termLetterGrade
         (collectionCell.viewWithTag(3) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termPercentageGrade
