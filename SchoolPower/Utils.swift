@@ -91,15 +91,14 @@ extension Utils {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 //networking error
-                print("Network Error response = \(String(describing: error))")
+                completion("NETWORK_ERROR")
                 return
             }
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("response = \(String(describing: response))")
             }
-            let responseString = String(data: data, encoding: .utf8)
-            completion(responseString!)
+            completion(String(data: data, encoding: .utf8)!)
         }
         task.resume()
     }

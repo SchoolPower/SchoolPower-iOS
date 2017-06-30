@@ -48,6 +48,16 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         table?.reloadData()
     }
     
+    func confirmLogOut() {
+        
+        let alert = UIAlertController.init(title: "logging_out".localize, message: "sure_to_log_out".localize, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "logout".localize, style: .destructive) { (action:UIAlertAction!) in
+            self.logOut()
+        })
+        alert.addAction(UIAlertAction.init(title: "dont".localize, style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
     func logOut() {
         
         userDefaults.set(false, forKey: KEY_NAME)
@@ -88,7 +98,7 @@ extension LeftViewController {
             case 0:
                 (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(settingsStory.instantiateViewController(withIdentifier: "Settings"), animated: true)
             case 1:
-                logOut()
+                confirmLogOut()
             
             default:
                 print("NoViewToGoTo")

@@ -15,6 +15,7 @@
 
 import UIKit
 import Material
+import MaterialComponents
 
 class LoginViewController: UIViewController {
     
@@ -39,15 +40,25 @@ class LoginViewController: UIViewController {
         let username = usernameField.text
         let password = passwordField.text
         
-        //TODO DIALOG
+        let alert: UIAlertView = UIAlertView(title: "authenticating".localize, message: nil, delegate: nil, cancelButtonTitle: nil)
+        let loadingIndicator = UIActivityIndicatorView.init(frame: CGRect(x: 50, y: 50, width: 50, height: 50))
+        loadingIndicator.center = self.view.center;
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        alert.setValue(loadingIndicator, forKey: "accessoryView")
+        loadingIndicator.startAnimating()
+        alert.show();
         
         Utils.sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
+            alert.dismiss(withClickedButtonIndex: -1, animated: true)
+            self.showSnackbar(msg: "invalidup".localize)
             let response = value
             let messages = response.components(separatedBy: "\n")
             
             if response.contains("{\"error\":1,\"") {
-                //TODO SNACKBAR
+                self.showSnackbar(msg: "invalidup".localize)
             } else if response.contains("[{\"") {
                 
                 self.userDefaults.set(username, forKey: "username")
@@ -56,11 +67,10 @@ class LoginViewController: UIViewController {
                 self.userDefaults.set(messages[0], forKey: "studentName")
                 self.userDefaults.synchronize()
                 Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
-                
                 self.startMainViewController()
                 
             } else {
-                //TODO SNACKBAR
+                self.showSnackbar(msg: "cannot_connect".localize)
             }
         }
     }
@@ -79,7 +89,14 @@ class LoginViewController: UIViewController {
         let mainController = story.instantiateViewController(withIdentifier: "DashboardNav")
         let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
         UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(rootViewController: mainController, leftViewController: leftViewController, rightViewController: nil)
-//        (navigationDrawerController?.rootViewController as! MainTableViewController).justLoggedIn = true
+    }
+    
+    func showSnackbar(msg: String) {
+        
+        let message = MDCSnackbarMessage()
+        message.text = msg
+        message.duration = 2
+        MDCSnackbarManager.show(message)
     }
 }
 

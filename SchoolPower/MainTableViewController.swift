@@ -108,7 +108,7 @@ extension MainTableViewController {
             if !response.contains("assignments") { return }
             
             if response.contains("{\"error\":1,\"") {
-                //TODO SNACKBAR
+                self.showSnackbar(msg: "invalidup".localize)
                 self.logOut()
             } else if response.contains("[{\"") {
                 
@@ -143,9 +143,10 @@ extension MainTableViewController {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
-                    //TODO SNACKBAR LOADED
+                    self.showSnackbar(msg: "data_updated".localize)
                 } else {
-                    //TOSO SNACKBAR NO CONNECTION
+                    self.showSnackbar(msg: "cannot_connect".localize)
+                    //TODO REFRESH
                     //                            homeFragment!!.setRefreshing(false)
                     //                            noConnection = true
                 }
@@ -169,6 +170,14 @@ extension MainTableViewController {
         let story = UIStoryboard(name: "Main", bundle: nil)
         let loginController = story.instantiateViewController(withIdentifier: "login")
         UIApplication.shared.delegate?.window??.rootViewController = loginController
+    }
+    
+    func showSnackbar(msg: String) {
+        
+        let message = MDCSnackbarMessage()
+        message.text = msg
+        message.duration = 2
+        MDCSnackbarManager.show(message)
     }
 }
 
