@@ -19,7 +19,7 @@ import MaterialComponents
 import Material
 import FoldingCell
 
-var dataList: Array<MainListItem>!
+var dataList = [MainListItem]()
 
 class MainTableViewController: UITableViewController {
     
@@ -98,7 +98,7 @@ extension MainTableViewController {
         var oldMainItemList = [MainListItem]()
         let username = userDefaults.string(forKey: "username")
         let password = userDefaults.string(forKey: "password")
-        if dataList != nil { oldMainItemList += dataList }
+        oldMainItemList += dataList
         
         Utils.sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
@@ -140,7 +140,9 @@ extension MainTableViewController {
                             }
                         }
                     }
-                    self.tableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                     //TODO SNACKBAR LOADED
                 } else {
                     //TOSO SNACKBAR NO CONNECTION
@@ -174,7 +176,7 @@ extension MainTableViewController {
 extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList!.count
+        return dataList.count
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -186,7 +188,7 @@ extension MainTableViewController {
         else { cell.unfold(true, animated: false, completion: nil) }
         cell.backgroundColor = .clear
         cell.number = indexPath.row
-        cell.infoItem = dataList?[indexPath.row]
+        cell.infoItem = dataList[indexPath.row]
     }
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
