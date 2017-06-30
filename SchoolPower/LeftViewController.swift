@@ -40,8 +40,8 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         table?.separatorColor = UIColor.clear
         table?.contentInset = UIEdgeInsetsMake(16, 0, 0, 0)
         
-        headerUsername?.text = "//TODO USERNAME"
-        headerUserID?.text = "userid".localize + "//TODO USERID"
+        headerUsername?.text = userDefaults.string(forKey: "studentname")
+        headerUserID?.text = "userid".localize + userDefaults.string(forKey: "username")!
     }
     
     func reloadData() {

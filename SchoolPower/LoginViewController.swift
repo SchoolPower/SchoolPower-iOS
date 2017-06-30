@@ -64,7 +64,7 @@ class LoginViewController: UIViewController {
                 self.userDefaults.set(username, forKey: "username")
                 self.userDefaults.set(password, forKey: "password")
                 self.userDefaults.set(true, forKey: "loggedin")
-                self.userDefaults.set(messages[0], forKey: "studentName")
+                self.userDefaults.set(messages[0], forKey: "studentname")
                 self.userDefaults.synchronize()
                 Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
                 self.startMainViewController()
