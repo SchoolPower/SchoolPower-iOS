@@ -60,7 +60,7 @@ extension Utils {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let path = dir.appendingPathComponent(filename)
             do { try data.write(to: path, atomically: false, encoding: String.Encoding.utf8) }
-            catch { print("JSON INPUT ERROR") }
+            catch { print("Failed to save string to file "+filename) }
         }
     }
     
@@ -69,7 +69,7 @@ extension Utils {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let path = dir.appendingPathComponent(filename)
             do { return try String(contentsOf: path, encoding: String.Encoding.utf8) }
-            catch { print("JSON OUTPUT ERROR") }
+            catch { print("Failed to read string from file "+filename) }
         }
         return nil
     }
@@ -91,7 +91,7 @@ extension Utils {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 //networking error
-                print("Network Error response = \(String(describing: response))")
+                print("Network Error response = \(String(describing: error))")
                 return
             }
             
