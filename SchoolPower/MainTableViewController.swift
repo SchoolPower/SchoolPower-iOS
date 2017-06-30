@@ -19,6 +19,8 @@ import MaterialComponents
 import Material
 import FoldingCell
 
+var dataList: Array<MainListItem>!
+
 class MainTableViewController: UITableViewController {
     
     let kRowsCount = 10
@@ -32,21 +34,6 @@ class MainTableViewController: UITableViewController {
     let JSON_FILE_NAME = "dataMap.json"
     let KEY_NAME = "loggedin"
     
-    
-    var dataList: Array<MainListItem>!
-    //        [MainListItem(_subjectTitle: "Foundation of Mathematics and Pre-Calculus 10", _teacherName: "Susan Holcapek", _blockLetter: "A", _roomNumber: "311", _periodGradeItemArray: [
-    //            PeriodGradeItem(_termIndicator: "T3", _termLetterGrade: "F", _termPercentageGrade: "10",                                                                                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS1", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
-    //            PeriodGradeItem(_termIndicator: "T4", _termLetterGrade: "F", _termPercentageGrade: "10",
-    //                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "100", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
-    //            PeriodGradeItem(_termIndicator: "S2", _termLetterGrade: "F", _termPercentageGrade: "10",
-    //                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS3", _assignmentDate: "6/4", _assignmentPercentage: "100", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")])]),
-    //         MainListItem(_subjectTitle: "Planning 10", _teacherName: "Grainne Smith", _blockLetter: "B", _roomNumber: "311", _periodGradeItemArray: [
-    //            PeriodGradeItem(_termIndicator: "T1", _termLetterGrade: "A", _termPercentageGrade: "10",                                                                                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS1", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
-    //            PeriodGradeItem(_termIndicator: "T2", _termLetterGrade: "C+", _termPercentageGrade: "73",
-    //                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")]),
-    //            PeriodGradeItem(_termIndicator: "S2", _termLetterGrade: "C-", _termPercentageGrade: "55",
-    //                            _assignmentItemArrayList: [AssignmentItem(_assignmentTitle: "ASS2", _assignmentDate: "6/4", _assignmentPercentage: "10", _assignmentDividedScore: "1/1", _assignmentGrade: "A", _assignmentCategory: "CAT", _assignmentTerm: "T1")])])]
-    //
     override func viewWillAppear(_ animated: Bool) {
         
         let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal) , style: .plain ,target: self, action: #selector(menuOnClick))
@@ -55,7 +42,7 @@ class MainTableViewController: UITableViewController {
         self.navigationItem.leftBarButtonItems = [menuItem]
         self.navigationItem.rightBarButtonItems = [gpaItem]
         
-        self.navigationController?.navigationBar.barTintColor = Utils().hexStringToUIColor(hex: Colors().primary)
+        self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationController?.navigationBar.isTranslucent = false
@@ -71,7 +58,7 @@ class MainTableViewController: UITableViewController {
     
     func initValue() {
         
-        let input = Utils().readDataArrayList()
+        let input = Utils.readDataArrayList()
         if input != nil { dataList = input! }
         initDataJson()
         
@@ -84,7 +71,7 @@ class MainTableViewController: UITableViewController {
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        tableView.backgroundColor = Utils().hexStringToUIColor(hex: Colors().foreground_material_dark)
+        tableView.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
         tableView.separatorColor = UIColor.clear
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
     }
@@ -112,7 +99,7 @@ extension MainTableViewController {
         let password = userDefaults.string(forKey: "password")
         if dataList != nil { oldMainItemList += dataList }
         
-        Utils().sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
+        Utils.sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
             let response = value
             let messages = response.components(separatedBy: "\n")
@@ -125,9 +112,9 @@ extension MainTableViewController {
                 if (messages.count == 3 && !messages[1].isEmpty) {
                     
                     let jsonStr = messages[1]
-                    Utils().saveStringToFile(filename: self.JSON_FILE_NAME, data:  jsonStr)
-                    self.dataList = Utils().parseJsonResult(jsonStr: jsonStr)
-                    //                    utils.saveHistoryGrade(dataList!!)
+                    Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data:  jsonStr)
+                    dataList = Utils.parseJsonResult(jsonStr: jsonStr)
+                    Utils.saveHistoryGrade(data: dataList)
                     
                     //Diff
                     //        if (dataList!!.size == oldMainItemList.size) {
@@ -221,7 +208,7 @@ extension MainTableViewController {
         
         let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: UIColor.white)
         button.pulseColor = UIColor.white
-        button.backgroundColor = Utils().hexStringToUIColor(hex: Colors().accent)
+        button.backgroundColor = UIColor(rgb: Colors.accent)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = indexPath.row
         button.addTarget(self, action: #selector(MainTableViewController.fabOnClick), for: .touchUpInside)
@@ -279,18 +266,18 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         collectionCell.layer.cornerRadius = 7.0
         collectionCell.layer.masksToBounds = true
         
-        print(collectionView.tag)
+        //print(collectionView.tag)
         
         (collectionCell.viewWithTag(1) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termIndicator
         (collectionCell.viewWithTag(2) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termLetterGrade
         (collectionCell.viewWithTag(3) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termPercentageGrade
-        collectionCell.backgroundColor = Utils().getColorByPeriodItem(item: dataList[collectionView.tag].periodGradeItemArray[indexPath.row])
+        collectionCell.backgroundColor = Utils.getColorByPeriodItem(item: dataList[collectionView.tag].periodGradeItemArray[indexPath.row])
         
         return collectionCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+        //print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
     }
 }
 

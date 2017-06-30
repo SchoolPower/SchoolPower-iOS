@@ -44,7 +44,7 @@ class DashboardDisplaysTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print(indexPath.row)
+        //print(indexPath.row)
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
         userDefaults.set(indexPath.row, forKey: keyName)

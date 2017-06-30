@@ -18,15 +18,24 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
+extension JSON{
+    mutating func appendIfArray(json:JSON){
+        if var arr = self.array{
+            arr.append(json)
+            self = JSON(arr);
+        }
+    }
+}
+
 class Utils {
     
-    let userDefaults = UserDefaults.standard
-    let KEY_NAME = "dashboarddisplays"
-    let JSON_FILE_NAME = "dataMap.json"
+    static let userDefaults = UserDefaults.standard
+    static let KEY_NAME = "dashboarddisplays"
+    static let JSON_FILE_NAME = "dataMap.json"
     
-    let gradeColorIds = [Colors().A_score_green, Colors().B_score_green, Colors().Cp_score_yellow, Colors().C_score_orange, Colors().Cm_score_red, Colors().primary_dark, Colors().primary, Colors().primary]
-    let gradeColorIdsPlain = [Colors().A_score_green, Colors().B_score_green, Colors().Cp_score_yellow, Colors().C_score_orange, Colors().Cm_score_red, Colors().primary_dark, Colors().primary]
-    func indexOfString (searchString: String, domain: Array<String>) -> Int {
+    static let gradeColorIds = [Colors.A_score_green, Colors.B_score_green, Colors.Cp_score_yellow, Colors.C_score_orange, Colors.Cm_score_red, Colors.primary_dark, Colors.primary, Colors.primary]
+    static let gradeColorIdsPlain = [Colors.A_score_green, Colors.B_score_green, Colors.Cp_score_yellow, Colors.C_score_orange, Colors.Cm_score_red, Colors.primary_dark, Colors.primary]
+    static func indexOfString (searchString: String, domain: Array<String>) -> Int {
         return domain.index(of: searchString)!
     }
 }
@@ -34,35 +43,19 @@ class Utils {
 //MARK: Color Handler
 extension Utils {
     
-    func getColorByLetterGrade(letterGrade: String) -> UIColor {
-        return hexStringToUIColor(hex: gradeColorIds[indexOfString(searchString: letterGrade, domain: ["A", "B", "C+", "C", "C-", "F", "I", "--"])])
+    static func getColorByLetterGrade(letterGrade: String) -> UIColor {
+        return UIColor(rgb: gradeColorIds[indexOfString(searchString: letterGrade, domain: ["A", "B", "C+", "C", "C-", "F", "I", "--"])])
     }
     
-    func getColorByPeriodItem(item: PeriodGradeItem) -> UIColor {
+    static func getColorByPeriodItem(item: PeriodGradeItem) -> UIColor {
         return getColorByLetterGrade(letterGrade: item.termLetterGrade)
-    }
-    
-    func hexStringToUIColor (hex:String) -> UIColor {
-        
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        if cString.hasPrefix("#") { cString.remove(at: cString.startIndex) }
-        if (cString.characters.count) != 6 { return UIColor.gray }
-        var rgbletue:UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbletue)
-        
-        return UIColor(
-            red: CGFloat((rgbletue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbletue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbletue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
     }
 }
 
 //MARK: I/O
 extension Utils {
     
-    func saveStringToFile(filename: String, data: String) {
+    static func saveStringToFile(filename: String, data: String) {
         
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let path = dir.appendingPathComponent(filename)
@@ -71,25 +64,25 @@ extension Utils {
         }
     }
     
-    func readFileFromString(filename: String) -> String{
+    static func readFileFromString(filename: String) -> String?{
         
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let path = dir.appendingPathComponent(filename)
             do { return try String(contentsOf: path, encoding: String.Encoding.utf8) }
             catch { print("JSON OUTPUT ERROR") }
         }
-        return ""
+        return nil
     }
     
-    func readDataArrayList() -> Array<MainListItem>?{
-        return parseJsonResult(jsonStr: readFileFromString(filename: JSON_FILE_NAME))
+    static func readDataArrayList() -> Array<MainListItem>?{
+        return parseJsonResult(jsonStr: readFileFromString(filename: JSON_FILE_NAME)!)
     }
 }
 
 //MARK: Post
 extension Utils {
     
-    func sendPost(url: String, params: String, completion: @escaping (_ retResponse: String) -> ()) {
+    static func sendPost(url: String, params: String, completion: @escaping (_ retResponse: String) -> ()) {
 
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
@@ -114,37 +107,8 @@ extension Utils {
 
 //MARK: Others
 extension Utils {
-    
-    func getLatestItem(item: MainListItem) -> PeriodGradeItem? {
-        
-        var forLatestSemester = false
-        var latestTerm: String
-        var periodGradeItemList = item.periodGradeItemArray
-        var termsList = [String]()
-        termsList.append("ALL TERMS")
-        
-        if userDefaults.integer(forKey: KEY_NAME) == 1 { forLatestSemester = true }
-        
-        for item in periodGradeItemList.indices { termsList.append(periodGradeItemList[item].termIndicator) }
-        
-        if forLatestSemester{
-            if termsList.contains("S2") {latestTerm = "S2"}
-            else if termsList.contains("S1") {latestTerm = "S1"}
-            else if termsList.contains("T4") {latestTerm = "T4"}
-            else if termsList.contains("T3") {latestTerm = "T3"}
-            else if termsList.contains("T2") {latestTerm = "T2"}
-            else {latestTerm = "T1"}}
-        else{
-            if termsList.contains("T4") {latestTerm = "T4"}
-            else if termsList.contains("T3") {latestTerm = "T3"}
-            else if termsList.contains("T2") {latestTerm = "T2"}
-            else {latestTerm = "T1"}}
-        
-        for item in periodGradeItemList { if item.termIndicator == latestTerm {return item} }
-        return nil
-    }
-    
-    func parseJsonResult(jsonStr: String) -> Array<MainListItem> {
+
+    static func parseJsonResult(jsonStr: String) -> [MainListItem] {
         
         let jsonData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!).arrayValue
         var dataMap = [String : MainListItem]()
@@ -182,7 +146,59 @@ extension Utils {
         for (_, value) in dataMap { dataList.append(value) }
         
         dataList = dataList.sorted(by: { $0.blockLetter < $1.blockLetter })
-        print(dataList.count)
+        //print(dataList.count)
         return dataList
+    }
+    
+    static func readHistoryGrade() -> JSON {
+        let jsonStr = readFileFromString(filename: "history.json") ?? "{}"
+        return JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
+    }
+    
+    // 1. read data into brief info
+    // 2. calculate gpa
+    // 3. read history grade from file
+    // 4. update history grade
+    // 5. save history grade
+    static func saveHistoryGrade(data: [MainListItem]){
+        // 1. read data into brief info
+        var pointSum = 0
+        var count = 0
+        var gradeInfo: JSON = [] // [{"name":"...","grade":80.0}, ...]
+        for subject in data {
+            if let leastPeriod = subject.getLatestItem() {
+                if !subject.subjectTitle.contains("Homeroom") {
+                    pointSum += Int(leastPeriod.termPercentageGrade)!
+                    count += 1
+                }
+                gradeInfo.appendIfArray(json: ["name":subject.subjectTitle,"grade":Double(leastPeriod.termPercentageGrade)!])
+            }
+        }
+    
+        // 2. calculate gpa
+        gradeInfo.appendIfArray(json: ["name":"GPA","grade":Double(pointSum/count)])
+    
+        // 3. read history grade from file
+        var historyData = readHistoryGrade()
+        // {"2017-06-20": [{"name":"...","grade":"80"}, ...], ...}
+    
+        // 4. update history grade
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        historyData[dateFormatter.string(from: Date())] = gradeInfo
+    
+        // 5. save history grade
+        saveStringToFile(filename: "history.json", data: historyData.rawString()!)
+    }
+    
+    
+    static func getShortName(subjectTitle: String)->String{
+        let shorts = ["Homeroom":"HR", "Planning":"PL", "Mandarin":"CN",
+            "Chinese":"CSS", "Foundations":"Maths", "Physical":"PE",
+            "English":"EN", "Moral":"ME"]
+        let short = shorts[subjectTitle.components(separatedBy: " ")[0]]
+        if short != nil { return short! }
+        
+        return subjectTitle
     }
 }

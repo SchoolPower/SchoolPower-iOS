@@ -44,7 +44,7 @@ class DrawerFragmentCell: UITableViewCell {
         didSet{
             background.backgroundColor = UIColor.clear
             if section == 0 && location == presentSelected {
-                background.backgroundColor = Utils().hexStringToUIColor(hex: Colors().foreground_material_dark)
+                background.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
             }
         }
     }

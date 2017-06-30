@@ -30,7 +30,7 @@ class CourseDetailTableViewController: UITableViewController {
         
         initTermList()
         setAllTerms(termsList: termsList)
-        self.navigationController?.navigationBar.barTintColor = Utils().getColorByPeriodItem(item: Utils().getLatestItem(item: infoItem)!)
+        self.navigationController?.navigationBar.barTintColor = Utils.getColorByPeriodItem(item: infoItem.getLatestItem()!)
     }
 
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class CourseDetailTableViewController: UITableViewController {
     
     private func setup() {
         
-        tableView.backgroundColor = Utils().hexStringToUIColor(hex: Colors().foreground_material_dark)
+        tableView.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
         tableView.separatorColor = UIColor.clear
         tableView.contentInset = UIEdgeInsetsMake(20, 0, 20, 0)
     }

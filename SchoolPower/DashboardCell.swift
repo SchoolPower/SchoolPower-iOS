@@ -39,7 +39,7 @@ class DashboardCell: FoldingCell {
     
     var infoItem: MainListItem! {
         didSet {
-            let periodGradeItem: PeriodGradeItem? = Utils().getLatestItem(item: infoItem)
+            let periodGradeItem: PeriodGradeItem? = infoItem.getLatestItem()
             foldSubjectTitle.text = infoItem.subjectTitle
             foldTeacherName.text = infoItem.teacherName
             foldBlockLetter.text = "Block " + infoItem.blockLetter
@@ -48,8 +48,8 @@ class DashboardCell: FoldingCell {
             unFoldSubjectTitle.text = infoItem.subjectTitle
             unFoldTeacherName.text = infoItem.teacherName
             unFoldPercentageGrade.text = infoItem.getPercentageGrade(requiredTerm: periodGradeItem)
-            foldBackground.backgroundColor = Utils().getColorByPeriodItem(item: periodGradeItem!)
-            unfoldBackground.backgroundColor = Utils().getColorByPeriodItem(item: periodGradeItem!)
+            foldBackground.backgroundColor = Utils.getColorByPeriodItem(item: periodGradeItem!)
+            unfoldBackground.backgroundColor = Utils.getColorByPeriodItem(item: periodGradeItem!)
         }
     }
     

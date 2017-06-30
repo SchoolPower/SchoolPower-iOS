@@ -50,4 +50,32 @@ class MainListItem {
     func addPeriodGradeItem(_periodGradeItem: PeriodGradeItem) {
         periodGradeItemArray.append(_periodGradeItem)
     }
+    
+    func getLatestItem() -> PeriodGradeItem? {
+        
+        let forLatestSemester = Utils.userDefaults.integer(forKey: Utils.KEY_NAME) == 1
+        var latestTerm: String
+        var periodGradeItemList = periodGradeItemArray
+        var termsList = [String]()
+        termsList.append("ALL TERMS")
+        
+        for item in periodGradeItemList.indices { termsList.append(periodGradeItemList[item].termIndicator) }
+        
+        if forLatestSemester{
+            if termsList.contains("S2") {latestTerm = "S2"}
+            else if termsList.contains("S1") {latestTerm = "S1"}
+            else if termsList.contains("T4") {latestTerm = "T4"}
+            else if termsList.contains("T3") {latestTerm = "T3"}
+            else if termsList.contains("T2") {latestTerm = "T2"}
+            else {latestTerm = "T1"}}
+        else{ // for latest term
+            if termsList.contains("T4") {latestTerm = "T4"}
+            else if termsList.contains("T3") {latestTerm = "T3"}
+            else if termsList.contains("T2") {latestTerm = "T2"}
+            else {latestTerm = "T1"}}
+        
+        for item in periodGradeItemList { if item.termIndicator == latestTerm {return item} }
+        
+        return nil
+    }
 }

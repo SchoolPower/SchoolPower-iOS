@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qO1-xz-hxg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qO1-xz-hxg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -591,7 +591,6 @@
         <!--Left View Controller-->
         <scene sceneID="VrH-MD-nOQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wl7-ab-PnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Drawer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YcF-ge-1Ob" customClass="LeftViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NLk-yL-QaJ"/>
@@ -741,34 +740,25 @@
                         <outlet property="table" destination="ulw-7R-rjC" id="2sz-Ai-CIz"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wl7-ab-PnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-208" y="-1313"/>
         </scene>
         <!--Charts-->
         <scene sceneID="Sbn-R0-XeT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dsX-q4-Mpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="FGa-7e-7TW" customClass="ChartsViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="G2N-Q1-2FH"/>
-                        <viewControllerLayoutGuide type="bottom" id="VMW-t2-szT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="toi-Jx-7Zh">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                     <navigationItem key="navigationItem" title="Charts" id="S59-F8-UU6">
                         <barButtonItem key="backBarButtonItem" title=" " id="q5H-ik-E0G"/>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dsX-q4-Mpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-207" y="-2176"/>
+            <point key="canvasLocation" x="-207.19999999999999" y="-2176.4617691154426"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oPD-ij-dw0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pz8-76-Q2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="ChartsNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WCs-77-PvE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -784,6 +774,7 @@
                         <segue destination="FGa-7e-7TW" kind="relationship" relationship="rootViewController" id="44s-R6-4l8"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pz8-76-Q2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1036" y="-2176"/>
         </scene>

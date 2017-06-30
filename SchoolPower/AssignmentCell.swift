@@ -44,15 +44,15 @@ class AssignmentCell: UITableViewCell {
             assignmentDate.text = assignmentItem.assignmentDate
             assignmentPercentageGrade.text = assignmentItem.assignmentPercentage
             assignmentDividedGrade.text = assignmentItem.assignmentDividedScore
-            gradeBackground.backgroundColor = Utils().getColorByLetterGrade(letterGrade: assignmentItem.assignmentGrade)
+            gradeBackground.backgroundColor = Utils.getColorByLetterGrade(letterGrade: assignmentItem.assignmentGrade)
             if assignmentItem.isNew {
-                foreBackground.backgroundColor = Utils().hexStringToUIColor(hex: Colors().accent)
+                foreBackground.backgroundColor = UIColor(rgb: Colors.accent)
                 assignmentTitle.textColor = UIColor.white
-                assignmentDate.textColor = Utils().hexStringToUIColor(hex: Colors().white_0_20)
+                assignmentDate.textColor = UIColor(rgb: Colors.white_0_20)
             }else{
                 foreBackground.backgroundColor = UIColor.white
-                assignmentTitle.textColor = Utils().hexStringToUIColor(hex: Colors().text_primary_black)
-                assignmentDate.textColor = Utils().hexStringToUIColor(hex: Colors().text_tertiary_black)
+                assignmentTitle.textColor = UIColor(rgb: Colors.text_primary_black)
+                assignmentDate.textColor = UIColor(rgb: Colors.text_tertiary_black)
             }
         }
     }
