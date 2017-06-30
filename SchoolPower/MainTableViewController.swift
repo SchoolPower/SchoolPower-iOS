@@ -94,7 +94,7 @@ extension MainTableViewController {
     
     func initDataJson() {
         
-        var oldMainItemList = Array<MainListItem>()
+        var oldMainItemList = [MainListItem]()
         let username = userDefaults.string(forKey: "username")
         let password = userDefaults.string(forKey: "password")
         if dataList != nil { oldMainItemList += dataList }
@@ -116,23 +116,27 @@ extension MainTableViewController {
                     dataList = Utils.parseJsonResult(jsonStr: jsonStr)
                     Utils.saveHistoryGrade(data: dataList)
                     
-                    //Diff
-                    //        if (dataList!!.size == oldMainItemList.size) {
-                    //        for (i in dataList!!.indices) {
-                    //        let periods = dataList!![i].periodArrayList
-                    //        let oldPeriods = oldMainItemList[i].periodArrayList
-                    //        if (periods.size != oldPeriods.size) continue
-                    //        for (j in periods.indices) {
-                    //        let newAssignmentListCollection = periods[j].assignmentItemArrayList
-                    //        let oldAssignmentListCollection = oldPeriods[j].assignmentItemArrayList
-                    //        for (item in newAssignmentListCollection) {
-                    //        let found = oldAssignmentListCollection.any { it.assignmentTitle == item.assignmentTitle && it.assignmentDividedScore == item.assignmentDividedScore && it.assignmentDate == item.assignmentDate && !it.isNew }
-                    //        if (!found)
-                    //        item.isNew = true
-                    //        }
-                    //        }
-                    //        }
-                    //        }
+                    // Diff
+                    if dataList.count == oldMainItemList.count {
+                        for i in 0...dataList.count-1 {
+                            let periods = dataList[i].periodGradeItemArray
+                            let oldPeriods = oldMainItemList[i].periodGradeItemArray
+                            if periods.count != oldPeriods.count { continue }
+                            for j in 0...periods.count {
+                                let newAssignmentListCollection = periods[j].assignmentItemArrayList
+                                let oldAssignmentListCollection = oldPeriods[j].assignmentItemArrayList
+                                for item in newAssignmentListCollection {
+                                    var found = false
+                                    for it in oldAssignmentListCollection {
+                                        if(it.assignmentTitle == item.assignmentTitle && it.assignmentDividedScore == item.assignmentDividedScore && it.assignmentDate == item.assignmentDate && !it.isNew){
+                                            found = true
+                                        }
+                                    }
+                                    if !found {item.isNew = true}
+                                }
+                            }
+                        }
+                    }
                     self.tableView.reloadData()
                     //TODO SNACKBAR LOADED
                 } else {

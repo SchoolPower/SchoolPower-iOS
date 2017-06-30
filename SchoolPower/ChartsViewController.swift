@@ -21,9 +21,9 @@ import SwiftyJSON
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Inletid red component")
-        assert(green >= 0 && green <= 255, "Inletid green component")
-        assert(blue >= 0 && blue <= 255, "Inletid blue component")
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
         
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
     }
@@ -119,7 +119,7 @@ class ChartsViewController: UIViewController {
         for (subjectName, value) in organizedData {
             let dataSet = LineChartDataSet(values: value, label: subjectName)
             var colors = [UIColor]()
-            for _ in 0...value.count { colors.append(Colors.chartColorList[count]) }
+            for _ in 0...value.count-1 { colors.append(Colors.chartColorList[count]) }
             dataSet.colors = colors
             dataSet.circleColors = colors
             dataSet.valueTextColor = UIColor.black
