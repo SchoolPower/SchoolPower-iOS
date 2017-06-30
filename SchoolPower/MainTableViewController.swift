@@ -47,6 +47,7 @@ class MainTableViewController: UITableViewController {
         self.navigationItem.leftBarButtonItems = [menuItem]
         self.navigationItem.rightBarButtonItems = [gpaItem]
         
+        self.title = "dashboard".localize
         self.navigationController?.navigationBar.barTintColor = Utils().hexStringToUIColor(hex: Colors().primary)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
@@ -82,7 +83,9 @@ class MainTableViewController: UITableViewController {
     }
     
     func menuOnClick(sender: UINavigationItem) {
+        
         navigationDrawerController?.toggleLeftView()
+        (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
     }
     
     func gpaOnClick(sender: UINavigationItem) {
@@ -271,8 +274,6 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         collectionCell.layer.cornerRadius = 7.0
         collectionCell.layer.masksToBounds = true
         
-        print(collectionView.tag)
-        
         (collectionCell.viewWithTag(1) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termIndicator
         (collectionCell.viewWithTag(2) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termLetterGrade
         (collectionCell.viewWithTag(3) as! UILabel).text = dataList[collectionView.tag].periodGradeItemArray[indexPath.row].termPercentageGrade
@@ -285,4 +286,5 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
     }
 }
+
 

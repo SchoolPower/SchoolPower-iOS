@@ -92,7 +92,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dspDetail" destination="rh8-4e-39Z" id="I0Z-XH-E5T"/>
+                        <outlet property="dspTitle" destination="YXK-PK-zPr" id="igr-7T-QhN"/>
                         <outlet property="languageDetail" destination="R0z-vl-aRg" id="pAS-7I-SW6"/>
+                        <outlet property="languageTitle" destination="EAY-Lq-1iy" id="WbH-lK-HvJ"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -144,14 +146,31 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="SO4-em-MrC" style="IBUITableViewCellStyleDefault" id="6jd-pm-Ddv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="bhP-t6-DCE" style="IBUITableViewCellStyleDefault" id="Own-Xn-0Ud">
                                         <rect key="frame" x="0.0" y="123" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6jd-pm-Ddv" id="n52-gG-MT4">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Own-Xn-0Ud" id="mJV-ha-ln0">
                                             <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Chinese" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SO4-em-MrC">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="正體中文" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bhP-t6-DCE">
+                                                    <rect key="frame" x="15" y="0.0" width="321" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="xwg-Ea-xvd" style="IBUITableViewCellStyleDefault" id="zA9-Q9-nla">
+                                        <rect key="frame" x="0.0" y="167" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zA9-Q9-nla" id="mCV-3N-Uwz">
+                                            <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="简体中文" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xwg-Ea-xvd">
                                                     <rect key="frame" x="15" y="0.0" width="321" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -167,8 +186,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Language" id="M1A-E4-9EP"/>
                     <connections>
-                        <outlet property="itemchi" destination="6jd-pm-Ddv" id="2Np-8w-Srm"/>
+                        <outlet property="itemchis" destination="zA9-Q9-nla" id="tSz-f9-miS"/>
+                        <outlet property="itemchit" destination="Own-Xn-0Ud" id="kMv-Gq-tqg"/>
                         <outlet property="itemdef" destination="kz0-Da-deJ" id="Uea-VY-NeT"/>
+                        <outlet property="itemdefLable" destination="pyB-iT-kPf" id="mqL-Jl-MZj"/>
                         <outlet property="itemeng" destination="hhB-db-RcU" id="qFm-JH-JdE"/>
                     </connections>
                 </tableViewController>
@@ -181,7 +202,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dd7-pn-ted" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="SettingsNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Vp-9p-JKN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JMk-t3-bE9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JMk-t3-bE9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -249,8 +270,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Dashboard Displays" id="VjD-31-FHN"/>
                     <connections>
-                        <outlet property="itemsemester" destination="jba-Rg-OoC" id="MA4-8u-Yis"/>
-                        <outlet property="itemterm" destination="MqC-fp-nkI" id="Wfu-OR-emO"/>
+                        <outlet property="itemSemester" destination="jba-Rg-OoC" id="TRy-g5-4xR"/>
+                        <outlet property="itemSemesterTitle" destination="X3S-c0-vbq" id="XLu-Xc-6la"/>
+                        <outlet property="itemTerm" destination="MqC-fp-nkI" id="92o-Lw-R2c"/>
+                        <outlet property="itemTermTitle" destination="bUn-Vn-7BN" id="iIH-7L-8b1"/>
                     </connections>
                 </tableViewController>
             </objects>

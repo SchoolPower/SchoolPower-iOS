@@ -56,7 +56,11 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         table?.contentInset = UIEdgeInsetsMake(16, 0, 0, 0)
         
         headerUsername?.text = "//TODO USERNAME"
-        headerUserID?.text = "User ID: " + "//TODO USERID"
+        headerUserID?.text = "userid".localize + "//TODO USERID"
+    }
+    
+    func reloadData() {
+        table?.reloadData()
     }
     
     func logOut() {
@@ -122,7 +126,7 @@ extension LeftViewController {
         
         if section == 1 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "DrawerHeaderCell") as! DrawerHeaderCell
-            headerCell.categoryStr = "Preference"
+            headerCell.categoryStr = "preference".localize
             return headerCell
         } else { return nil }
     }

@@ -12,6 +12,7 @@ import Material
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var appIcon: UIImageView?
+    @IBOutlet weak var copyright: UILabel?
     
     fileprivate var usernameField: TextField!
     fileprivate var passwordField: TextField!
@@ -78,12 +79,13 @@ extension LoginViewController {
         preparePasswordField()
         prepareAppIcon()
         prepareFAB()
+        copyright?.text = "copyright".localize
     }
     
     fileprivate func prepareUsernameField() {
         
         usernameField = TextField()
-        usernameField.placeholder = "Username"
+        usernameField.placeholder = "username".localize
         usernameField.isClearIconButtonEnabled = true
         usernameField.minimumFontSize = 18
         _ = usernameField.becomeFirstResponder()
@@ -101,7 +103,7 @@ extension LoginViewController {
     fileprivate func preparePasswordField() {
         
         passwordField = TextField()
-        passwordField.placeholder = "Password"
+        passwordField.placeholder = "password".localize
         passwordField.isVisibilityIconButtonEnabled = true
         passwordField.minimumFontSize = 18
         

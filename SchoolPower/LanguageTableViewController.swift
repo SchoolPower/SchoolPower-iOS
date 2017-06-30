@@ -12,7 +12,12 @@ class LanguageTableViewController: UITableViewController {
     
     @IBOutlet weak var itemdef: UITableViewCell?
     @IBOutlet weak var itemeng: UITableViewCell?
-    @IBOutlet weak var itemchi: UITableViewCell?
+    @IBOutlet weak var itemchit: UITableViewCell?
+    @IBOutlet weak var itemchis: UITableViewCell?
+    
+    @IBOutlet weak var itemdefLable: UILabel?
+    
+    let LocaleSet = [Locale().initWithLanguageCode(languageCode: Bundle.main.preferredLocalizations.first! as NSString, countryCode: "gb", name: "United Kingdom"), Locale().initWithLanguageCode(languageCode: "en", countryCode: "gb", name: "United Kingdom"), Locale().initWithLanguageCode(languageCode: "zh-Hant", countryCode: "cn", name: "China"), Locale().initWithLanguageCode(languageCode: "zh-Hans", countryCode: "cn", name: "China")]
     
     let userDefaults = UserDefaults.standard
     let keyName = "language"
@@ -26,22 +31,24 @@ class LanguageTableViewController: UITableViewController {
     
     func loadCells() {
         
-        let itemSet = [itemdef, itemeng, itemchi]
+        let itemSet = [itemdef, itemeng, itemchit, itemchis]
         for item in itemSet {
             item?.accessoryType = .none
             if itemSet.index(where: {$0 === item})! == languageIndex {
                 item?.accessoryType = .checkmark
             }
         }
+        itemdefLable?.text = "default".localize
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print(indexPath.row)
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
         userDefaults.set(indexPath.row, forKey: keyName)
         userDefaults.synchronize()
+        let selectedLang = LocaleSet[indexPath.row]
+        DGLocalization.sharedInstance.setLanguage(withCode: selectedLang)
         self.navigationController?.popViewController(animated: true)
     }
 }

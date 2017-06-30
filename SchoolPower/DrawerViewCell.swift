@@ -8,18 +8,16 @@
 
 import UIKit
 
-let lables = [["Dashboard", "Charts"],
-              ["Settings", "Sign Out"]]
-let images = [[UIImage(named: "ic_dashboard_white")?.withRenderingMode(.alwaysTemplate),
-               UIImage(named: "ic_insert_chart_white")?.withRenderingMode(.alwaysTemplate)],
-              [UIImage(named: "ic_settings_white")?.withRenderingMode(.alwaysTemplate),
-               UIImage(named: "ic_exit_to_app_white")?.withRenderingMode(.alwaysTemplate),]]
-
 class DrawerFragmentCell: UITableViewCell {
     
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var background: UIView!
+    
+    let images = [[UIImage(named: "ic_dashboard_white")?.withRenderingMode(.alwaysTemplate),
+                   UIImage(named: "ic_insert_chart_white")?.withRenderingMode(.alwaysTemplate)],
+                  [UIImage(named: "ic_settings_white")?.withRenderingMode(.alwaysTemplate),
+                   UIImage(named: "ic_exit_to_app_white")?.withRenderingMode(.alwaysTemplate),]]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +26,8 @@ class DrawerFragmentCell: UITableViewCell {
     var section = 0
     var location: Int = 0 {
         didSet {
-            itemTitle.text = lables[section][location]
+            itemTitle.text = [["dashboard".localize, "charts".localize],
+                              ["settings".localize, "signout".localize]][section][location]
             itemImage.image = images[section][location]
         }
     }

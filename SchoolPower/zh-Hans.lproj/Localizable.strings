@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  SchoolPower
+
+  Created by carbonyl on 2017-06-30.
+  Copyright © 2017 carbonylgroup.studio. All rights reserved.
+*/
+
+dashboard = "仪表盘";
+charts = "图表";
+settings = "设置";
+signout = "登出";
+default = "默认";
+userid = "用户 ID: ";
+preference = "偏好";
+room = "教室 ";
+assignments = "作业";
+theend = "下面没了";
+display = "显示";
+language = "语言";
+dashboarddisplays = "仪表盘显示";
+thisterm = "这个 Term";
+thissemester = "这个 Semester";
+the_score_of_this_term = "这个 Term 的分数";
+the_score_of_this_semester = "这个 Semester 的分数";
+username = "用户名";
+password = "密码";
+copyright = "版权所有 © 2017 SchoolPower 工作室";

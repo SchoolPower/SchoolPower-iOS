@@ -17,12 +17,13 @@ class CourseDetailHeaderCell: UITableViewCell {
     @IBOutlet weak var headerLetterGrade: UILabel!
     @IBOutlet weak var foreBackground: UIView!
     @IBOutlet weak var leftBackground: UIView!
+    @IBOutlet weak var assignments: UILabel?
 
     override func awakeFromNib() {
         
         foreBackground.layer.cornerRadius = 10
         foreBackground.layer.masksToBounds = true
-        
+        assignments?.text = "assignments".localize
         super.awakeFromNib()
     }
     
@@ -31,7 +32,7 @@ class CourseDetailHeaderCell: UITableViewCell {
             let periodGradeItem: PeriodGradeItem? = Utils().getLatestItem(item: infoItem)
             headerTeacherName.text = infoItem.teacherName
             headerBlockLetter.text = "Block " + infoItem.blockLetter
-            headerRoomNumber.text = "Room " + infoItem.roomNumber
+            headerRoomNumber.text = "room".localize + infoItem.roomNumber
             headerPercentageGrade.text = infoItem.getPercentageGrade(requiredTerm: periodGradeItem)
             headerLetterGrade.text = infoItem.getLetterGrade(requiredTerm: periodGradeItem)
             leftBackground.backgroundColor = Utils().getColorByPeriodItem(item: periodGradeItem!)

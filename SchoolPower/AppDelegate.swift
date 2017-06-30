@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
+        DGLocalization.sharedInstance.startLocalization()
+        
         let story = UIStoryboard(name: "Main", bundle: nil)
         var gotoController: UIViewController
         if userDefaults.object(forKey: KEY_NAME) == nil {
@@ -38,5 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         window!.makeKeyAndVisible()
     }
+    
+//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+////        DGLocalization.sharedInstance.startLocalization()
+//        return true
+//    }
 }
 

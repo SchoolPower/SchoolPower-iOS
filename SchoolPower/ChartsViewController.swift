@@ -35,6 +35,7 @@ class ChartsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.title = "charts".localize
         let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal) , style: .plain ,target: self, action: #selector(menuOnClick))
         self.navigationItem.leftBarButtonItems = [menuItem]
         self.navigationController?.navigationBar.barTintColor = Utils().hexStringToUIColor(hex: Colors().primary)
@@ -63,6 +64,7 @@ extension ChartsViewController {
     func menuOnClick(sender: UINavigationItem) {
         
         navigationDrawerController?.toggleLeftView()
+        (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
     }
 }
 

@@ -10,8 +10,10 @@ import UIKit
 
 class DashboardDisplaysTableViewController: UITableViewController {
 
-    @IBOutlet weak var itemterm: UITableViewCell?
-    @IBOutlet weak var itemsemester: UITableViewCell?
+    @IBOutlet weak var itemTermTitle: UILabel?
+    @IBOutlet weak var itemSemesterTitle: UILabel?
+    @IBOutlet weak var itemTerm: UITableViewCell?
+    @IBOutlet weak var itemSemester: UITableViewCell?
     
     let userDefaults = UserDefaults.standard
     let keyName = "dashboarddisplays"
@@ -25,7 +27,10 @@ class DashboardDisplaysTableViewController: UITableViewController {
     
     func loadCells() {
         
-        let itemSet = [itemterm, itemsemester]
+        itemTermTitle?.text = "the_score_of_this_term".localize
+        itemSemesterTitle?.text = "the_score_of_this_semester".localize
+        
+        let itemSet = [itemTerm, itemSemester]
         for item in itemSet {
             item?.accessoryType = .none
             if itemSet.index(where: {$0 === item})! == dspIndex {

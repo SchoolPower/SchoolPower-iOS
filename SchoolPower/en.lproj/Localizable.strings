@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  SchoolPower
+
+  Created by carbonyl on 2017-06-30.
+  Copyright © 2017 carbonylgroup.studio. All rights reserved.
+*/
+
+dashboard = "Dashboard";
+charts = "Charts";
+settings = "Settings";
+signout = "Sign Out";
+default = "Default";
+userid = "User ID: ";
+preference = "Preference";
+room = "Room ";
+assignments = "Assignments";
+theend = "THIS IS THE END";
+display = "DISPLAY";
+language = "Language";
+dashboarddisplays = "Dashboard Displays";
+thisterm = "This Term";
+thissemester = "This Semester";
+the_score_of_this_term = "The score of this term";
+the_score_of_this_semester = "The score of this semester";
+username = "Username";
+password = "Password";
+copyright = "Copyright © 2017 SchoolPower Studio";
