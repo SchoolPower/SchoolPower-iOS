@@ -122,7 +122,7 @@ extension MainTableViewController {
                             let periods = dataList[i].periodGradeItemArray
                             let oldPeriods = oldMainItemList[i].periodGradeItemArray
                             if periods.count != oldPeriods.count { continue }
-                            for j in 0...periods.count {
+                            for j in 0...periods.count-1 {
                                 let newAssignmentListCollection = periods[j].assignmentItemArrayList
                                 let oldAssignmentListCollection = oldPeriods[j].assignmentItemArrayList
                                 for item in newAssignmentListCollection {
