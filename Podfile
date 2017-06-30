@@ -8,5 +8,6 @@ pod 'MaterialComponents'
 pod 'Material'
 pod 'FoldingCell'
 pod 'SwiftyJSON'
+pod 'Charts'
 
 end

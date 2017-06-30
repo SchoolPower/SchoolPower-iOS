@@ -1,10 +1,17 @@
 //
-//  LoginViewController.swift
-//  SchoolPower
-//
-//  Created by carbonyl on 2417-06-29.
-//  Copyright © 2417 carbonylgroup.studio. All rights reserved.
-//
+//  Copyright 2017 SchoolPower Studio
+
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+
+//  http://www.apache.org/licenses/LICENSE-2.0
+
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 
 import UIKit
 import Material
@@ -31,7 +38,7 @@ class LoginViewController: UIViewController {
         
         let username = usernameField.text
         let password = passwordField.text
-        Utils().sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
+        Utils.sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
             let response = value
             let messages = response.components(separatedBy: "\n")
@@ -45,7 +52,7 @@ class LoginViewController: UIViewController {
                 self.userDefaults.set(true, forKey: "loggedin")
                 self.userDefaults.set(messages[0], forKey: "studentName")
                 self.userDefaults.synchronize()
-                Utils().saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
+                Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
                 self.startMainViewController()
                 
             } else {
@@ -90,12 +97,12 @@ extension LoginViewController {
         usernameField.minimumFontSize = 18
         _ = usernameField.becomeFirstResponder()
         
-        usernameField.textColor = Utils().hexStringToUIColor(hex: Colors().white)
-        usernameField.placeholderNormalColor = Utils().hexStringToUIColor(hex: Colors().primary_darker)
-        usernameField.placeholderActiveColor = Utils().hexStringToUIColor(hex: Colors().accent)
-        usernameField.dividerColor = Utils().hexStringToUIColor(hex: Colors().primary_darker)
-        usernameField.dividerActiveColor = Utils().hexStringToUIColor(hex: Colors().accent)
-        usernameField.clearIconButton?.tintColor = Utils().hexStringToUIColor(hex: Colors().accent)
+        usernameField.textColor = UIColor(rgb: Colors.white)
+        usernameField.placeholderNormalColor = UIColor(rgb: Colors.primary_darker)
+        usernameField.placeholderActiveColor = UIColor(rgb: Colors.accent)
+        usernameField.dividerColor = UIColor(rgb: Colors.primary_darker)
+        usernameField.dividerActiveColor = UIColor(rgb: Colors.accent)
+        usernameField.clearIconButton?.tintColor = UIColor(rgb: Colors.accent)
         
         view.layout(usernameField).center(offsetY: -20).left(36).right(36)
     }
@@ -107,12 +114,12 @@ extension LoginViewController {
         passwordField.isVisibilityIconButtonEnabled = true
         passwordField.minimumFontSize = 18
         
-        passwordField.textColor = Utils().hexStringToUIColor(hex: Colors().white)
-        passwordField.placeholderNormalColor = Utils().hexStringToUIColor(hex: Colors().primary_darker)
-        passwordField.placeholderActiveColor = Utils().hexStringToUIColor(hex: Colors().accent)
-        passwordField.dividerColor = Utils().hexStringToUIColor(hex: Colors().primary_darker)
-        passwordField.dividerActiveColor = Utils().hexStringToUIColor(hex: Colors().accent)
-        passwordField.visibilityIconButton?.tintColor = Utils().hexStringToUIColor(hex: Colors().accent).withAlphaComponent(passwordField.isSecureTextEntry ? 0.38 : 1.0)
+        passwordField.textColor = UIColor(rgb: Colors.white)
+        passwordField.placeholderNormalColor = UIColor(rgb: Colors.primary_darker)
+        passwordField.placeholderActiveColor = UIColor(rgb: Colors.accent)
+        passwordField.dividerColor = UIColor(rgb: Colors.primary_darker)
+        passwordField.dividerActiveColor = UIColor(rgb: Colors.accent)
+        passwordField.visibilityIconButton?.tintColor = UIColor(rgb: Colors.accent).withAlphaComponent(passwordField.isSecureTextEntry ? 0.38 : 1.0)
         
         view.layout(passwordField).center(offsetY: +usernameField.height + 20).left(36).right(36)
     }
@@ -126,7 +133,7 @@ extension LoginViewController {
         
         button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: UIColor.white)
         button.pulseColor = UIColor.white
-        button.backgroundColor = Utils().hexStringToUIColor(hex: Colors().accent)
+        button.backgroundColor = UIColor(rgb: Colors.accent)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
         view.addSubview(button)

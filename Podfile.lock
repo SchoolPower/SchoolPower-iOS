@@ -1,4 +1,7 @@
 PODS:
+  - Charts (3.0.2):
+    - Charts/Core (= 3.0.2)
+  - Charts/Core (3.0.2)
   - FoldingCell (2.1.3)
   - Material (2.6.3):
     - Material/Core (= 2.6.3)
@@ -278,18 +281,20 @@ PODS:
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - Charts
   - FoldingCell
   - Material
   - MaterialComponents
   - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   FoldingCell: f3073f8b24cf20866a35198f31e3b67aea64e96e
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   MaterialComponents: 0d7b73247ca502e4e2753d48b1a7aa54fda05471
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: c72977c7b251339dad0e0dd7c50defb8ee86f3ad
+PODFILE CHECKSUM: 80b7624584686b153b6a3d19d8c7269ce440a9c2
 
 COCOAPODS: 1.2.1

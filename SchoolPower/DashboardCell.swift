@@ -1,10 +1,17 @@
 //
-//  DashboardCell.swift
-//  SchoolPower
-//
-//  Created by carbonyl on 2017-06-21.
-//  Copyright © 2017 CarbonylGroup.com. All rights reserved.
-//
+//  Copyright 2017 SchoolPower Studio
+
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+
+//  http://www.apache.org/licenses/LICENSE-2.0
+
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 
 import UIKit
 import FoldingCell
@@ -32,7 +39,7 @@ class DashboardCell: FoldingCell {
     
     var infoItem: MainListItem! {
         didSet {
-            let periodGradeItem: PeriodGradeItem? = Utils().getLatestItem(item: infoItem)
+            let periodGradeItem: PeriodGradeItem? = infoItem.getLatestItem()
             foldSubjectTitle.text = infoItem.subjectTitle
             foldTeacherName.text = infoItem.teacherName
             foldBlockLetter.text = "Block " + infoItem.blockLetter
@@ -41,8 +48,8 @@ class DashboardCell: FoldingCell {
             unFoldSubjectTitle.text = infoItem.subjectTitle
             unFoldTeacherName.text = infoItem.teacherName
             unFoldPercentageGrade.text = infoItem.getPercentageGrade(requiredTerm: periodGradeItem)
-            foldBackground.backgroundColor = Utils().getColorByPeriodItem(item: periodGradeItem!)
-            unfoldBackground.backgroundColor = Utils().getColorByPeriodItem(item: periodGradeItem!)
+            foldBackground.backgroundColor = Utils.getColorByPeriodItem(item: periodGradeItem!)
+            unfoldBackground.backgroundColor = Utils.getColorByPeriodItem(item: periodGradeItem!)
         }
     }
     

@@ -13,28 +13,27 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+
 import UIKit
 
-class SettingsCell: UITableViewCell {
-    
-    let userDefaults = UserDefaults.standard
-    
-    var keySets = [String]()
-    var titleSets = [String]()
-    var descriptionSets = [[String]]()
-    
-    @IBOutlet weak var itemTitle: UILabel!
-    @IBOutlet weak var itemDescription: UILabel!
+class DrawerHeaderView: UITableViewCell {
+
+    @IBOutlet weak var headerUsername: UILabel!
+    @IBOutlet weak var headerUserID: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    var location = 0 {
-        didSet{
-            itemTitle.text = titleSets[location]
-            itemDescription.text = descriptionSets[location][userDefaults.integer(forKey: keySets[location])]
+    var username = "" {
+        didSet {
+            headerUsername.text = username
         }
     }
     
+    var userID = "" {
+        didSet {
+            headerUserID.text = "User ID: " + userID
+        }
+    }
 }
