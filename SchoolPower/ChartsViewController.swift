@@ -19,56 +19,13 @@ import Material
 import Charts
 import SwiftyJSON
 
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(rgb: Int) {
-        self.init(
-            red: (rgb >> 16) & 0xFF,
-            green: (rgb >> 8) & 0xFF,
-            blue: rgb & 0xFF
-        )
-    }
-}
-
-class LineChartFormatter: NSObject, IAxisValueFormatter{
-    
-    private let mFormat = DateFormatter()
-    
-    override init(){
-        super.init()
-        mFormat.dateFormat = "MM/dd"
-    }
-    
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String{
-        return mFormat.string(from: Date(timeIntervalSince1970:value * 1000.0 * 60.0 * 60.0 * 24.0))
-    }
-}
-
-class RadarChartFormatter: NSObject, IAxisValueFormatter{
-    
-    private var mSubjectsName = [String]()
-    
-    init(data: [MainListItem]){
-        for subject in data{
-            mSubjectsName.append(subject.subjectTitle)
-        }
-    }
-    
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String{
-        return mSubjectsName[Int(value) % mSubjectsName.count]
-    }
-}
-
 class ChartsViewController: UIViewController {
-    fileprivate var lineChart: LineChartView!
-    fileprivate var radarChart: RadarChartView!
+    
+    @IBOutlet weak var topHalfView: UIView?
+    @IBOutlet weak var buttomHalfView: UIView?
+    
+    var lineChart: LineChartView!
+    var radarChart: RadarChartView!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -79,13 +36,25 @@ class ChartsViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationController?.navigationBar.isTranslucent = false
-
-        // lineChart.animate(xAxisDuration: 1.0, yAxisDuration: 1.0)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.init(rgb: Colors.foreground_material_dark)
+        initLineChart()
+        initRadarChart()
+    }
+    
+    func menuOnClick(sender: UINavigationItem) {
+        
+        navigationDrawerController?.toggleLeftView()
+        (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
     }
     
     func initLineChart(){
-        let historyData = Utils.readHistoryGrade()
         
+        let historyData = Utils.readHistoryGrade()
         lineChart = LineChartView()
         
         // [SubjectName: [Entry<Date, Grade>]]
@@ -142,17 +111,17 @@ class ChartsViewController: UIViewController {
         lineChart.legend.form = Legend.Form.line
         
         lineChart.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(lineChart)
-        let heightConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 500)
-        let widthConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 500)
-        let verticalConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 500)
-        let horizontalConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-        view.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
+        topHalfView?.addSubview(lineChart)
+        let heightConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: topHalfView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: topHalfView, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
+        let verticalConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: topHalfView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+        let horizontalConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: topHalfView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        topHalfView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
     }
     
     func initRadarChart(){
-        radarChart = RadarChartView()
         
+        radarChart = RadarChartView()
         var entries = [RadarChartDataEntry]()
         let xAxis = radarChart.xAxis
         xAxis.yOffset = 10
@@ -182,44 +151,66 @@ class ChartsViewController: UIViewController {
         let radarData = RadarChartData(dataSet: set)
         radarData.setDrawValues(true)
         radarData.setValueTextColor(UIColor(rgb: Colors.primary))
-        
         radarChart.legend.enabled=false
-        
         radarChart.data = radarData
         
         radarChart.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(radarChart)
-        let heightConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 500)
-        let widthConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 500)
-        view.addConstraints([heightConstraint, widthConstraint])
-        
+        buttomHalfView?.addSubview(radarChart)
+        let heightConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: buttomHalfView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: buttomHalfView, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
+        let verticalConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: buttomHalfView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+        let horizontalConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: buttomHalfView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        buttomHalfView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
         
         radarChart.animate(xAxisDuration: 1000)
     }
+}
+
+class LineChartFormatter: NSObject, IAxisValueFormatter{
     
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = UIColor.white
-        initLineChart()
-        initRadarChart()
-
-        // prepareToolbar()
-    }
-
-    fileprivate func prepareToolbar() {
-        guard let tc = toolbarController else {
-            return
-        }
-        
-        tc.toolbar.title = "Transitioned"
-        tc.toolbar.detail = "View Controller"
+    private let mFormat = DateFormatter()
+    
+    override init(){
+        super.init()
+        mFormat.dateFormat = "MM/dd"
     }
     
-    func menuOnClick(sender: UINavigationItem) {
-        
-        navigationDrawerController?.toggleLeftView()
-        (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String{
+        return mFormat.string(from: Date(timeIntervalSince1970:value * 1000.0 * 60.0 * 60.0 * 24.0))
     }
 }
+
+class RadarChartFormatter: NSObject, IAxisValueFormatter{
+    
+    private var mSubjectsName = [String]()
+    
+    init(data: [MainListItem]){
+        for subject in data{
+            mSubjectsName.append(subject.subjectTitle)
+        }
+    }
+    
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String{
+        return mSubjectsName[Int(value) % mSubjectsName.count]
+    }
+}
+
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
+}
+
 

@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -578,9 +579,7 @@
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Qud-Hm-2ul">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Qud-Hm-2ul">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -753,9 +752,52 @@
         <scene sceneID="Sbn-R0-XeT">
             <objects>
                 <viewController id="FGa-7e-7TW" customClass="ChartsViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bpq-Ne-Jbp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q8B-77-MkI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="THE-qy-IXm">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLk-HI-Wuv">
+                                <rect key="frame" x="16" y="16" width="343" height="293.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6C2-HM-tgb">
+                                <rect key="frame" x="16" y="325.5" width="343" height="261.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YLk-HI-Wuv" firstAttribute="top" secondItem="bpq-Ne-Jbp" secondAttribute="bottom" constant="16" id="3tm-mW-3nm"/>
+                            <constraint firstItem="YLk-HI-Wuv" firstAttribute="height" secondItem="THE-qy-IXm" secondAttribute="height" multiplier="0.5" constant="-8" id="Co7-ua-P3L"/>
+                            <constraint firstItem="Q8B-77-MkI" firstAttribute="top" secondItem="6C2-HM-tgb" secondAttribute="bottom" constant="16" id="I2x-gu-fBh"/>
+                            <constraint firstItem="6C2-HM-tgb" firstAttribute="leading" secondItem="THE-qy-IXm" secondAttribute="leading" constant="16" id="Udr-Zr-INb"/>
+                            <constraint firstAttribute="trailing" secondItem="YLk-HI-Wuv" secondAttribute="trailing" constant="16" id="Xoi-Ek-vEt"/>
+                            <constraint firstAttribute="trailing" secondItem="6C2-HM-tgb" secondAttribute="trailing" constant="16" id="d7Q-az-Twv"/>
+                            <constraint firstItem="6C2-HM-tgb" firstAttribute="top" secondItem="YLk-HI-Wuv" secondAttribute="bottom" constant="16" id="n4L-n1-vWl"/>
+                            <constraint firstItem="YLk-HI-Wuv" firstAttribute="leading" secondItem="THE-qy-IXm" secondAttribute="leading" constant="16" id="zd9-aZ-3ql"/>
+                        </constraints>
+                    </view>
                     <navigationItem key="navigationItem" title="Charts" id="S59-F8-UU6">
                         <barButtonItem key="backBarButtonItem" title=" " id="q5H-ik-E0G"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="buttomHalfView" destination="6C2-HM-tgb" id="ANn-Gj-QIt"/>
+                        <outlet property="topHalfView" destination="YLk-HI-Wuv" id="TVi-fu-aZN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsX-q4-Mpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -768,9 +810,7 @@
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hc8-rU-frg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hc8-rU-frg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
