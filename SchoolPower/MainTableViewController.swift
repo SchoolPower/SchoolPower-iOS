@@ -25,7 +25,7 @@ class MainTableViewController: UITableViewController {
     
     let kRowsCount = 10
     var cellHeights: [CGFloat] = []
-    let kOpenCellHeight: CGFloat = 315
+    let kOpenCellHeight: CGFloat = 305
     let kCloseCellHeight: CGFloat = 125
     var storedOffsets = [Int: CGFloat]()
     
@@ -72,7 +72,7 @@ class MainTableViewController: UITableViewController {
         
         tableView.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
         tableView.separatorColor = UIColor.clear
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0)
+        tableView.contentInset = UIEdgeInsetsMake(20, 0, 20, 0)
     }
     
     func menuOnClick(sender: UINavigationItem) {
@@ -244,6 +244,7 @@ extension MainTableViewController {
         if cellIsCollapsed {
             
             cellHeights[indexPath.row] = kOpenCellHeight
+            
             cell.unfold(true, animated: true, completion: nil)
             duration = 0.5
         } else {

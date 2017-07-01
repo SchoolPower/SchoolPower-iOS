@@ -110,6 +110,9 @@ class ChartsViewController: UIViewController {
         lineChart.rightAxis.gridLineDashLengths = [10, 10, 0]
         lineChart.legend.form = Legend.Form.line
         
+        topHalfView?.shadowOffset = CGSize.init(width: 0, height: 3)
+        topHalfView?.shadowRadius = 2
+        topHalfView?.shadowOpacity = 0.2
         lineChart.translatesAutoresizingMaskIntoConstraints = false
         topHalfView?.addSubview(lineChart)
         let heightConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: topHalfView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
@@ -154,6 +157,9 @@ class ChartsViewController: UIViewController {
         radarChart.legend.enabled=false
         radarChart.data = radarData
         
+        buttomHalfView?.shadowOffset = CGSize.init(width: 0, height: 3)
+        buttomHalfView?.shadowRadius = 2
+        buttomHalfView?.shadowOpacity = 0.2
         radarChart.translatesAutoresizingMaskIntoConstraints = false
         buttomHalfView?.addSubview(radarChart)
         let heightConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: buttomHalfView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)

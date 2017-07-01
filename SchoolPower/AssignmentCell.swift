@@ -26,11 +26,17 @@ class AssignmentCell: UITableViewCell {
     @IBOutlet weak var assignmentDividedGrade: UILabel!
     @IBOutlet weak var gradeBackground: UIView!
     @IBOutlet weak var foreBackground: UIView!
+    @IBOutlet weak var foregroundBroader: UIView!
     
     override func awakeFromNib() {
         
-        foreBackground.layer.cornerRadius = 10
-        foreBackground.layer.masksToBounds = true
+        foreBackground.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
+        foreBackground.layer.shadowRadius = 1
+        foreBackground.layer.shadowOpacity = 0.2
+        foreBackground.layer.backgroundColor = UIColor.clear.cgColor
+        
+        foregroundBroader.layer.cornerRadius = 10
+        foregroundBroader.layer.masksToBounds = true
         
         super.awakeFromNib()
     }
@@ -50,7 +56,7 @@ class AssignmentCell: UITableViewCell {
                 assignmentTitle.textColor = UIColor.white
                 assignmentDate.textColor = UIColor(rgb: Colors.white_0_20)
             }else{
-                foreBackground.backgroundColor = UIColor.white
+                foreBackground.backgroundColor = UIColor.clear
                 assignmentTitle.textColor = UIColor(rgb: Colors.text_primary_black)
                 assignmentDate.textColor = UIColor(rgb: Colors.text_tertiary_black)
             }

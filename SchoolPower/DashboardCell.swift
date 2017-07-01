@@ -24,11 +24,13 @@ class DashboardCell: FoldingCell {
     @IBOutlet weak var foldSubjectTitle: UILabel!
     @IBOutlet weak var foldPercentageGrade: UILabel!
     @IBOutlet weak var foldBackground: UIView!
+    @IBOutlet weak var foldBorderView: UIView!
     
     @IBOutlet weak var unFoldTeacherName: UILabel!
     @IBOutlet weak var unFoldSubjectTitle: UILabel!
     @IBOutlet weak var unFoldPercentageGrade: UILabel!
     @IBOutlet weak var unfoldBackground: UIView!
+    @IBOutlet weak var unfoldBorderView: UIView!
     @IBOutlet weak var periodGradeCollectionView: UICollectionView!
     
     var number: Int = 0 {
@@ -55,8 +57,20 @@ class DashboardCell: FoldingCell {
     
     override func awakeFromNib() {
         
-        foregroundView.layer.cornerRadius = 10
-        foregroundView.layer.masksToBounds = true
+        foregroundView.layer.shadowOffset = CGSize.init(width: 0, height: 2.5)
+        foregroundView.layer.shadowRadius = 2
+        foregroundView.layer.shadowOpacity = 0.2
+        foregroundView.layer.backgroundColor = UIColor.clear.cgColor
+        
+        containerView.layer.shadowOffset = CGSize.init(width: 0, height: 2.5)
+        containerView.layer.shadowRadius = 2
+        containerView.layer.shadowOpacity = 0.2
+        containerView.layer.backgroundColor = UIColor.clear.cgColor
+        
+        foldBorderView.layer.cornerRadius = 10
+        foldBorderView.layer.masksToBounds = true
+        unfoldBorderView.layer.cornerRadius = 10
+        unfoldBorderView.layer.masksToBounds = true
         
         super.awakeFromNib()
     }

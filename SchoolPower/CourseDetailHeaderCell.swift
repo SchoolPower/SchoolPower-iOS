@@ -24,13 +24,20 @@ class CourseDetailHeaderCell: UITableViewCell {
     @IBOutlet weak var headerPercentageGrade: UILabel!
     @IBOutlet weak var headerLetterGrade: UILabel!
     @IBOutlet weak var foreBackground: UIView!
+    @IBOutlet weak var foreground: UIView!
     @IBOutlet weak var leftBackground: UIView!
     @IBOutlet weak var assignments: UILabel?
 
     override func awakeFromNib() {
         
-        foreBackground.layer.cornerRadius = 10
-        foreBackground.layer.masksToBounds = true
+        foreBackground.layer.shadowOffset = CGSize.init(width: 0, height: 3)
+        foreBackground.layer.shadowRadius = 2
+        foreBackground.layer.shadowOpacity = 0.2
+        foreBackground.layer.backgroundColor = UIColor.clear.cgColor
+        
+        foreground.layer.cornerRadius = 10
+        foreground.layer.masksToBounds = true
+        
         assignments?.text = "assignments".localize
         super.awakeFromNib()
     }
