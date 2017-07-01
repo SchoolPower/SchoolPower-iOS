@@ -82,7 +82,25 @@ class MainTableViewController: UITableViewController {
     }
     
     func gpaOnClick(sender: UINavigationItem) {
-        //TODO GPA
+        var sum_gpa=0.0
+        var gpa_except_hr=0.0
+        var gpa_except_hr_me=0.0
+        var num=0
+        for subject in dataList {
+            if let period = subject.getLatestItem() {
+                let grade = Double(period.termPercentageGrade)!
+                sum_gpa+=grade
+                num+=1
+                if subject.subjectTitle.contains("Homeroom") { continue }
+                gpa_except_hr+=grade
+                if subject.subjectTitle.contains("Moral Education") { continue }
+                gpa_except_hr_me+=grade
+            }
+        }
+        let doubleNum = Double(num)
+        let alert = UIAlertController(title: "GPA", message: String(format: "Your GPA for %@ is %.3f\n%.3f (except HR)\n%.3f (except HR & ME)", dataList[0].getLatestItem()!.termIndicator, sum_gpa/doubleNum, gpa_except_hr/(doubleNum-1), gpa_except_hr_me/(doubleNum-2)), preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func fabOnClick(sender: UIButton) {
