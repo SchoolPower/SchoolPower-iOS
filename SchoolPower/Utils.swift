@@ -189,11 +189,11 @@ extension Utils {
         saveStringToFile(filename: "history.json", data: historyData.rawString()!)
     }
     
-    
     static func getShortName(subjectTitle: String)->String{
         let shorts = ["Homeroom":"HR", "Planning":"PL", "Mandarin":"CN",
             "Chinese":"CSS", "Foundations":"Maths", "Physical":"PE",
-            "English":"EN", "Moral":"ME"]
+            "English":"EN", "Moral":"ME", "Information": "IT", "Drama": "DR",
+            "Social":"SS","Communications":"COMM","Science":"SC"]
         let short = shorts[subjectTitle.components(separatedBy: " ")[0]]
         if short != nil { return short! }
         

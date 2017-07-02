@@ -92,6 +92,8 @@ class ChartsViewController: UIViewController {
             for _ in 0...value.count-1 { colors.append(Colors.chartColorList[count]) }
             dataSet.colors = colors
             dataSet.circleColors = colors
+            dataSet.circleRadius = 5
+            dataSet.circleHoleRadius = 2
             dataSet.valueTextColor = UIColor.black
             dataSet.lineWidth = 2.0
             lineData.addDataSet(dataSet)
@@ -99,6 +101,8 @@ class ChartsViewController: UIViewController {
         }
         
         lineChart.data = lineData
+        
+        lineChart.chartDescription?.enabled=false
         
         let xAxis = lineChart.xAxis
         xAxis.drawAxisLineEnabled = true
@@ -120,33 +124,28 @@ class ChartsViewController: UIViewController {
         let verticalConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: topHalfView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
         let horizontalConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: topHalfView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         topHalfView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
+        
+        lineChart.animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
+
     }
     
     func initRadarChart(){
         
         radarChart = RadarChartView()
-        var entries = [RadarChartDataEntry]()
-        let xAxis = radarChart.xAxis
-        xAxis.yOffset = 10
-        xAxis.xOffset = 10
-        xAxis.valueFormatter = RadarChartFormatter(data: dataList)
         
-        var minGrade=100.0
+        var entries = [RadarChartDataEntry]()
+        var minGrade = 100.0
         for it in dataList {
             let periodGrade=Double(it.getLatestItem()!.termPercentageGrade)!
             entries.append(RadarChartDataEntry(value: periodGrade))
             if periodGrade<minGrade { minGrade=periodGrade }
         }
         
-        let yAxis = radarChart.yAxis
-        yAxis.axisMinimum = minGrade/3*2
-        yAxis.axisMaximum = 110.0 - 20.0
-        yAxis.drawLabelsEnabled = false
-        
         let set = RadarChartDataSet(values: entries, label: "Grades")
         set.fillColor = UIColor(rgb: 0x345995)
+        set.colors = [UIColor(rgb: 0x345995)]
         set.drawFilledEnabled = true
-        set.fillAlpha = 180
+        set.fillAlpha = 0.5
         set.lineWidth = 2.0
         set.drawHighlightCircleEnabled = true
         set.setDrawHighlightIndicators(false)
@@ -154,8 +153,19 @@ class ChartsViewController: UIViewController {
         let radarData = RadarChartData(dataSet: set)
         radarData.setDrawValues(true)
         radarData.setValueTextColor(UIColor(rgb: Colors.primary))
-        radarChart.legend.enabled=false
         radarChart.data = radarData
+        
+        let xAxis = radarChart.xAxis
+        xAxis.yOffset = 10
+        xAxis.xOffset = 10
+        xAxis.valueFormatter = RadarChartFormatter(data: dataList)
+        
+        let yAxis = radarChart.yAxis
+        yAxis.axisMinimum = minGrade/3*2
+        yAxis.axisMaximum = 110.0 - 10.0
+        yAxis.drawLabelsEnabled = false
+        radarChart.chartDescription?.enabled=false
+        radarChart.legend.enabled=false
         
         buttomHalfView?.shadowOffset = CGSize.init(width: 0, height: 3)
         buttomHalfView?.shadowRadius = 2
@@ -168,7 +178,7 @@ class ChartsViewController: UIViewController {
         let horizontalConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: buttomHalfView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         buttomHalfView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
         
-        radarChart.animate(xAxisDuration: 1000)
+        radarChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
     }
 }
 
@@ -192,30 +202,12 @@ class RadarChartFormatter: NSObject, IAxisValueFormatter{
     
     init(data: [MainListItem]){
         for subject in data{
-            mSubjectsName.append(subject.subjectTitle)
+            mSubjectsName.append(Utils.getShortName(subjectTitle: subject.subjectTitle))
         }
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String{
         return mSubjectsName[Int(value) % mSubjectsName.count]
-    }
-}
-
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(rgb: Int) {
-        self.init(
-            red: (rgb >> 16) & 0xFF,
-            green: (rgb >> 8) & 0xFF,
-            blue: rgb & 0xFF
-        )
     }
 }
 
