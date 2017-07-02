@@ -95,10 +95,6 @@ class MainTableViewController: UITableViewController {
         tableView.contentInset = UIEdgeInsetsMake(20, 0, bannerView.frame.height, 0)
     }
     
-    func gpaOnClick(sender: UINavigationItem) {
-        //TODO GPA
-    }
-    
     func menuOnClick(sender: UINavigationItem) {
         
         navigationDrawerController?.toggleLeftView()
