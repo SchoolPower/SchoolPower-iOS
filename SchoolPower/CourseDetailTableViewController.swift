@@ -60,7 +60,9 @@ class CourseDetailTableViewController: UITableViewController {
         let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         self.view.addConstraints([horizontalConstraint])
         
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        /* TEST ID */
+//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-9841217337381410/4059063088"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
     }
@@ -88,7 +90,7 @@ class CourseDetailTableViewController: UITableViewController {
     
     @IBAction func ChooseTermOnClick(_ sender: Any) {
         
-        ActionSheetStringPicker.show(withTitle: "selectterm".localize, rows: termsList, initialSelection: currentTerm, doneBlock: {
+        let picker = ActionSheetStringPicker.init(title: "selectterm".localize, rows: termsList, initialSelection: currentTerm, doneBlock: {
             picker, value, index in
             
             self.currentTerm = value
@@ -98,6 +100,15 @@ class CourseDetailTableViewController: UITableViewController {
             
             return
         }, cancel: { ActionStringCancelBlock in return }, origin: self.tableView)
+        
+        let cancelButton = UIBarButtonItem()
+        let doneButton = UIBarButtonItem()
+        cancelButton.title = "cancel".localize
+        doneButton.title = "done".localize
+        picker?.setCancelButton(cancelButton)
+        picker?.setDoneButton(doneButton)
+        
+        picker?.show()
     }
 }
 

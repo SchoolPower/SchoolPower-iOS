@@ -33,6 +33,7 @@ class LanguageTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "language".localize
         languageIndex = userDefaults.integer(forKey: keyName)
         loadCells()
     }

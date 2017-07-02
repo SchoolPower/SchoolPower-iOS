@@ -15,6 +15,7 @@
 
 import UIKit
 import Material
+import VTAcknowledgementsViewController
 
 class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -95,9 +96,13 @@ extension LeftViewController {
             }
         } else {
             switch location {
+                
             case 0:
                 (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(settingsStory.instantiateViewController(withIdentifier: "Settings"), animated: true)
             case 1:
+                (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(mainStory.instantiateViewController(withIdentifier: "About"), animated: true)
+                
+            case 2:
                 confirmLogOut()
             
             default:
@@ -139,7 +144,7 @@ extension LeftViewController {
         
         switch section {
         case 0: return 2
-        case 1: return 2
+        case 1: return 3
         default: return 0
         }
     }

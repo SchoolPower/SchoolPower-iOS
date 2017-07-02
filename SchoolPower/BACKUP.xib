@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewSection id="mFn-pw-T1b">
+            <cells>
+                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="vin-id-xgl" imageView="Ed4-cl-7kn" style="IBUITableViewCellStyleDefault" id="omZ-br-D24">
+                    <rect key="frame" x="0.0" y="274" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="omZ-br-D24" id="tBM-Ow-C07">
+                        <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rate Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vin-id-xgl">
+                                <rect key="frame" x="54" y="0.0" width="325" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="ic_star_white" id="Ed4-cl-7kn">
+                                <rect key="frame" x="15" y="9" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                        </subviews>
+                    </tableViewCellContentView>
+                    <color key="backgroundColor" red="0.036680690940000003" green="0.19017058610000001" blue="0.2940617204" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableViewCell>
+                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="w5v-B8-EwV" imageView="YU3-aV-xnx" style="IBUITableViewCellStyleDefault" id="fuz-Ah-NTE">
+                    <rect key="frame" x="0.0" y="318" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fuz-Ah-NTE" id="252-XG-H2J">
+                        <rect key="frame" x="0.0" y="0.0" width="381" height="43.5"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Donate Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w5v-B8-EwV">
+                                <rect key="frame" x="54" y="0.0" width="325" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="ic_favorite_white" id="YU3-aV-xnx">
+                                <rect key="frame" x="15" y="9" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                        </subviews>
+                    </tableViewCellContentView>
+                    <color key="backgroundColor" red="0.036680690940000003" green="0.19017058610000001" blue="0.2940617204" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableViewCell>
+            </cells>
+        </tableViewSection>
+    </objects>
+    <resources>
+        <image name="ic_favorite_white" width="24" height="24"/>
+        <image name="ic_star_white" width="24" height="24"/>
+    </resources>
+</document>

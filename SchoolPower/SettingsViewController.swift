@@ -20,8 +20,6 @@ import MaterialComponents
 class SettingsTableViewController: UITableViewController {
     
     let keySets = ["language", "dashboarddisplays"]
-    let descriptionSets = [["default".localize, "English", "繁體中文", "简体中文"],
-                           ["thisterm".localize, "thissemester".localize]]
     
     @IBOutlet weak var languageTitle: UILabel?
     @IBOutlet weak var dspTitle: UILabel?
@@ -39,6 +37,7 @@ class SettingsTableViewController: UITableViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         registerDefaults()
         loadDetails()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -61,6 +60,9 @@ class SettingsTableViewController: UITableViewController {
     }
     
     func loadDetails() {
+        
+        let descriptionSets = [["default".localize, "English", "繁體中文", "简体中文"],
+                               ["thisterm".localize, "thissemester".localize]]
         
         languageTitle?.text = "language".localize
         dspTitle?.text = "dashboarddisplays".localize

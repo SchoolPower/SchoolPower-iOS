@@ -27,7 +27,7 @@ class MainTableViewController: UITableViewController {
     let kRowsCount = 10
     var bannerView: GADBannerView!
     var cellHeights: [CGFloat] = []
-    let kOpenCellHeight: CGFloat = 300
+    let kOpenCellHeight: CGFloat = 315
     let kCloseCellHeight: CGFloat = 125
     var storedOffsets = [Int: CGFloat]()
     
@@ -80,9 +80,16 @@ class MainTableViewController: UITableViewController {
         let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         self.view.addConstraints([horizontalConstraint])
         
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        /* TEST ID */
+//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-9841217337381410/3714312680"
         bannerView.rootViewController = self
+        
         bannerView.load(GADRequest())
+        
+//        let request = GADRequest()
+//        request.testDevices = kGADSimulatorID as? [Any]
+//        bannerView.load(request)
     }
     
     func initTableView() {
@@ -119,7 +126,7 @@ class MainTableViewController: UITableViewController {
             }
         }
         let doubleNum = Double(num)
-        let alert = UIAlertController(title: "GPA", message: String(format: "Your GPA for %@ is %.3f\n%.3f (except HR)\n%.3f (except HR & ME)", dataList[0].getLatestItem()!.termIndicator, sum_gpa/doubleNum, gpa_except_hr/(doubleNum-1), gpa_except_hr_me/(doubleNum-2)), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "GPA", message: String(format: "gpamessage".localize, dataList[0].getLatestItem()!.termIndicator, sum_gpa/doubleNum, gpa_except_hr/(doubleNum-1), gpa_except_hr_me/(doubleNum-2)), preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -185,9 +192,6 @@ extension MainTableViewController {
                     self.showSnackbar(msg: "data_updated".localize)
                 } else {
                     self.showSnackbar(msg: "cannot_connect".localize)
-                    //TODO REFRESH
-                    //                            homeFragment!!.setRefreshing(false)
-                    //                            noConnection = true
                 }
             }
         }
@@ -276,8 +280,8 @@ extension MainTableViewController {
         
         let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60)
         let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60)
-        let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: cell.containerView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: -10)
-        let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: cell.containerView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: -55)
+        let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: cell.containerView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: -17.5)
+        let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: cell.containerView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: -63)
         
         cell.containerView.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
         
@@ -344,6 +348,15 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+    }
+}
+
+extension Double {
+    
+    /// Rounds the double to decimal places value
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }
 

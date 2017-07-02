@@ -22,9 +22,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appIcon: UIImageView?
     @IBOutlet weak var copyright: UILabel?
     
-    fileprivate var usernameField: TextField!
-    fileprivate var passwordField: TextField!
-    fileprivate var button: FABButton!
+    var usernameField: TextField!
+    var passwordField: TextField!
+    var button: FABButton!
     
     let userDefaults = UserDefaults.standard
     let JSON_FILE_NAME = "dataMap.json"
@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         prepareUI()
     }
     
-    func loginAction(sender: UIButton) {
+    func loginAction() {
         
         let username = usernameField.text
         let password = passwordField.text
@@ -53,11 +53,10 @@ class LoginViewController: UIViewController {
         Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
             alert.dismiss(withClickedButtonIndex: -1, animated: true)
-            self.showSnackbar(msg: "invalidup".localize)
             let response = value
             let messages = response.components(separatedBy: "\n")
             
-            if response.contains("{\"error\":1,\"") {
+            if response.contains("error") {
                 self.showSnackbar(msg: "invalidup".localize)
             } else if response.contains("[{\"") {
                 
@@ -70,6 +69,7 @@ class LoginViewController: UIViewController {
                 self.startMainViewController()
                 
             } else {
+                
                 self.showSnackbar(msg: "cannot_connect".localize)
             }
         }
@@ -118,6 +118,9 @@ extension LoginViewController {
         usernameField.placeholder = "username".localize
         usernameField.isClearIconButtonEnabled = true
         usernameField.minimumFontSize = 18
+        usernameField.tag = 1
+        usernameField.returnKeyType = .next
+        usernameField.delegate = self
         _ = usernameField.becomeFirstResponder()
         
         usernameField.textColor = UIColor(rgb: Colors.white)
@@ -136,6 +139,9 @@ extension LoginViewController {
         passwordField.placeholder = "password".localize
         passwordField.isVisibilityIconButtonEnabled = true
         passwordField.minimumFontSize = 18
+        passwordField.tag = 2
+        passwordField.returnKeyType = .done
+        passwordField.delegate = self
         
         passwordField.textColor = UIColor(rgb: Colors.white)
         passwordField.placeholderNormalColor = UIColor(rgb: Colors.primary_darker)
@@ -167,5 +173,30 @@ extension LoginViewController {
         let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         
         view.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
+    }
+}
+
+extension LoginViewController: TextFieldDelegate {
+    
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        (textField as? ErrorTextField)?.isErrorRevealed = false
+    }
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField.tag {
+        case 1:
+            _ = passwordField.becomeFirstResponder()
+        case 2:
+            loginAction()
+        default:
+            break
+        }
+        return true
+    }
+    
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        (textField as? ErrorTextField)?.isErrorRevealed = false
+        return true
     }
 }

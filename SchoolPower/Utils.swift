@@ -144,7 +144,11 @@ extension Utils {
         var dataList = [MainListItem]()
         for (_, value) in dataMap { dataList.append(value) }
         
-        dataList = dataList.sorted(by: { $0.blockLetter < $1.blockLetter })
+        dataList = dataList.sorted {
+            if $0.blockLetter == "HR(1)" { return true }
+            if $1.blockLetter == "HR(1)" { return false }
+            return $0.blockLetter < $1.blockLetter
+        }
         return dataList
     }
     

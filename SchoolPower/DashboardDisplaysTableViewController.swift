@@ -28,7 +28,9 @@ class DashboardDisplaysTableViewController: UITableViewController {
     var dspIndex: Int = 0
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.title = "dashboarddisplays".localize
         dspIndex = userDefaults.integer(forKey: keyName)
         loadCells()
     }
