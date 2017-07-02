@@ -34,3 +34,5 @@ logging_out = "正在登出";
 sure_to_log_out = "你確定要登出嗎？";
 dont = "別";
 logout = "對";
+allterms = "所有學期";
+selectterm = "選擇學期查看";

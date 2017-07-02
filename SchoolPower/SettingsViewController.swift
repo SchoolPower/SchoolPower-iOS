@@ -20,7 +20,7 @@ import MaterialComponents
 class SettingsTableViewController: UITableViewController {
     
     let keySets = ["language", "dashboarddisplays"]
-    let descriptionSets = [["default".localize, "English", "正體中文", "简体中文"],
+    let descriptionSets = [["default".localize, "English", "繁體中文", "简体中文"],
                            ["thisterm".localize, "thissemester".localize]]
     
     @IBOutlet weak var languageTitle: UILabel?

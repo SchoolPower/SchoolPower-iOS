@@ -34,3 +34,5 @@ logging_out = "Signing Out";
 sure_to_log_out = "Are you sure to sign out?";
 dont = "DON'T";
 logout = "SIGN OUT";
+allterms = "ALL TERMS";
+selectterm = "Select Term to View";

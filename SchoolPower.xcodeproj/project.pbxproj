@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271386941F07711300EC7F2F /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271386931F07711300EC7F2F /* View.xib */; };
 		621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DA1B61EFD01A300EFAB5A /* Utils.swift */; };
 		624BDC211EFE2F6A0052EC5D /* AssignmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */; };
 		624BDC231EFE46110052EC5D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC221EFE46110052EC5D /* Colors.swift */; };
@@ -75,9 +76,8 @@
 /* Begin PBXFileReference section */
 		0716409FF68D18F6B2A17B63 /* Pods_SchoolPower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SchoolPower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		198A4214FD36B15B97C39F02 /* Pods-SchoolPower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolPower.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SchoolPower/Pods-SchoolPower.debug.xcconfig"; sourceTree = "<group>"; };
+		271386931F07711300EC7F2F /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		621DA1B61EFD01A300EFAB5A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentCell.swift; sourceTree = "<group>"; };
-		621F99751EFB34BD00C20013 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AssignmentCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		624BDC221EFE46110052EC5D /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CourseDetailHeaderCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -91,7 +91,7 @@
 		62C34DFF1F03C9C10078D5F8 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		62C34E041F03DF080078D5F8 /* LanguageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTableViewController.swift; sourceTree = "<group>"; };
 		62C34E061F03EC470078D5F8 /* DashboardDisplaysTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardDisplaysTableViewController.swift; sourceTree = "<group>"; };
-		62C34E081F0482050078D5F8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		62C34E081F0482050078D5F8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoginViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		62C34E131F05F2280078D5F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62C34E161F05F22E0078D5F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		62C34E2A1F05F5A70078D5F8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -99,7 +99,6 @@
 		62C34E2F1F05FD6B0078D5F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62C34E301F0608640078D5F8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		62C34E311F06216D0078D5F8 /* CourseDetailFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailFooterCell.swift; sourceTree = "<group>"; };
-		62C34E081F0482050078D5F8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoginViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		62C7867B1EFB95CC00CB28ED /* PeriodGradeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodGradeItem.swift; sourceTree = "<group>"; };
 		62C7867D1EFB98AE00CB28ED /* AssignmentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentItem.swift; sourceTree = "<group>"; };
 		62C7867F1EFB998D00CB28ED /* MainListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListItem.swift; sourceTree = "<group>"; };
@@ -185,6 +184,7 @@
 				62C34E171F05F22E0078D5F8 /* Settings.storyboard */,
 				62CFC99A1EFA9940002B4A8D /* LaunchScreen.storyboard */,
 				62C786811EFBA46000CB28ED /* PeriodGradeListItem.xib */,
+				271386931F07711300EC7F2F /* View.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -379,6 +379,7 @@
 					62CFC98D1EFA9940002B4A8D = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = MPW443922D;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					62CFC9A11EFA9940002B4A8D = {
@@ -426,6 +427,7 @@
 				62CFC9991EFA9940002B4A8D /* Assets.xcassets in Resources */,
 				62A8FA441EFB66DA00751ACD /* Podfile in Resources */,
 				62C34E291F05F5990078D5F8 /* Localizable.strings in Resources */,
+				271386941F07711300EC7F2F /* View.xib in Resources */,
 				62C34E121F05F2280078D5F8 /* Main.storyboard in Resources */,
 				62C34E151F05F22E0078D5F8 /* Settings.storyboard in Resources */,
 				62C786821EFBA46000CB28ED /* PeriodGradeListItem.xib in Resources */,
@@ -698,6 +700,7 @@
 			baseConfigurationReference = 198A4214FD36B15B97C39F02 /* Pods-SchoolPower.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_INFINITE_RECURSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				DEVELOPMENT_TEAM = MPW443922D;
@@ -712,6 +715,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.carbonylgroup.SchoolPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -722,6 +727,7 @@
 			baseConfigurationReference = AF182FAFC8DA239CF1FB62B9 /* Pods-SchoolPower.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_INFINITE_RECURSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				DEVELOPMENT_TEAM = MPW443922D;
@@ -736,6 +742,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.carbonylgroup.SchoolPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

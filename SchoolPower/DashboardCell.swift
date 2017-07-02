@@ -57,11 +57,15 @@ class DashboardCell: FoldingCell {
     
     override func awakeFromNib() {
         
+        foregroundView.layer.shouldRasterize = true
+        foregroundView.layer.rasterizationScale = UIScreen.main.scale
         foregroundView.layer.shadowOffset = CGSize.init(width: 0, height: 2.5)
         foregroundView.layer.shadowRadius = 2
         foregroundView.layer.shadowOpacity = 0.2
         foregroundView.layer.backgroundColor = UIColor.clear.cgColor
         
+        containerView.layer.shouldRasterize = true
+        containerView.layer.rasterizationScale = UIScreen.main.scale
         containerView.layer.shadowOffset = CGSize.init(width: 0, height: 2.5)
         containerView.layer.shadowRadius = 2
         containerView.layer.shadowOpacity = 0.2
@@ -71,6 +75,8 @@ class DashboardCell: FoldingCell {
         foldBorderView.layer.masksToBounds = true
         unfoldBorderView.layer.cornerRadius = 10
         unfoldBorderView.layer.masksToBounds = true
+        
+        
         
         super.awakeFromNib()
     }

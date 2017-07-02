@@ -18,14 +18,16 @@ import UIKit
 import MaterialComponents
 import Material
 import FoldingCell
+import GoogleMobileAds
 
 var dataList = [MainListItem]()
 
 class MainTableViewController: UITableViewController {
     
     let kRowsCount = 10
+    var bannerView: GADBannerView!
     var cellHeights: [CGFloat] = []
-    let kOpenCellHeight: CGFloat = 305
+    let kOpenCellHeight: CGFloat = 300
     let kCloseCellHeight: CGFloat = 125
     var storedOffsets = [Int: CGFloat]()
     
@@ -35,18 +37,17 @@ class MainTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal) , style: .plain ,target: self, action: #selector(menuOnClick))
         let gpaItem = UIBarButtonItem(image: UIImage(named: "ic_grade_white")?.withRenderingMode(.alwaysOriginal) , style: .plain ,target: self, action: #selector(gpaOnClick))
-        
-        self.navigationItem.leftBarButtonItems = [menuItem]
+        let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal) , style: .plain ,target: self, action: #selector(menuOnClick))
         self.navigationItem.rightBarButtonItems = [gpaItem]
+        navigationItem.leftBarButtonItems = [menuItem]
         
-        self.title = "dashboard".localize
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationController?.navigationBar.isTranslucent = false
         
+        self.title = "dashboard".localize
         tableView.reloadData()
     }
     
@@ -66,23 +67,42 @@ class MainTableViewController: UITableViewController {
     
     func initUI() {
         
+        initBannerView()
+        initTableView()
+    }
+    
+    func initBannerView() {
+        
+        bannerView = GADBannerView(adSize: GADAdSize.init(size: CGSize.init(width: 320, height: 50), flags: 0))
+        bannerView.frame = CGRect.init(x: (self.view.frame.size.width - 320) / 2, y: self.view.frame.size.height - 50, width: 320, height: 50)
+        
+        self.view.addSubview(bannerView)
+        let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        self.view.addConstraints([horizontalConstraint])
+        
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+    }
+    
+    func initTableView() {
+    
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        
         tableView.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
         tableView.separatorColor = UIColor.clear
-        tableView.contentInset = UIEdgeInsetsMake(20, 0, 20, 0)
+        tableView.contentInset = UIEdgeInsetsMake(20, 0, bannerView.frame.height, 0)
+    }
+    
+    func gpaOnClick(sender: UINavigationItem) {
+        //TODO GPA
     }
     
     func menuOnClick(sender: UINavigationItem) {
         
         navigationDrawerController?.toggleLeftView()
         (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
-    }
-    
-    func gpaOnClick(sender: UINavigationItem) {
-        //TODO GPA
     }
     
     func fabOnClick(sender: UIButton) {
@@ -100,7 +120,7 @@ extension MainTableViewController {
         let password = userDefaults.string(forKey: "password")
         oldMainItemList += dataList
         
-        Utils.sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
+        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
             let response = value
             let messages = response.components(separatedBy: "\n")
@@ -227,6 +247,9 @@ extension MainTableViewController {
         let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: UIColor.white)
         button.pulseColor = UIColor.white
         button.backgroundColor = UIColor(rgb: Colors.accent)
+        button.shadowOffset = CGSize.init(width: 0, height: 2.5)
+        button.shadowRadius = 2
+        button.shadowOpacity = 0.2
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = indexPath.row
         button.addTarget(self, action: #selector(MainTableViewController.fabOnClick), for: .touchUpInside)
@@ -258,6 +281,13 @@ extension MainTableViewController {
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        var bannerFrame = self.bannerView.frame
+        bannerFrame.origin.y = self.view.frame.size.height - 50 + self.tableView.contentOffset.y
+        self.bannerView.frame = bannerFrame
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

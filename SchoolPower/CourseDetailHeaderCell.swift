@@ -27,7 +27,9 @@ class CourseDetailHeaderCell: UITableViewCell {
     @IBOutlet weak var foreground: UIView!
     @IBOutlet weak var leftBackground: UIView!
     @IBOutlet weak var assignments: UILabel?
-
+    @IBOutlet weak var termLable: UILabel!
+    @IBOutlet weak var chooseIcon: UIImageView!
+    
     override func awakeFromNib() {
         
         foreBackground.layer.shadowOffset = CGSize.init(width: 0, height: 3)
@@ -51,6 +53,12 @@ class CourseDetailHeaderCell: UITableViewCell {
             headerPercentageGrade.text = infoItem.getPercentageGrade(requiredTerm: periodGradeItem)
             headerLetterGrade.text = infoItem.getLetterGrade(requiredTerm: periodGradeItem)
             leftBackground.backgroundColor = Utils.getColorByPeriodItem(item: periodGradeItem!)
+        }
+    }
+    
+    var currentTerm = "allterms".localize {
+        didSet {
+            termLable?.text = currentTerm
         }
     }
 

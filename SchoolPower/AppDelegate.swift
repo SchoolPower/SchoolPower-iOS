@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
         DGLocalization.sharedInstance.startLocalization()
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-9841217337381410~2237579488")
         
         let story = UIStoryboard(name: "Main", bundle: nil)
         var gotoController: UIViewController
@@ -40,10 +42,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         window!.makeKeyAndVisible()
     }
-    
-//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-////        DGLocalization.sharedInstance.startLocalization()
-//        return true
-//    }
 }
 

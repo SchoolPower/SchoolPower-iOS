@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
         loadingIndicator.startAnimating()
         alert.show();
         
-        Utils.sendPost(url: "https://schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
+        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
             alert.dismiss(withClickedButtonIndex: -1, animated: true)
             self.showSnackbar(msg: "invalidup".localize)

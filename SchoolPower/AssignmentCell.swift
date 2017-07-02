@@ -30,6 +30,8 @@ class AssignmentCell: UITableViewCell {
     
     override func awakeFromNib() {
         
+        foreBackground.layer.shouldRasterize = true
+        foreBackground.layer.rasterizationScale = UIScreen.main.scale
         foreBackground.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
         foreBackground.layer.shadowRadius = 1
         foreBackground.layer.shadowOpacity = 0.2
