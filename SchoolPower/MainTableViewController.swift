@@ -102,6 +102,7 @@ class MainTableViewController: UITableViewController {
     }
 
     func gpaOnClick(sender: UINavigationItem) {
+
         var sum_gpa=0.0
         var gpa_except_hr=0.0
         var gpa_except_hr_me=0.0

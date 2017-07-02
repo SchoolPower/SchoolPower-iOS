@@ -281,6 +281,7 @@ PODS:
     - MaterialComponents/private/Application
   - MDFTextAccessibility (1.2.0)
   - SwiftyJSON (3.1.4)
+  - VTAcknowledgementsViewController (1.2.1)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
@@ -290,6 +291,7 @@ DEPENDENCIES:
   - Material
   - MaterialComponents
   - SwiftyJSON
+  - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
@@ -300,7 +302,8 @@ SPEC CHECKSUMS:
   MaterialComponents: 0d7b73247ca502e4e2753d48b1a7aa54fda05471
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  VTAcknowledgementsViewController: e1de80f2c0ce31cc7e1c6f1c8aaeec2770371f09
 
-PODFILE CHECKSUM: f5e49ec62278845be862d785dde8c8ba5750be6c
+PODFILE CHECKSUM: 9c4c277c23ad21607a3cde6e90ba3777452e242f
 
 COCOAPODS: 1.2.1
