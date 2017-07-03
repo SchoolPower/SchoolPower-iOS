@@ -42,6 +42,6 @@ about = "关于";
 version = "版本";
 rateus = "评价我们";
 donateus = "捐助我们";
-licences = "开源许可";
+licenses = "开源许可";
 iloveopensource = "我爱开源软件。";
 gpamessage = "你 %@ 的平均分是 %.3f\n%.3f (除去 HR)\n%.3f (除去 HR & ME)";

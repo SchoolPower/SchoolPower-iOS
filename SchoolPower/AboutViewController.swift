@@ -19,7 +19,7 @@ class AboutViewController: UITableViewController {
     @IBOutlet weak var versionLable: UILabel!
 //    @IBOutlet weak var rateLable: UILabel!
 //    @IBOutlet weak var donateLable: UILabel!
-    @IBOutlet weak var licencesLable: UILabel!
+    @IBOutlet weak var licensesLable: UILabel!
     
     
     override func viewDidLoad() {
@@ -30,13 +30,13 @@ class AboutViewController: UITableViewController {
         versionLable.text = "version".localize
 //        rateLable.text = "rateus".localize
 //        donateLable.text = "donateus".localize
-        licencesLable.text = "licences".localize
+        licensesLable.text = "licenses".localize
     }
     
     func gotoAck() {
         
         let ackViewController = VTAcknowledgementsViewController.init(fileNamed: "Pods-SchoolPower-acknowledgements")
-        ackViewController?.title = "licences".localize
+        ackViewController?.title = "licenses".localize
         ackViewController?.headerText = "iloveopensource".localize
         (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(ackViewController!, animated: true)
     }
