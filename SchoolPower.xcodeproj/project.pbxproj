@@ -384,19 +384,19 @@
 				TargetAttributes = {
 					62CFC98D1EFA9940002B4A8D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = MPW443922D;
+						DevelopmentTeam = MPPUFL3L6R;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					62CFC9A11EFA9940002B4A8D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = MPW443922D;
+						DevelopmentTeam = MPPUFL3L6R;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 62CFC98D1EFA9940002B4A8D;
 					};
 					62CFC9AC1EFA9940002B4A8D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = MPW443922D;
+						DevelopmentTeam = MPPUFL3L6R;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 62CFC98D1EFA9940002B4A8D;
 					};
@@ -711,7 +711,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_INFINITE_RECURSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
-				DEVELOPMENT_TEAM = MPW443922D;
+				DEVELOPMENT_TEAM = MPPUFL3L6R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -721,7 +721,7 @@
 				INFOPLIST_FILE = SchoolPower/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = studio.carbonylgroup.SchoolPower;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.schoolpower.SchoolPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -738,7 +738,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_INFINITE_RECURSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
-				DEVELOPMENT_TEAM = MPW443922D;
+				DEVELOPMENT_TEAM = MPPUFL3L6R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -748,7 +748,7 @@
 				INFOPLIST_FILE = SchoolPower/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = studio.carbonylgroup.SchoolPower;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.schoolpower.SchoolPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
@@ -761,7 +761,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = MPW443922D;
+				DEVELOPMENT_TEAM = MPPUFL3L6R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SchoolPowerTests",
@@ -780,7 +780,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = MPW443922D;
+				DEVELOPMENT_TEAM = MPPUFL3L6R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SchoolPowerTests",
@@ -798,7 +798,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = MPW443922D;
+				DEVELOPMENT_TEAM = MPPUFL3L6R;
 				INFOPLIST_FILE = SchoolPowerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CarbonylGroup.com.SchoolPowerUITests;
@@ -812,7 +812,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = MPW443922D;
+				DEVELOPMENT_TEAM = MPPUFL3L6R;
 				INFOPLIST_FILE = SchoolPowerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CarbonylGroup.com.SchoolPowerUITests;

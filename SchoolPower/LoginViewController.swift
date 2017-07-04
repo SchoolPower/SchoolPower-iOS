@@ -33,6 +33,13 @@ class LoginViewController: UIViewController {
         
         super.viewDidLoad()
         prepareUI()
+        popUp()
+    }
+    
+    func popUp() {
+        
+        let alert: UIAlertView = UIAlertView(title: "notification".localize, message: "only_alert".localize, delegate: nil, cancelButtonTitle: "i_understand".localize)
+        alert.show()
     }
     
     func loginAction() {
@@ -45,10 +52,10 @@ class LoginViewController: UIViewController {
         loadingIndicator.center = self.view.center;
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        loadingIndicator.startAnimating();
+        loadingIndicator.startAnimating()
         alert.setValue(loadingIndicator, forKey: "accessoryView")
         loadingIndicator.startAnimating()
-        alert.show();
+        alert.show()
         
         Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             

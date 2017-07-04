@@ -45,3 +45,6 @@ donateus = "捐助我們";
 licenses = "開源許可";
 iloveopensource = "我愛開源軟件。";
 gpamessage = "你 %@ 的平均分是 %.3f\n%.3f (除去 HR)\n%.3f (除去 HR & ME)";
+notification = "提示";
+only_alert = "SchoolPower 目前只支持就讀於中國楓葉教育集團楓葉國際學校的學生使用。";
+i_understand = "我明白";

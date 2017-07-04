@@ -45,3 +45,6 @@ donateus = "Donate Us";
 licenses = "Licenses";
 iloveopensource = "I love open source software.";
 gpamessage = "Your GPA for %@ is %.3f\n%.3f (except HR)\n%.3f (except HR & ME)";
+notification = "Notification";
+only_alert = "SchoolPower is currently ONLY available for the students in Maple Leaf Education System (MLES) in China.";
+i_understand = "I Understand";
