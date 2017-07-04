@@ -48,7 +48,7 @@ class Colors{
     static let white = 0xFFFFFF
     static let white_0_5 = 0x32FFFFFF
     static let white_0_10 = 0x64FFFFFF
-    static let white_0_20 = 0xC8FFFFFF
+    static let white_0_20 = 0xC8FFFFFF as UInt32
     static let foreground_material_dark = 0xeeeeee
     static let text_primary_black = 0x383838
     static let text_secondary_black = 0x787878
