@@ -20,10 +20,6 @@ class DrawerHeaderCell: UITableViewCell {
     
     @IBOutlet weak var categoryTitle: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     var categoryStr = "" {
         didSet {
             categoryTitle.text = categoryStr

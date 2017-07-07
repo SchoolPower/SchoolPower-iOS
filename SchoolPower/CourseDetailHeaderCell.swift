@@ -45,6 +45,7 @@ class CourseDetailHeaderCell: UITableViewCell {
     }
     
     var infoItem: MainListItem! {
+        
         didSet {
             let periodGradeItem: PeriodGradeItem? = infoItem.getLatestItem()
             headerTeacherName.text = infoItem.teacherName
@@ -57,9 +58,9 @@ class CourseDetailHeaderCell: UITableViewCell {
     }
     
     var currentTerm = "allterms".localize {
+        
         didSet {
             termLable?.text = currentTerm
         }
     }
-
 }

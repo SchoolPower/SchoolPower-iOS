@@ -19,14 +19,13 @@ import MaterialComponents
 
 class SettingsTableViewController: UITableViewController {
     
-    let keySets = ["language", "dashboarddisplays"]
-    
     @IBOutlet weak var languageTitle: UILabel?
     @IBOutlet weak var dspTitle: UILabel?
     @IBOutlet weak var languageDetail: UILabel?
     @IBOutlet weak var dspDetail: UILabel?
     
     let userDefaults = UserDefaults.standard
+    let keySets = ["language", "dashboarddisplays"]
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -35,6 +34,7 @@ class SettingsTableViewController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationController?.navigationBar.isTranslucent = false
+        
         registerDefaults()
         loadDetails()
         tableView.reloadData()
@@ -50,12 +50,8 @@ class SettingsTableViewController: UITableViewController {
     
     func registerDefaults(){
         
-        if userDefaults.object(forKey: keySets[0]) == nil {
-            userDefaults.register(defaults: [keySets[0]: 0])
-        }
-        if userDefaults.object(forKey: keySets[1]) == nil {
-            userDefaults.register(defaults: [keySets[1]: 1])
-        }
+        if userDefaults.object(forKey: keySets[0]) == nil { userDefaults.register(defaults: [keySets[0]: 0]) }
+        if userDefaults.object(forKey: keySets[1]) == nil { userDefaults.register(defaults: [keySets[1]: 1]) }
         userDefaults.synchronize()
     }
     

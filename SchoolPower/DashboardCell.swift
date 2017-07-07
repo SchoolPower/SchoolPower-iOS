@@ -13,6 +13,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+
 import UIKit
 import FoldingCell
 
@@ -40,6 +41,7 @@ class DashboardCell: FoldingCell {
     }
     
     var infoItem: MainListItem! {
+        
         didSet {
             let periodGradeItem: PeriodGradeItem? = infoItem.getLatestItem()
             foldSubjectTitle.text = infoItem.subjectTitle
@@ -75,9 +77,7 @@ class DashboardCell: FoldingCell {
         foldBorderView.layer.masksToBounds = true
         unfoldBorderView.layer.cornerRadius = 10
         unfoldBorderView.layer.masksToBounds = true
-        
-        
-        
+   
         super.awakeFromNib()
     }
     
@@ -97,14 +97,13 @@ extension DashboardCell {
         periodGradeCollectionView.delegate = dataSourceDelegate
         periodGradeCollectionView.dataSource = dataSourceDelegate
         periodGradeCollectionView.tag = row
-        periodGradeCollectionView.setContentOffset(periodGradeCollectionView.contentOffset, animated:false) // Stops collection view if it was scrolling.
+        periodGradeCollectionView.setContentOffset(periodGradeCollectionView.contentOffset, animated:false)
         periodGradeCollectionView.reloadData()
     }
     
-    
     var collectionViewOffset: CGFloat {
+        
         set { periodGradeCollectionView.contentOffset.x = newValue }
         get { return periodGradeCollectionView.contentOffset.x }
     }
-
 }

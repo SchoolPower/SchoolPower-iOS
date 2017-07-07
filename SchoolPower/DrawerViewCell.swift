@@ -28,19 +28,19 @@ class DrawerFragmentCell: UITableViewCell {
                    UIImage(named: "ic_info_white")?.withRenderingMode(.alwaysTemplate),
                    UIImage(named: "ic_exit_to_app_white")?.withRenderingMode(.alwaysTemplate)]]
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     var section = 0
+    
     var location: Int = 0 {
+        
         didSet {
             itemTitle.text = [["dashboard".localize, "charts".localize],
                               ["settings".localize, "about".localize, "signout".localize]][section][location]
             itemImage.image = images[section][location]
         }
     }
+    
     var presentSelected = 0 {
+        
         didSet{
             background.backgroundColor = UIColor.clear
             if section == 0 && location == presentSelected {

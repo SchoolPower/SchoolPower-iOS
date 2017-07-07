@@ -43,19 +43,18 @@ class DashboardDisplaysTableViewController: UITableViewController {
         let itemSet = [itemTerm, itemSemester]
         for item in itemSet {
             item?.accessoryType = .none
-            if itemSet.index(where: {$0 === item})! == dspIndex {
-                item?.accessoryType = .checkmark
-            }
+            if itemSet.index(where: {$0 === item})! == dspIndex { item?.accessoryType = .checkmark }
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //print(indexPath.row)
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
+        
         userDefaults.set(indexPath.row, forKey: keyName)
         userDefaults.synchronize()
+        
         self.navigationController?.popViewController(animated: true)
     }
 }

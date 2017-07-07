@@ -19,7 +19,9 @@ import UIKit
 import SwiftyJSON
 
 extension JSON{
+    
     mutating func appendIfArray(json:JSON){
+        
         if var arr = self.array{
             arr.append(json)
             self = JSON(arr);
@@ -76,6 +78,43 @@ extension Utils {
     
     static func readDataArrayList() -> Array<MainListItem>?{
         return parseJsonResult(jsonStr: readFileFromString(filename: JSON_FILE_NAME)!)
+    }
+    
+    static func readHistoryGrade() -> JSON {
+        let jsonStr = readFileFromString(filename: "history.json") ?? "{}"
+        return JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
+    }
+
+    static func saveHistoryGrade(data: [MainListItem]){
+        
+        // 1. read data into brief info
+        var pointSum = 0
+        var count = 0
+        var gradeInfo: JSON = [] // [{"name":"...","grade":80.0}, ...]
+        for subject in data {
+            if let leastPeriod = subject.getLatestItem() {
+                if !subject.subjectTitle.contains("Homeroom") {
+                    pointSum += Int(leastPeriod.termPercentageGrade)!
+                    count += 1
+                }
+                gradeInfo.appendIfArray(json: ["name":subject.subjectTitle,"grade":Double(leastPeriod.termPercentageGrade)!])
+            }
+        }
+        
+        // 2. calculate gpa
+        gradeInfo.appendIfArray(json: ["name":"GPA","grade":Double(pointSum/count)])
+        
+        // 3. read history grade from file
+        var historyData = readHistoryGrade()
+        // {"2017-06-20": [{"name":"...","grade":"80"}, ...], ...}
+        
+        // 4. update history grade
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        historyData[dateFormatter.string(from: Date())] = gradeInfo
+        
+        // 5. save history grade
+        saveStringToFile(filename: "history.json", data: historyData.rawString()!)
     }
 }
 
@@ -152,48 +191,8 @@ extension Utils {
         return dataList
     }
     
-    static func readHistoryGrade() -> JSON {
-        let jsonStr = readFileFromString(filename: "history.json") ?? "{}"
-        return JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
-    }
-    
-    // 1. read data into brief info
-    // 2. calculate gpa
-    // 3. read history grade from file
-    // 4. update history grade
-    // 5. save history grade
-    static func saveHistoryGrade(data: [MainListItem]){
-        // 1. read data into brief info
-        var pointSum = 0
-        var count = 0
-        var gradeInfo: JSON = [] // [{"name":"...","grade":80.0}, ...]
-        for subject in data {
-            if let leastPeriod = subject.getLatestItem() {
-                if !subject.subjectTitle.contains("Homeroom") {
-                    pointSum += Int(leastPeriod.termPercentageGrade)!
-                    count += 1
-                }
-                gradeInfo.appendIfArray(json: ["name":subject.subjectTitle,"grade":Double(leastPeriod.termPercentageGrade)!])
-            }
-        }
-    
-        // 2. calculate gpa
-        gradeInfo.appendIfArray(json: ["name":"GPA","grade":Double(pointSum/count)])
-    
-        // 3. read history grade from file
-        var historyData = readHistoryGrade()
-        // {"2017-06-20": [{"name":"...","grade":"80"}, ...], ...}
-    
-        // 4. update history grade
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        historyData[dateFormatter.string(from: Date())] = gradeInfo
-    
-        // 5. save history grade
-        saveStringToFile(filename: "history.json", data: historyData.rawString()!)
-    }
-    
     static func getShortName(subjectTitle: String)->String{
+        
         let shorts = ["Homeroom":"HR", "Planning":"PL", "Mandarin":"CN",
             "Chinese":"CSS", "Foundations":"Maths", "Physical":"PE",
             "English":"EN", "Moral":"ME", "Information": "IT", "Drama": "DR",

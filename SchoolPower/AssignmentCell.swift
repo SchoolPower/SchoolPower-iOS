@@ -44,8 +44,8 @@ class AssignmentCell: UITableViewCell {
     }
     
     var list: Array<AssignmentItem>! {
+        
         didSet {
-
             let sortedList = list.sorted(by: {$0.assignmentDate > $1.assignmentDate})
             let assignmentItem = sortedList[location]
             assignmentTitle.text = assignmentItem.assignmentTitle
@@ -53,6 +53,7 @@ class AssignmentCell: UITableViewCell {
             assignmentPercentageGrade.text = assignmentItem.assignmentPercentage
             assignmentDividedGrade.text = assignmentItem.assignmentDividedScore
             gradeBackground.backgroundColor = Utils.getColorByLetterGrade(letterGrade: assignmentItem.assignmentGrade)
+            
             if assignmentItem.isNew {
                 foreBackground.backgroundColor = UIColor(rgb: Colors.accent)
                 assignmentTitle.textColor = UIColor.white

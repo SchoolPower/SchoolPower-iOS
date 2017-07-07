@@ -24,11 +24,12 @@ var dataList = [MainListItem]()
 
 class MainTableViewController: UITableViewController {
     
-    let kRowsCount = 10
     var bannerView: GADBannerView!
-    var cellHeights: [CGFloat] = []
+    
+    let kRowsCount = 10
     let kOpenCellHeight: CGFloat = 315
     let kCloseCellHeight: CGFloat = 125
+    var cellHeights: [CGFloat] = []
     var storedOffsets = [Int: CGFloat]()
     
     let userDefaults = UserDefaults.standard
@@ -86,10 +87,6 @@ class MainTableViewController: UITableViewController {
         bannerView.rootViewController = self
         
         bannerView.load(GADRequest())
-        
-//        let request = GADRequest()
-//        request.testDevices = kGADSimulatorID as? [Any]
-//        bannerView.load(request)
     }
     
     func initTableView() {
@@ -158,7 +155,7 @@ extension MainTableViewController {
                 self.logOut()
             } else if response.contains("[{\"") {
                 
-                if (messages.count == 3 && !messages[1].isEmpty) {
+                if messages.count == 3 && !messages[1].isEmpty {
                     
                     let jsonStr = messages[1]
                     Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data:  jsonStr)
@@ -168,31 +165,32 @@ extension MainTableViewController {
                     // Diff
                     if dataList.count == oldMainItemList.count {
                         for i in 0...dataList.count-1 {
+                            
                             let periods = dataList[i].periodGradeItemArray
                             let oldPeriods = oldMainItemList[i].periodGradeItemArray
                             if periods.count != oldPeriods.count { continue }
+                            
                             for j in 0...periods.count-1 {
                                 let newAssignmentListCollection = periods[j].assignmentItemArrayList
                                 let oldAssignmentListCollection = oldPeriods[j].assignmentItemArrayList
                                 for item in newAssignmentListCollection {
+                                    
                                     var found = false
                                     for it in oldAssignmentListCollection {
+                                        
                                         if(it.assignmentTitle == item.assignmentTitle && it.assignmentDividedScore == item.assignmentDividedScore && it.assignmentDate == item.assignmentDate && !it.isNew){
                                             found = true
                                         }
                                     }
-                                    if !found {item.isNew = true}
+                                    if !found { item.isNew = true }
                                 }
                             }
                         }
                     }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+                    DispatchQueue.main.async { self.tableView.reloadData() }
                     self.showSnackbar(msg: "data_updated".localize)
-                } else {
-                    self.showSnackbar(msg: "cannot_connect".localize)
-                }
+                    
+                } else { self.showSnackbar(msg: "cannot_connect".localize) }
             }
         }
     }
@@ -319,7 +317,6 @@ extension MainTableViewController {
             (segue.destination as? CourseDetailTableViewController)?.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
         }
     }
-    
 }
 
 //MARK: Collection View
@@ -350,14 +347,4 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         //print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
     }
 }
-
-extension Double {
-    
-    /// Rounds the double to decimal places value
-    func roundTo(places:Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
-    }
-}
-
 

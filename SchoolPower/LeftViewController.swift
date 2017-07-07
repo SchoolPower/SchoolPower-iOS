@@ -13,6 +13,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+
 import UIKit
 import Material
 import VTAcknowledgementsViewController
@@ -85,8 +86,10 @@ extension LeftViewController {
         
         let mainStory = UIStoryboard(name: "Main", bundle: nil)
         let settingsStory = UIStoryboard(name: "Settings", bundle: nil)
+        
         if section == 0 {
             switch location {
+                
             case 0:
                 navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), duration: 0, options: [], animations: nil, completion: nil)
             case 1:
@@ -94,6 +97,7 @@ extension LeftViewController {
             default:
                 navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), duration: 0, options: [], animations: nil, completion: nil)
             }
+            
         } else {
             switch location {
                 
@@ -101,7 +105,6 @@ extension LeftViewController {
                 (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(settingsStory.instantiateViewController(withIdentifier: "Settings"), animated: true)
             case 1:
                 (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(mainStory.instantiateViewController(withIdentifier: "About"), animated: true)
-                
             case 2:
                 confirmLogOut()
             
@@ -109,7 +112,6 @@ extension LeftViewController {
                 print("NoViewToGoTo")
             }
         }
-        
         closeNavigationDrawer()
     }
     
@@ -163,6 +165,7 @@ extension LeftViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let cell = tableView.cellForRow(at: indexPath) as! DrawerFragmentCell
         cell.isSelected = false
         if cell.section == 0 {

@@ -39,6 +39,7 @@ class CourseDetailTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         setup()
     }
@@ -82,9 +83,7 @@ class CourseDetailTableViewController: UITableViewController {
         else {setTerm(term: termsList[1])}
     }
     
-    
     func setTerm(term: String) {
-        
         list = infoItem.getAssignmentItemArray(term: term)!
     }
     
@@ -97,7 +96,6 @@ class CourseDetailTableViewController: UITableViewController {
             if value == 0 { self.setAllTerms(termsList: self.termsList) }
             else {self.setTerm(term: self.termsList[value])}
             self.tableView.reloadData()
-            
             return
         }, cancel: { ActionStringCancelBlock in return }, origin: self.tableView)
         
@@ -107,7 +105,6 @@ class CourseDetailTableViewController: UITableViewController {
         doneButton.title = "done".localize
         picker?.setCancelButton(cancelButton)
         picker?.setDoneButton(doneButton)
-        
         picker?.show()
     }
 }
@@ -116,6 +113,7 @@ class CourseDetailTableViewController: UITableViewController {
 extension CourseDetailTableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "CourseDetailHeaderCell") as! CourseDetailHeaderCell
         headerCell.infoItem = infoItem
         headerCell.currentTerm = termsList[currentTerm]
@@ -139,7 +137,8 @@ extension CourseDetailTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (list.isEmpty) {return 0}
+        
+        if list.isEmpty { return 0 }
         return list.count
     }
     

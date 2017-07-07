@@ -39,6 +39,7 @@ class ChartsViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.init(rgb: Colors.foreground_material_dark)
@@ -60,20 +61,23 @@ class ChartsViewController: UIViewController {
         // [SubjectName: [Entry<Date, Grade>]]
         var organizedData = [String: [ChartDataEntry]]()
         var lastData = [String: ChartDataEntry]()
-        
         let lineData = LineChartData()
+        
         for (date, subjects):(String, JSON) in historyData {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let doubleDate = Double(Int(dateFormatter.date(from: date)!.timeIntervalSince1970 / 1000.0 / 60.0 / 60.0 / 24.0))
+            
             for subjectNow in subjects.arrayValue {
                 let subjectName = Utils.getShortName(subjectTitle: subjectNow["name"].stringValue)
                 let subjectGrade = subjectNow["grade"].doubleValue
                 let entry = ChartDataEntry(x: doubleDate, y: subjectGrade)
+                
                 if organizedData[subjectName]==nil {
                     organizedData[subjectName] = [ChartDataEntry]()
                 }
                 lastData[subjectName]=entry
+                
                 var subjectItem = organizedData[subjectName]!
                 if subjectItem.count != 0 && abs(subjectGrade-subjectItem.last!.y)<1e-5 {
                     continue
@@ -81,9 +85,7 @@ class ChartsViewController: UIViewController {
                 subjectItem.append(entry)
             }
         }
-        for (name, grade) in lastData {
-            organizedData[name]!.append(grade)
-        }
+        for (name, grade) in lastData { organizedData[name]!.append(grade) }
         
         var count = 0
         for (subjectName, value) in organizedData {
@@ -101,7 +103,6 @@ class ChartsViewController: UIViewController {
         }
         
         lineChart.data = lineData
-        
         lineChart.chartDescription?.enabled=false
         
         let xAxis = lineChart.xAxis
@@ -117,6 +118,7 @@ class ChartsViewController: UIViewController {
         topHalfView?.shadowOffset = CGSize.init(width: 0, height: 3)
         topHalfView?.shadowRadius = 2
         topHalfView?.shadowOpacity = 0.2
+        
         lineChart.translatesAutoresizingMaskIntoConstraints = false
         topHalfView?.addSubview(lineChart)
         let heightConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: topHalfView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
@@ -170,6 +172,7 @@ class ChartsViewController: UIViewController {
         buttomHalfView?.shadowOffset = CGSize.init(width: 0, height: 3)
         buttomHalfView?.shadowRadius = 2
         buttomHalfView?.shadowOpacity = 0.2
+        
         radarChart.translatesAutoresizingMaskIntoConstraints = false
         buttomHalfView?.addSubview(radarChart)
         let heightConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: buttomHalfView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
@@ -187,6 +190,7 @@ class LineChartFormatter: NSObject, IAxisValueFormatter{
     private let mFormat = DateFormatter()
     
     override init(){
+        
         super.init()
         mFormat.dateFormat = "MM/dd"
     }
@@ -201,9 +205,7 @@ class RadarChartFormatter: NSObject, IAxisValueFormatter{
     private var mSubjectsName = [String]()
     
     init(data: [MainListItem]){
-        for subject in data{
-            mSubjectsName.append(Utils.getShortName(subjectTitle: subject.subjectTitle))
-        }
+        for subject in data{ mSubjectsName.append(Utils.getShortName(subjectTitle: subject.subjectTitle)) }
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String{
