@@ -51,9 +51,8 @@ class MainListItem {
         periodGradeItemArray.append(_periodGradeItem)
     }
     
-    func getLatestItem() -> PeriodGradeItem? {
+    func getLatestItem(forLatestSemester: Bool = Utils.userDefaults.integer(forKey: Utils.KEY_NAME) == 1) -> PeriodGradeItem? {
         
-        let forLatestSemester = Utils.userDefaults.integer(forKey: Utils.KEY_NAME) == 1
         var latestTerm: String
         var periodGradeItemList = periodGradeItemArray
         var termsList = [String]()

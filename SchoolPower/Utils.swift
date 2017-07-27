@@ -49,6 +49,17 @@ extension Utils {
         return UIColor(rgb: gradeColorIds[indexOfString(searchString: letterGrade, domain: ["A", "B", "C+", "C", "C-", "F", "I", "--"])])
     }
     
+    static func getLetterGradeByPercentageGrade(percentageGrade: Double) -> String {
+        
+        let letterGrades = ["A", "B", "C+", "C", "C-", "F", "I", "--"]
+        if percentageGrade >= 86 { return letterGrades[1] }
+        else if percentageGrade >= 73 { return letterGrades[2] }
+        else if percentageGrade >= 67 { return letterGrades[3] }
+        else if percentageGrade >= 60 { return letterGrades[4] }
+        else if percentageGrade >= 50 { return letterGrades[5] }
+        else  { return letterGrades[6] }
+    }
+    
     static func getColorByPeriodItem(item: PeriodGradeItem) -> UIColor {
         return getColorByLetterGrade(letterGrade: item.termLetterGrade)
     }
@@ -161,7 +172,7 @@ extension Utils {
                     let dates = asmObj["date"].stringValue.components(separatedBy: "/")
                     let date = dates[2] + "/" + dates[0] + "/" + dates[1]
                     let grade = asmObj["grade"].stringValue
-                    assignmentList.append(AssignmentItem(_assignmentTitle: asmObj["assignment"].stringValue, _assignmentDate: date, _assignmentPercentage: grade == "" ? "--" : asmObj["percent"].stringValue, _assignmentDividedScore: asmObj["score"].stringValue.hasSuffix("d") ? "Unpublished":asmObj["score"].stringValue, _assignmentGrade: grade == "" ? "--" :grade, _assignmentCategory: asmObj["category"].stringValue, _assignmentTerm: termObj["term"].stringValue))
+                    assignmentList.append(AssignmentItem(_assignmentTitle: asmObj["assignment"].stringValue, _assignmentDate: date, _assignmentPercentage: grade == "" ? "--" : asmObj["percent"].stringValue, _assignmentDividedScore: asmObj["score"].stringValue.hasSuffix("d") ? "unpublished".localize:asmObj["score"].stringValue, _assignmentGrade: grade == "" ? "--" :grade, _assignmentCategory: asmObj["category"].stringValue, _assignmentTerm: termObj["term"].stringValue))
                 }
                 let periodGradeItem = PeriodGradeItem(_termIndicator: termObj["term"].stringValue, _termLetterGrade: termObj["grade"].stringValue == "" ? "--" : termObj["grade"].stringValue, _termPercentageGrade: termObj["mark"].stringValue, _assignmentItemArrayList: assignmentList)
                 

@@ -57,6 +57,7 @@ class Colors{
     static let text_primary_black = 0x383838
     static let text_secondary_black = 0x787878
     static let text_tertiary_black = 0x909090
+    static let cardview_dark_background = 0x424242
     
     static let chartColorList = [
         

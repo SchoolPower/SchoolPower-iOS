@@ -12,5 +12,8 @@ pod 'Charts'
 pod 'Google-Mobile-Ads-SDK'
 pod 'ActionSheetPicker-3.0'
 pod 'VTAcknowledgementsViewController'
+pod 'MKRingProgressView'
+pod 'CustomIOSAlertView'
+pod "SACountingLabel"
 
 end

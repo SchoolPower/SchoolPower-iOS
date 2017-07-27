@@ -19,6 +19,8 @@ import MaterialComponents
 import Material
 import FoldingCell
 import GoogleMobileAds
+import CustomIOSAlertView
+
 
 var dataList = [MainListItem]()
 
@@ -82,15 +84,15 @@ class MainTableViewController: UITableViewController {
         self.view.addConstraints([horizontalConstraint])
         
         /* TEST ID */
-//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.adUnitID = "ca-app-pub-9841217337381410/3714312680"
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        //        bannerView.adUnitID = "ca-app-pub-9841217337381410/3714312680"
         bannerView.rootViewController = self
         
         bannerView.load(GADRequest())
     }
     
     func initTableView() {
-    
+        
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -99,37 +101,92 @@ class MainTableViewController: UITableViewController {
         tableView.contentInset = UIEdgeInsetsMake(20, 0, bannerView.frame.height, 0)
     }
     
+    func fabOnClick(sender: UIButton) {
+        performSegue(withIdentifier: "gotoDetail", sender: sender)
+    }
+    
     func menuOnClick(sender: UINavigationItem) {
         
         navigationDrawerController?.toggleLeftView()
         (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
     }
-
+    
     func gpaOnClick(sender: UINavigationItem) {
-
-        var sum_gpa=0.0
-        var gpa_except_hr=0.0
-        var gpa_except_hr_me=0.0
-        var num=0
+        
+        var sum = 0.0
+        var exhr = 0.0
+        var exhrme = 0.0
+        var num = 0
         for subject in dataList {
+            
             if let period = subject.getLatestItem() {
+                
                 let grade = Double(period.termPercentageGrade)!
-                sum_gpa+=grade
-                num+=1
+                sum += grade
+                num += 1
                 if subject.subjectTitle.contains("Homeroom") { continue }
-                gpa_except_hr+=grade
+                exhr += grade
                 if subject.subjectTitle.contains("Moral Education") { continue }
-                gpa_except_hr_me+=grade
+                exhrme += grade
             }
         }
+        
         let doubleNum = Double(num)
-        let alert = UIAlertController(title: "GPA", message: String(format: "gpamessage".localize, dataList[0].getLatestItem()!.termIndicator, sum_gpa/doubleNum, gpa_except_hr/(doubleNum-1), gpa_except_hr_me/(doubleNum-2)), preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        let standerdWidth = self.view.frame.width * 0.8
+        let alert = CustomIOSAlertView.init()
+        let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: standerdWidth * 1.5))
+        let gpaDialog = GPADialog.instanceFromNib(width: standerdWidth)
+        let gpaSegments = gpaDialog.viewWithTag(2) as? GPASegmentedControl
+        
+        percentageLabel?.format = "%.3f%%"
+        descriptionLabel?.text = String(format: "gpamessage".localize, dataList[0].getLatestItem()!.termIndicator)
+        ring?.ring1.startColor = Utils.getColorByLetterGrade(letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: sum / doubleNum))
+        ring?.ring1.endColor = (ring?.ring1.startColor)!
+        
+        gpaSegments?.sum = sum / doubleNum / 100
+        gpaSegments?.exhr = exhr / (doubleNum - 1) / 100
+        gpaSegments?.exhrme = exhrme / (doubleNum - 2) / 100
+        gpaSegments?.setTitle("all".localize, forSegmentAt: 0)
+        gpaSegments?.apportionsSegmentWidthsByContent = true
+        gpaSegments?.addTarget(self, action: #selector(animateProgressView), for: .valueChanged)
+        gpaDialog.center = subview.center
+        subview.addSubview(gpaDialog)
+        
+        alert?.containerView = subview
+        alert?.closeOnTouchUpOutside = true
+        alert?.buttonTitles = nil
+        alert?.show()
+        
+        let when = DispatchTime.now() + 0.1
+        DispatchQueue.main.asyncAfter(deadline: when){
+            
+            self.animateProgressView(sender: gpaSegments!)
+        }
     }
     
-    func fabOnClick(sender: UIButton) {
-        performSegue(withIdentifier: "gotoDetail", sender: sender)
+    func animateProgressView(sender: GPASegmentedControl) {
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(1.0)
+        
+        var value: Double = 0
+        let formerStr = percentageLabel?.text ?? ""
+        var strPos: Float = 0
+        if formerStr != "" { strPos = Float((formerStr.substring(to: formerStr.index(formerStr.endIndex, offsetBy: -1))))! }
+        
+        switch sender.selectedSegmentIndex {
+        case 0: value = sender.sum!
+        case 1: value = sender.exhr!
+        case 2: value = sender.exhrme!
+        default: value = sender.sum ?? 0
+        }
+        
+        ring?.ring1.progress = value
+        ring?.ring1.startColor = Utils.getColorByLetterGrade(letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: value * 100))
+        ring?.ring1.endColor = (ring?.ring1.startColor)!
+        percentageLabel?.countFrom(fromValue: strPos, to: Float(value * 100), withDuration: 1.0, andAnimationType: .EaseOut, andCountingType: .Custom)
+        
+        CATransaction.commit()
     }
 }
 
@@ -253,6 +310,7 @@ extension MainTableViewController {
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations
+        cell.backViewColor = UIColor(rgb: Colors.cardview_dark_background)
         return cell
     }
     
@@ -346,5 +404,12 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
     }
+}
+
+class GPASegmentedControl: UISegmentedControl {
+    
+    var sum: Double?
+    var exhr: Double?
+    var exhrme: Double?
 }
 
