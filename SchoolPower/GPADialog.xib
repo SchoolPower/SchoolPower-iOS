@@ -40,7 +40,7 @@
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="ring1StartColor">
-                                            <color key="value" red="0.88235294119999996" green="0.0" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.88235294119999996" green="0.0" blue="0.078431372550000003" alpha="0.9924015410958904" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="ring1EndColor">
                                             <color key="value" red="1" green="0.1960784314" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,8 +73,8 @@
                             <rect key="frame" x="35" y="424" width="271" height="29"/>
                             <segments>
                                 <segment title="All"/>
-                                <segment title="⊉ HR"/>
-                                <segment title="⊉ HR &amp; ME"/>
+                                <segment title="⊉ {HR}"/>
+                                <segment title="⊉ {HR, ME}"/>
                             </segments>
                         </segmentedControl>
                     </subviews>

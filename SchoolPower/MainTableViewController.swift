@@ -141,7 +141,7 @@ class MainTableViewController: UITableViewController {
         percentageLabel?.format = "%.3f%%"
         descriptionLabel?.text = String(format: "gpamessage".localize, dataList[0].getLatestItem()!.termIndicator)
         ring?.ring1.startColor = Utils.getColorByLetterGrade(letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: sum / doubleNum))
-        ring?.ring1.endColor = (ring?.ring1.startColor)!
+        ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
         
         gpaSegments?.sum = sum / doubleNum / 100
         gpaSegments?.exhr = exhr / (doubleNum - 1) / 100
@@ -183,7 +183,7 @@ class MainTableViewController: UITableViewController {
         
         ring?.ring1.progress = value
         ring?.ring1.startColor = Utils.getColorByLetterGrade(letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: value * 100))
-        ring?.ring1.endColor = (ring?.ring1.startColor)!
+        ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
         percentageLabel?.countFrom(fromValue: strPos, to: Float(value * 100), withDuration: 1.0, andAnimationType: .EaseOut, andCountingType: .Custom)
         
         CATransaction.commit()
@@ -411,5 +411,28 @@ class GPASegmentedControl: UISegmentedControl {
     var sum: Double?
     var exhr: Double?
     var exhrme: Double?
+}
+
+extension UIColor {
+    
+    func lighter (by percentage: CGFloat = 30.0) -> UIColor? {
+        return self.adjust(by: abs(percentage))
+    }
+    
+    func darker (by percentage: CGFloat = 30.0) -> UIColor? {
+        return self.adjust(by: -1 * abs(percentage))
+    }
+    
+    func adjust (by percentage: CGFloat = 30.0) -> UIColor? {
+        
+        var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
+        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
+            print(hue)
+            return UIColor.init(hue: hue - percentage / 100,
+                                saturation: saturation + percentage / 100,
+                                brightness: brightness + percentage / 100,
+                                alpha: alpha)
+        } else { return nil }
+    }
 }
 
