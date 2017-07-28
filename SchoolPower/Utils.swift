@@ -52,12 +52,12 @@ extension Utils {
     static func getLetterGradeByPercentageGrade(percentageGrade: Double) -> String {
         
         let letterGrades = ["A", "B", "C+", "C", "C-", "F", "I", "--"]
-        if percentageGrade >= 86 { return letterGrades[1] }
-        else if percentageGrade >= 73 { return letterGrades[2] }
-        else if percentageGrade >= 67 { return letterGrades[3] }
-        else if percentageGrade >= 60 { return letterGrades[4] }
-        else if percentageGrade >= 50 { return letterGrades[5] }
-        else  { return letterGrades[6] }
+        if percentageGrade >= 86 { return letterGrades[0] }
+        else if percentageGrade >= 73 { return letterGrades[1] }
+        else if percentageGrade >= 67 { return letterGrades[2] }
+        else if percentageGrade >= 60 { return letterGrades[3] }
+        else if percentageGrade >= 50 { return letterGrades[4] }
+        else  { return letterGrades[5] }
     }
     
     static func getColorByPeriodItem(item: PeriodGradeItem) -> UIColor {
