@@ -42,7 +42,7 @@ class DrawerFragmentCell: UITableViewCell {
     var presentSelected = 0 {
         
         didSet{
-            background.backgroundColor = UIColor.clear
+            background.backgroundColor = .clear
             if section == 0 && location == presentSelected {
                 background.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
             }

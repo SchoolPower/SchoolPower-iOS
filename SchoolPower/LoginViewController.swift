@@ -30,6 +30,10 @@ class LoginViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     let JSON_FILE_NAME = "dataMap.json"
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -64,9 +68,8 @@ class LoginViewController: UIViewController {
             let response = value
             let messages = response.components(separatedBy: "\n")
             
-            if response.contains("error") {
-                self.showSnackbar(msg: "invalidup".localize)
-            } else if response.contains("[{\"") {
+            if response.contains("error") {self.showSnackbar(msg: "invalidup".localize)}
+            else if response.contains("[{\"") {
                 
                 self.userDefaults.set(username, forKey: "username")
                 self.userDefaults.set(password, forKey: "password")
@@ -76,10 +79,7 @@ class LoginViewController: UIViewController {
                 Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
                 self.startMainViewController()
                 
-            } else {
-                
-                self.showSnackbar(msg: "cannot_connect".localize)
-            }
+            } else { self.showSnackbar(msg: "cannot_connect".localize) }
         }
     }
     
@@ -168,8 +168,8 @@ extension LoginViewController {
     
     fileprivate func prepareFAB() {
         
-        button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: UIColor.white)
-        button.pulseColor = UIColor.white
+        button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: .white)
+        button.pulseColor = .white
         button.backgroundColor = UIColor(rgb: Colors.accent)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(loginAction), for: .touchUpInside)

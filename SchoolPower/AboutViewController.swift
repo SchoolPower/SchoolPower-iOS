@@ -33,7 +33,7 @@ class AboutViewController: UITableViewController {
         super.viewDidLoad()
         
         self.title = "about".localize
-        self.tableView.separatorColor = UIColor.clear
+        self.tableView.separatorColor = .clear
         versionLable.text = "version".localize
 //        rateLable.text = "rateus".localize
 //        donateLable.text = "donateus".localize

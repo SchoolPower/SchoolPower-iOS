@@ -29,7 +29,7 @@ class CourseDetailTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.title = infoItem.subjectTitle
         
@@ -48,7 +48,7 @@ class CourseDetailTableViewController: UITableViewController {
         
         initBannerView()
         tableView.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
-        tableView.separatorColor = UIColor.clear
+        tableView.separatorColor = .clear
         tableView.contentInset = UIEdgeInsetsMake(20, 0, bannerView.frame.height, 0)
     }
     
@@ -117,7 +117,7 @@ extension CourseDetailTableViewController {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "CourseDetailHeaderCell") as! CourseDetailHeaderCell
         headerCell.infoItem = infoItem
         headerCell.currentTerm = termsList[currentTerm]
-        headerCell.backgroundColor = UIColor.clear
+        headerCell.backgroundColor = .clear
         return headerCell
     }
     
@@ -128,7 +128,7 @@ extension CourseDetailTableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
         let footerCell = tableView.dequeueReusableCell(withIdentifier: "CourseDetailFooterCell")
-        footerCell?.backgroundColor = UIColor.clear
+        footerCell?.backgroundColor = .clear
         return footerCell
     }
     

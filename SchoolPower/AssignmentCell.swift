@@ -56,10 +56,10 @@ class AssignmentCell: UITableViewCell {
             
             if assignmentItem.isNew {
                 foreBackground.backgroundColor = UIColor(rgb: Colors.accent)
-                assignmentTitle.textColor = UIColor.white
+                assignmentTitle.textColor = .white
                 assignmentDate.textColor = UIColor(rgb: Int(Colors.white_0_20))
             }else{
-                foreBackground.backgroundColor = UIColor.clear
+                foreBackground.backgroundColor = .clear
                 assignmentTitle.textColor = UIColor(rgb: Colors.text_primary_black)
                 assignmentDate.textColor = UIColor(rgb: Colors.text_tertiary_black)
             }

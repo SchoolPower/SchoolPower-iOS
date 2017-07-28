@@ -32,7 +32,7 @@ class SettingsTableViewController: UITableViewController {
         self.title = "settings".localize
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         
         registerDefaults()

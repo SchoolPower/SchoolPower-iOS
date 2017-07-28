@@ -15,5 +15,7 @@ pod 'VTAcknowledgementsViewController'
 pod 'MKRingProgressView'
 pod 'CustomIOSAlertView'
 pod "SACountingLabel"
+pod 'DGElasticPullToRefresh'
+pod 'IQKeyboardManagerSwift'
 
 end

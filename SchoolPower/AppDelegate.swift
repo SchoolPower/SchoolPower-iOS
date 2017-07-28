@@ -17,6 +17,7 @@
 import UIKit
 import Material
 import GoogleMobileAds
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
+        IQKeyboardManager.sharedManager().enable = true
         DGLocalization.sharedInstance.startLocalization()
         GADMobileAds.configure(withApplicationID: "ca-app-pub-9841217337381410~2237579488")
         

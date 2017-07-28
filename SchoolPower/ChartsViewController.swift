@@ -34,7 +34,7 @@ class ChartsViewController: UIViewController {
         self.navigationItem.leftBarButtonItems = [menuItem]
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
     }
     
@@ -96,7 +96,7 @@ class ChartsViewController: UIViewController {
             dataSet.circleColors = colors
             dataSet.circleRadius = 5
             dataSet.circleHoleRadius = 2
-            dataSet.valueTextColor = UIColor.black
+            dataSet.valueTextColor = .black
             dataSet.lineWidth = 2.0
             lineData.addDataSet(dataSet)
             count+=1

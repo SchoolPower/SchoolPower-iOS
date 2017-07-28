@@ -4,8 +4,10 @@ PODS:
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
   - CustomIOSAlertView (0.9.5)
+  - DGElasticPullToRefresh (1.1)
   - FoldingCell (2.1.3)
   - Google-Mobile-Ads-SDK (7.21.0)
+  - IQKeyboardManagerSwift (4.0.10)
   - Material (2.6.3):
     - Material/Core (= 2.6.3)
   - Material/Core (2.6.3)
@@ -290,8 +292,10 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0
   - Charts
   - CustomIOSAlertView
+  - DGElasticPullToRefresh
   - FoldingCell
   - Google-Mobile-Ads-SDK
+  - IQKeyboardManagerSwift
   - Material
   - MaterialComponents
   - MKRingProgressView
@@ -303,8 +307,10 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   CustomIOSAlertView: cc4fa8e36219be3fd5ebcd40789f5b4aaae0f38e
+  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   FoldingCell: f3073f8b24cf20866a35198f31e3b67aea64e96e
   Google-Mobile-Ads-SDK: 4a6f1b43c8cc0e1e95a3b59d9f52a01671c6f9f3
+  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   MaterialComponents: 0d7b73247ca502e4e2753d48b1a7aa54fda05471
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
@@ -313,6 +319,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   VTAcknowledgementsViewController: e1de80f2c0ce31cc7e1c6f1c8aaeec2770371f09
 
-PODFILE CHECKSUM: 6708acbe29bec6acc3728e3a7e92807c4e0801d0
+PODFILE CHECKSUM: 0405712de5c3186859897ff33538e27b68a3e293
 
 COCOAPODS: 1.2.1

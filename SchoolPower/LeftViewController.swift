@@ -39,7 +39,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         table?.delegate = self
         table?.dataSource = self
-        table?.separatorColor = UIColor.clear
+        table?.separatorColor = .clear
         table?.contentInset = UIEdgeInsetsMake(16, 0, 0, 0)
         
         headerUsername?.text = userDefaults.string(forKey: "studentname")

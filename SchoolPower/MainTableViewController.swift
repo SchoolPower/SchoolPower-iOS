@@ -20,7 +20,7 @@ import Material
 import FoldingCell
 import GoogleMobileAds
 import CustomIOSAlertView
-
+import DGElasticPullToRefresh
 
 var dataList = [MainListItem]()
 
@@ -47,8 +47,9 @@ class MainTableViewController: UITableViewController {
         
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
         self.title = "dashboard".localize
         tableView.reloadData()
@@ -60,11 +61,15 @@ class MainTableViewController: UITableViewController {
         initValue()
     }
     
+    deinit {
+        if tableView != nil {tableView.dg_removePullToRefresh()}
+    }
+    
     func initValue() {
         
         let input = Utils.readDataArrayList()
         if input != nil { dataList = input! }
-        initDataJson()
+        else { initDataJson() }
         initUI()
     }
     
@@ -97,8 +102,18 @@ class MainTableViewController: UITableViewController {
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
-        tableView.separatorColor = UIColor.clear
-        tableView.contentInset = UIEdgeInsetsMake(20, 0, bannerView.frame.height, 0)
+        tableView.separatorColor = .clear
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, bannerView.frame.height, 0)
+        initRefreshView()
+    }
+    
+    func initRefreshView() {
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(rgb: Colors.accent)
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson()}, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor(rgb: Colors.primary))
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
     }
     
     func fabOnClick(sender: UIButton) {
@@ -203,15 +218,23 @@ extension MainTableViewController {
         Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
             let response = value
+            if response.contains("NETWORK_ERROR") {
+                DispatchQueue.main.async {
+                    
+                    self.tableView.dg_stopLoading()
+                    self.showSnackbar(msg: "cannot_connect".localize)
+                }
+                return
+            }
+            
             let messages = response.components(separatedBy: "\n")
-            
-            if !response.contains("assignments") { return }
-            
-            if response.contains("{\"error\":1,\"") {
+            if response.contains("error") {
+                
                 self.showSnackbar(msg: "invalidup".localize)
                 self.logOut()
             } else if response.contains("[{\"") {
                 
+                if !response.contains("assignments") { return }
                 if messages.count == 3 && !messages[1].isEmpty {
                     
                     let jsonStr = messages[1]
@@ -244,10 +267,17 @@ extension MainTableViewController {
                             }
                         }
                     }
-                    DispatchQueue.main.async { self.tableView.reloadData() }
+                    DispatchQueue.main.async {
+                        
+                        self.tableView.dg_stopLoading()
+                        self.tableView.reloadData()
+                    }
                     self.showSnackbar(msg: "data_updated".localize)
                     
-                } else { self.showSnackbar(msg: "cannot_connect".localize) }
+                } else {
+                    DispatchQueue.main.async { self.tableView.dg_stopLoading() }
+                    self.showSnackbar(msg: "cannot_connect".localize)
+                }
             }
         }
     }
@@ -281,6 +311,17 @@ extension MainTableViewController {
 
 //MARK: Table View
 extension MainTableViewController {
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: "MainHeaderCell")
+        headerCell?.backgroundColor = .clear
+        return headerCell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataList.count
@@ -323,8 +364,8 @@ extension MainTableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
         if cell.isAnimating() { return }
         
-        let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: UIColor.white)
-        button.pulseColor = UIColor.white
+        let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: .white)
+        button.pulseColor = .white
         button.backgroundColor = UIColor(rgb: Colors.accent)
         button.shadowOffset = CGSize.init(width: 0, height: 2.5)
         button.shadowRadius = 2
@@ -427,7 +468,6 @@ extension UIColor {
         
         var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
         if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-            print(hue)
             return UIColor.init(hue: hue - percentage / 100,
                                 saturation: saturation + percentage / 100,
                                 brightness: brightness + percentage / 100,
