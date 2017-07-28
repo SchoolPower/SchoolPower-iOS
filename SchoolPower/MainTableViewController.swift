@@ -89,8 +89,8 @@ class MainTableViewController: UITableViewController {
         self.view.addConstraints([horizontalConstraint])
         
         /* TEST ID */
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        //        bannerView.adUnitID = "ca-app-pub-9841217337381410/3714312680"
+//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-9841217337381410/3714312680"
         bannerView.rootViewController = self
         
         bannerView.load(GADRequest())
