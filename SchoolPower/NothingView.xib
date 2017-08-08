@@ -34,8 +34,8 @@
             <constraints>
                 <constraint firstItem="gow-BF-IP6" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="1KI-qq-a4W"/>
                 <constraint firstItem="oSH-sn-FYR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1tV-A4-2An"/>
-                <constraint firstItem="gow-BF-IP6" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-35" id="HOv-b2-Nj4"/>
                 <constraint firstItem="oSH-sn-FYR" firstAttribute="top" secondItem="gow-BF-IP6" secondAttribute="bottom" constant="24" id="f2B-fL-cHB"/>
+                <constraint firstItem="gow-BF-IP6" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-35" id="yvj-x1-Mna"/>
                 <constraint firstItem="gow-BF-IP6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="z7O-BQ-uh0"/>
             </constraints>
         </view>

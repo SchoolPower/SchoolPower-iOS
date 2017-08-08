@@ -84,10 +84,8 @@ class LoginViewController: UIViewController {
                 self.userDefaults.set(messages[0], forKey: "studentname")
                 self.userDefaults.synchronize()
                 
-                if messages[1] != "[]" {
-                    Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
-                    Utils.saveHistoryGrade(data: Utils.parseJsonResult(jsonStr: messages[1]))
-                }
+                Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
+                if messages[1] != "[]" { Utils.saveHistoryGrade(data: Utils.parseJsonResult(jsonStr: messages[1]))}
                 self.startMainViewController()
                 
             } else { self.showSnackbar(msg: "cannot_connect".localize) }
