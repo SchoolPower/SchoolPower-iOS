@@ -61,19 +61,25 @@ class MainListItem {
         for item in periodGradeItemList.indices { termsList.append(periodGradeItemList[item].termIndicator) }
         
         if forLatestSemester{
+            
             if termsList.contains("S2") {latestTerm = "S2"}
             else if termsList.contains("S1") {latestTerm = "S1"}
             else if termsList.contains("T4") {latestTerm = "T4"}
             else if termsList.contains("T3") {latestTerm = "T3"}
             else if termsList.contains("T2") {latestTerm = "T2"}
-            else {latestTerm = "T1"}}
+            else if termsList.contains("T1") {latestTerm = "T1"}
+            else {latestTerm = ""}}
+            
         else{ // for latest term
+            
             if termsList.contains("T4") {latestTerm = "T4"}
             else if termsList.contains("T3") {latestTerm = "T3"}
             else if termsList.contains("T2") {latestTerm = "T2"}
-            else {latestTerm = "T1"}}
+            else if termsList.contains("T1") {latestTerm = "T1"}
+            else {latestTerm = ""}}
         
-        for item in periodGradeItemList { if item.termIndicator == latestTerm {return item} }
+        if latestTerm == "" {return periodGradeItemList[0]}
+        else {for item in periodGradeItemList { if item.termIndicator == latestTerm {return item}}}
         
         return nil
     }

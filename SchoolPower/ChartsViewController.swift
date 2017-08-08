@@ -23,6 +23,8 @@ class ChartsViewController: UIViewController {
     
     @IBOutlet weak var topHalfView: UIView?
     @IBOutlet weak var buttomHalfView: UIView?
+    @IBOutlet weak var topNALabel: UILabel!
+    @IBOutlet weak var bottomNALabel: UILabel!
     
     var lineChart: LineChartView!
     var radarChart: RadarChartView!
@@ -30,6 +32,8 @@ class ChartsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         self.title = "charts".localize
+        topNALabel.text = "chart_na".localize
+        bottomNALabel.text = "chart_na".localize
         let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal) , style: .plain ,target: self, action: #selector(menuOnClick))
         self.navigationItem.leftBarButtonItems = [menuItem]
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
@@ -43,8 +47,10 @@ class ChartsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.init(rgb: Colors.foreground_material_dark)
-        initLineChart()
-        initRadarChart()
+        if dataList.count != 0 {
+            initLineChart()
+            initRadarChart()
+        }
     }
     
     func menuOnClick(sender: UINavigationItem) {
@@ -114,6 +120,7 @@ class ChartsViewController: UIViewController {
         lineChart.leftAxis.gridLineDashLengths = [10, 10, 0]
         lineChart.rightAxis.gridLineDashLengths = [10, 10, 0]
         lineChart.legend.form = Legend.Form.line
+        lineChart.backgroundColor = .white
         
         topHalfView?.shadowOffset = CGSize.init(width: 0, height: 3)
         topHalfView?.shadowRadius = 2
@@ -128,7 +135,7 @@ class ChartsViewController: UIViewController {
         topHalfView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
         
         lineChart.animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
-
+        
     }
     
     func initRadarChart(){
@@ -168,6 +175,7 @@ class ChartsViewController: UIViewController {
         yAxis.drawLabelsEnabled = false
         radarChart.chartDescription?.enabled=false
         radarChart.legend.enabled=false
+        radarChart.backgroundColor = .white
         
         buttomHalfView?.shadowOffset = CGSize.init(width: 0, height: 3)
         buttomHalfView?.shadowRadius = 2

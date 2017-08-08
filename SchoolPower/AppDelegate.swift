@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.bool(forKey: KEY_NAME) {
             
             gotoController = story.instantiateViewController(withIdentifier: "DashboardNav")
+            gotoController.view.tag = 1
             let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
             UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(rootViewController: gotoController, leftViewController: leftViewController, rightViewController: nil)
         } else {

@@ -27,6 +27,7 @@ var dataList = [MainListItem]()
 class MainTableViewController: UITableViewController {
     
     var bannerView: GADBannerView!
+    var loadingView: DGElasticPullToRefreshLoadingViewCircle!
     
     let kRowsCount = 10
     let kOpenCellHeight: CGFloat = 315
@@ -62,15 +63,15 @@ class MainTableViewController: UITableViewController {
     }
     
     deinit {
-        if tableView != nil {tableView.dg_removePullToRefresh()}
+        if tableView != nil { tableView.dg_removePullToRefresh() }
     }
     
     func initValue() {
         
+        initUI()
         let input = Utils.readDataArrayList()
         if input != nil { dataList = input! }
-        else { initDataJson() }
-        initUI()
+        if self.navigationController?.view.tag == 1 { initDataJson() }
     }
     
     func initUI() {
@@ -89,8 +90,8 @@ class MainTableViewController: UITableViewController {
         self.view.addConstraints([horizontalConstraint])
         
         /* TEST ID */
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        bannerView.adUnitID = "ca-app-pub-9841217337381410/3714312680"
+//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-9841217337381410/3714312680"
         bannerView.rootViewController = self
         
         bannerView.load(GADRequest())
@@ -109,7 +110,7 @@ class MainTableViewController: UITableViewController {
     
     func initRefreshView() {
         
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(rgb: Colors.accent)
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson()}, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor(rgb: Colors.primary))
@@ -128,54 +129,73 @@ class MainTableViewController: UITableViewController {
     
     func gpaOnClick(sender: UINavigationItem) {
         
-        var sum = 0.0
-        var exhr = 0.0
-        var exhrme = 0.0
-        var num = 0
-        for subject in dataList {
+        if dataList.count == 0 {
             
-            if let period = subject.getLatestItem() {
+            UIAlertView(title: "gpa_not_available".localize, message: "gpa_not_available_because".localize, delegate: nil, cancelButtonTitle: "alright".localize)
+                .show()
+            
+        } else {
+            
+            var sum = 0.0
+            var exhr = 0.0
+            var exhrme = 0.0
+            var contain_hr = false
+            var contain_me = false
+            var num = 0
+            for subject in dataList {
                 
-                let grade = Double(period.termPercentageGrade)!
-                sum += grade
-                num += 1
-                if subject.subjectTitle.contains("Homeroom") { continue }
-                exhr += grade
-                if subject.subjectTitle.contains("Moral Education") { continue }
-                exhrme += grade
+                if let period = subject.getLatestItem() {
+                    
+                    let grade = Double(period.termPercentageGrade)!
+                    sum += grade
+                    num += 1
+                    if subject.subjectTitle.contains("Homeroom") {
+                        contain_hr = true
+                        continue
+                    }
+                    exhr += grade
+                    if subject.subjectTitle.contains("Moral Education") {
+                        contain_me = true
+                        continue
+                    }
+                    exhrme += grade
+                }
             }
-        }
-        
-        let doubleNum = Double(num)
-        let standerdWidth = self.view.frame.width * 0.8
-        let alert = CustomIOSAlertView.init()
-        let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: standerdWidth * 1.5))
-        let gpaDialog = GPADialog.instanceFromNib(width: standerdWidth)
-        let gpaSegments = gpaDialog.viewWithTag(2) as? GPASegmentedControl
-        
-        percentageLabel?.format = "%.3f%%"
-        descriptionLabel?.text = String(format: "gpamessage".localize, dataList[0].getLatestItem()!.termIndicator)
-        ring?.ring1.startColor = Utils.getColorByLetterGrade(letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: sum / doubleNum))
-        ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
-        
-        gpaSegments?.sum = sum / doubleNum / 100
-        gpaSegments?.exhr = exhr / (doubleNum - 1) / 100
-        gpaSegments?.exhrme = exhrme / (doubleNum - 2) / 100
-        gpaSegments?.setTitle("all".localize, forSegmentAt: 0)
-        gpaSegments?.apportionsSegmentWidthsByContent = true
-        gpaSegments?.addTarget(self, action: #selector(animateProgressView), for: .valueChanged)
-        gpaDialog.center = subview.center
-        subview.addSubview(gpaDialog)
-        
-        alert?.containerView = subview
-        alert?.closeOnTouchUpOutside = true
-        alert?.buttonTitles = nil
-        alert?.show()
-        
-        let when = DispatchTime.now() + 0.1
-        DispatchQueue.main.asyncAfter(deadline: when){
             
-            self.animateProgressView(sender: gpaSegments!)
+            let doubleNum = Double(num)
+            let standerdWidth = self.view.frame.width * 0.8
+            let alert = CustomIOSAlertView.init()
+            let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: standerdWidth * 1.5))
+            let gpaDialog = GPADialog.instanceFromNib(width: standerdWidth)
+            let gpaSegments = gpaDialog.viewWithTag(2) as? GPASegmentedControl
+            
+            percentageLabel?.format = "%.3f%%"
+            descriptionLabel?.text = String(format: "gpamessage".localize, dataList[0].getLatestItem()!.termIndicator)
+            ring?.ring1.startColor = Utils.getColorByLetterGrade(letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: sum / doubleNum))
+            ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
+            
+            gpaSegments?.sum = sum / doubleNum / 100
+            var num_to_minus: Double = 0.0
+            if (contain_hr) { num_to_minus += 1 }
+            gpaSegments?.exhr = exhr / (doubleNum - num_to_minus) / 100
+            if (contain_me) { num_to_minus += 1 }
+            gpaSegments?.exhrme = exhrme / (doubleNum - num_to_minus) / 100
+            
+            gpaSegments?.setTitle("all".localize, forSegmentAt: 0)
+            gpaSegments?.apportionsSegmentWidthsByContent = true
+            gpaSegments?.addTarget(self, action: #selector(animateProgressView), for: .valueChanged)
+            gpaDialog.center = subview.center
+            subview.addSubview(gpaDialog)
+            
+            alert?.containerView = subview
+            alert?.closeOnTouchUpOutside = true
+            alert?.buttonTitles = nil
+            alert?.show()
+            
+            let when = DispatchTime.now() + 0.1
+            DispatchQueue.main.asyncAfter(deadline: when){
+                self.animateProgressView(sender: gpaSegments!)
+            }
         }
     }
     
@@ -214,13 +234,12 @@ extension MainTableViewController {
         let username = userDefaults.string(forKey: "username")
         let password = userDefaults.string(forKey: "password")
         oldMainItemList += dataList
-        
         Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
-            
+            print(value)
             let response = value
             if response.contains("NETWORK_ERROR") {
+                
                 DispatchQueue.main.async {
-                    
                     self.tableView.dg_stopLoading()
                     self.showSnackbar(msg: "cannot_connect".localize)
                 }
@@ -232,13 +251,14 @@ extension MainTableViewController {
                 
                 self.showSnackbar(msg: "invalidup".localize)
                 self.logOut()
+                
             } else if response.contains("[{\"") {
                 
                 if !response.contains("assignments") { return }
                 if messages.count == 3 && !messages[1].isEmpty {
                     
                     let jsonStr = messages[1]
-                    Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data:  jsonStr)
+                    Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: jsonStr)
                     dataList = Utils.parseJsonResult(jsonStr: jsonStr)
                     Utils.saveHistoryGrade(data: dataList)
                     
@@ -273,11 +293,23 @@ extension MainTableViewController {
                         self.tableView.reloadData()
                     }
                     self.showSnackbar(msg: "data_updated".localize)
-                    
-                } else {
-                    DispatchQueue.main.async { self.tableView.dg_stopLoading() }
-                    self.showSnackbar(msg: "cannot_connect".localize)
                 }
+                
+            } else if messages[1] == "[]"  {
+                
+                Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
+                dataList = Utils.parseJsonResult(jsonStr: messages[1])
+                DispatchQueue.main.async {
+                    
+                    self.tableView.dg_stopLoading()
+                    self.tableView.reloadData()
+                }
+                self.showSnackbar(msg: "data_updated".localize)
+                
+            } else {
+                
+                DispatchQueue.main.async { self.tableView.dg_stopLoading() }
+                self.showSnackbar(msg: "cannot_connect".localize)
             }
         }
     }
@@ -285,6 +317,8 @@ extension MainTableViewController {
     func logOut() {
         
         userDefaults.set(false, forKey: KEY_NAME)
+        Utils.saveHistoryGrade(data: nil)
+        Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: "")
         startLoginController()
     }
     
@@ -320,7 +354,19 @@ extension MainTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        
+        if dataList.count == 0 {
+            
+            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height)
+            tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.nothing_light))
+            return 0
+            
+        } else {
+            
+            tableView.backgroundView = nil
+            tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.foreground_material_dark))
+            return 20
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

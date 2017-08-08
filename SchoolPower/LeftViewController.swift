@@ -20,6 +20,7 @@ import VTAcknowledgementsViewController
 
 class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let JSON_FILE_NAME = "dataMap.json"
     var presentFragment: Int?
     
     @IBOutlet weak var table: UITableView?
@@ -63,6 +64,8 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     func logOut() {
         
         userDefaults.set(false, forKey: KEY_NAME)
+        Utils.saveHistoryGrade(data: nil)
+        Utils.saveStringToFile(filename: JSON_FILE_NAME, data: "")
         startLoginController()
     }
     

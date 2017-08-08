@@ -18,6 +18,8 @@ import UIKit
 import Material
 import MaterialComponents
 
+var toPop = true
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var appIcon: UIImageView?
@@ -34,17 +36,22 @@ class LoginViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        popUp()
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         prepareUI()
-        popUp()
     }
     
     func popUp() {
         
-        let alert: UIAlertView = UIAlertView(title: "notification".localize, message: "only_alert".localize, delegate: nil, cancelButtonTitle: "i_understand".localize)
-        alert.show()
+        if toPop {
+            UIAlertView(title: "notification".localize, message: "only_alert".localize, delegate: nil, cancelButtonTitle: "i_understand".localize).show()
+            toPop = false
+        }
     }
     
     func loginAction() {
@@ -69,14 +76,18 @@ class LoginViewController: UIViewController {
             let messages = response.components(separatedBy: "\n")
             
             if response.contains("error") {self.showSnackbar(msg: "invalidup".localize)}
-            else if response.contains("[{\"") {
+            else if response.contains("[{\"") || messages[1] == "[]" {
                 
                 self.userDefaults.set(username, forKey: "username")
                 self.userDefaults.set(password, forKey: "password")
                 self.userDefaults.set(true, forKey: "loggedin")
                 self.userDefaults.set(messages[0], forKey: "studentname")
                 self.userDefaults.synchronize()
-                Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
+                
+                if messages[1] != "[]" {
+                    Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
+                    Utils.saveHistoryGrade(data: Utils.parseJsonResult(jsonStr: messages[1]))
+                }
                 self.startMainViewController()
                 
             } else { self.showSnackbar(msg: "cannot_connect".localize) }
@@ -85,8 +96,9 @@ class LoginViewController: UIViewController {
     
     func startMainViewController() {
         
+        toPop = true
         OperationQueue.main.addOperation {
-           
+            
             self.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardNav"), animated: true, completion: self.updateRootViewController)
         }
     }
@@ -162,7 +174,6 @@ extension LoginViewController {
     }
     
     fileprivate func prepareAppIcon() {
-        
         view.layout(appIcon!).center(offsetY: -usernameField.height - 150).center()
     }
     

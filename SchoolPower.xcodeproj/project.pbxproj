@@ -10,6 +10,8 @@
 		2705427C1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2705427B1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist */; };
 		2705427E1F0887880002C7BE /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2705427D1F0887880002C7BE /* AboutViewController.swift */; };
 		271386941F07711300EC7F2F /* BACKUP.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271386931F07711300EC7F2F /* BACKUP.xib */; };
+		6204A07C1F39E5A9004B2118 /* NothingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6204A07B1F39E5A9004B2118 /* NothingView.xib */; };
+		6204A07E1F39E5CE004B2118 /* NothingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6204A07D1F39E5CE004B2118 /* NothingView.swift */; };
 		621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DA1B61EFD01A300EFAB5A /* Utils.swift */; };
 		624BDC211EFE2F6A0052EC5D /* AssignmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */; };
 		624BDC231EFE46110052EC5D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC221EFE46110052EC5D /* Colors.swift */; };
@@ -85,6 +87,8 @@
 		2705427B1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-SchoolPower-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-SchoolPower/Pods-SchoolPower-acknowledgements.plist"; sourceTree = "<group>"; };
 		2705427D1F0887880002C7BE /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		271386931F07711300EC7F2F /* BACKUP.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BACKUP.xib; sourceTree = "<group>"; };
+		6204A07B1F39E5A9004B2118 /* NothingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingView.xib; sourceTree = "<group>"; };
+		6204A07D1F39E5CE004B2118 /* NothingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NothingView.swift; sourceTree = "<group>"; };
 		621DA1B61EFD01A300EFAB5A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AssignmentCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		624BDC221EFE46110052EC5D /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 				62CFC99A1EFA9940002B4A8D /* LaunchScreen.storyboard */,
 				62C786811EFBA46000CB28ED /* PeriodGradeListItem.xib */,
 				62FD1F8A1F288FC60097A696 /* GPADialog.xib */,
+				6204A07B1F39E5A9004B2118 /* NothingView.xib */,
 				271386931F07711300EC7F2F /* BACKUP.xib */,
 			);
 			name = Storyboards;
@@ -247,6 +252,7 @@
 				62C34DF71F0377050078D5F8 /* DrawerHeaderCell.swift */,
 				62C34DFF1F03C9C10078D5F8 /* SettingsCell.swift */,
 				62FD1F8C1F2891D10097A696 /* GPADialog.swift */,
+				6204A07D1F39E5CE004B2118 /* NothingView.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 				62CFC99C1EFA9940002B4A8D /* LaunchScreen.storyboard in Resources */,
 				62CFC9991EFA9940002B4A8D /* Assets.xcassets in Resources */,
 				2705427C1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist in Resources */,
+				6204A07C1F39E5A9004B2118 /* NothingView.xib in Resources */,
 				62A8FA441EFB66DA00751ACD /* Podfile in Resources */,
 				62C34E291F05F5990078D5F8 /* Localizable.strings in Resources */,
 				271386941F07711300EC7F2F /* BACKUP.xib in Resources */,
@@ -545,6 +552,7 @@
 				62C34E091F0482050078D5F8 /* LoginViewController.swift in Sources */,
 				62C34E051F03DF080078D5F8 /* LanguageTableViewController.swift in Sources */,
 				62C34DF81F0377050078D5F8 /* DrawerHeaderCell.swift in Sources */,
+				6204A07E1F39E5CE004B2118 /* NothingView.swift in Sources */,
 				62C7867C1EFB95CC00CB28ED /* PeriodGradeItem.swift in Sources */,
 				62FD1FA51F28F0BD0097A696 /* MKRingProgressGroupView.swift in Sources */,
 				62FD1FA61F28F0BD0097A696 /* MKRingProgressGroupButton.swift in Sources */,
