@@ -145,6 +145,9 @@ class ChartsViewController: UIViewController {
         var entries = [RadarChartDataEntry]()
         var minGrade = 100.0
         for it in dataList {
+            if it.getLatestItem()!.termPercentageGrade == "--" {
+                continue
+            }
             let periodGrade=Double(it.getLatestItem()!.termPercentageGrade)!
             entries.append(RadarChartDataEntry(value: periodGrade))
             if periodGrade<minGrade { minGrade=periodGrade }

@@ -107,6 +107,7 @@ extension Utils {
             var gradeInfo: JSON = [] // [{"name":"...","grade":80.0}, ...]
             for subject in data! {
                 if let leastPeriod = subject.getLatestItem() {
+                    if leastPeriod.termPercentageGrade=="--"{ continue }
                     if !subject.subjectTitle.contains("Homeroom") {
                         pointSum += Int(leastPeriod.termPercentageGrade)!
                         count += 1
@@ -116,7 +117,11 @@ extension Utils {
             }
             
             // 2. calculate gpa
-            gradeInfo.appendIfArray(json: ["name":"GPA","grade":Double(pointSum/count)])
+            if count != 0{
+                gradeInfo.appendIfArray(json: ["name":"GPA","grade":Double(pointSum/count)])
+            }else{
+                gradeInfo.appendIfArray(json: ["name":"GPA","grade":0.0])
+            }
             
             // 3. read history grade from file
             var historyData = readHistoryGrade()
@@ -202,8 +207,8 @@ extension Utils {
             for (_, value) in dataMap { dataList.append(value) }
             
             dataList = dataList.sorted {
-                if $0.blockLetter == "HR(1)" { return true }
-                if $1.blockLetter == "HR(1)" { return false }
+                if $0.blockLetter == "HR(A-E)" { return true }
+                if $1.blockLetter == "HR(A-E)" { return false }
                 return $0.blockLetter < $1.blockLetter
             }
             

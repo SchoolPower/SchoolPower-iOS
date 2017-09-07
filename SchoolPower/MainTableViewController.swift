@@ -145,7 +145,7 @@ class MainTableViewController: UITableViewController {
             for subject in dataList {
                 
                 if let period = subject.getLatestItem() {
-                    
+                    if period.termPercentageGrade=="--" { continue }
                     let grade = Double(period.termPercentageGrade)!
                     sum += grade
                     num += 1
@@ -161,7 +161,11 @@ class MainTableViewController: UITableViewController {
                     exhrme += grade
                 }
             }
-            
+            if num==0{
+                UIAlertView(title: "gpa_not_available".localize, message: "gpa_not_available_because".localize, delegate: nil, cancelButtonTitle: "alright".localize)
+                    .show()
+                return
+            }
             let doubleNum = Double(num)
             let standerdWidth = self.view.frame.width * 0.8
             let alert = CustomIOSAlertView.init()
@@ -235,7 +239,7 @@ extension MainTableViewController {
         let password = userDefaults.string(forKey: "password")
         oldMainItemList += dataList
         Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
-            print(value)
+            
             let response = value
             if response.contains("NETWORK_ERROR") {
                 
@@ -385,10 +389,10 @@ extension MainTableViewController {
         cell.infoItem = dataList[indexPath.row]
     }
     
-    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath?) {
+        if(indexPath==nil) { return }
         guard let tableViewCell = cell as? DashboardCell else { return }
-        storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
+        storedOffsets[indexPath!.row] = tableViewCell.collectionViewOffset
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
