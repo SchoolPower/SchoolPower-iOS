@@ -76,10 +76,11 @@ class CourseDetailTableViewController: UITableViewController {
     
     func setAllTerms(termsList: Array<String>) {
         
-        if termsList.contains("Y1") {setTerm(term: "Y1")}
-        else if termsList.contains("S1") {setTerm(term: "S1")}
-        else if termsList.contains("S2") {setTerm(term: "S2")}
-        else {setTerm(term: termsList[1])}
+        if (termsList.count <= 1) { return }
+        if termsList.contains("Y1") { setTerm(term: "Y1") }
+        else if termsList.contains("S1") { setTerm(term: "S1") }
+        else if termsList.contains("S2") { setTerm(term: "S2") }
+        else { setTerm(term: termsList[1]) }
     }
     
     func setTerm(term: String) {
