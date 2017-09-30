@@ -84,6 +84,7 @@ class CourseDetailTableViewController: UITableViewController {
     
     func setTerm(term: String) {
 //        list = infoItem.getAssignmentItemArray(term: term)!
+        list = infoItem.assignments
     }
     
     @IBAction func ChooseTermOnClick(_ sender: Any) {
@@ -137,14 +138,12 @@ extension CourseDetailTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if list.isEmpty { return 0 }
         return list.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AssignmentCell", for: indexPath) as! AssignmentCell
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: "AssignmentCell", for: indexPath) as! AssignmentCell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

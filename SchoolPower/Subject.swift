@@ -74,16 +74,15 @@ class Subject {
         blockLetter = json["expression"].stringValue
         roomNumber = json["expression"].stringValue
         
-        if let jsonAssignments = json["assigments"].array {
-            for assignment in jsonAssignments{
-                assignments.append(Assignment(json: assignment))
-            }
+        let jsonAssignments = json["assignments"].arrayValue
+        for assignment in jsonAssignments{
+            assignments.append(Assignment(json: assignment))
         }
-        if let finalGrades = json["finalGrades"].dictionary {
-            for (key, grade) in finalGrades{
-                grades[key]=Grade(percentage: String(Int(Double(grade["percent"].stringValue)!)),
-                                  letter: grade["letter"].stringValue)
-            }
+        
+        let finalGrades = json["finalGrades"].dictionaryValue
+        for (key, grade) in finalGrades{
+            grades[key]=Grade(percentage: String(Int(Double(grade["percent"].stringValue)!)),
+                              letter: grade["letter"].stringValue)
         }
         
     }
