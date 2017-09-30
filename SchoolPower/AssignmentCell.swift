@@ -50,7 +50,7 @@ class AssignmentCell: UITableViewCell {
             let assignmentItem = sortedList[location]
             assignmentTitle.text = assignmentItem.title
             assignmentDate.text = assignmentItem.date
-            assignmentPercentageGrade.text = assignmentItem.percentage
+            assignmentPercentageGrade.text = assignmentItem.percentage + "%"
             assignmentDividedGrade.text = assignmentItem.getDividedScore()
             gradeBackground.backgroundColor = Utils.getColorByLetterGrade(letterGrade: assignmentItem.letterGrade)
             

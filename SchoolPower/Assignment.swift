@@ -22,7 +22,7 @@ import SwiftyJSON
  "category": "Quizzes",
  "description": "Steps of the scientific process for science fair project",
  "name": "Scientific Method Quiz",
- "percentage": "86.96",
+ "percent": "86.96",
  "score": "20",
  "letterGrade": "A",
  "pointsPossible": "23.0",
@@ -34,7 +34,7 @@ import SwiftyJSON
  "category": "Quizzes",
  "description": null,
  "name": "Scientific Notation Quiz",
- "percentage": null,
+ "percent": null,
  "score": null,
  "letterGrade": null,
  "pointsPossible": "10.0",
@@ -60,9 +60,9 @@ class Assignment {
         
         title = json["name"].stringValue
         date = json["date"].stringValue //TODO: change into normal format
-        percentage = json["percentage"].string ?? "--"
+        percentage = json["percent"].string ?? "--"
         score = json["score"].string ?? "--"
-        letterGrade = json["grade"].string ?? "--"
+        letterGrade = json["letterGrade"].string ?? "--"
         category = json["category"].stringValue
         includeInFinalGrade = json["includeInFinalGrade"].stringValue == "1"
         weight = json["weight"].stringValue
