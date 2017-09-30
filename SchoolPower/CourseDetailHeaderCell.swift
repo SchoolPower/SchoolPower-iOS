@@ -44,16 +44,16 @@ class CourseDetailHeaderCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    var infoItem: MainListItem! {
+    var infoItem: Subject! {
         
         didSet {
-            let periodGradeItem: PeriodGradeItem? = infoItem.getLatestItem()
+            let grade = infoItem.getLatestItemGrade()
             headerTeacherName.text = infoItem.teacherName
             headerBlockLetter.text = "Block " + infoItem.blockLetter
             headerRoomNumber.text = "room".localize + infoItem.roomNumber
-            headerPercentageGrade.text = infoItem.getPercentageGrade(requiredTerm: periodGradeItem)
-            headerLetterGrade.text = infoItem.getLetterGrade(requiredTerm: periodGradeItem)
-            leftBackground.backgroundColor = Utils.getColorByPeriodItem(item: periodGradeItem!)
+            headerPercentageGrade.text = grade.percentage
+            headerLetterGrade.text = grade.letter
+            leftBackground.backgroundColor = Utils.getColorByGrade(item: grade)
         }
     }
     

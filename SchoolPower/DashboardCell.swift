@@ -40,20 +40,20 @@ class DashboardCell: FoldingCell {
         }
     }
     
-    var infoItem: MainListItem! {
+    var infoItem: Subject! {
         
         didSet {
-            let periodGradeItem: PeriodGradeItem? = infoItem.getLatestItem()
-            foldSubjectTitle.text = infoItem.subjectTitle
+            let periodGradeItem = infoItem.getLatestItemGrade()
+            foldSubjectTitle.text = infoItem.title
             foldTeacherName.text = infoItem.teacherName
             foldBlockLetter.text = "Block " + infoItem.blockLetter
-            foldLetterGrade.text = infoItem.getLetterGrade(requiredTerm: periodGradeItem)
-            foldPercentageGrade.text = infoItem.getPercentageGrade(requiredTerm: periodGradeItem)
-            unFoldSubjectTitle.text = infoItem.subjectTitle
+            foldLetterGrade.text = periodGradeItem.letter
+            foldPercentageGrade.text = periodGradeItem.percentage
+            unFoldSubjectTitle.text = infoItem.title
             unFoldTeacherName.text = infoItem.teacherName
-            unFoldPercentageGrade.text = infoItem.getPercentageGrade(requiredTerm: periodGradeItem)
-            foldBackground.backgroundColor = Utils.getColorByPeriodItem(item: periodGradeItem!)
-            unfoldBackground.backgroundColor = Utils.getColorByPeriodItem(item: periodGradeItem!)
+            unFoldPercentageGrade.text = periodGradeItem.percentage
+            foldBackground.backgroundColor = Utils.getColorByGrade(item: periodGradeItem)
+            unfoldBackground.backgroundColor = Utils.getColorByGrade(item: periodGradeItem)
         }
     }
     

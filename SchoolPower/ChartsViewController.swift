@@ -47,7 +47,7 @@ class ChartsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.init(rgb: Colors.foreground_material_dark)
-        if dataList.count != 0 {
+        if subjects.count != 0 {
             initLineChart()
             initRadarChart()
         }
@@ -144,11 +144,11 @@ class ChartsViewController: UIViewController {
         
         var entries = [RadarChartDataEntry]()
         var minGrade = 100.0
-        for it in dataList {
-            if it.getLatestItem()!.termPercentageGrade == "--" {
+        for it in subjects {
+            if it.getLatestItemGrade().percentage == "--" {
                 continue
             }
-            let periodGrade=Double(it.getLatestItem()!.termPercentageGrade)!
+            let periodGrade=Double(it.getLatestItemGrade().percentage)!
             entries.append(RadarChartDataEntry(value: periodGrade))
             if periodGrade<minGrade { minGrade=periodGrade }
         }
@@ -170,7 +170,7 @@ class ChartsViewController: UIViewController {
         let xAxis = radarChart.xAxis
         xAxis.yOffset = 10
         xAxis.xOffset = 10
-        xAxis.valueFormatter = RadarChartFormatter(data: dataList)
+        xAxis.valueFormatter = RadarChartFormatter(data: subjects)
         
         let yAxis = radarChart.yAxis
         yAxis.axisMinimum = minGrade/3*2
@@ -215,8 +215,8 @@ class RadarChartFormatter: NSObject, IAxisValueFormatter{
     
     private var mSubjectsName = [String]()
     
-    init(data: [MainListItem]){
-        for subject in data{ mSubjectsName.append(Utils.getShortName(subjectTitle: subject.subjectTitle)) }
+    init(data: [Subject]){
+        for subject in data{ mSubjectsName.append(Utils.getShortName(subjectTitle: subject.title)) }
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String{

@@ -69,23 +69,23 @@ class LoginViewController: UIViewController {
         loadingIndicator.startAnimating()
         alert.show()
         
-        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/ps.php", params: "username=" + username! + "&password=" + password!){ (value) in
+        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/get_data.php", params: "username=" + username! + "&password=" + password!){ (value) in
             
             alert.dismiss(withClickedButtonIndex: -1, animated: true)
             let response = value
-            let messages = response.components(separatedBy: "\n")
             
             if response.contains("error") {self.showSnackbar(msg: "invalidup".localize)}
-            else if response.contains("[{\"") || messages[1] == "[]" {
+            else if response.contains("{") {
                 
                 self.userDefaults.set(username, forKey: "username")
                 self.userDefaults.set(password, forKey: "password")
                 self.userDefaults.set(true, forKey: "loggedin")
-                self.userDefaults.set(messages[0], forKey: "studentname")
+                let (studentInfo, data)=Utils.parseJsonResult(jsonStr: response)
+                self.userDefaults.set(studentInfo.getFullName(), forKey: "studentname")
                 self.userDefaults.synchronize()
                 
-                Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: messages[1])
-                if messages[1] != "[]" { Utils.saveHistoryGrade(data: Utils.parseJsonResult(jsonStr: messages[1]))}
+                Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: response)
+                Utils.saveHistoryGrade(data: data)
                 self.startMainViewController()
                 
             } else { self.showSnackbar(msg: "cannot_connect".localize) }

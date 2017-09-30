@@ -21,21 +21,21 @@ import ActionSheetPicker_3_0
 class CourseDetailTableViewController: UITableViewController {
     
     var currentTerm = 0
-    var infoItem: MainListItem!
+    var infoItem: Subject!
     var bannerView: GADBannerView!
     var termsList: Array<String> = Array()
-    var list: Array<AssignmentItem> = Array()
+    var list: [Assignment] = Array()
     
     override func viewWillAppear(_ animated: Bool) {
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
-        self.title = infoItem.subjectTitle
+        self.title = infoItem.title
         
         initTermList()
         setAllTerms(termsList: termsList)
-        self.navigationController?.navigationBar.barTintColor = Utils.getColorByPeriodItem(item: infoItem.getLatestItem()!)
+        self.navigationController?.navigationBar.barTintColor = Utils.getColorByGrade(item: infoItem.getLatestItemGrade())
     }
     
     override func viewDidLoad() {
@@ -69,10 +69,9 @@ class CourseDetailTableViewController: UITableViewController {
     }
     
     func initTermList() {
-        
-        let periodGradeItemList = infoItem.periodGradeItemArray
+
         termsList.append("allterms".localize)
-        for i in periodGradeItemList.indices{ termsList.append(periodGradeItemList[i].termIndicator) }
+        for (termName, _) in infoItem.grades{ termsList.append(termName) }
     }
     
     func setAllTerms(termsList: Array<String>) {
@@ -84,7 +83,7 @@ class CourseDetailTableViewController: UITableViewController {
     }
     
     func setTerm(term: String) {
-        list = infoItem.getAssignmentItemArray(term: term)!
+//        list = infoItem.getAssignmentItemArray(term: term)!
     }
     
     @IBAction func ChooseTermOnClick(_ sender: Any) {
@@ -165,7 +164,7 @@ extension CourseDetailTableViewController {
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         cell.location = indexPath.row
-        cell.list = list
+        cell.assignments = list
     }
     
 }

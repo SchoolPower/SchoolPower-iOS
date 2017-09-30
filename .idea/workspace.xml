@@ -2,19 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bb8853d-58d7-4b58-a5a4-389eb80faf5a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/carbonyl.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SchoolPower/Assets.xcassets/ic_settings_white.imageset/Contents.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SchoolPower/Assets.xcassets/ic_settings_white.imageset/ic_settings_white.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SchoolPower/Assets.xcassets/ic_settings_white.imageset/ic_settings_white_2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SchoolPower/Assets.xcassets/ic_settings_white.imageset/ic_settings_white_3x.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/Colors.swift" afterPath="$PROJECT_DIR$/SchoolPower/Colors.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SchoolPower/Assignment.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SchoolPower/StudentInformation.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SchoolPower/Subject.swift" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SchoolPower/AssignmentItem.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SchoolPower/MainListItem.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SchoolPower/PeriodGradeItem.swift" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SchoolPower.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/AssignmentCell.swift" afterPath="$PROJECT_DIR$/SchoolPower/AssignmentCell.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/ChartsViewController.swift" afterPath="$PROJECT_DIR$/SchoolPower/ChartsViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/CourseDetailHeaderCell.swift" afterPath="$PROJECT_DIR$/SchoolPower/CourseDetailHeaderCell.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/CourseDetailTableViewController.swift" afterPath="$PROJECT_DIR$/SchoolPower/CourseDetailTableViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/Info.plist" afterPath="$PROJECT_DIR$/SchoolPower/Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/DashboardCell.swift" afterPath="$PROJECT_DIR$/SchoolPower/DashboardCell.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/LoginViewController.swift" afterPath="$PROJECT_DIR$/SchoolPower/LoginViewController.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/MainTableViewController.swift" afterPath="$PROJECT_DIR$/SchoolPower/MainTableViewController.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/Utils.swift" afterPath="$PROJECT_DIR$/SchoolPower/Utils.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/SchoolPower/en.lproj/Localizable.strings" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/SchoolPower/zh-Hans.lproj/Localizable.strings" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SchoolPower/zh-Hant.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/SchoolPower/zh-Hant.lproj/Localizable.strings" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,8 +32,8 @@
       <file leaf-file-name="AssignmentCell.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SchoolPower/AssignmentCell.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-106">
-              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="1357">
+              <caret line="59" column="49" lean-forward="false" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -39,65 +42,81 @@
       <file leaf-file-name="MainTableViewController.swift" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SchoolPower/MainTableViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1127">
-              <caret line="84" column="70" lean-forward="true" selection-start-line="84" selection-start-column="70" selection-end-line="84" selection-end-column="70" />
+            <state relative-caret-position="515">
+              <caret line="498" column="54" lean-forward="false" selection-start-line="498" selection-start-column="54" selection-end-line="498" selection-end-column="54" />
               <folding>
                 <element signature="e#0#2#0" expanded="false" />
                 <element signature="e#600#612#0" expanded="true" />
-                <element signature="e#1140#2120#0" expanded="false" />
-                <element signature="e#2130#2222#0" expanded="false" />
-                <element signature="e#2407#2486#0" expanded="false" />
-                <element signature="e#3138#3151#0" expanded="false" />
-                <element signature="e#3854#4059#0" expanded="false" />
-                <element signature="e#4065#5150#0" expanded="false" />
-                <element signature="e#5160#5268#0" expanded="false" />
-                <element signature="e#5290#9188#0" expanded="false" />
-                <element signature="e#5335#8302#0" expanded="false" />
-                <element signature="e#8312#8423#0" expanded="false" />
-                <element signature="e#8433#8699#0" expanded="false" />
-                <element signature="e#8709#8989#0" expanded="false" />
-                <element signature="e#8999#9186#0" expanded="false" />
-                <element signature="e#9394#10047#0" expanded="false" />
-                <element signature="e#10057#10341#0" expanded="false" />
-                <element signature="e#10351#10838#0" expanded="false" />
-                <element signature="e#10848#10995#0" expanded="false" />
-                <element signature="e#11005#13612#0" expanded="false" />
-                <element signature="e#13622#13889#0" expanded="false" />
-                <element signature="e#13899#14312#0" expanded="false" />
-                <element signature="e#14340#16037#0" expanded="false" />
-                <element signature="e#14439#14617#0" expanded="false" />
-                <element signature="e#14627#15827#0" expanded="false" />
-                <element signature="e#15837#16035#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Localizable.strings" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SchoolPower/zh-Hant.lproj/Localizable.strings">
+      <file leaf-file-name="CourseDetailHeaderCell.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SchoolPower/CourseDetailHeaderCell.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+            <state relative-caret-position="1265">
+              <caret line="55" column="78" lean-forward="false" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Localizable.strings" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SchoolPower/en.lproj/Localizable.strings">
+      <file leaf-file-name="Subject.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SchoolPower/Subject.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1280">
-              <caret line="56" column="30" lean-forward="false" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
+            <state relative-caret-position="2737">
+              <caret line="120" column="115" lean-forward="false" selection-start-line="120" selection-start-column="115" selection-end-line="120" selection-end-column="115" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Podfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Podfile">
+      <file leaf-file-name="Utils.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SchoolPower/Utils.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+            <state relative-caret-position="2461">
+              <caret line="109" column="45" lean-forward="false" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginViewController.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SchoolPower/LoginViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1978">
+              <caret line="88" column="46" lean-forward="false" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChartsViewController.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SchoolPower/ChartsViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3381">
+              <caret line="150" column="58" lean-forward="false" selection-start-line="150" selection-start-column="58" selection-end-line="150" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CourseDetailTableViewController.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SchoolPower/CourseDetailTableViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1610">
+              <caret line="72" column="45" lean-forward="false" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DashboardCell.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SchoolPower/DashboardCell.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1242">
+              <caret line="55" column="90" lean-forward="false" selection-start-line="55" selection-start-column="90" selection-end-line="55" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -105,14 +124,32 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>.assignmenttitle</find>
+      <find>assignmentTitle</find>
+      <find>gpa</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>title</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/SchoolPower/MainTableViewController.swift" />
         <option value="$PROJECT_DIR$/SchoolPower/en.lproj/Localizable.strings" />
+        <option value="$PROJECT_DIR$/SchoolPower/AssignmentCell.swift" />
+        <option value="$PROJECT_DIR$/SchoolPower/LoginViewController.swift" />
+        <option value="$PROJECT_DIR$/SchoolPower/Subject.swift" />
+        <option value="$PROJECT_DIR$/SchoolPower/CourseDetailHeaderCell.swift" />
+        <option value="$PROJECT_DIR$/SchoolPower/ChartsViewController.swift" />
+        <option value="$PROJECT_DIR$/SchoolPower/DashboardCell.swift" />
+        <option value="$PROJECT_DIR$/SchoolPower/Utils.swift" />
+        <option value="$PROJECT_DIR$/SchoolPower/CourseDetailTableViewController.swift" />
+        <option value="$PROJECT_DIR$/SchoolPower/MainTableViewController.swift" />
       </list>
     </option>
   </component>
@@ -122,7 +159,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="65" />
     <option name="y" value="22" />
     <option name="width" value="1855" />
@@ -148,145 +185,67 @@
     <panes>
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Localizable.strings" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ViewControllers" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Storyboards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Items" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SchoolPower" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Classes" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Cells" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SchoolPower" type="1d218c8b:XcodeProjectNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SchoolPower" type="1d218c8b:XcodeProjectNode" />
+              <item name="SchoolPower" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SchoolPower" type="1d218c8b:XcodeProjectNode" />
+              <item name="SchoolPower" type="fcab9f18:XcodeViewNode" />
+              <item name="Classes" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SchoolPower" type="1d218c8b:XcodeProjectNode" />
+              <item name="SchoolPower" type="fcab9f18:XcodeViewNode" />
+              <item name="Classes" type="fcab9f18:XcodeViewNode" />
+              <item name="Cells" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SchoolPower" type="1d218c8b:XcodeProjectNode" />
+              <item name="SchoolPower" type="fcab9f18:XcodeViewNode" />
+              <item name="Classes" type="fcab9f18:XcodeViewNode" />
+              <item name="Items" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SchoolPower" type="1d218c8b:XcodeProjectNode" />
+              <item name="SchoolPower" type="fcab9f18:XcodeViewNode" />
+              <item name="Storyboards" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="SchoolPower" type="1d218c8b:XcodeProjectNode" />
+              <item name="SchoolPower" type="fcab9f18:XcodeViewNode" />
+              <item name="ViewControllers" type="fcab9f18:XcodeViewNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-      <pane id="Cidr.FilesView" />
+      <pane id="Cidr.FilesView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SchoolPower" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="SchoolPower-iOS" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Swift" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunDashboard">
@@ -302,6 +261,20 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.SchoolPower">
+    <configuration name="SchoolPower" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SchoolPower" TARGET_NAME="SchoolPower" CONFIG_NAME="Debug" SCHEME_NAME="SchoolPower" RUN_TARGET_PROJECT_NAME="SchoolPower" RUN_TARGET_NAME="SchoolPower" MAKE_ACTIVE="TRUE">
+      <envs />
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" MAKE_ACTIVE="TRUE">
       <envs />
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
@@ -333,9 +306,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run" />
       <scripts />
@@ -343,16 +313,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="SchoolPower" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SchoolPower" TARGET_NAME="SchoolPower" CONFIG_NAME="Debug" SCHEME_NAME="SchoolPower" RUN_TARGET_PROJECT_NAME="SchoolPower" RUN_TARGET_NAME="SchoolPower" MAKE_ACTIVE="TRUE">
-      <envs />
-      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
-      </EXTENSION>
-      <method />
-    </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Application.SchoolPower" />
-    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -366,38 +326,50 @@
       <updated>1501040210851</updated>
       <workItem from="1501040216635" duration="18000" />
       <workItem from="1501040247979" duration="2272000" />
+      <workItem from="1505808837871" duration="6250000" />
+      <workItem from="1506043229357" duration="328000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2290000" />
+    <option name="totallyTimeSpent" value="8868000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="22" width="1855" height="1058" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18867925" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962587" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18814017" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15874621" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.336714" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -407,6 +379,121 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/SchoolPower/AssignmentCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1357">
+          <caret line="59" column="49" lean-forward="false" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/Subject.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2737">
+          <caret line="120" column="115" lean-forward="false" selection-start-line="120" selection-start-column="115" selection-end-line="120" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/CourseDetailHeaderCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1265">
+          <caret line="55" column="78" lean-forward="false" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/Utils.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2461">
+          <caret line="109" column="45" lean-forward="false" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/LoginViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1978">
+          <caret line="88" column="46" lean-forward="true" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/ChartsViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3381">
+          <caret line="150" column="58" lean-forward="false" selection-start-line="150" selection-start-column="58" selection-end-line="150" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/CourseDetailTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1610">
+          <caret line="72" column="45" lean-forward="true" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/DashboardCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="55" column="90" lean-forward="false" selection-start-line="55" selection-start-column="90" selection-end-line="55" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/MainTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11845">
+          <caret line="515" column="5" lean-forward="true" selection-start-line="515" selection-start-column="5" selection-end-line="515" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#2#0" expanded="false" />
+            <element signature="e#600#612#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/AssignmentCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/en.lproj/Localizable.strings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1288">
+          <caret line="56" column="30" lean-forward="false" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/zh-Hant.lproj/Localizable.strings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/MainTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1932">
+          <caret line="84" column="70" lean-forward="true" selection-start-line="84" selection-start-column="70" selection-end-line="84" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#2#0" expanded="false" />
+            <element signature="e#600#612#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SchoolPower/AssignmentCell.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -419,23 +506,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SchoolPower/en.lproj/Localizable.strings">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1280">
+        <state relative-caret-position="1288">
           <caret line="56" column="30" lean-forward="false" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SchoolPower/AssignmentCell.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-106">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -443,7 +520,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="45" column="23" lean-forward="false" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -451,41 +527,80 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/AssignmentCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1357">
+          <caret line="59" column="49" lean-forward="false" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/LoginViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1978">
+          <caret line="88" column="46" lean-forward="false" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/Subject.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2737">
+          <caret line="120" column="115" lean-forward="false" selection-start-line="120" selection-start-column="115" selection-end-line="120" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/CourseDetailHeaderCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1265">
+          <caret line="55" column="78" lean-forward="false" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/ChartsViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3381">
+          <caret line="150" column="58" lean-forward="false" selection-start-line="150" selection-start-column="58" selection-end-line="150" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/DashboardCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="55" column="90" lean-forward="false" selection-start-line="55" selection-start-column="90" selection-end-line="55" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/Utils.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2461">
+          <caret line="109" column="45" lean-forward="false" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SchoolPower/CourseDetailTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1610">
+          <caret line="72" column="45" lean-forward="false" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SchoolPower/MainTableViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1127">
-          <caret line="84" column="70" lean-forward="true" selection-start-line="84" selection-start-column="70" selection-end-line="84" selection-end-column="70" />
+        <state relative-caret-position="515">
+          <caret line="498" column="54" lean-forward="false" selection-start-line="498" selection-start-column="54" selection-end-line="498" selection-end-column="54" />
           <folding>
             <element signature="e#0#2#0" expanded="false" />
             <element signature="e#600#612#0" expanded="true" />
-            <element signature="e#1140#2120#0" expanded="false" />
-            <element signature="e#2130#2222#0" expanded="false" />
-            <element signature="e#2407#2486#0" expanded="false" />
-            <element signature="e#3138#3151#0" expanded="false" />
-            <element signature="e#3854#4059#0" expanded="false" />
-            <element signature="e#4065#5150#0" expanded="false" />
-            <element signature="e#5160#5268#0" expanded="false" />
-            <element signature="e#5290#9188#0" expanded="false" />
-            <element signature="e#5335#8302#0" expanded="false" />
-            <element signature="e#8312#8423#0" expanded="false" />
-            <element signature="e#8433#8699#0" expanded="false" />
-            <element signature="e#8709#8989#0" expanded="false" />
-            <element signature="e#8999#9186#0" expanded="false" />
-            <element signature="e#9394#10047#0" expanded="false" />
-            <element signature="e#10057#10341#0" expanded="false" />
-            <element signature="e#10351#10838#0" expanded="false" />
-            <element signature="e#10848#10995#0" expanded="false" />
-            <element signature="e#11005#13612#0" expanded="false" />
-            <element signature="e#13622#13889#0" expanded="false" />
-            <element signature="e#13899#14312#0" expanded="false" />
-            <element signature="e#14340#16037#0" expanded="false" />
-            <element signature="e#14439#14617#0" expanded="false" />
-            <element signature="e#14627#15827#0" expanded="false" />
-            <element signature="e#15837#16035#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -60,8 +60,8 @@ extension Utils {
         else  { return letterGrades[5] }
     }
     
-    static func getColorByPeriodItem(item: PeriodGradeItem) -> UIColor {
-        return getColorByLetterGrade(letterGrade: item.termLetterGrade)
+    static func getColorByGrade(item: Grade) -> UIColor {
+        return getColorByLetterGrade(letterGrade: item.letter)
     }
 }
 
@@ -87,7 +87,7 @@ extension Utils {
         return nil
     }
     
-    static func readDataArrayList() -> Array<MainListItem>?{
+    static func readDataArrayList() -> (StudentInformation, Array<Subject>)? {
         return parseJsonResult(jsonStr: readStringFromFile(filename: JSON_FILE_NAME)!)
     }
     
@@ -96,7 +96,7 @@ extension Utils {
         return JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
     }
     
-    static func saveHistoryGrade(data: [MainListItem]?){
+    static func saveHistoryGrade(data: [Subject]?){
         
         if data == nil { saveStringToFile(filename: "history.json", data: "{}") }
         else {
@@ -106,13 +106,14 @@ extension Utils {
             var count = 0
             var gradeInfo: JSON = [] // [{"name":"...","grade":80.0}, ...]
             for subject in data! {
-                if let leastPeriod = subject.getLatestItem() {
-                    if leastPeriod.termPercentageGrade=="--"{ continue }
-                    if !subject.subjectTitle.contains("Homeroom") {
-                        pointSum += Int(leastPeriod.termPercentageGrade)!
+                let leastPeriod = subject.getLatestItemGrade()
+                if leastPeriod.percentage != "--" {
+                    if leastPeriod.percentage == "--"{ continue }
+                    if !subject.title.contains("Homeroom") {
+                        pointSum += Int(leastPeriod.percentage)!
                         count += 1
                     }
-                    gradeInfo.appendIfArray(json: ["name":subject.subjectTitle,"grade":Double(leastPeriod.termPercentageGrade)!])
+                    gradeInfo.appendIfArray(json: ["name":subject.title,"grade":Double(leastPeriod.percentage)!])
                 }
             }
             
@@ -166,54 +167,23 @@ extension Utils {
 //MARK: Others
 extension Utils {
     
-    static func parseJsonResult(jsonStr: String) -> [MainListItem] {
-        
-        if jsonStr == "[]" { return [MainListItem]() }
-        else {
-            
-            let jsonData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!).arrayValue
-            var dataMap = [String : MainListItem]()
-            for termObj in jsonData {
-                
-                // Turns assignments into an ArrayList
-                var assignmentList = [AssignmentItem]()
-                if let asmArray = termObj["assignments"].array {
-                    
-                    for asmObj in asmArray {
-                        
-                        let dates = asmObj["date"].stringValue.components(separatedBy: "/")
-                        let date = dates[2] + "/" + dates[0] + "/" + dates[1]
-                        let grade = asmObj["grade"].stringValue
-                        assignmentList.append(AssignmentItem(_assignmentTitle: asmObj["assignment"].stringValue, _assignmentDate: date, _assignmentPercentage: grade == "" ? "--" : asmObj["percent"].stringValue, _assignmentDividedScore: asmObj["score"].stringValue.hasSuffix("d") ? "unpublished".localize:asmObj["score"].stringValue, _assignmentGrade: grade == "" ? "--" :grade, _assignmentCategory: asmObj["category"].stringValue, _assignmentTerm: termObj["term"].stringValue))
-                    }
-                    let periodGradeItem = PeriodGradeItem(_termIndicator: termObj["term"].stringValue, _termLetterGrade: termObj["grade"].stringValue == "" ? "--" : termObj["grade"].stringValue, _termPercentageGrade: termObj["mark"].stringValue, _assignmentItemArrayList: assignmentList)
-                    
-                    //  Put the term data into the course data, either already exists or will be created
-                    let name = termObj["name"].stringValue
-                    if let mainListItem = dataMap[name] {
-                        
-                        // The course data already exist, just insert into it
-                        mainListItem.addPeriodGradeItem(_periodGradeItem: periodGradeItem)
-                        
-                    } else {
-                        
-                        // The course data is not yet existing
-                        dataMap[name] = MainListItem(_subjectTitle: name, _teacherName: termObj["teacher"].stringValue, _blockLetter: termObj["block"].stringValue, _roomNumber: termObj["room"].stringValue, _periodGradeItemArray: [periodGradeItem])
-                    }
-                }
-            }
-            // Convert HashMap into ArrayList
-            var dataList = [MainListItem]()
-            for (_, value) in dataMap { dataList.append(value) }
-            
-            dataList = dataList.sorted {
-                if $0.blockLetter == "HR(A-E)" { return true }
-                if $1.blockLetter == "HR(A-E)" { return false }
-                return $0.blockLetter < $1.blockLetter
-            }
-            
-            return dataList
+    static func parseJsonResult(jsonStr: String) ->(StudentInformation, [Subject]) {
+        let studentData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
+        if (studentData["information"]==JSON.null) { // not successful
+            return (StudentInformation(json: "{}"), [Subject]())
         }
+        let studentInfo = StudentInformation(json: studentData["information"])
+        var subjects = [Subject]()
+        for subject in studentData["sections"].arrayValue { subjects.append(Subject(json: subject)) }
+            
+        subjects = subjects.sorted {
+            if $0.blockLetter == "HR(A-E)" { return true }
+            if $1.blockLetter == "HR(A-E)" { return false }
+            return $0.blockLetter < $1.blockLetter
+        }
+        
+        return (studentInfo, subjects)
+        
     }
     
     static func getShortName(subjectTitle: String)->String{
