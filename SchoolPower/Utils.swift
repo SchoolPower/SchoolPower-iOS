@@ -192,7 +192,7 @@ extension Utils {
                       "Chinese":"CSS", "Foundations":"Maths", "Physical":"PE",
                       "English":"EN", "Moral":"ME", "Information": "IT", "Drama": "DR",
                       "Social":"SS","Communications":"COMM","Science":"SC",
-                      "Physics":"PHY","Chemistry":"CHEM","Exercise":"EXE","Social":"SS"]
+                      "Physics":"PHY","Chemistry":"CHEM","Exercise":"EXE"]
         let short = shorts[subjectTitle.components(separatedBy: " ")[0]]
         if short != nil { return short! }
         
