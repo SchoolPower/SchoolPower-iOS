@@ -29,7 +29,7 @@ class MainTableViewController: UITableViewController {
     var bannerView: GADBannerView!
     var loadingView: DGElasticPullToRefreshLoadingViewCircle!
 
-    let kRowsCount = 10
+    let kRowsCount = 30
     let kOpenCellHeight: CGFloat = 315
     let kCloseCellHeight: CGFloat = 125
     var cellHeights: [CGFloat] = []
@@ -253,7 +253,8 @@ extension MainTableViewController {
         let username = userDefaults.string(forKey: "username")
         let password = userDefaults.string(forKey: "password")
         oldSubjects += subjects
-        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/get_data.php", params: "username=" + username! + "&password=" + password!) { (value) in
+        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
+        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/get_data.php", params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=manual_get_data") { (value) in
 
             let response = value
             if response.contains("NETWORK_ERROR") {

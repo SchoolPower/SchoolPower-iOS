@@ -68,8 +68,8 @@ class LoginViewController: UIViewController {
         alert.setValue(loadingIndicator, forKey: "accessoryView")
         loadingIndicator.startAnimating()
         alert.show()
-        
-        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/get_data.php", params: "username=" + username! + "&password=" + password!){ (value) in
+        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
+        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/get_data.php", params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=login"){ (value) in
             
             alert.dismiss(withClickedButtonIndex: -1, animated: true)
             let response = value
