@@ -145,7 +145,7 @@ class ChartsViewController: UIViewController {
         var entries = [RadarChartDataEntry]()
         var minGrade = 100.0
         for it in subjects {
-            if it.getLatestItemGrade().percentage == "--" {
+            if it.getLatestItemGrade().letter == "--" {
                 continue
             }
             let periodGrade=Double(it.getLatestItemGrade().percentage)!
@@ -216,7 +216,12 @@ class RadarChartFormatter: NSObject, IAxisValueFormatter{
     private var mSubjectsName = [String]()
     
     init(data: [Subject]){
-        for subject in data{ mSubjectsName.append(Utils.getShortName(subjectTitle: subject.title)) }
+        for subject in data{
+            if subject.getLatestItemGrade().letter == "--" {
+                continue
+            }
+            mSubjectsName.append(Utils.getShortName(subjectTitle: subject.title))
+        }
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String{
