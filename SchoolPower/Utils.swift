@@ -188,11 +188,22 @@ extension Utils {
     
     static func getShortName(subjectTitle: String)->String{
         
-        let shorts = ["Homeroom":"HR", "Planning":"PL", "Mandarin":"CN",
-                      "Chinese":"CSS", "Foundations":"Maths", "Physical":"PE",
-                      "English":"EN", "Moral":"ME", "Information": "IT", "Drama": "DR",
-                      "Social":"SS","Communications":"COMM","Science":"SC",
-                      "Physics":"PHY","Chemistry":"CHEM","Exercise":"EXE"]
+        let shorts = ["Homeroom":"HR",
+                      "Planning":"PL",
+                      "Mandarin":"CN",
+                      "Chinese":"CSS",
+                      "Foundations":"Maths",
+                      "Physical":"PE",
+                      "English":"EN",
+                      "Moral":"ME",
+                      "Information": "IT",
+                      "Drama": "DR",
+                      "Social":"SS",
+                      "Communications":"COMM",
+                      "Science":"SC",
+                      "Physics":"PHY",
+                      "Chemistry":"CHEM",
+                      "Exercise":"EXE"]
         let short = shorts[subjectTitle.components(separatedBy: " ")[0]]
         if short != nil { return short! }
         

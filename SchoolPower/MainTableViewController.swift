@@ -356,7 +356,6 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "MainHeaderCell")
-        headerCell?.backgroundColor = .clear
         return headerCell
     }
 
@@ -413,7 +412,6 @@ extension MainTableViewController {
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations
-        cell.backViewColor = UIColor(rgb: Colors.cardview_dark_background)
         return cell
     }
 
@@ -449,13 +447,10 @@ extension MainTableViewController {
         var duration = 0.0
         let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
         if cellIsCollapsed {
-
             cellHeights[indexPath.row] = kOpenCellHeight
-
             cell.unfold(true, animated: true, completion: nil)
             duration = 0.5
         } else {
-
             cellHeights[indexPath.row] = kCloseCellHeight
             cell.unfold(false, animated: true, completion: nil)
             duration = 0.8

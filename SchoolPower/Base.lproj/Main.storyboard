@@ -24,21 +24,22 @@
         <scene sceneID="e0a-MU-3xf">
             <objects>
                 <tableViewController title="Dashboard" modalPresentationStyle="currentContext" id="GuX-iT-TU9" customClass="MainTableViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kLR-Ty-vEg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kLR-Ty-vEg">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainHeaderCell" rowHeight="20" id="io4-2z-gd8" customClass="CourseDetailFooterCell" customModule="SchoolPower" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="20"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainHeaderCell" rowHeight="0.0" id="io4-2z-gd8" customClass="CourseDetailFooterCell" customModule="SchoolPower" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="io4-2z-gd8" id="EBU-aO-NcO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="19.666666666666668"/>
+                                    <rect key="frame" x="0.0" y="-0.33333333333333331" width="375" height="0.33333333333333331"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.92146831750869751" green="0.92162638902664185" blue="0.92145836353302002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoldingCell" rowHeight="667" id="jPD-L4-Cdq" customClass="DashboardCell" customModule="SchoolPower" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="48" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jPD-L4-Cdq" id="Pfp-Dh-1ga">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="666.66666666666663"/>
@@ -245,7 +246,7 @@
                                 </tableViewCellContentView>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="backViewColor">
-                                        <color key="value" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.9840959821428571" green="0.9865978422285715" blue="0.9934337797285715" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="itemCount">
                                         <integer key="value" value="4"/>
@@ -519,7 +520,6 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="N3B-hi-zxs" firstAttribute="leading" secondItem="E7j-rc-YF4" secondAttribute="leading" id="7Ls-mL-xh2"/>
                                                                 <constraint firstItem="fKy-x6-7Dy" firstAttribute="top" secondItem="E7j-rc-YF4" secondAttribute="top" constant="15" id="8ak-Z7-kP0"/>
@@ -665,7 +665,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Qud-Hm-2ul">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Qud-Hm-2ul">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1030,7 +1030,7 @@
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hc8-rU-frg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hc8-rU-frg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
