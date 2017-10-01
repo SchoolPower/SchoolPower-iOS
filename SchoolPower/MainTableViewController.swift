@@ -23,6 +23,7 @@ import CustomIOSAlertView
 import DGElasticPullToRefresh
 
 var subjects = [Subject]()
+var filteredSubjects = [Subject]()
 
 class MainTableViewController: UITableViewController {
 
@@ -68,12 +69,23 @@ class MainTableViewController: UITableViewController {
         }
     }
 
+    func updateFilteredSubjects(){
+        // userDefaults.integer(forKey: keyName)
+        filteredSubjects = [Subject]()
+        for subject in subjects{
+            if subject.getLatestItemGrade().letter != "--" || !subject.assignments.isEmpty {
+                filteredSubjects.append(subject)
+            }
+        }
+    }
+    
     func initValue() {
 
         initUI()
         let input = Utils.readDataArrayList()
         if input != nil {
             (_,subjects) = input!
+            updateFilteredSubjects()
         }
         if self.navigationController?.view.tag == 1 {
             initDataJson()
@@ -154,7 +166,7 @@ class MainTableViewController: UITableViewController {
                 if periodName != "--" {
                     if periodApplied=="" { periodApplied = periodName }
                     let period = subject.grades[periodName]
-                    if period == nil || period!.percentage == "--"{ continue }
+                    if period == nil || period!.letter == "--"{ continue }
                     let grade = Double(period!.percentage)!
                     sum += grade
                     num += 1
@@ -279,6 +291,7 @@ extension MainTableViewController {
 
                 Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: response)
                 (_, subjects) = Utils.parseJsonResult(jsonStr: response)
+                self.updateFilteredSubjects()
                 Utils.saveHistoryGrade(data: subjects)
 
                 // Diff
@@ -361,7 +374,7 @@ extension MainTableViewController {
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
-        if subjects.count == 0 {
+        if filteredSubjects.count == 0 {
 
             tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height)
             tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.nothing_light))
@@ -376,7 +389,7 @@ extension MainTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subjects.count
+        return filteredSubjects.count
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -393,7 +406,7 @@ extension MainTableViewController {
         }
         cell.backgroundColor = .clear
         cell.number = indexPath.row
-        cell.infoItem = subjects[indexPath.row]
+        cell.infoItem = filteredSubjects[indexPath.row]
     }
 
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath?) {
@@ -471,7 +484,7 @@ extension MainTableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoDetail" {
-            (segue.destination as? CourseDetailTableViewController)?.infoItem = subjects[(sender as! UIButton).tag]
+            (segue.destination as? CourseDetailTableViewController)?.infoItem = filteredSubjects[(sender as! UIButton).tag]
             (segue.destination as? CourseDetailTableViewController)?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
     }
@@ -481,7 +494,7 @@ extension MainTableViewController {
 extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return subjects[collectionView.tag].grades.count
+        return filteredSubjects[collectionView.tag].grades.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -493,7 +506,7 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         collectionCell.layer.cornerRadius = 7.0
         collectionCell.layer.masksToBounds = true
 
-        let grades = subjects[collectionView.tag].grades
+        let grades = filteredSubjects[collectionView.tag].grades
         let termName = Array(grades.keys)[indexPath.row]
         let grade = grades[termName]!
         (collectionCell.viewWithTag(1) as! UILabel).text = termName

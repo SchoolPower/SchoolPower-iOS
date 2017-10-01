@@ -99,6 +99,7 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func enableNotificationSwichOnChange(_ sender: Any) {
         userDefaults.set(enableNotificationSwitch.isOn, forKey: keySets[3])
         userDefaults.synchronize()
+        
     }
     
 }
