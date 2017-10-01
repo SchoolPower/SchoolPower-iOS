@@ -21,11 +21,17 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var languageTitle: UILabel?
     @IBOutlet weak var dspTitle: UILabel?
+    @IBOutlet weak var showInactiveTitle: UILabel?
+    @IBOutlet weak var notificationTitle: UILabel!
+    
     @IBOutlet weak var languageDetail: UILabel?
     @IBOutlet weak var dspDetail: UILabel?
     
+    @IBOutlet weak var showInactiveSwitch: UISwitch!
+    @IBOutlet weak var enableNotificationSwitch: UISwitch!
+    
     let userDefaults = UserDefaults.standard
-    let keySets = ["language", "dashboarddisplays"]
+    let keySets = ["language", "dashboardDisplays", "showInactive", "enableNotification"]
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -45,13 +51,26 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "display".localize
+        switch section {
+        case 0: return "display".localize
+        case 1: return "notification".localize
+        default: return ""
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch section {
+        case 0: return "show_inactive_summary".localize
+        default: return ""
+        }
     }
     
     func registerDefaults(){
         
         if userDefaults.object(forKey: keySets[0]) == nil { userDefaults.register(defaults: [keySets[0]: 0]) }
         if userDefaults.object(forKey: keySets[1]) == nil { userDefaults.register(defaults: [keySets[1]: 1]) }
+        if userDefaults.object(forKey: keySets[2]) == nil { userDefaults.register(defaults: [keySets[2]: false]) }
+        if userDefaults.object(forKey: keySets[3]) == nil { userDefaults.register(defaults: [keySets[3]: true]) }
         userDefaults.synchronize()
     }
     
@@ -61,10 +80,27 @@ class SettingsTableViewController: UITableViewController {
                                ["thisterm".localize, "thissemester".localize]]
         
         languageTitle?.text = "language".localize
-        dspTitle?.text = "dashboarddisplays".localize
+        dspTitle?.text = "dashboardDisplays".localize
+        showInactiveTitle?.text = "show_inactive_title".localize
+        notificationTitle?.text = "enable_notification".localize
+        
         languageDetail?.text = descriptionSets[0][userDefaults.integer(forKey: keySets[0])]
         dspDetail?.text = descriptionSets[1][userDefaults.integer(forKey: keySets[1])]
+        
+        showInactiveSwitch.setOn(userDefaults.bool(forKey: keySets[2]), animated: false)
+        enableNotificationSwitch.setOn(userDefaults.bool(forKey: keySets[3]), animated: false)
     }
+    
+    @IBAction func showInactiveSwichOnChange(_ sender: Any) {
+        userDefaults.set(showInactiveSwitch.isOn, forKey: keySets[2])
+        userDefaults.synchronize()
+    }
+    
+    @IBAction func enableNotificationSwichOnChange(_ sender: Any) {
+        userDefaults.set(enableNotificationSwitch.isOn, forKey: keySets[3])
+        userDefaults.synchronize()
+    }
+    
 }
 
 //MARK: Table View

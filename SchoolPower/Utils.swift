@@ -32,7 +32,7 @@ extension JSON{
 class Utils {
     
     static let userDefaults = UserDefaults.standard
-    static let KEY_NAME = "dashboarddisplays"
+    static let KEY_NAME = "dashboardDisplays"
     static let JSON_FILE_NAME = "dataMap.json"
     
     static let gradeColorIds = [Colors.A_score_green, Colors.B_score_green, Colors.Cp_score_yellow, Colors.C_score_orange, Colors.Cm_score_red, Colors.primary_dark, Colors.primary, Colors.primary]

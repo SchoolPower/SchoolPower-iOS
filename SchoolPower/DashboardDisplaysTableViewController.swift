@@ -24,13 +24,13 @@ class DashboardDisplaysTableViewController: UITableViewController {
     @IBOutlet weak var itemSemester: UITableViewCell?
     
     let userDefaults = UserDefaults.standard
-    let keyName = "dashboarddisplays"
+    let keyName = "dashboardDisplays"
     var dspIndex: Int = 0
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.title = "dashboarddisplays".localize
+        self.title = "dashboardDisplays".localize
         dspIndex = userDefaults.integer(forKey: keyName)
         loadCells()
     }
