@@ -15,10 +15,10 @@
 
 
 import UIKit
-import MaterialComponents
 import Material
 import FoldingCell
 import GoogleMobileAds
+import MaterialComponents
 import CustomIOSAlertView
 import DGElasticPullToRefresh
 
@@ -362,13 +362,11 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
         if subjects.count == 0 {
-
             tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height)
             tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.nothing_light))
             return 0
 
         } else {
-
             tableView.backgroundView = nil
             tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.foreground_material_dark))
             return 20
