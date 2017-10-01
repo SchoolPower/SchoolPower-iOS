@@ -54,6 +54,9 @@ class MainTableViewController: UITableViewController {
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
 
         self.title = "dashboard".localize
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilteredSubjects),name:NSNotification.Name(rawValue: "updateFilteredSubjects"), object: nil)
+
         tableView.reloadData()
     }
 
@@ -68,14 +71,17 @@ class MainTableViewController: UITableViewController {
             tableView.dg_removePullToRefresh()
         }
     }
-
+    
     func updateFilteredSubjects(){
-        // userDefaults.integer(forKey: keyName)
-        filteredSubjects = [Subject]()
-        for subject in subjects{
-            if subject.getLatestItemGrade().letter != "--" || !subject.assignments.isEmpty {
-                filteredSubjects.append(subject)
+        if (!userDefaults.bool(forKey: "showInactive")) {
+            filteredSubjects = [Subject]()
+            for subject in subjects{
+                if subject.getLatestItemGrade().letter != "--" || !subject.assignments.isEmpty {
+                    filteredSubjects.append(subject)
+                }
             }
+        }else{
+            filteredSubjects = subjects
         }
     }
     
@@ -166,7 +172,7 @@ class MainTableViewController: UITableViewController {
                 if periodName != "--" {
                     if periodApplied=="" { periodApplied = periodName }
                     let period = subject.grades[periodName]
-                    if period == nil || period!.letter == "--"{ continue }
+                    if period == nil || period!.letter == "--" { continue }
                     let grade = Double(period!.percentage)!
                     sum += grade
                     num += 1
