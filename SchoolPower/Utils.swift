@@ -204,8 +204,12 @@ extension Utils {
                       "Physics":"PHY",
                       "Chemistry":"CHEM",
                       "Exercise":"EXE"]
-        let short = shorts[subjectTitle.components(separatedBy: " ")[0]]
-        if short != nil { return short! }
+        let splited = subjectTitle.components(separatedBy: " ")
+        var short = shorts[splited[0]]
+        if short != nil {
+            if splited[splited.count-1]=="Music" { short! += "M" }
+            return short!
+        }
         
         return subjectTitle
     }
