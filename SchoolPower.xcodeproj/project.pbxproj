@@ -89,6 +89,7 @@
 		271386931F07711300EC7F2F /* BACKUP.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BACKUP.xib; sourceTree = "<group>"; };
 		6204A07B1F39E5A9004B2118 /* NothingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingView.xib; sourceTree = "<group>"; };
 		6204A07D1F39E5CE004B2118 /* NothingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NothingView.swift; sourceTree = "<group>"; };
+		620D465B1F85D0A500280320 /* SchoolPower.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SchoolPower.entitlements; sourceTree = "<group>"; };
 		621DA1B61EFD01A300EFAB5A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Utils.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AssignmentCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		624BDC221EFE46110052EC5D /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -216,6 +217,7 @@
 				62C34E2C1F05FAAD0078D5F8 /* DGLocalization.swift */,
 				2705427B1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist */,
 				62CFC9981EFA9940002B4A8D /* Assets.xcassets */,
+				620D465B1F85D0A500280320 /* SchoolPower.entitlements */,
 				62CFC99D1EFA9940002B4A8D /* Info.plist */,
 				62A8FA431EFB66DA00751ACD /* Podfile */,
 			);
@@ -413,6 +415,11 @@
 						DevelopmentTeam = MPPUFL3L6R;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					62CFC9A11EFA9940002B4A8D = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -745,6 +752,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_INFINITE_RECURSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
+				CODE_SIGN_ENTITLEMENTS = SchoolPower/SchoolPower.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = MPPUFL3L6R;
@@ -775,6 +783,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_INFINITE_RECURSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
+				CODE_SIGN_ENTITLEMENTS = SchoolPower/SchoolPower.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Anhai Wang (MPPUFL3L6R)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = MPPUFL3L6R;

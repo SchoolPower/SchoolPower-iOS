@@ -203,7 +203,11 @@ extension Utils {
                       "Science":"SC",
                       "Physics":"PHY",
                       "Chemistry":"CHEM",
+                      "Pre-Calculus":"PC",
+                      "Calculus":"CAL",
+                      "Programming":"PROG",
                       "Exercise":"EXE"]
+        
         let splited = subjectTitle.components(separatedBy: " ")
         var short = shorts[splited[0]]
         if short != nil {

@@ -17,20 +17,22 @@
 import UIKit
 import Material
 import GoogleMobileAds
+import UserNotifications
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     let userDefaults = UserDefaults.standard
     let KEY_NAME = "loggedin"
-
+    
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
         IQKeyboardManager.sharedManager().enable = true
         DGLocalization.sharedInstance.startLocalization()
         GADMobileAds.configure(withApplicationID: "ca-app-pub-9841217337381410~2237579488")
+        registerForPushNotifications(application: application)
         
         let story = UIStoryboard(name: "Main", bundle: nil)
         var gotoController: UIViewController
@@ -52,6 +54,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window!.rootViewController = gotoController
         }
         window!.makeKeyAndVisible()
+    }
+    
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+    }
+    
+    func application(_ application: UIApplication,
+                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
+    
+    func registerForPushNotifications(application: UIApplication) {
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+                (granted, error) in
+                guard granted else { return }
+                //See if the premission is still there
+                UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+                    guard settings.authorizationStatus == .authorized else { return }
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        } else {
+            //For lower than iOS 10.0
+            let notificationTypes: UIUserNotificationType = [.alert, .badge, .sound]
+            let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+            application.registerUserNotificationSettings(pushNotificationSettings)
+            application.registerForRemoteNotifications()
+        }
     }
 }
 
