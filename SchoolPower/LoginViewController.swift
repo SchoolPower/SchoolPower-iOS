@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
     
     let userDefaults = UserDefaults.standard
     let JSON_FILE_NAME = "dataMap.json"
+    let TOKEN_KEY_NAME = "apns_token"
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -69,6 +70,8 @@ class LoginViewController: UIViewController {
         loadingIndicator.startAnimating()
         alert.show()
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
+        
+        //Send Post
         Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/get_data.php", params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=login"){ (value) in
             
             alert.dismiss(withClickedButtonIndex: -1, animated: true)
@@ -84,6 +87,9 @@ class LoginViewController: UIViewController {
                 self.userDefaults.set(studentInfo.getFullName(), forKey: "studentname")
                 self.userDefaults.synchronize()
                 
+                let token = self.userDefaults.string(forKey: self.TOKEN_KEY_NAME)
+                if token != nil && token != "" { self.sendNotificationRegistry(token: token!, username: username!, password: password!) }
+                
                 Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: response)
                 Utils.saveHistoryGrade(data: data)
                 self.startMainViewController()
@@ -96,7 +102,6 @@ class LoginViewController: UIViewController {
         
         toPop = true
         OperationQueue.main.addOperation {
-            
             self.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardNav"), animated: true, completion: self.updateRootViewController)
         }
     }
@@ -107,6 +112,12 @@ class LoginViewController: UIViewController {
         let mainController = story.instantiateViewController(withIdentifier: "DashboardNav")
         let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
         UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(rootViewController: mainController, leftViewController: leftViewController, rightViewController: nil)
+    }
+    
+    func sendNotificationRegistry(token: String, username: String, password: String) {
+        
+        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/notification/register", params: "device_token=\(token)&username=\(username)&password=\(password)"){ (value) in
+        }
     }
     
     func showSnackbar(msg: String) {

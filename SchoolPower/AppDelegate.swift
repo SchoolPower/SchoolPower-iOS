@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let userDefaults = UserDefaults.standard
     let KEY_NAME = "loggedin"
+    let TOKEN_KEY_NAME = "apns_token"
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
@@ -63,11 +64,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let token = tokenParts.joined()
+        
+        if userDefaults.object(forKey: TOKEN_KEY_NAME) == nil {
+            userDefaults.register(defaults: [TOKEN_KEY_NAME: token])
+            userDefaults.synchronize()
+        } else {
+            userDefaults.set(token, forKey: TOKEN_KEY_NAME)
+        }
         print("Device Token: \(token)")
     }
     
     func application(_ application: UIApplication,
                      didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+        if userDefaults.object(forKey: TOKEN_KEY_NAME) == nil {
+            userDefaults.register(defaults: [TOKEN_KEY_NAME: ""])
+            userDefaults.synchronize()
+        } else {
+            userDefaults.set("", forKey: TOKEN_KEY_NAME)
+        }
         print("Failed to register: \(error)")
     }
     
