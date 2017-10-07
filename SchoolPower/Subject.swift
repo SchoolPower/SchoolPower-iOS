@@ -65,7 +65,7 @@ class Subject {
     var roomNumber: String
     
     var assignments: [Assignment] = [Assignment]()
-    var grades:[String: Grade] = [String:Grade]()
+    var grades:[String: Grade] = [String: Grade]()
     
     init(json:JSON) {
         

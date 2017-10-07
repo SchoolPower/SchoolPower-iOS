@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DGLocalization.sharedInstance.startLocalization()
         GADMobileAds.configure(withApplicationID: "ca-app-pub-9841217337381410~2237579488")
         registerForPushNotifications(application: application)
+        application.applicationIconBadgeNumber = 0
         
         let story = UIStoryboard(name: "Main", bundle: nil)
         var gotoController: UIViewController
@@ -84,6 +85,98 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userDefaults.set("", forKey: TOKEN_KEY_NAME)
         }
         print("Failed to register: \(error)")
+    }
+    
+    //Handle silent remote notification and send a local notification
+    //Desired APNS Format Example:
+    //    {
+    //        "aps": {
+    //            "content-available": 1
+    //        },
+    //        "updated-subjects": {
+    //            "English 11": [
+    //                {
+    //                    "name": "Poem",
+    //                    "score": "1/10"
+    //                },
+    //                {
+    //                    "name": "Essay",
+    //                    "score": "10/10"
+    //                }
+    //            ],
+    //            "Chemistry 11": [
+    //                {
+    //                    "name": "Memrise",
+    //                    "score": "--"
+    //                },
+    //                {
+    //                    "name": "Quiz",
+    //                    "score": "9/10"
+    //                }
+    //            ]
+    //        }
+    //    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        if userDefaults.bool(forKey: "enableNotification") {
+            let showGrades = userDefaults.bool(forKey: "showGradesInNotification")
+            let showUngraded = userDefaults.bool(forKey: "notifyUngraded")
+            
+            var messageBody = ""
+            
+            if let updatedSubjects = userInfo["updated-subjects"] as? NSDictionary {
+                if updatedSubjects.count != 0 {
+                    for subject in updatedSubjects {
+                        for assignment in (subject.value as? NSArray)! {
+                            let assignmentDic = assignment as? NSDictionary
+                            let assignmentName = (assignmentDic?.value(forKey: "name") as? String)!
+                            let assignmentScore = (assignmentDic?.value(forKey: "score") as? String)!
+                            
+                            if !(assignmentScore.contains("--") && !showUngraded) {
+                                if !messageBody.isEmpty { messageBody.append(", ") }
+                                messageBody.append("\(assignmentName)")
+                                if showGrades { messageBody.append("(\(assignmentScore))") }
+                            }
+                        }
+                    }
+                    
+                    if !messageBody.isEmpty {
+                        
+                        let assignmentNum = messageBody.components(separatedBy: ",").count
+                        
+                        if #available(iOS 10.0, *) {
+                            
+                            let notification = UNMutableNotificationContent()
+                            notification.sound = UNNotificationSound.default()
+                            notification.title = "\(String(assignmentNum)) \("notification_new".localize)"
+                            notification.body = messageBody
+                            notification.badge = ((notification.badge?.intValue)! + assignmentNum) as NSNumber
+                            
+                            let identifier = "newAssignmentNotification"
+                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+                            let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: trigger)
+                            
+                            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+                                print("Cannot Send Notification")
+                            })
+                            
+                        } else {
+                            
+                            let notification = UILocalNotification()
+                            if #available(iOS 8.2, *) { notification.alertTitle = "SchoolPower" }
+                            
+                            notification.soundName = UILocalNotificationDefaultSoundName
+                            notification.fireDate = Date.init(timeIntervalSinceNow: 0)
+                            notification.applicationIconBadgeNumber += assignmentNum
+                            notification.alertBody = "\(String(assignmentNum)) \("notification_new".localize): \(messageBody)"
+                            
+                            UIApplication.shared.scheduleLocalNotification(notification)
+                        }
+                        completionHandler(.newData)
+                    }
+                } else { completionHandler(.noData) }
+            } else { completionHandler(.failed) }
+        } else { completionHandler(.failed) }
     }
     
     func registerForPushNotifications(application: UIApplication) {

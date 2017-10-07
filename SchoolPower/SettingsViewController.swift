@@ -15,6 +15,7 @@
 
 
 import UIKit
+import MessageUI
 import MaterialComponents
 
 class SettingsTableViewController: UITableViewController {
@@ -23,15 +24,23 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var dspTitle: UILabel?
     @IBOutlet weak var showInactiveTitle: UILabel?
     @IBOutlet weak var notificationTitle: UILabel!
+    @IBOutlet weak var showGradesTitle: UILabel!
+    @IBOutlet weak var notifyUngeadedTitle: UILabel!
+    @IBOutlet weak var reportBugTitle: UILabel!
+    @IBOutlet weak var visitWebsiteTitle: UILabel!
+    @IBOutlet weak var getSourceCodeTitle: UILabel!
     
     @IBOutlet weak var languageDetail: UILabel?
     @IBOutlet weak var dspDetail: UILabel?
+    @IBOutlet weak var reportBugDetail: UILabel!
     
     @IBOutlet weak var showInactiveSwitch: UISwitch!
     @IBOutlet weak var enableNotificationSwitch: UISwitch!
+    @IBOutlet weak var showGradesSwitch: UISwitch!
+    @IBOutlet weak var notifyUngradedSwitch: UISwitch!
     
     let userDefaults = UserDefaults.standard
-    let keySets = ["language", "dashboardDisplays", "showInactive", "enableNotification"]
+    let keySets = ["language", "dashboardDisplays", "showInactive", "enableNotification", "showGradesInNotification", "notifyUngraded"]
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -53,7 +62,8 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0: return "display".localize
-        case 1: return "notification".localize
+        case 1: return "notification_header".localize
+        case 2: return "support".localize
         default: return ""
         }
     }
@@ -71,6 +81,9 @@ class SettingsTableViewController: UITableViewController {
         if userDefaults.object(forKey: keySets[1]) == nil { userDefaults.register(defaults: [keySets[1]: 1]) }
         if userDefaults.object(forKey: keySets[2]) == nil { userDefaults.register(defaults: [keySets[2]: false]) }
         if userDefaults.object(forKey: keySets[3]) == nil { userDefaults.register(defaults: [keySets[3]: true]) }
+        if userDefaults.object(forKey: keySets[4]) == nil { userDefaults.register(defaults: [keySets[4]: true]) }
+        if userDefaults.object(forKey: keySets[5]) == nil { userDefaults.register(defaults: [keySets[5]: true]) }
+        
         userDefaults.synchronize()
     }
     
@@ -83,12 +96,20 @@ class SettingsTableViewController: UITableViewController {
         dspTitle?.text = "dashboardDisplays".localize
         showInactiveTitle?.text = "show_inactive_title".localize
         notificationTitle?.text = "enable_notification".localize
+        showGradesTitle?.text = "notification_show_grade".localize
+        notifyUngeadedTitle?.text = "notification_show_no_grade_assignment".localize
+        reportBugTitle?.text = "report_bug".localize
+        visitWebsiteTitle?.text = "visit_website".localize
+        getSourceCodeTitle?.text = "source_code".localize
         
         languageDetail?.text = descriptionSets[0][userDefaults.integer(forKey: keySets[0])]
         dspDetail?.text = descriptionSets[1][userDefaults.integer(forKey: keySets[1])]
+        reportBugDetail?.text = "report_bug_summary".localize
         
         showInactiveSwitch.setOn(userDefaults.bool(forKey: keySets[2]), animated: false)
         enableNotificationSwitch.setOn(userDefaults.bool(forKey: keySets[3]), animated: false)
+        showGradesSwitch.setOn(userDefaults.bool(forKey: keySets[4]), animated: false)
+        notifyUngradedSwitch.setOn(userDefaults.bool(forKey: keySets[5]), animated: false)
     }
     
     @IBAction func showInactiveSwichOnChange(_ sender: Any) {
@@ -100,17 +121,59 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func enableNotificationSwichOnChange(_ sender: Any) {
         userDefaults.set(enableNotificationSwitch.isOn, forKey: keySets[3])
         userDefaults.synchronize()
-
     }
     
+    @IBAction func showGradesSwichOnChange(_ sender: Any) {
+        userDefaults.set(showGradesSwitch.isOn, forKey: keySets[4])
+        userDefaults.synchronize()
+    }
+    
+    
+    @IBAction func notifyUngradedSwichOnChange(_ sender: Any) {
+        userDefaults.set(notifyUngradedSwitch.isOn, forKey: keySets[5])
+        userDefaults.synchronize()
+    }
 }
 
-//MARK: Table View
-extension SettingsTableViewController {
+//MARK: Table View & Email
+extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
+        
+        if indexPath.section == 2 {
+            switch indexPath.row {
+            case 0:
+                let mailComposeViewController = configuredMailComposeViewController()
+                if MFMailComposeViewController.canSendMail() {
+                    self.present(mailComposeViewController, animated: true, completion: nil)
+                }
+                break
+            case 1:
+                UIApplication.shared.openURL(NSURL(string:"https://www.schoolpower.studio")! as URL)
+                break
+            case 2:
+                UIApplication.shared.openURL(NSURL(string:"https://github.com/SchoolPower")! as URL)
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        mailComposerVC.setToRecipients(["harryyunull@gmail.com"])
+        mailComposerVC.setSubject("bug_report_email_subject".localize)
+        mailComposerVC.setMessageBody("bug_report_email_content".localize, isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

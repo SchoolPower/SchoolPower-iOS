@@ -168,6 +168,7 @@ extension Utils {
 extension Utils {
     
     static func parseJsonResult(jsonStr: String) ->(StudentInformation, [Subject]) {
+        
         let studentData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
         if (studentData["information"]==JSON.null) { // not successful
             return (StudentInformation(json: "{}"), [Subject]())
@@ -183,7 +184,6 @@ extension Utils {
         }
         
         return (studentInfo, subjects)
-        
     }
     
     static func getShortName(subjectTitle: String)->String{

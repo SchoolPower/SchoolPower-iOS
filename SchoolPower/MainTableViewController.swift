@@ -41,6 +41,8 @@ class MainTableViewController: UITableViewController {
     let KEY_NAME = "loggedin"
 
     override func viewWillAppear(_ animated: Bool) {
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
 
         let gpaItem = UIBarButtonItem(image: UIImage(named: "ic_grade_white")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(gpaOnClick))
         let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(menuOnClick))
