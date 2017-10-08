@@ -20,16 +20,45 @@ import GoogleMobileAds
 import UserNotifications
 import IQKeyboardManagerSwift
 
+let GET_DATA_URL = "https://api.schoolpower.studio:8443/api/2.0/get_data.php"
+let REGISTER_URL = "https://api.schoolpower.studio:8443/api/notifications/register.php"
+let WEBSITE_URL = "https://www.schoolpower.studio"
+let CODE_URL = "https://github.com/SchoolPower"
+let SUPPORT_EMAIL = "harryyunull@gmail.com"
+
+let TOKEN_KEY_NAME = "apns_token"
+let LANGUAGE_KEY_NAME = "language"
+let DASHBOARD_DISPLAY_KEY_NAME = "dashboardDisplays"
+let SHOW_INACTIVE_KEY_NAME = "showInactive"
+let ENABLE_NOTIFICATION_KEY_NAME = "enableNotification"
+let SHOW_GRADES_KEY_NAME = "showGradesInNotification"
+let NOTIFY_UNGRADED_KEY_NAME = "notifyUngraded"
+let LOGGED_IN_KEY_NAME = "loggedin"
+let USERNAME_KEY_NAME = "username"
+let PASSWORD_KEY_NAME = "password"
+let STUDENT_NAME_KEY_NAME = "studentname"
+
+let keySetse = ["language", "dashboardDisplays", "showInactive", "enableNotification", "showGradesInNotification", "notifyUngraded"]
+
+let JSON_FILE_NAME = "dataMap.json"
+
+let LOCALE_SET = [Locale().initWithLanguageCode(languageCode: Bundle.main.preferredLocalizations.first! as NSString,
+                                                countryCode: "gb", name: "United Kingdom"),
+                  Locale().initWithLanguageCode(languageCode: "en", countryCode: "gb", name: "United Kingdom"),
+                  Locale().initWithLanguageCode(languageCode: "zh-Hant", countryCode: "cn", name: "China"),
+                  Locale().initWithLanguageCode(languageCode: "zh-Hans", countryCode: "cn", name: "China")]
+
+let userDefaults = UserDefaults.standard
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     let userDefaults = UserDefaults.standard
-    let KEY_NAME = "loggedin"
-    let TOKEN_KEY_NAME = "apns_token"
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
+        registerUserDefaults()
         IQKeyboardManager.sharedManager().enable = true
         DGLocalization.sharedInstance.startLocalization()
         GADMobileAds.configure(withApplicationID: "ca-app-pub-9841217337381410~2237579488")
@@ -38,17 +67,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let story = UIStoryboard(name: "Main", bundle: nil)
         var gotoController: UIViewController
-        if userDefaults.object(forKey: KEY_NAME) == nil {
-            
-            userDefaults.register(defaults: [KEY_NAME: false])
-            userDefaults.synchronize()
-        }
-        if userDefaults.bool(forKey: KEY_NAME) {
+        
+        if userDefaults.bool(forKey: LOGGED_IN_KEY_NAME) {
             
             gotoController = story.instantiateViewController(withIdentifier: "DashboardNav")
             gotoController.view.tag = 1
             let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
             UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(rootViewController: gotoController, leftViewController: leftViewController, rightViewController: nil)
+            
         } else {
             
             gotoController = story.instantiateViewController(withIdentifier: "login")
@@ -60,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
         let tokenParts = deviceToken.map { data -> String in
             return String(format: "%02.2hhx", data)
         }
@@ -67,8 +94,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = tokenParts.joined()
         
         if userDefaults.object(forKey: TOKEN_KEY_NAME) == nil {
+            
             userDefaults.register(defaults: [TOKEN_KEY_NAME: token])
             userDefaults.synchronize()
+            
+            let username = userDefaults.string(forKey: USERNAME_KEY_NAME)
+            let password = userDefaults.string(forKey: PASSWORD_KEY_NAME)
+            
+            //Send Post If It's Logged In And Had Just Registered for a Token
+            if  username != nil && password != nil {
+                Utils.sendNotificationRegistry(token: token, username: username!, password: password!)
+            }
+            
         } else {
             userDefaults.set(token, forKey: TOKEN_KEY_NAME)
         }
@@ -118,9 +155,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //    }
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        if userDefaults.bool(forKey: "enableNotification") {
-            let showGrades = userDefaults.bool(forKey: "showGradesInNotification")
-            let showUngraded = userDefaults.bool(forKey: "notifyUngraded")
+        if userDefaults.bool(forKey:ENABLE_NOTIFICATION_KEY_NAME) {
+            
+            let showGrades = userDefaults.bool(forKey: SHOW_GRADES_KEY_NAME)
+            let showUngraded = userDefaults.bool(forKey: NOTIFY_UNGRADED_KEY_NAME)
             
             var messageBody = ""
             
@@ -182,8 +220,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func registerForPushNotifications(application: UIApplication) {
         
         if #available(iOS 10.0, *) {
+            
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
                 (granted, error) in
+                
                 guard granted else { return }
                 //See if the premission is still there
                 UNUserNotificationCenter.current().getNotificationSettings { (settings) in
@@ -192,12 +232,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         } else {
+            
             //For lower than iOS 10.0
             let notificationTypes: UIUserNotificationType = [.alert, .badge, .sound]
             let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
             application.registerUserNotificationSettings(pushNotificationSettings)
             application.registerForRemoteNotifications()
         }
+    }
+    
+    func registerUserDefaults(){
+        
+        if userDefaults.object(forKey: LANGUAGE_KEY_NAME) == nil { userDefaults.register(defaults: [LANGUAGE_KEY_NAME: 0]) }
+        if userDefaults.object(forKey: DASHBOARD_DISPLAY_KEY_NAME) == nil { userDefaults.register(defaults: [DASHBOARD_DISPLAY_KEY_NAME: 1]) }
+        if userDefaults.object(forKey: SHOW_INACTIVE_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_INACTIVE_KEY_NAME: false]) }
+        if userDefaults.object(forKey: ENABLE_NOTIFICATION_KEY_NAME) == nil { userDefaults.register(defaults: [ENABLE_NOTIFICATION_KEY_NAME: true]) }
+        if userDefaults.object(forKey: SHOW_GRADES_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_GRADES_KEY_NAME: true]) }
+        if userDefaults.object(forKey: NOTIFY_UNGRADED_KEY_NAME) == nil { userDefaults.register(defaults: [NOTIFY_UNGRADED_KEY_NAME: true]) }
+        if userDefaults.object(forKey: LOGGED_IN_KEY_NAME) == nil { userDefaults.register(defaults: [LOGGED_IN_KEY_NAME: false]) }
+        
+        userDefaults.synchronize()
     }
 }
 

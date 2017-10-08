@@ -39,9 +39,6 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var showGradesSwitch: UISwitch!
     @IBOutlet weak var notifyUngradedSwitch: UISwitch!
     
-    let userDefaults = UserDefaults.standard
-    let keySets = ["language", "dashboardDisplays", "showInactive", "enableNotification", "showGradesInNotification", "notifyUngraded"]
-    
     override func viewWillAppear(_ animated: Bool) {
         
         self.title = "settings".localize
@@ -50,7 +47,6 @@ class SettingsTableViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         
-        registerDefaults()
         loadDetails()
         tableView.reloadData()
     }
@@ -75,17 +71,7 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    func registerDefaults(){
-        
-        if userDefaults.object(forKey: keySets[0]) == nil { userDefaults.register(defaults: [keySets[0]: 0]) }
-        if userDefaults.object(forKey: keySets[1]) == nil { userDefaults.register(defaults: [keySets[1]: 1]) }
-        if userDefaults.object(forKey: keySets[2]) == nil { userDefaults.register(defaults: [keySets[2]: false]) }
-        if userDefaults.object(forKey: keySets[3]) == nil { userDefaults.register(defaults: [keySets[3]: true]) }
-        if userDefaults.object(forKey: keySets[4]) == nil { userDefaults.register(defaults: [keySets[4]: true]) }
-        if userDefaults.object(forKey: keySets[5]) == nil { userDefaults.register(defaults: [keySets[5]: true]) }
-        
-        userDefaults.synchronize()
-    }
+    
     
     func loadDetails() {
         
@@ -102,35 +88,35 @@ class SettingsTableViewController: UITableViewController {
         visitWebsiteTitle?.text = "visit_website".localize
         getSourceCodeTitle?.text = "source_code".localize
         
-        languageDetail?.text = descriptionSets[0][userDefaults.integer(forKey: keySets[0])]
-        dspDetail?.text = descriptionSets[1][userDefaults.integer(forKey: keySets[1])]
+        languageDetail?.text = descriptionSets[0][userDefaults.integer(forKey: LANGUAGE_KEY_NAME)]
+        dspDetail?.text = descriptionSets[1][userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME)]
         reportBugDetail?.text = "report_bug_summary".localize
         
-        showInactiveSwitch.setOn(userDefaults.bool(forKey: keySets[2]), animated: false)
-        enableNotificationSwitch.setOn(userDefaults.bool(forKey: keySets[3]), animated: false)
-        showGradesSwitch.setOn(userDefaults.bool(forKey: keySets[4]), animated: false)
-        notifyUngradedSwitch.setOn(userDefaults.bool(forKey: keySets[5]), animated: false)
+        showInactiveSwitch.setOn(userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME), animated: false)
+        enableNotificationSwitch.setOn(userDefaults.bool(forKey: ENABLE_NOTIFICATION_KEY_NAME), animated: false)
+        showGradesSwitch.setOn(userDefaults.bool(forKey: SHOW_GRADES_KEY_NAME), animated: false)
+        notifyUngradedSwitch.setOn(userDefaults.bool(forKey: NOTIFY_UNGRADED_KEY_NAME), animated: false)
     }
     
     @IBAction func showInactiveSwichOnChange(_ sender: Any) {
-        userDefaults.set(showInactiveSwitch.isOn, forKey: keySets[2])
+        userDefaults.set(showInactiveSwitch.isOn, forKey: SHOW_INACTIVE_KEY_NAME)
         userDefaults.synchronize()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateFilteredSubjects"), object: nil)
     }
     
     @IBAction func enableNotificationSwichOnChange(_ sender: Any) {
-        userDefaults.set(enableNotificationSwitch.isOn, forKey: keySets[3])
+        userDefaults.set(enableNotificationSwitch.isOn, forKey: ENABLE_NOTIFICATION_KEY_NAME)
         userDefaults.synchronize()
     }
     
     @IBAction func showGradesSwichOnChange(_ sender: Any) {
-        userDefaults.set(showGradesSwitch.isOn, forKey: keySets[4])
+        userDefaults.set(showGradesSwitch.isOn, forKey: SHOW_GRADES_KEY_NAME)
         userDefaults.synchronize()
     }
     
     
     @IBAction func notifyUngradedSwichOnChange(_ sender: Any) {
-        userDefaults.set(notifyUngradedSwitch.isOn, forKey: keySets[5])
+        userDefaults.set(notifyUngradedSwitch.isOn, forKey: NOTIFY_UNGRADED_KEY_NAME)
         userDefaults.synchronize()
     }
 }
@@ -152,10 +138,10 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 }
                 break
             case 1:
-                UIApplication.shared.openURL(NSURL(string:"https://www.schoolpower.studio")! as URL)
+                UIApplication.shared.openURL(NSURL(string: WEBSITE_URL)! as URL)
                 break
             case 2:
-                UIApplication.shared.openURL(NSURL(string:"https://github.com/SchoolPower")! as URL)
+                UIApplication.shared.openURL(NSURL(string: CODE_URL)! as URL)
                 break
             default:
                 break
@@ -166,7 +152,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
-        mailComposerVC.setToRecipients(["harryyunull@gmail.com"])
+        mailComposerVC.setToRecipients([SUPPORT_EMAIL])
         mailComposerVC.setSubject("bug_report_email_subject".localize)
         mailComposerVC.setMessageBody("bug_report_email_content".localize, isHTML: false)
         

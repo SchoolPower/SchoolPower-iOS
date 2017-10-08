@@ -30,8 +30,6 @@ class LoginViewController: UIViewController {
     var button: FABButton!
     
     let userDefaults = UserDefaults.standard
-    let JSON_FILE_NAME = "dataMap.json"
-    let TOKEN_KEY_NAME = "apns_token"
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -50,7 +48,8 @@ class LoginViewController: UIViewController {
     func popUp() {
         
         if toPop {
-            UIAlertView(title: "notification".localize, message: "only_alert".localize, delegate: nil, cancelButtonTitle: "i_understand".localize).show()
+            UIAlertView(title: "notification".localize, message: "only_alert".localize,
+                        delegate: nil, cancelButtonTitle: "i_understand".localize).show()
             toPop = false
         }
     }
@@ -72,7 +71,8 @@ class LoginViewController: UIViewController {
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
         
         //Send Post
-        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/get_data.php", params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=login"){ (value) in
+        Utils.sendPost(url: GET_DATA_URL,
+                       params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=login"){ (value) in
             
             alert.dismiss(withClickedButtonIndex: -1, animated: true)
             let response = value
@@ -80,17 +80,18 @@ class LoginViewController: UIViewController {
             if response.contains("error") {self.showSnackbar(msg: "invalidup".localize)}
             else if response.contains("{") {
                 
-                self.userDefaults.set(username, forKey: "username")
-                self.userDefaults.set(password, forKey: "password")
-                self.userDefaults.set(true, forKey: "loggedin")
-                let (studentInfo, data)=Utils.parseJsonResult(jsonStr: response)
-                self.userDefaults.set(studentInfo.getFullName(), forKey: "studentname")
+                self.userDefaults.set(username, forKey: USERNAME_KEY_NAME)
+                self.userDefaults.set(password, forKey: PASSWORD_KEY_NAME)
+                self.userDefaults.set(true, forKey: LOGGED_IN_KEY_NAME)
+                
+                let (studentInfo, data) = Utils.parseJsonResult(jsonStr: response)
+                self.userDefaults.set(studentInfo.getFullName(), forKey: STUDENT_NAME_KEY_NAME)
                 self.userDefaults.synchronize()
                 
-                let token = self.userDefaults.string(forKey: self.TOKEN_KEY_NAME)
-                if token != nil && token != "" { self.sendNotificationRegistry(token: token!, username: username!, password: password!) }
+                let token = self.userDefaults.string(forKey: TOKEN_KEY_NAME)
+                if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!, username: username!, password: password!) }
                 
-                Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: response)
+                Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
                 Utils.saveHistoryGrade(data: data)
                 self.startMainViewController()
                 
@@ -114,11 +115,7 @@ class LoginViewController: UIViewController {
         UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(rootViewController: mainController, leftViewController: leftViewController, rightViewController: nil)
     }
     
-    func sendNotificationRegistry(token: String, username: String, password: String) {
-        
-        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/notification/register", params: "device_token=\(token)&username=\(username)&password=\(password)"){ (value) in
-        }
-    }
+    
     
     func showSnackbar(msg: String) {
         

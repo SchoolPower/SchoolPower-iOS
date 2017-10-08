@@ -23,18 +23,14 @@ class LanguageTableViewController: UITableViewController {
     @IBOutlet weak var itemchit: UITableViewCell?
     @IBOutlet weak var itemchis: UITableViewCell?
     @IBOutlet weak var itemdefLable: UILabel?
-    
-    let LocaleSet = [Locale().initWithLanguageCode(languageCode: Bundle.main.preferredLocalizations.first! as NSString, countryCode: "gb", name: "United Kingdom"), Locale().initWithLanguageCode(languageCode: "en", countryCode: "gb", name: "United Kingdom"), Locale().initWithLanguageCode(languageCode: "zh-Hant", countryCode: "cn", name: "China"), Locale().initWithLanguageCode(languageCode: "zh-Hans", countryCode: "cn", name: "China")]
-    
-    let userDefaults = UserDefaults.standard
-    let keyName = "language"
+  
     var languageIndex: Int = 0
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.title = "language".localize
-        languageIndex = userDefaults.integer(forKey: keyName)
+        languageIndex = userDefaults.integer(forKey: LANGUAGE_KEY_NAME)
         loadCells()
     }
     
@@ -53,9 +49,9 @@ class LanguageTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
         
-        userDefaults.set(indexPath.row, forKey: keyName)
+        userDefaults.set(indexPath.row, forKey: LANGUAGE_KEY_NAME)
         userDefaults.synchronize()
-        let selectedLang = LocaleSet[indexPath.row]
+        let selectedLang = LOCALE_SET[indexPath.row]
         DGLocalization.sharedInstance.setLanguage(withCode: selectedLang)
         
         self.navigationController?.popViewController(animated: true)

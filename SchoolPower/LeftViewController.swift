@@ -20,7 +20,6 @@ import VTAcknowledgementsViewController
 
 class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let JSON_FILE_NAME = "dataMap.json"
     var presentFragment: Int?
     
     @IBOutlet weak var table: UITableView?
@@ -28,7 +27,6 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var headerUserID: UILabel?
     
     let userDefaults = UserDefaults.standard
-    let KEY_NAME = "loggedin"
     
     open override func viewDidLoad() {
         
@@ -43,8 +41,8 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         table?.separatorColor = .clear
         table?.contentInset = UIEdgeInsetsMake(16, 0, 0, 0)
         
-        headerUsername?.text = userDefaults.string(forKey: "studentname")
-        headerUserID?.text = "userid".localize + userDefaults.string(forKey: "username")!
+        headerUsername?.text = userDefaults.string(forKey: STUDENT_NAME_KEY_NAME)
+        headerUserID?.text = "userid".localize + userDefaults.string(forKey: USERNAME_KEY_NAME)!
     }
     
     func reloadData() {
@@ -63,7 +61,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func logOut() {
         
-        userDefaults.set(false, forKey: KEY_NAME)
+        userDefaults.set(false, forKey: LOGGED_IN_KEY_NAME)
         Utils.saveHistoryGrade(data: nil)
         Utils.saveStringToFile(filename: JSON_FILE_NAME, data: "")
         startLoginController()

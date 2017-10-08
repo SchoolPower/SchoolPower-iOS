@@ -37,8 +37,6 @@ class MainTableViewController: UITableViewController {
     var storedOffsets = [Int: CGFloat]()
 
     let userDefaults = UserDefaults.standard
-    let JSON_FILE_NAME = "dataMap.json"
-    let KEY_NAME = "loggedin"
 
     override func viewWillAppear(_ animated: Bool) {
         
@@ -75,7 +73,7 @@ class MainTableViewController: UITableViewController {
     }
     
     func updateFilteredSubjects(){
-        if (!userDefaults.bool(forKey: "showInactive")) {
+        if (!userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME)) {
             filteredSubjects = [Subject]()
             for subject in subjects{
                 if subject.getLatestItemGrade().letter != "--" || !subject.assignments.isEmpty {
@@ -270,11 +268,12 @@ extension MainTableViewController {
     func initDataJson() {
 
         var oldSubjects = [Subject]()
-        let username = userDefaults.string(forKey: "username")
-        let password = userDefaults.string(forKey: "password")
+        let username = userDefaults.string(forKey: USERNAME_KEY_NAME)
+        let password = userDefaults.string(forKey: PASSWORD_KEY_NAME)
         oldSubjects += subjects
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
-        Utils.sendPost(url: "https://api.schoolpower.studio:8443/api/2.0/get_data.php", params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=manual_get_data") { (value) in
+        Utils.sendPost(url: GET_DATA_URL,
+                       params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=manual_get_data") { (value) in
 
             let response = value
             if response.contains("NETWORK_ERROR") {
@@ -297,7 +296,7 @@ extension MainTableViewController {
                     return
                 }
 
-                Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: response)
+                Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
                 (_, subjects) = Utils.parseJsonResult(jsonStr: response)
                 self.updateFilteredSubjects()
                 Utils.saveHistoryGrade(data: subjects)
@@ -344,9 +343,9 @@ extension MainTableViewController {
 
     func logOut() {
 
-        userDefaults.set(false, forKey: KEY_NAME)
+        userDefaults.set(false, forKey: LOGGED_IN_KEY_NAME)
         Utils.saveHistoryGrade(data: nil)
-        Utils.saveStringToFile(filename: self.JSON_FILE_NAME, data: "")
+        Utils.saveStringToFile(filename: JSON_FILE_NAME, data: "")
         startLoginController()
     }
 

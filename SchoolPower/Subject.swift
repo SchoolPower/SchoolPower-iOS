@@ -84,10 +84,9 @@ class Subject {
             grades[key]=Grade(percentage: String(Int(Double(grade["percent"].stringValue)!)),
                               letter: grade["letter"].stringValue)
         }
-        
     }
     
-    func getLatestItem(forLatestSemester: Bool = Utils.userDefaults.integer(forKey: Utils.KEY_NAME) == 1) -> String {
+    func getLatestItem(forLatestSemester: Bool = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME) == 1) -> String {
         
         var termsList = [String]()
         
@@ -114,7 +113,7 @@ class Subject {
         }
     }
     
-    func getLatestItemGrade(forLatestSemester: Bool = Utils.userDefaults.integer(forKey: Utils.KEY_NAME) == 1) -> Grade {
+    func getLatestItemGrade(forLatestSemester: Bool = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME) == 1) -> Grade {
         return grades[getLatestItem(forLatestSemester: forLatestSemester)] ?? Grade(percentage: "--", letter: "--")
     }
 }

@@ -72,10 +72,10 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
                 }
                 break
             case 1:
-                UIApplication.shared.openURL(NSURL(string:"https://www.schoolpower.studio")! as URL)
+                UIApplication.shared.openURL(NSURL(string: WEBSITE_URL)! as URL)
                 break
             default:
-                UIApplication.shared.openURL(NSURL(string:"https://github.com/SchoolPower")! as URL)
+                UIApplication.shared.openURL(NSURL(string: CODE_URL)! as URL)
                 break
             }
         case 3:
@@ -89,7 +89,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
-        mailComposerVC.setToRecipients(["harryyunull@gmail.com"])
+        mailComposerVC.setToRecipients([SUPPORT_EMAIL])
         mailComposerVC.setSubject("bug_report_email_subject".localize)
         mailComposerVC.setMessageBody("bug_report_email_content".localize, isHTML: false)
         

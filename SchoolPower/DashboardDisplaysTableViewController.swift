@@ -24,14 +24,13 @@ class DashboardDisplaysTableViewController: UITableViewController {
     @IBOutlet weak var itemSemester: UITableViewCell?
     
     let userDefaults = UserDefaults.standard
-    let keyName = "dashboardDisplays"
     var dspIndex: Int = 0
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.title = "dashboardDisplays".localize
-        dspIndex = userDefaults.integer(forKey: keyName)
+        dspIndex = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME)
         loadCells()
     }
     
@@ -52,7 +51,7 @@ class DashboardDisplaysTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
         
-        userDefaults.set(indexPath.row, forKey: keyName)
+        userDefaults.set(indexPath.row, forKey: DASHBOARD_DISPLAY_KEY_NAME)
         userDefaults.synchronize()
         
         self.navigationController?.popViewController(animated: true)
