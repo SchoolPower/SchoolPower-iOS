@@ -124,94 +124,111 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Failed to register: \(error)")
     }
     
-    //Handle silent remote notification and send a local notification
-    //Desired APNS Format Example:
-    //    {
-    //        "aps": {
-    //            "content-available": 1
-    //        },
-    //        "updated-subjects": {
-    //            "English 11": [
-    //                {
-    //                    "name": "Poem",
-    //                    "score": "1/10"
-    //                },
-    //                {
-    //                    "name": "Essay",
-    //                    "score": "10/10"
-    //                }
-    //            ],
-    //            "Chemistry 11": [
-    //                {
-    //                    "name": "Memrise",
-    //                    "score": "--"
-    //                },
-    //                {
-    //                    "name": "Quiz",
-    //                    "score": "9/10"
-    //                }
-    //            ]
-    //        }
-    //    }
+    func sendNewAssignmentNotification(messageBody: String, assignmentNum : Int){
+        
+        if #available(iOS 10.0, *) {
+            
+            let notification = UNMutableNotificationContent()
+            notification.sound = UNNotificationSound.default()
+            notification.title = "\(String(assignmentNum)) \("notification_new".localize)"
+            notification.body = messageBody
+            notification.badge = ((notification.badge?.intValue)! + assignmentNum) as NSNumber
+            
+            let identifier = "newAssignmentNotification"
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+            let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+                print("Cannot Send Notification")
+            })
+            
+        } else {
+            
+            let notification = UILocalNotification()
+            if #available(iOS 8.2, *) { notification.alertTitle = "SchoolPower" }
+            
+            notification.soundName = UILocalNotificationDefaultSoundName
+            notification.fireDate = Date.init(timeIntervalSinceNow: 0)
+            notification.applicationIconBadgeNumber += assignmentNum
+            notification.alertBody = "\(String(assignmentNum)) \("notification_new".localize): \(messageBody)"
+            
+            UIApplication.shared.scheduleLocalNotification(notification)
+        }
+    }
+    
+    // Handle silent remote notification and send a local notification
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        if userDefaults.bool(forKey:ENABLE_NOTIFICATION_KEY_NAME) {
-            
-            let showGrades = userDefaults.bool(forKey: SHOW_GRADES_KEY_NAME)
-            let showUngraded = userDefaults.bool(forKey: NOTIFY_UNGRADED_KEY_NAME)
-            
-            var messageBody = ""
-            
-            if let updatedSubjects = userInfo["updated-subjects"] as? NSDictionary {
-                if updatedSubjects.count != 0 {
-                    for subject in updatedSubjects {
-                        for assignment in (subject.value as? NSArray)! {
-                            let assignmentDic = assignment as? NSDictionary
-                            let assignmentName = (assignmentDic?.value(forKey: "name") as? String)!
-                            let assignmentScore = (assignmentDic?.value(forKey: "score") as? String)!
+        if userDefaults.bool(forKey:ENABLE_NOTIFICATION_KEY_NAME)
+            && userDefaults.bool(forKey: LOGGED_IN_KEY_NAME)
+        {
+
+            if let newSubjectJSON = userInfo["subject_data"] as? String {
+                
+                let showGrades = userDefaults.bool(forKey: SHOW_GRADES_KEY_NAME)
+                let showUngraded = userDefaults.bool(forKey: NOTIFY_UNGRADED_KEY_NAME)
+
+                var subjects : [Subject]
+                var oldSubjects : [Subject]
+                
+                (_, subjects) = Utils.parseJsonResult(jsonStr: newSubjectJSON)
+                (_, oldSubjects) = Utils.readDataArrayList()!
+                
+                var updatedSubjects : [String] = []
+                var updatedGradedSubjects : [String] = []
+                // Diff
+                if subjects.count == oldSubjects.count {
+                    for i in 0...subjects.count - 1 {
+                        
+                        let newAssignmentListCollection = subjects[i].assignments
+                        let oldAssignmentListCollection = oldSubjects[i].assignments
+                        for item in newAssignmentListCollection {
                             
-                            if !(assignmentScore.contains("--") && !showUngraded) {
-                                if !messageBody.isEmpty { messageBody.append(", ") }
-                                messageBody.append("\(assignmentName)")
-                                if showGrades { messageBody.append("(\(assignmentScore))") }
+                            var newItem = true
+                            var newGrade = true // this does not include the case that grade is unpublished
+                            var grade = ""
+                            
+                            for it in oldAssignmentListCollection {
+                                if it.title == item.title && it.date == item.date {
+                                    newItem = false // if there is a item in old data that matches its name, then it is not a new assignment.
+                                    if it.score == item.score || it.score != "--"{ // if the score is the same or becoming unpublished, then its grade is not new.
+                                        newGrade = false
+                                    }
+                                    else { // otherwise, the grade is new.
+                                        grade = it.score
+                                        
+                                    }
+                                }
                             }
+                            if (newItem && item.score != "--") { // if it is new item and have a grade
+                                newGrade = true // the grade is new.
+                                grade = item.score
+                            } else if (item.score == "--"){
+                                newGrade = false
+                            }
+                            // Possible outcome:
+                            // newItem == false && newGrade == true: when the item is not new but the grade is new (either being changed or just published). In this case, variable grade will be set.
+                            // newItem == false && newGrade == false: when the item and the grade are both not new (either still not published or it is the same grade).
+                            // newItem == true && newGrade == true: when a new graded assignment is published.
+                            // newItem == true && newGrade == false: when a ungraded assignment is published.
+                            
+                            if (newGrade || (newItem && showUngraded)) {
+                                if (newGrade && showGrades){
+                                    updatedGradedSubjects.append("\(item.title)(\(grade)/\(item.maximumScore))")
+                                }
+                                else{
+                                    updatedSubjects.append(item.title)
+                                }
+                            }
+                        }
+                        if updatedSubjects.count != 0 || updatedGradedSubjects.count != 0 {
+                            var allSubjects : [String] = updatedSubjects
+                            allSubjects.append(contentsOf: updatedGradedSubjects)
+                            sendNewAssignmentNotification(messageBody: allSubjects.joined(separator: ","), assignmentNum: allSubjects.count)
                         }
                     }
                     
-                    if !messageBody.isEmpty {
-                        
-                        let assignmentNum = messageBody.components(separatedBy: ",").count
-                        
-                        if #available(iOS 10.0, *) {
-                            
-                            let notification = UNMutableNotificationContent()
-                            notification.sound = UNNotificationSound.default()
-                            notification.title = "\(String(assignmentNum)) \("notification_new".localize)"
-                            notification.body = messageBody
-                            notification.badge = ((notification.badge?.intValue)! + assignmentNum) as NSNumber
-                            
-                            let identifier = "newAssignmentNotification"
-                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
-                            let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: trigger)
-                            
-                            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
-                                print("Cannot Send Notification")
-                            })
-                            
-                        } else {
-                            
-                            let notification = UILocalNotification()
-                            if #available(iOS 8.2, *) { notification.alertTitle = "SchoolPower" }
-                            
-                            notification.soundName = UILocalNotificationDefaultSoundName
-                            notification.fireDate = Date.init(timeIntervalSinceNow: 0)
-                            notification.applicationIconBadgeNumber += assignmentNum
-                            notification.alertBody = "\(String(assignmentNum)) \("notification_new".localize): \(messageBody)"
-                            
-                            UIApplication.shared.scheduleLocalNotification(notification)
-                        }
-                        completionHandler(.newData)
-                    }
+                    completionHandler(.newData)
                 } else { completionHandler(.noData) }
             } else { completionHandler(.failed) }
         } else { completionHandler(.failed) }
