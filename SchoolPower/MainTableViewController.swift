@@ -285,7 +285,7 @@ extension MainTableViewController {
                 return
             }
 
-            if response.contains("wrong") {
+            if response.contains("Something went wrong! Invalid Username or password") {
 
                 self.showSnackbar(msg: "invalidup".localize)
                 self.logOut()

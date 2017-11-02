@@ -61,6 +61,7 @@
 "all" = "All";
 "notification" = "Notification";
 "only_alert" = "SchoolPower is currently ONLY available for the students in Maple Leaf Education System (MLES) in China.";
+"i_understand" = "I Understand";
 "notification_header" = "Notification";
 "enable_notification" = "Enable notifications";
 "show_inactive_summary" = "Show subjects that currently have no assignment and grade.";

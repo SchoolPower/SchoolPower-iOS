@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
             alert.dismiss(withClickedButtonIndex: -1, animated: true)
             let response = value
             
-            if response.contains("error") {self.showSnackbar(msg: "invalidup".localize)}
+            if response.contains("Something went wrong! Invalid Username or password") {self.showSnackbar(msg: "invalidup".localize)}
             else if response.contains("{") {
                 
                 self.userDefaults.set(username, forKey: USERNAME_KEY_NAME)

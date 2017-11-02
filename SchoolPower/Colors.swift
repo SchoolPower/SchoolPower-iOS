@@ -62,14 +62,21 @@ class Colors{
     
     static let chartColorList = [
         
-        UIColor(rgb: 0x065143),
-        UIColor(rgb: 0x00072D),
-        UIColor(rgb: 0x996888),
-        UIColor(rgb: 0x802392),
-        UIColor(rgb: 0x5762D5),
-        UIColor(rgb: 0xDD6E42),
-        UIColor(rgb: 0xFFD166),
-        UIColor(rgb: 0xD81159),
-        UIColor(rgb: 0xA23E48)
+        UIColor(rgb: 0xff1744),
+        UIColor(rgb: 0xf50057),
+        UIColor(rgb: 0xd500f9),
+        UIColor(rgb: 0x651fff),
+        UIColor(rgb: 0x3d5afe),
+        UIColor(rgb: 0x00b0ff),
+        UIColor(rgb: 0x00e5ff),
+        UIColor(rgb: 0x00e676),
+        UIColor(rgb: 0x76ff03),
+        UIColor(rgb: 0xc6ff00),
+        UIColor(rgb: 0xffea00),
+        UIColor(rgb: 0xffc400),
+        UIColor(rgb: 0xff3d00),
+        UIColor(rgb: 0xff9100),
+        UIColor(rgb: 0x3e2723)
+        
     ]
 }
