@@ -442,7 +442,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 62CFC9891EFA9940002B4A8D /* Build configuration list for PBXProject "SchoolPower 2" */;
+			buildConfigurationList = 62CFC9891EFA9940002B4A8D /* Build configuration list for PBXProject "SchoolPower" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -915,7 +915,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		62CFC9891EFA9940002B4A8D /* Build configuration list for PBXProject "SchoolPower 2" */ = {
+		62CFC9891EFA9940002B4A8D /* Build configuration list for PBXProject "SchoolPower" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				62CFC9B41EFA9940002B4A8D /* Debug */,
