@@ -95,8 +95,7 @@ class LoginViewController: UIViewController {
                 self.userDefaults.synchronize()
                 
                 let token = self.userDefaults.string(forKey: TOKEN_KEY_NAME)
-                if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!,
-                        username: username!, password: password!) }
+                if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!) }
 
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
                 Utils.saveHistoryGrade(data: data)

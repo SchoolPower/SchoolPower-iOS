@@ -163,11 +163,8 @@ extension Utils {
         task.resume()
     }
     
-    static func sendNotificationRegistry(token: String, username: String, password: String) {
-        self.sendPost(url: REGISTER_URL,
-                params: "device_token=\(token)" +
-                        "&username=\(username)" +
-                        "&password=\(password)"){ (value) in }
+    static func sendNotificationRegistry(token: String) {
+        self.sendPost(url: REGISTER_URL, params: "device_token=\(token)"){ (value) in }
     }
 }
 

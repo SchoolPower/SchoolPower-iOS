@@ -364,9 +364,6 @@ extension MainTableViewController {
         Utils.saveHistoryGrade(data: nil)
         Utils.saveStringToFile(filename: JSON_FILE_NAME, data: "")
         startLoginController()
-        if let token = userDefaults.string(forKey: TOKEN_KEY_NAME){
-            Utils.sendNotificationRegistry(token: token, username: "", password: "")
-        }
     }
 
     func startLoginController() {
