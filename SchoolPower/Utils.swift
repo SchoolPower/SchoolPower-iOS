@@ -31,8 +31,11 @@ extension JSON{
 
 class Utils {
     
-    static let gradeColorIds = [Colors.A_score_green, Colors.B_score_green, Colors.Cp_score_yellow, Colors.C_score_orange, Colors.Cm_score_red, Colors.primary_dark, Colors.primary, Colors.primary]
-    static let gradeColorIdsPlain = [Colors.A_score_green, Colors.B_score_green, Colors.Cp_score_yellow, Colors.C_score_orange, Colors.Cm_score_red, Colors.primary_dark, Colors.primary]
+    static let gradeColorIds = [Colors.A_score_green, Colors.B_score_green, Colors.Cp_score_yellow,
+                                Colors.C_score_orange, Colors.Cm_score_red, Colors.primary_dark,
+                                Colors.primary, Colors.primary]
+    static let gradeColorIdsPlain = [Colors.A_score_green, Colors.B_score_green, Colors.Cp_score_yellow,
+                                     Colors.C_score_orange, Colors.Cm_score_red, Colors.primary_dark, Colors.primary]
     static func indexOfString (searchString: String, domain: Array<String>) -> Int {
         return domain.index(of: searchString)!
     }
@@ -42,7 +45,8 @@ class Utils {
 extension Utils {
     
     static func getColorByLetterGrade(letterGrade: String) -> UIColor {
-        return UIColor(rgb: gradeColorIds[indexOfString(searchString: letterGrade, domain: ["A", "B", "C+", "C", "C-", "F", "I", "--"])])
+        return UIColor(rgb: gradeColorIds[indexOfString(searchString: letterGrade,
+                domain: ["A", "B", "C+", "C", "C-", "F", "I", "--"])])
     }
     
     static func getLetterGradeByPercentageGrade(percentageGrade: Double) -> String {
@@ -160,7 +164,10 @@ extension Utils {
     }
     
     static func sendNotificationRegistry(token: String, username: String, password: String) {
-        self.sendPost(url: REGISTER_URL, params: "device_token=\(token)&username=\(username)&password=\(password)"){ (value) in }
+        self.sendPost(url: REGISTER_URL,
+                params: "device_token=\(token)" +
+                        "&username=\(username)" +
+                        "&password=\(password)"){ (value) in }
     }
 }
 

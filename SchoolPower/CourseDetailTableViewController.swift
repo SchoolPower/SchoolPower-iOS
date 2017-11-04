@@ -55,7 +55,8 @@ class CourseDetailTableViewController: UITableViewController {
     func initBannerView() {
         
         bannerView = GADBannerView(adSize: GADAdSize.init(size: CGSize.init(width: 320, height: 50), flags: 0))
-        bannerView.frame = CGRect.init(x: (self.view.frame.size.width - 320) / 2, y: self.view.frame.size.height - 50, width: 320, height: 50)
+        bannerView.frame = CGRect.init(x: (self.view.frame.size.width - 320) / 2,
+                y: self.view.frame.size.height - 50, width: 320, height: 50)
         
         self.view.addSubview(bannerView)
         let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
@@ -90,7 +91,8 @@ class CourseDetailTableViewController: UITableViewController {
     
     @IBAction func ChooseTermOnClick(_ sender: Any) {
         
-        let picker = ActionSheetStringPicker.init(title: "selectterm".localize, rows: termsList, initialSelection: currentTerm, doneBlock: {
+        let picker = ActionSheetStringPicker.init(title: "selectterm".localize, rows: termsList,
+                initialSelection: currentTerm, doneBlock: {
             picker, value, index in
             
             self.currentTerm = value

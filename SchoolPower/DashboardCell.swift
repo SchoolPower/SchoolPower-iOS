@@ -81,9 +81,10 @@ class DashboardCell: FoldingCell {
         super.awakeFromNib()
     }
     
-    override func animationDuration(_ itemIndex: NSInteger, type: FoldingCell.AnimationType) -> TimeInterval {
+    override func animationDuration(_ itemIndex:NSInteger, type:AnimationType)-> TimeInterval {
         
-        let durations = [0.26, 0.2, 0.2]
+        // durations count equal it itemCount
+        let durations = [0.33, 0.26, 0.26] // timing animation for each view
         return durations[itemIndex]
     }
 }

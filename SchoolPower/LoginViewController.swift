@@ -72,12 +72,18 @@ class LoginViewController: UIViewController {
         
         //Send Post
         Utils.sendPost(url: GET_DATA_URL,
-                       params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=login"){ (value) in
+                       params: "username=\(username!)" +
+                               "&password=\(password!)" +
+                               "&version=\(version)" +
+                               "&os=ios" +
+                               "&action=login"){ (value) in
             
             alert.dismiss(withClickedButtonIndex: -1, animated: true)
             let response = value
             
-            if response.contains("Something went wrong! Invalid Username or password") {self.showSnackbar(msg: "invalidup".localize)}
+            if response.contains("Something went wrong! Invalid Username or password") {
+                self.showSnackbar(msg: "invalidup".localize)
+            }
             else if response.contains("{") {
                 
                 self.userDefaults.set(username, forKey: USERNAME_KEY_NAME)
@@ -89,7 +95,8 @@ class LoginViewController: UIViewController {
                 self.userDefaults.synchronize()
                 
                 let token = self.userDefaults.string(forKey: TOKEN_KEY_NAME)
-                if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!, username: username!, password: password!) }
+                if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!,
+                        username: username!, password: password!) }
 
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
                 Utils.saveHistoryGrade(data: data)
@@ -103,7 +110,8 @@ class LoginViewController: UIViewController {
         
         toPop = true
         OperationQueue.main.addOperation {
-            self.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardNav"), animated: true, completion: self.updateRootViewController)
+            self.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashboardNav"),
+                    animated: true, completion: self.updateRootViewController)
         }
     }
     
@@ -112,7 +120,8 @@ class LoginViewController: UIViewController {
         let story = UIStoryboard(name: "Main", bundle: nil)
         let mainController = story.instantiateViewController(withIdentifier: "DashboardNav")
         let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
-        UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(rootViewController: mainController, leftViewController: leftViewController, rightViewController: nil)
+        UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(
+                rootViewController: mainController, leftViewController: leftViewController, rightViewController: nil)
     }
     
     
@@ -174,7 +183,8 @@ extension LoginViewController {
         passwordField.placeholderActiveColor = UIColor(rgb: Colors.accent)
         passwordField.dividerColor = UIColor(rgb: Colors.primary_darker)
         passwordField.dividerActiveColor = UIColor(rgb: Colors.accent)
-        passwordField.visibilityIconButton?.tintColor = UIColor(rgb: Colors.accent).withAlphaComponent(passwordField.isSecureTextEntry ? 0.38 : 1.0)
+        passwordField.visibilityIconButton?.tintColor = UIColor(rgb: Colors.accent)
+                .withAlphaComponent(passwordField.isSecureTextEntry ? 0.38 : 1.0)
         
         view.layout(passwordField).center(offsetY: +usernameField.height + 20).left(36).right(36)
     }

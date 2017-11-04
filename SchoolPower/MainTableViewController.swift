@@ -42,8 +42,10 @@ class MainTableViewController: UITableViewController {
         
         UIApplication.shared.applicationIconBadgeNumber = 0
 
-        let gpaItem = UIBarButtonItem(image: UIImage(named: "ic_grade_white")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(gpaOnClick))
-        let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(menuOnClick))
+        let gpaItem = UIBarButtonItem(image: UIImage(named: "ic_grade_white")?.withRenderingMode(.alwaysOriginal),
+                style: .plain, target: self, action: #selector(gpaOnClick))
+        let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal),
+                style: .plain, target: self, action: #selector(menuOnClick))
         self.navigationItem.rightBarButtonItems = [gpaItem]
         navigationItem.leftBarButtonItems = [menuItem]
 
@@ -55,7 +57,8 @@ class MainTableViewController: UITableViewController {
 
         self.title = "dashboard".localize
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilteredSubjects),name:NSNotification.Name(rawValue: "updateFilteredSubjects"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilteredSubjects),
+                name:NSNotification.Name(rawValue: "updateFilteredSubjects"), object: nil)
 
         tableView.reloadData()
     }
@@ -107,10 +110,13 @@ class MainTableViewController: UITableViewController {
     func initBannerView() {
 
         bannerView = GADBannerView(adSize: GADAdSize.init(size: CGSize.init(width: 320, height: 50), flags: 0))
-        bannerView.frame = CGRect.init(x: (self.view.frame.size.width - 320) / 2, y: self.view.frame.size.height - 50, width: 320, height: 50)
+        bannerView.frame = CGRect.init(x: (self.view.frame.size.width - 320) / 2,
+                y: self.view.frame.size.height - 50, width: 320, height: 50)
 
         self.view.addSubview(bannerView)
-        let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX,
+                relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX,
+                multiplier: 1, constant: 0)
         self.view.addConstraints([horizontalConstraint])
 
         /* TEST ID */
@@ -136,7 +142,8 @@ class MainTableViewController: UITableViewController {
 
         loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(rgb: Colors.accent)
-        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson() }, loadingView: loadingView)
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson() },
+                loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor(rgb: Colors.primary))
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
     }
@@ -155,7 +162,8 @@ class MainTableViewController: UITableViewController {
 
         if subjects.count == 0 {
 
-            UIAlertView(title: "gpa_not_available".localize, message: "gpa_not_available_because".localize, delegate: nil, cancelButtonTitle: "alright".localize)
+            UIAlertView(title: "gpa_not_available".localize, message: "gpa_not_available_because".localize,
+                    delegate: nil, cancelButtonTitle: "alright".localize)
                     .show()
 
         } else {
@@ -189,7 +197,8 @@ class MainTableViewController: UITableViewController {
                 }
             }
             if num == 0 {
-                UIAlertView(title: "gpa_not_available".localize, message: "gpa_not_available_because".localize, delegate: nil, cancelButtonTitle: "alright".localize)
+                UIAlertView(title: "gpa_not_available".localize, message: "gpa_not_available_because".localize,
+                        delegate: nil, cancelButtonTitle: "alright".localize)
                         .show()
                 return
             }
@@ -202,7 +211,8 @@ class MainTableViewController: UITableViewController {
 
             percentageLabel?.format = "%.3f%%"
             descriptionLabel?.text = String(format: "gpamessage".localize, periodApplied)
-            ring?.ring1.startColor = Utils.getColorByLetterGrade(letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: sum / doubleNum))
+            ring?.ring1.startColor = Utils.getColorByLetterGrade(
+                    letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: sum / doubleNum))
             ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
 
             gpaSegments?.sum = sum / doubleNum / 100
@@ -254,9 +264,11 @@ class MainTableViewController: UITableViewController {
         }
 
         ring?.ring1.progress = value
-        ring?.ring1.startColor = Utils.getColorByLetterGrade(letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: value * 100))
+        ring?.ring1.startColor = Utils.getColorByLetterGrade(
+                letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: value * 100))
         ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
-        percentageLabel?.countFrom(fromValue: strPos, to: Float(value * 100), withDuration: 1.0, andAnimationType: .EaseOut, andCountingType: .Custom)
+        percentageLabel?.countFrom(fromValue: strPos, to: Float(value * 100), withDuration: 1.0,
+                andAnimationType: .EaseOut, andCountingType: .Custom)
 
         CATransaction.commit()
     }
@@ -273,7 +285,11 @@ extension MainTableViewController {
         oldSubjects += subjects
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
         Utils.sendPost(url: GET_DATA_URL,
-                       params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=manual_get_data") { (value) in
+                       params: "username=\(username!)" +
+                               "&password=\(password!)" +
+                               "&version=\(version)" +
+                               "&os=ios" +
+                               "&action=manual_get_data") { (value) in
 
             let response = value
             if response.contains("NETWORK_ERROR") {
@@ -312,7 +328,8 @@ extension MainTableViewController {
                             var found = false
                             for it in oldAssignmentListCollection {
 
-                                if (it.title == item.title && it.score == item.score && it.date == item.date && !it.isNew) {
+                                if (it.title == item.title && it.score == item.score
+                                        && it.date == item.date && !it.isNew) {
                                     found = true
                                 }
                             }
@@ -354,7 +371,10 @@ extension MainTableViewController {
 
     func startLoginController() {
 
-        UIApplication.shared.delegate?.window??.rootViewController!.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "login"), animated: true, completion: updateRootViewController)
+        UIApplication.shared.delegate?.window??.rootViewController!
+                .present(UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "login"),
+                animated: true, completion: updateRootViewController)
     }
 
     func updateRootViewController() {
