@@ -75,17 +75,21 @@ class CourseDetailTableViewController: UITableViewController {
     }
     
     func setAllTerms(termsList: Array<String>) {
-        
-        if (termsList.count <= 1) { return }
-        if termsList.contains("Y1") { setTerm(term: "Y1") }
-        else if termsList.contains("S1") { setTerm(term: "S1") }
-        else if termsList.contains("S2") { setTerm(term: "S2") }
-        else { setTerm(term: termsList[1]) }
+
+        setTerm(term: "ANY")
     }
     
     func setTerm(term: String) {
-//        list = infoItem.getAssignmentItemArray(term: term)!
-        list = infoItem.assignments
+        if term=="ANY"{
+            list = infoItem.assignments
+            return
+        }
+        list = [Assignment]()
+        for assignment in infoItem.assignments{
+            if assignment.terms.contains(term){
+                list.append(assignment)
+            }
+        }
     }
     
     @IBAction func ChooseTermOnClick(_ sender: Any) {

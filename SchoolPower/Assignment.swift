@@ -55,7 +55,8 @@ class Assignment {
     var includeInFinalGrade: Bool
     var weight: String
     var maximumScore: String
-    
+    var terms: [String]
+
     init(json: JSON) {
         
         title = json["name"].stringValue
@@ -67,6 +68,7 @@ class Assignment {
         includeInFinalGrade = json["includeInFinalGrade"].stringValue == "1"
         weight = json["weight"].stringValue
         maximumScore = json["pointsPossible"].stringValue
+        terms = json["terms"].arrayObject as! [String]
     }
     
     func getDividedScore() -> String { return score+"/"+maximumScore; }
