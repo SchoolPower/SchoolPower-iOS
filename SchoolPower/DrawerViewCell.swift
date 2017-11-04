@@ -24,7 +24,7 @@ class DrawerFragmentCell: UITableViewCell {
     
     let images = [[UIImage(named: "ic_dashboard_white")?.withRenderingMode(.alwaysTemplate),
                    UIImage(named: "ic_insert_chart_white")?.withRenderingMode(.alwaysTemplate),
-                   UIImage(named: "ic_insert_chart_white")?.withRenderingMode(.alwaysTemplate)],
+                   UIImage(named: "ic_beenhere_white")?.withRenderingMode(.alwaysTemplate)],
                   [UIImage(named: "ic_settings_white")?.withRenderingMode(.alwaysTemplate),
                    UIImage(named: "ic_info_white")?.withRenderingMode(.alwaysTemplate),
                    UIImage(named: "ic_exit_to_app_white")?.withRenderingMode(.alwaysTemplate)]]
