@@ -16,6 +16,7 @@
 
 "dashboard" = "Dashboard";
 "charts" = "Charts";
+"attendance" = "Attendance";
 "settings" = "Settings";
 "signout" = "Sign Out";
 "default" = "System Default";
@@ -33,6 +34,7 @@
 "thisterm" = "This Term";
 "thissemester" = "This Semester";
 "the_score_of_this_term" = "The score of this term";
+"the_score_of_this_semester" = "The score of this Semester";
 "username" = "Username";
 "password" = "Password";
 "copyright" = "Copyright © 2017 SchoolPower Studio";

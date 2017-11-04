@@ -76,7 +76,6 @@ class CourseDetailTableViewController: UITableViewController {
     }
     
     func setAllTerms(termsList: Array<String>) {
-
         setTerm(term: "ANY")
     }
     

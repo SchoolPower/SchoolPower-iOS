@@ -23,6 +23,7 @@ class DrawerFragmentCell: UITableViewCell {
     @IBOutlet weak var background: UIView!
     
     let images = [[UIImage(named: "ic_dashboard_white")?.withRenderingMode(.alwaysTemplate),
+                   UIImage(named: "ic_insert_chart_white")?.withRenderingMode(.alwaysTemplate),
                    UIImage(named: "ic_insert_chart_white")?.withRenderingMode(.alwaysTemplate)],
                   [UIImage(named: "ic_settings_white")?.withRenderingMode(.alwaysTemplate),
                    UIImage(named: "ic_info_white")?.withRenderingMode(.alwaysTemplate),
@@ -33,7 +34,7 @@ class DrawerFragmentCell: UITableViewCell {
     var location: Int = 0 {
         
         didSet {
-            itemTitle.text = [["dashboard".localize, "charts".localize],
+            itemTitle.text = [["dashboard".localize, "charts".localize, "attendance".localize],
                               ["settings".localize, "about".localize, "signout".localize]][section][location]
             itemImage.image = images[section][location]
         }

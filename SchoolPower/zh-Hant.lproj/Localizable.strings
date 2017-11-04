@@ -16,6 +16,7 @@
 
 "dashboard" = "儀表盤";
 "charts" = "圖表";
+"attendance" = "出勤";
 "settings" = "設定";
 "signout" = "登出";
 "default" = "系統默認";

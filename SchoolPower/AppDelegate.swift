@@ -198,7 +198,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 for it in oldAssignmentListCollection {
                                     if it.title == item.title && it.date == item.date {
                                         newItem = false // if there is a item in old data that matches its name, then it is not a new assignment.
-                                        if it.score == item.score || it.score != "--"{ // if the score is the same or becoming unpublished, then its grade is not new.
+                                        if it.score == item.score || it.score == "--"{ // if the score is the same or becoming unpublished, then its grade is not new.
                                             newGrade = false
                                         }
                                         else { // otherwise, the grade is new.

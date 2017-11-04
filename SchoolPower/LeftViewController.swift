@@ -95,6 +95,8 @@ extension LeftViewController {
                 navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), duration: 0, options: [], animations: nil, completion: nil)
             case 1:
                 navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "ChartsNav"), duration: 0, options: [], animations: nil, completion: nil)
+            case 2:
+                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "AttendanceNav"), duration: 0, options: [], animations: nil, completion: nil)
             default:
                 navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), duration: 0, options: [], animations: nil, completion: nil)
             }
@@ -146,7 +148,7 @@ extension LeftViewController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
-        case 0: return 2
+        case 0: return 3
         case 1: return 3
         default: return 0
         }
