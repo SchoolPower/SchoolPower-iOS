@@ -90,7 +90,7 @@ class LoginViewController: UIViewController {
                 self.userDefaults.set(password, forKey: PASSWORD_KEY_NAME)
                 self.userDefaults.set(true, forKey: LOGGED_IN_KEY_NAME)
                 
-                let (studentInfo, data) = Utils.parseJsonResult(jsonStr: response)
+                let (studentInfo, _, data) = Utils.parseJsonResult(jsonStr: response)
                 self.userDefaults.set(studentInfo.getFullName(), forKey: STUDENT_NAME_KEY_NAME)
                 self.userDefaults.synchronize()
                 

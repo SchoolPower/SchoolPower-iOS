@@ -24,6 +24,7 @@ import DGElasticPullToRefresh
 
 var subjects = [Subject]()
 var filteredSubjects = [Subject]()
+var attendances = [Attendance]()
 
 class MainTableViewController: UITableViewController {
 
@@ -93,7 +94,7 @@ class MainTableViewController: UITableViewController {
         initUI()
         let input = Utils.readDataArrayList()
         if input != nil {
-            (_,subjects) = input!
+            (_,_,subjects) = input!
             updateFilteredSubjects()
         }
         if self.navigationController?.view.tag == 1 {
@@ -313,7 +314,7 @@ extension MainTableViewController {
                 }
 
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
-                (_, subjects) = Utils.parseJsonResult(jsonStr: response)
+                (_, attendances, subjects) = Utils.parseJsonResult(jsonStr: response)
                 self.updateFilteredSubjects()
                 Utils.saveHistoryGrade(data: subjects)
 

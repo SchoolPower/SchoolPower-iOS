@@ -87,7 +87,7 @@ extension Utils {
         return nil
     }
     
-    static func readDataArrayList() -> (StudentInformation, Array<Subject>)? {
+    static func readDataArrayList() -> (StudentInformation, [Attendance], [Subject])? {
         return parseJsonResult(jsonStr: readStringFromFile(filename: JSON_FILE_NAME)!)
     }
     
@@ -171,23 +171,26 @@ extension Utils {
 //MARK: Others
 extension Utils {
     
-    static func parseJsonResult(jsonStr: String) ->(StudentInformation, [Subject]) {
+    static func parseJsonResult(jsonStr: String) ->(StudentInformation, [Attendance], [Subject]) {
         
         let studentData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
         if (studentData["information"]==JSON.null) { // not successful
-            return (StudentInformation(json: "{}"), [Subject]())
+            return (StudentInformation(json: "{}"), [Attendance](), [Subject]())
         }
         let studentInfo = StudentInformation(json: studentData["information"])
         var subjects = [Subject]()
         for subject in studentData["sections"].arrayValue { subjects.append(Subject(json: subject)) }
-            
+        
+        var attendances = [Attendance]()
+        for attendance in studentData["attendences"].arrayValue { attendances.append(Attendance(json: attendance)) }
+        
         subjects = subjects.sorted {
             if $0.blockLetter == "HR(A-E)" { return true }
             if $1.blockLetter == "HR(A-E)" { return false }
             return $0.blockLetter < $1.blockLetter
         }
         
-        return (studentInfo, subjects)
+        return (studentInfo, attendances, subjects)
     }
     
     static func getShortName(subjectTitle: String)->String{

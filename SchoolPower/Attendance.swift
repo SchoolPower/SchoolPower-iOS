@@ -32,9 +32,9 @@ class Attendance {
     init(json: JSON) {
         
         code = json["code"].stringValue
-        description = json["description"].string ?? "--"
+        description = json["description"].stringValue
         date = json["date"].stringValue
-        period = json["period"].string ?? "--"
-        subject = json["name"].string ?? "--"
+        period = json["period"].stringValue
+        subject = json["name"].stringValue
     }
 }

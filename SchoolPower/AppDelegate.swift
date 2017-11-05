@@ -177,9 +177,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     var subjects : [Subject]
                     var oldSubjects : [Subject]
+                    var attendances : [Attendance]
+                    var oldAttendances : [Attendance]
                     
-                    (_, subjects) = Utils.parseJsonResult(jsonStr: response)
-                    (_, oldSubjects) = Utils.readDataArrayList()!
+                    (_, attendances, subjects) = Utils.parseJsonResult(jsonStr: response)
+                    (_, oldAttendances, oldSubjects) = Utils.readDataArrayList()!
                     
                     var updatedSubjects : [String] = []
                     var updatedGradedSubjects : [String] = []
