@@ -31,11 +31,42 @@ extension JSON{
 
 class Utils {
     
-    static let gradeColorIds = [Colors.A_score_green, Colors.B_score_green, Colors.Cp_score_yellow,
-                                Colors.C_score_orange, Colors.Cm_score_red, Colors.primary_dark,
-                                Colors.primary, Colors.primary]
-    static let gradeColorIdsPlain = [Colors.A_score_green, Colors.B_score_green, Colors.Cp_score_yellow,
-                                     Colors.C_score_orange, Colors.Cm_score_red, Colors.primary_dark, Colors.primary]
+    static let gradeColorIds = [
+        Colors.A_score_green,
+        Colors.B_score_green,
+        Colors.Cp_score_yellow,
+        Colors.C_score_orange,
+        Colors.Cm_score_red,
+        Colors.primary_dark,
+        Colors.primary,
+        Colors.primary
+    ]
+    
+    static let gradeColorIdsPlain = [
+        Colors.A_score_green,
+        Colors.B_score_green,
+        Colors.Cp_score_yellow,
+        Colors.C_score_orange,
+        Colors.Cm_score_red,
+        Colors.primary_dark,
+        Colors.primary
+    ]
+    
+    static let attendanceColorIds = [
+        Colors.primary_dark,
+        Colors.A_score_green,
+        Colors.Cp_score_yellow,
+        Colors.Cp_score_yellow,
+        Colors.C_score_orange,
+        Colors.C_score_orange,
+        Colors.primary,
+        Colors.Cm_score_red,
+        Colors.B_score_green,
+        Colors.Cm_score_red,
+        Colors.B_score_green,
+        Colors.A_score_green
+    ]
+    
     static func indexOfString (searchString: String, domain: Array<String>) -> Int {
         return domain.index(of: searchString)!
     }
@@ -62,6 +93,11 @@ extension Utils {
     
     static func getColorByGrade(item: Grade) -> UIColor {
         return getColorByLetterGrade(letterGrade: item.letter)
+    }
+    
+    static func getColorByAttendanceCode(attendanceCode: String) -> UIColor {
+        return UIColor(rgb: attendanceColorIds[indexOfString(searchString: attendanceCode,
+                domain: ["A", "E", "L", "R", "H", "T", "S", "I", "X", "M", "C", "D"])])
     }
 }
 
@@ -174,7 +210,7 @@ extension Utils {
     static func parseJsonResult(jsonStr: String) ->(StudentInformation, [Attendance], [Subject]) {
         
         let studentData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
-        if (studentData["information"]==JSON.null) { // not successful
+        if (studentData["information"] == JSON.null) { // not successful
             return (StudentInformation(json: "{}"), [Attendance](), [Subject]())
         }
         let studentInfo = StudentInformation(json: studentData["information"])
@@ -182,7 +218,7 @@ extension Utils {
         for subject in studentData["sections"].arrayValue { subjects.append(Subject(json: subject)) }
         
         var attendances = [Attendance]()
-        for attendance in studentData["attendences"].arrayValue { attendances.append(Attendance(json: attendance)) }
+        for attendance in studentData["attendances"].arrayValue { attendances.append(Attendance(json: attendance)) }
         
         subjects = subjects.sorted {
             if $0.blockLetter == "HR(A-E)" { return true }

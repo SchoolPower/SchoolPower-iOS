@@ -54,6 +54,21 @@ class DashboardCell: FoldingCell {
             unFoldPercentageGrade.text = periodGradeItem.percentage
             foldBackground.backgroundColor = Utils.getColorByGrade(item: periodGradeItem)
             unfoldBackground.backgroundColor = Utils.getColorByGrade(item: periodGradeItem)
+            
+            foldBorderView.backgroundColor = .white
+            foldSubjectTitle.textColor = UIColor(rgb: Colors.text_primary_black)
+            foldTeacherName.textColor = UIColor(rgb: Colors.text_tertiary_black)
+            foldBlockLetter.textColor = UIColor(rgb: Colors.text_tertiary_black)
+            
+            for assignmentItem in infoItem.assignments {
+                if assignmentItem.isNew {
+                    foldBorderView.backgroundColor = UIColor(rgb: Colors.accent)
+                    foldSubjectTitle.textColor = .white
+                    foldTeacherName.textColor = UIColor(rgb: Int(Colors.white_0_20))
+                    foldBlockLetter.textColor = UIColor(rgb: Int(Colors.white_0_20))
+                    break
+                }
+            }
         }
     }
     
@@ -77,7 +92,7 @@ class DashboardCell: FoldingCell {
         foldBorderView.layer.masksToBounds = true
         unfoldBorderView.layer.cornerRadius = 10
         unfoldBorderView.layer.masksToBounds = true
-   
+        
         super.awakeFromNib()
     }
     

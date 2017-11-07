@@ -23,7 +23,7 @@ class AttendanceCell: UITableViewCell {
     @IBOutlet weak var attendanceCode: UILabel!
     @IBOutlet weak var attendanceDescription: UILabel!
     @IBOutlet weak var attendanceSubject: UILabel!
-    @IBOutlet weak var attendancedate: UILabel!
+    @IBOutlet weak var attendanceDate: UILabel!
     @IBOutlet weak var codeBackGround: UIView!
     @IBOutlet weak var foreBackground: UIView!
     @IBOutlet weak var foregroundBroader: UIView!
@@ -51,8 +51,20 @@ class AttendanceCell: UITableViewCell {
             attendanceCode.text = attendanceItem.code
             attendanceDescription.text = attendanceItem.description
             attendanceSubject.text = attendanceItem.subject
-            attendancedate.text = attendanceItem.date
-//            codeBackGround.backgroundColor = Utils.getColorByLetterGrade(letterGrade: attendanceItem.letterGrade)
+            attendanceDate.text = attendanceItem.date
+            codeBackGround.backgroundColor = Utils.getColorByAttendanceCode(attendanceCode: attendanceItem.code)
+            
+            if attendanceItem.isNew {
+                foregroundBroader.backgroundColor = UIColor(rgb: Colors.accent)
+                attendanceDescription.textColor = .white
+                attendanceSubject.textColor = UIColor(rgb: Int(Colors.white_0_20))
+                attendanceDate.textColor = UIColor(rgb: Int(Colors.white_0_20))
+            } else {
+                foregroundBroader.backgroundColor = .white
+                attendanceDescription.textColor = UIColor(rgb: Colors.text_primary_black)
+                attendanceSubject.textColor = UIColor(rgb: Colors.text_tertiary_black)
+                attendanceDate.textColor = UIColor(rgb: Colors.text_tertiary_black)
+            }
         }
     }
 }

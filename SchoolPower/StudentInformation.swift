@@ -8,27 +8,26 @@
 
 import Foundation
 import SwiftyJSON
-
+/*
+ Sample:
+ {
+ "currentGPA": null,
+ "currentMealBalance": "0.0",
+ "currentTerm": null,
+ "dcid": "10000",
+ "dob": "2001-01-01T16:00:00.000Z",
+ "ethnicity": null,
+ "firstName": "John",
+ "gender": "M",
+ "gradeLevel": "10",
+ "id": "10000",
+ "lastName": "Doe",
+ "middleName": "English Name",
+ "photoDate": "2016-01-01T16:10:05.699Z",
+ "startingMealBalance": "0.0"
+ }
+ */
 class StudentInformation {
-    /*
-     Sample:
-     {
-     "currentGPA": null,
-     "currentMealBalance": "0.0",
-     "currentTerm": null,
-     "dcid": "10000",
-     "dob": "2001-01-01T16:00:00.000Z",
-     "ethnicity": null,
-     "firstName": "John",
-     "gender": "M",
-     "gradeLevel": "10",
-     "id": "10000",
-     "lastName": "Doe",
-     "middleName": "English Name",
-     "photoDate": "2016-01-01T16:10:05.699Z",
-     "startingMealBalance": "0.0"
-     }
-     */
     
     enum Gender{
         case Male

@@ -77,6 +77,7 @@ class MainTableViewController: UITableViewController {
     }
     
     func updateFilteredSubjects(){
+        
         if (!userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME)) {
             filteredSubjects = [Subject]()
             for subject in subjects{
@@ -94,7 +95,7 @@ class MainTableViewController: UITableViewController {
         initUI()
         let input = Utils.readDataArrayList()
         if input != nil {
-            (_,_,subjects) = input!
+            (_,attendances,subjects) = input!
             updateFilteredSubjects()
         }
         if self.navigationController?.view.tag == 1 {
@@ -281,9 +282,12 @@ extension MainTableViewController {
     func initDataJson() {
 
         var oldSubjects = [Subject]()
+        var oldAttendances = [Attendance]()
         let username = userDefaults.string(forKey: USERNAME_KEY_NAME)
         let password = userDefaults.string(forKey: PASSWORD_KEY_NAME)
         oldSubjects += subjects
+        oldAttendances += attendances
+        
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
         Utils.sendPost(url: GET_DATA_URL,
                        params: "username=\(username!)" +
@@ -309,17 +313,14 @@ extension MainTableViewController {
 
             } else if response.contains("{") {
 
-                if !response.contains("assignments") {
-                    return
-                }
-
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
                 (_, attendances, subjects) = Utils.parseJsonResult(jsonStr: response)
+                
                 self.updateFilteredSubjects()
                 Utils.saveHistoryGrade(data: subjects)
 
                 // Diff
-                if subjects.count == oldSubjects.count {
+                if subjects.count == oldSubjects.count && !subjects.isEmpty {
                     for i in 0...subjects.count - 1 {
 
                         let newAssignmentListCollection = subjects[i].assignments
@@ -339,6 +340,20 @@ extension MainTableViewController {
                             }
                         }
 
+                    }
+                }
+                for item in attendances {
+                    
+                    var found = false
+                    for it in oldAttendances {
+                        
+                        if (it.subject == item.subject && it.period == item.period
+                            && it.date == item.date && !it.isNew) {
+                            found = true
+                        }
+                    }
+                    if !found {
+                        item.isNew = true
                     }
                 }
                 DispatchQueue.main.async {
@@ -403,7 +418,7 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
         if filteredSubjects.count == 0 {
-            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height)
+            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: #imageLiteral(resourceName: "no_grades"), text: "nothing_here".localize)
             tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.nothing_light))
             return 0
 

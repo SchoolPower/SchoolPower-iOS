@@ -59,8 +59,13 @@ class Assignment {
 
     init(json: JSON) {
         
+        let df1 = DateFormatter()
+        let df2 = DateFormatter()
+        df1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        df2.dateFormat = "yyyy/MM/dd"
+        
         title = json["name"].stringValue
-        date = json["date"].stringValue //TODO: change into normal format
+        date = df2.string(from: df1.date(from: json["date"].stringValue)!)
         percentage = json["percent"].string ?? "--"
         score = json["score"].string ?? "--"
         letterGrade = json["letterGrade"].string ?? "--"
