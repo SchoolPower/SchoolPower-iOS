@@ -72,6 +72,7 @@
 "notification_show_grade" = "在通知里显示成绩";
 "notification_show_no_grade_assignment" = "通知还没出分的作业";
 "notification_new" = "项新作业";
+"attendance_new" = "新出勤";
 "support" = "支持";
 "report_bug" = "提交Bug";
 "report_bug_summary" = "用电子邮件联系开发者";

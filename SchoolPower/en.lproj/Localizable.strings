@@ -72,6 +72,7 @@
 "notification_show_grade" = "Show Grades in Notification";
 "notification_show_no_grade_assignment" = "Notify Ungraded Assignments";
 "notification_new" = "New Assignments";
+"attendance_new" = "New Attendances";
 "support" = "Support";
 "report_bug" = "Report a Bug";
 "report_bug_summary" = "Contact developer with email";

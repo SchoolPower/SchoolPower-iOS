@@ -117,14 +117,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         print("Failed to register: \(error)")
     }
-    
     func sendNewAssignmentNotification(messageBody: String, assignmentNum : Int){
         
         if #available(iOS 10.0, *) {
             
             let notification = UNMutableNotificationContent()
             notification.sound = UNNotificationSound.default()
-            notification.title = "\(String(assignmentNum)) \("notification_new".localize)"
+            notification.title = "\("attendence_new".localize)"
             notification.body = messageBody
             notification.badge = ((notification.badge?.intValue)! + assignmentNum) as NSNumber
             
@@ -144,7 +143,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             notification.soundName = UILocalNotificationDefaultSoundName
             notification.fireDate = Date.init(timeIntervalSinceNow: 0)
             notification.applicationIconBadgeNumber += assignmentNum
-            notification.alertBody = "\(String(assignmentNum)) \("notification_new".localize): \(messageBody)"
+            notification.alertBody = "\(String(assignmentNum)) \("attendence_new".localize): \(messageBody)"
+            
+            UIApplication.shared.scheduleLocalNotification(notification)
+        }
+    }
+    func sendNewAttendanceNotification(messageBody: String, attendanceNum : Int){
+        
+        if #available(iOS 10.0, *) {
+            
+            let notification = UNMutableNotificationContent()
+            notification.sound = UNNotificationSound.default()
+            notification.title = "notification_new".localize
+            notification.body = messageBody
+            notification.badge = ((notification.badge?.intValue)! + attendanceNum) as NSNumber
+            
+            let identifier = "newAssignmentNotification"
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+            let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+                print("Cannot Send Notification")
+            })
+            
+        } else {
+            
+            let notification = UILocalNotification()
+            if #available(iOS 8.2, *) { notification.alertTitle = "SchoolPower" }
+            
+            notification.soundName = UILocalNotificationDefaultSoundName
+            notification.fireDate = Date.init(timeIntervalSinceNow: 0)
+            notification.applicationIconBadgeNumber += attendanceNum
+            notification.alertBody = "\("notification_new".localize): \(messageBody)"
             
             UIApplication.shared.scheduleLocalNotification(notification)
         }
@@ -230,12 +260,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     }
                                 }
                             }
-                            if updatedSubjects.count != 0 || updatedGradedSubjects.count != 0 {
-                                var allSubjects : [String] = updatedSubjects
-                                allSubjects.append(contentsOf: updatedGradedSubjects)
+                            
+                            var updatedAttendances = [String]()
+                            
+                            for item in attendances {
+                                var newItem = true
+                                for it in oldAttendances {
+                                    if it.subject == item.subject && it.date == item.date && it.code == item.code {
+                                        newItem = false
+                                    }
+                                }
+                                if newItem {
+                                    updatedAttendances.append(item.subject + " - " + item.description)
+                                }
+                            }
+                            var allSubjects : [String] = updatedSubjects
+                            allSubjects.append(contentsOf: updatedGradedSubjects)
+                            if allSubjects.count != 0 {
                                 self.sendNewAssignmentNotification(messageBody: allSubjects.joined(separator: ","), assignmentNum: allSubjects.count)
+                            }
+                            if updatedAttendances.count != 0 {
+                                self.sendNewAttendanceNotification(messageBody: updatedAttendances.joined(separator: ","), attendanceNum: updatedAttendances.count)
                                 completionHandler(.newData)
-                            } else { completionHandler(.noData) }
+                            } else {
+                                if updatedSubjects.count == 0 && updatedGradedSubjects.count == 0{
+                                    completionHandler(.noData)
+                                }else{
+                                    completionHandler(.newData)
+                                }
+                            }
                         }
                         
                     } else { completionHandler(.noData) }

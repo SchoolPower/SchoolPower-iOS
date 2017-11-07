@@ -255,6 +255,7 @@ extension Utils {
         var short = shorts[splited[0]]
         if short != nil {
             if splited[splited.count-1]=="Music" { short! += "M" }
+            if splited[splited.count-1]=="Politics" { short! += "P" }
             return short!
         }
         

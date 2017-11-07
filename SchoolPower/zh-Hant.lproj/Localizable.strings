@@ -72,6 +72,7 @@
 "notification_show_grade" = "在通知裡顯示成績";
 "notification_show_no_grade_assignment" = "通知還沒出分的作業";
 "notification_new" = "項新作業";
+"attendance_new" = "新出勤";
 "support" = "支持";
 "report_bug" = "提交Bug";
 "report_bug_summary" = "用電子郵件聯繫開發者";

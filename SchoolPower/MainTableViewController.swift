@@ -310,7 +310,7 @@ extension MainTableViewController {
 
                 self.showSnackbar(msg: "invalidup".localize)
                 self.logOut()
-
+                
             } else if response.contains("{") {
 
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)

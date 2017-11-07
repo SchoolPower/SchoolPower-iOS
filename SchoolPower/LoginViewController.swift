@@ -17,6 +17,7 @@
 import UIKit
 import Material
 import MaterialComponents
+import SwiftyJSON
 
 var toPop = true
 
@@ -83,6 +84,8 @@ class LoginViewController: UIViewController {
             
             if response.contains("Something went wrong! Invalid Username or password") {
                 self.showSnackbar(msg: "invalidup".localize)
+            }else if response.contains("\"alert\""){
+                self.showSnackbar(msg: JSON(data: ("{\(response)}".data(using: .utf8, allowLossyConversion: false)!))["alert"].stringValue)
             }
             else if response.contains("{") {
                 
