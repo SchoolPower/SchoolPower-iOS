@@ -41,14 +41,24 @@ extension UIColor {
 class Colors{
     
     static let A_score_green = 0x00796B
+    static let A_score_green_dark = 0x006156
     static let B_score_green = 0x388E3C
+    static let B_score_green_dark = 0x2D7230
+    static let Cp_score_yellow_lighter = 0xffd180
+    static let Cp_score_yellow_light = 0xffd740
     static let Cp_score_yellow = 0xffb300
+    static let Cp_score_yellow_dark = 0xcc8f00
+    static let Cp_score_yellow_darker = 0x827717
     static let C_score_orange = 0xFF5722
+    static let C_score_orange_dark = 0xcc461b
     static let Cm_score_red = 0xD32F2F
+    static let Cm_score_red_dark = 0xa92626
+    static let primary_light = 0xEEEEEE
     static let primary = 0x09314b
     static let primary_dark = 0x07263b
     static let primary_darker = 0x061d2f
     static let accent = 0x00c4cf
+    static let gray = 0x757575
     static let white = 0xFFFFFF
     static let white_0_5 = 0x32FFFFFF
     static let white_0_10 = 0x64FFFFFF

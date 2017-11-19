@@ -97,8 +97,7 @@ class AttendanceTableViewController: UITableViewController {
                        params: "username=\(username!)" +
                         "&password=\(password!)" +
                         "&version=\(version)" +
-                        "&os=ios" +
-        "&action=manual_get_data") { (value) in
+                        "&os=ios&action=manual_get_data") { (value) in
             
             let response = value
             if response.contains("NETWORK_ERROR") {
@@ -119,7 +118,6 @@ class AttendanceTableViewController: UITableViewController {
                 
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
                 (_, attendances, subjects) = Utils.parseJsonResult(jsonStr: response)
-                print("[][][\(attendances.count)")
                 //self.updateFilteredSubjects()
                 Utils.saveHistoryGrade(data: subjects)
                 

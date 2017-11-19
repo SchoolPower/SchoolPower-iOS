@@ -53,18 +53,27 @@ class Utils {
     ]
     
     static let attendanceColorIds = [
-        Colors.primary_dark,
-        Colors.A_score_green,
-        Colors.Cp_score_yellow,
-        Colors.Cp_score_yellow,
-        Colors.C_score_orange,
-        Colors.C_score_orange,
-        Colors.primary,
-        Colors.Cm_score_red,
-        Colors.B_score_green,
-        Colors.Cm_score_red,
-        Colors.B_score_green,
-        Colors.A_score_green
+        "A":Colors.primary_dark,
+        "E":Colors.A_score_green_dark,
+        "L":Colors.Cp_score_yellow,
+        "R":Colors.Cp_score_yellow_dark,
+        "H":Colors.C_score_orange_dark,
+        "T":Colors.C_score_orange,
+        "S":Colors.primary,
+        "I":Colors.Cm_score_red,
+        "X":Colors.A_score_green,
+        "M":Colors.Cm_score_red_dark,
+        "C":Colors.B_score_green_dark,
+        "D":Colors.B_score_green,
+        "P":Colors.A_score_green,
+        "NR":Colors.C_score_orange,
+        "TW":Colors.primary,
+        "RA":Colors.Cp_score_yellow_darker,
+        "NE":Colors.Cp_score_yellow_light,
+        "U":Colors.Cp_score_yellow_lighter,
+        "RS":Colors.primary_light,
+        "ISS":Colors.primary,
+        "FT":Colors.B_score_green_dark
     ]
     
     static func indexOfString (searchString: String, domain: Array<String>) -> Int {
@@ -96,8 +105,7 @@ extension Utils {
     }
     
     static func getColorByAttendanceCode(attendanceCode: String) -> UIColor {
-        return UIColor(rgb: attendanceColorIds[indexOfString(searchString: attendanceCode,
-                domain: ["A", "E", "L", "R", "H", "T", "S", "I", "X", "M", "C", "D"])])
+        return UIColor(rgb: attendanceColorIds[attendanceCode] ?? Colors.gray)
     }
 }
 
