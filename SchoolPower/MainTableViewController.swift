@@ -68,6 +68,10 @@ class MainTableViewController: UITableViewController {
 
         super.viewDidLoad()
         initValue()
+        
+        // send device token for notification
+        let token = self.userDefaults.string(forKey: TOKEN_KEY_NAME)
+        if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!) }
     }
 
     deinit {
