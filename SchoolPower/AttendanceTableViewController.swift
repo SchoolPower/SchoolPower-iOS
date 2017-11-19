@@ -66,6 +66,12 @@ class AttendanceTableViewController: UITableViewController {
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
     }
     
+    deinit {
+        if tableView != nil {
+            tableView.dg_removePullToRefresh()
+        }
+    }
+    
     func initBannerView() {
         
         bannerView = GADBannerView(adSize: GADAdSize.init(size: CGSize.init(width: 320, height: 50), flags: 0))
