@@ -256,9 +256,15 @@ extension Utils {
         if short != nil {
             if splited[splited.count-1]=="Music" { short! += "M" }
             if splited[splited.count-1]=="Politics" { short! += "P" }
+            if splited[splited.count-1]=="Sci" { short! += "S" }
+            if splited[splited.count-1]=="Humanities" { short! += "H" }
+            if splited[splited.count-1]=="Arts" { short! += "A" }
             return short!
         }
-        
-        return subjectTitle
+        var ret = ""
+        for c in subjectTitle.utf8 {
+            if (c > 64 && c < 91) || (c >= 48 && c <= 57) {ret += String(Character(UnicodeScalar(c)))}
+        }
+        return ret
     }
 }

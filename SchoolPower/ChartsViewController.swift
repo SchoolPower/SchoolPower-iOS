@@ -73,7 +73,7 @@ class ChartsViewController: UIViewController {
         for (date, subjects):(String, JSON) in historyData {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            let doubleDate = Double(Int(dateFormatter.date(from: date)!.timeIntervalSince1970 / 1000.0 / 60.0 / 60.0 / 24.0))
+            let doubleDate = Double(Int(dateFormatter.date(from: date)!.timeIntervalSince1970/60.0/60.0/24.0))
             
             for subjectNow in subjects.arrayValue {
                 let subjectName = Utils.getShortName(subjectTitle: subjectNow["name"].stringValue)
@@ -85,11 +85,11 @@ class ChartsViewController: UIViewController {
                 }
                 lastData[subjectName]=entry
                 
-                var subjectItem = organizedData[subjectName]!
+                let subjectItem = organizedData[subjectName]!
                 if subjectItem.count != 0 && abs(subjectGrade-subjectItem.last!.y)<1e-5 {
                     continue
                 }
-                subjectItem.append(entry)
+                organizedData[subjectName]!.append(entry)
             }
         }
         for (name, grade) in lastData { organizedData[name]!.append(grade) }
@@ -208,7 +208,8 @@ class LineChartFormatter: NSObject, IAxisValueFormatter{
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String{
-        return mFormat.string(from: Date(timeIntervalSince1970:value * 1000.0 * 60.0 * 60.0 * 24.0))
+        let x=mFormat.string(from: Date(timeIntervalSince1970:value*60.0*60.0*24.0))
+        return x
     }
 }
 

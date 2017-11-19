@@ -87,11 +87,12 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
     }
     
     func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let version = "\(Bundle.main.infoDictionary!["CFBundleShortVersionString"]!)"
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
         mailComposerVC.setToRecipients([SUPPORT_EMAIL])
         mailComposerVC.setSubject("bug_report_email_subject".localize)
-        mailComposerVC.setMessageBody("bug_report_email_content".localize, isHTML: false)
+        mailComposerVC.setMessageBody(String(format: "bug_report_email_content".localize, version), isHTML: false)
         
         return mailComposerVC
     }
