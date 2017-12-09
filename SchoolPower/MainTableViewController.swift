@@ -174,6 +174,7 @@ class MainTableViewController: UITableViewController {
 
         } else {
 
+            print("ibvuierdugberugv")
             var sum = 0.0
             var exhr = 0.0
             var exhrme = 0.0
@@ -562,8 +563,27 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         return collectionCell
     }
 
+    //MARK: TERM ONCLICK, SHOW TERM DIALOG
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+        
+        let grades = filteredSubjects[collectionView.tag].grades
+        let termName = Array(grades.keys)[indexPath.row]
+        let grade = grades[termName]!
+        let standerdWidth = self.view.frame.width * 0.8
+        let alert = CustomIOSAlertView.init()
+        let termDialog = TermDialog.instanceFromNib(
+            width: standerdWidth,
+            name: termName,
+            subject: filteredSubjects[collectionView.tag].title,
+            grade: grade)
+        
+        let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: termDialog.bounds.size.height))
+        termDialog.center = subview.center
+        subview.addSubview(termDialog)
+        alert?.containerView = subview
+        alert?.closeOnTouchUpOutside = true
+        alert?.buttonTitles = nil
+        alert?.show()
     }
 }
 

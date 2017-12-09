@@ -12,6 +12,8 @@
 		271386941F07711300EC7F2F /* BACKUP.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271386931F07711300EC7F2F /* BACKUP.xib */; };
 		6204A07C1F39E5A9004B2118 /* NothingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6204A07B1F39E5A9004B2118 /* NothingView.xib */; };
 		6204A07E1F39E5CE004B2118 /* NothingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6204A07D1F39E5CE004B2118 /* NothingView.swift */; };
+		6205B9161FDB77CD00A124E0 /* TermDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6205B9151FDB77CD00A124E0 /* TermDialog.xib */; };
+		6205B9181FDB80F400A124E0 /* TermDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6205B9171FDB80F400A124E0 /* TermDialog.swift */; };
 		621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DA1B61EFD01A300EFAB5A /* Utils.swift */; };
 		62368CA51F88825000519608 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62368CA41F88825000519608 /* MessageUI.framework */; };
 		624BDC211EFE2F6A0052EC5D /* AssignmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */; };
@@ -93,6 +95,8 @@
 		271386931F07711300EC7F2F /* BACKUP.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BACKUP.xib; sourceTree = "<group>"; };
 		6204A07B1F39E5A9004B2118 /* NothingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingView.xib; sourceTree = "<group>"; };
 		6204A07D1F39E5CE004B2118 /* NothingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NothingView.swift; sourceTree = "<group>"; };
+		6205B9151FDB77CD00A124E0 /* TermDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermDialog.xib; sourceTree = "<group>"; };
+		6205B9171FDB80F400A124E0 /* TermDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDialog.swift; sourceTree = "<group>"; };
 		620D465B1F85D0A500280320 /* SchoolPower.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SchoolPower.entitlements; sourceTree = "<group>"; };
 		621DA1B61EFD01A300EFAB5A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Utils.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		62368CA41F88825000519608 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -215,6 +219,7 @@
 				62CFC99A1EFA9940002B4A8D /* LaunchScreen.storyboard */,
 				62C786811EFBA46000CB28ED /* PeriodGradeListItem.xib */,
 				62FD1F8A1F288FC60097A696 /* GPADialog.xib */,
+				6205B9151FDB77CD00A124E0 /* TermDialog.xib */,
 				6204A07B1F39E5A9004B2118 /* NothingView.xib */,
 				271386931F07711300EC7F2F /* BACKUP.xib */,
 			);
@@ -266,6 +271,7 @@
 				62C34DF71F0377050078D5F8 /* DrawerHeaderCell.swift */,
 				62C34DFF1F03C9C10078D5F8 /* SettingsCell.swift */,
 				62FD1F8C1F2891D10097A696 /* GPADialog.swift */,
+				6205B9171FDB80F400A124E0 /* TermDialog.swift */,
 				6204A07D1F39E5CE004B2118 /* NothingView.swift */,
 			);
 			name = Cells;
@@ -420,7 +426,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = carbonylgroup.studio;
 				TargetAttributes = {
 					62CFC98D1EFA9940002B4A8D = {
@@ -489,6 +495,7 @@
 				62C34E151F05F22E0078D5F8 /* Settings.storyboard in Resources */,
 				62FD1F8B1F288FC60097A696 /* GPADialog.xib in Resources */,
 				62C786821EFBA46000CB28ED /* PeriodGradeListItem.xib in Resources */,
+				6205B9161FDB77CD00A124E0 /* TermDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +617,7 @@
 				6204A07E1F39E5CE004B2118 /* NothingView.swift in Sources */,
 				6271028C1F6FDDBA00676290 /* StudentInformation.swift in Sources */,
 				62FD1FA51F28F0BD0097A696 /* MKRingProgressGroupView.swift in Sources */,
+				6205B9181FDB80F400A124E0 /* TermDialog.swift in Sources */,
 				62FD1FA61F28F0BD0097A696 /* MKRingProgressGroupButton.swift in Sources */,
 				62C786801EFB998D00CB28ED /* Subject.swift in Sources */,
 				62AA4E3E1F033B57009C8CFC /* ChartsViewController.swift in Sources */,
@@ -706,7 +714,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -714,7 +724,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -759,7 +773,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -767,7 +783,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

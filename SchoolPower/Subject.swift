@@ -55,6 +55,8 @@ import SwiftyJSON
 struct Grade{
     var percentage: String
     var letter: String
+    var comment: String
+    var evaluation: String
 }
 
 class Subject {
@@ -82,7 +84,9 @@ class Subject {
         let finalGrades = json["finalGrades"].dictionaryValue
         for (key, grade) in finalGrades{
             grades[key]=Grade(percentage: String(Int(Double(grade["percent"].stringValue)!)),
-                              letter: grade["letter"].stringValue)
+                              letter: grade["letter"].stringValue,
+                              comment: grade["comment"].stringValue,
+                              evaluation: grade["eval"].stringValue)
         }
     }
     
@@ -114,6 +118,6 @@ class Subject {
     }
     
     func getLatestItemGrade(forLatestSemester: Bool = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME) == 1) -> Grade {
-        return grades[getLatestItem(forLatestSemester: forLatestSemester)] ?? Grade(percentage: "--", letter: "--")
+        return grades[getLatestItem(forLatestSemester: forLatestSemester)] ?? Grade(percentage: "--", letter: "--", comment: "", evaluation:"--")
     }
 }

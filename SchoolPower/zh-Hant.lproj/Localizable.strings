@@ -81,3 +81,5 @@
 "bug_report_email_content" = "請提供盡可能詳細的信息，如如何复现问题，預期的結果是什麼。\n調試信息: SchoolPower Android %@.\nPowerSchool用戶名與密碼（可選，有助於我們更快修復問題）：\n";
 "visit_website" = "訪問官網";
 "source_code" = "獲取源碼";
+"evaluation" = "評估";
+"comment" = "評語";

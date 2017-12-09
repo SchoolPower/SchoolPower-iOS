@@ -81,3 +81,5 @@
 "bug_report_email_content" = "Please provide as much info as possible, such as how to reproduce it, what is the expected result.\nDebug Info: SchoolPower iOS %@.\nPowerSchool Username and Password (Optional, help us solve it faster): \n";
 "visit_website" = "Visit Website";
 "source_code" = "Get Source Code";
+"evaluation" = "Evaluation";
+"comment" = "Comment";
