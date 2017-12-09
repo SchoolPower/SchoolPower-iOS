@@ -27,10 +27,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="341" height="140"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbA-Hm-IOD" userLabel="Left View">
-                                    <rect key="frame" x="0.0" y="0.0" width="203" height="140"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="97.5" height="140"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chemistry 11" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcv-ol-ggp" userLabel="Unfold Subject Title">
-                                            <rect key="frame" x="20" y="109.5" width="183" height="15.5"/>
+                                            <rect key="frame" x="20" y="109.5" width="77.5" height="15.5"/>
                                             <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="13"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -64,7 +64,6 @@
                             <color key="backgroundColor" red="0.035294117649999998" green="0.19215686269999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="5PG-CH-bSR"/>
-                                <constraint firstItem="W8t-pD-xV6" firstAttribute="leading" secondItem="WbA-Hm-IOD" secondAttribute="trailing" constant="8" id="8FA-2Q-m23"/>
                                 <constraint firstAttribute="bottom" secondItem="WbA-Hm-IOD" secondAttribute="bottom" id="PzD-Sc-ges"/>
                                 <constraint firstItem="WbA-Hm-IOD" firstAttribute="leading" secondItem="qz9-oF-Atc" secondAttribute="leading" id="WDo-yN-ASx"/>
                                 <constraint firstAttribute="height" constant="140" id="cNV-eg-dtg"/>
