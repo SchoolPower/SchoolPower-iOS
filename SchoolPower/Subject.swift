@@ -63,6 +63,7 @@ class Subject {
     
     var title: String
     var teacherName: String
+    var teacherEmail: String
     var blockLetter: String
     var roomNumber: String
     
@@ -73,6 +74,7 @@ class Subject {
         
         title = json["name"].stringValue
         teacherName = json["teacher"]["firstName"].stringValue + " " + json["teacher"]["lastName"].stringValue
+        teacherEmail = json["teacher"]["email"].stringValue
         blockLetter = json["expression"].stringValue
         roomNumber = json["roomName"].stringValue
         

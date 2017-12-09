@@ -15,8 +15,9 @@
 
 
 import UIKit
+import MessageUI
 
-class CourseDetailHeaderCell: UITableViewCell {
+class CourseDetailHeaderCell: UITableViewCell, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var headerTeacherName: UILabel!
     @IBOutlet weak var headerBlockLetter: UILabel!
@@ -29,6 +30,9 @@ class CourseDetailHeaderCell: UITableViewCell {
     @IBOutlet weak var assignments: UILabel?
     @IBOutlet weak var termLable: UILabel!
     @IBOutlet weak var chooseIcon: UIImageView!
+    @IBOutlet weak var emailButton: UIButton!
+    
+    var tracherEmail = ""
     
     override func awakeFromNib() {
         
@@ -54,7 +58,30 @@ class CourseDetailHeaderCell: UITableViewCell {
             headerPercentageGrade.text = grade.percentage
             headerLetterGrade.text = grade.letter
             leftBackground.backgroundColor = Utils.getColorByGrade(item: grade)
+            if infoItem.teacherEmail == "" {
+                emailButton.width = 0
+                emailButton.isHidden = true
+            } else {
+                self.tracherEmail = infoItem.teacherEmail
+            }
         }
+    }
+    
+    @IBAction func emailOnclick(_ sender: Any) {
+        
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.viewController()?.present(mailComposeViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        mailComposerVC.setToRecipients([self.tracherEmail])
+        
+        return mailComposerVC
     }
     
     var currentTerm = "allterms".localize {
