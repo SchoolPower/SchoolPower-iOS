@@ -246,39 +246,63 @@ extension Utils {
     static func getShortName(subjectTitle: String)->String{
         
         let shorts = ["Homeroom":"HR",
+                      "Morning": "MR",//MARK: Morning Reading
                       "Planning":"PL",
                       "Mandarin":"CN",
-                      "Chinese":"CSS",
-                      "Foundations":"Maths",
+                      "Chinese Social Studies":"CSS",
+                      "Foundations":"MATH",
                       "Physical":"PE",
-                      "English":"EN",
+                      "English":"ENG",
                       "Moral":"ME",
                       "Information": "IT",
                       "Drama": "DR",
                       "Social":"SS",
                       "Communications":"COMM",
-                      "Science":"SC",
+                      "Science":"SCI",
                       "Physics":"PHY",
                       "Chemistry":"CHEM",
-                      "Pre-Calculus":"PC",
+                      "Biology": "BIO",//MARK: 生物
+                      "History": "HIS",//MARK: History 历史
+                      "Pre-Calculus":"PCAL",
                       "Calculus":"CAL",
                       "Programming":"PROG",
-                      "Exercise":"EXE"]
+                      "Computer Science": "AP",//MARK: Computer Science 计算机科学
+                      "Economics": "ECO",//MARK: Economics 经济学
+                      "Marketing": "MAR",//MARK: Marketing 市场营销
+                      "Journalism": "JOU",//MARK: Journalism 新闻学
+                      "Comparative": "CC",//MARK: Comparative Civilizations 文化比较
+                      "Graduation": "GT",//MARK: Graduation Transfer 毕业转移
+                      "Exercise":"EX"//MARK: Exercise Break 间操
+                     ]
         
         let splited = subjectTitle.components(separatedBy: " ")
-        var short = shorts[splited[0]]
-        if short != nil {
-            if splited[splited.count-1]=="Music" { short! += "M" }
-            if splited[splited.count-1]=="Politics" { short! += "P" }
-            if splited[splited.count-1]=="Sci" { short! += "S" }
-            if splited[splited.count-1]=="Humanities" { short! += "H" }
-            if splited[splited.count-1]=="Arts" { short! += "A" }
-            return short!
-        }
+        
         var ret = ""
-        for c in subjectTitle.utf8 {
-            if (c > 64 && c < 91) || (c >= 48 && c <= 57) {ret += String(Character(UnicodeScalar(c)))}
+        
+        if let retn = subjectTitle.rangeOfString("AP") {  
+                let ret += "AP";
         }
+        
+        
+        for (full, short) in shorts{
+            if let retn = subjectTitle.rangeOfString(shorts) {  
+                let ret = short
+            }
+        }
+        
+        if ret == "CSS" && let retn = subjectTitle.rangeOfString("Politics"){  
+                let ret += "P";
+        }
+        
+        let ret += splited[splited.count - 1];
+        
+        if(ret == ""){
+            for c in subjectTitle.utf8 {
+                if (c > 64 && c < 91) || (c >= 48 && c <= 57) {ret += String(Character(UnicodeScalar(c)))}
+            }
+        }
+        
         return ret
+        
     }
 }
