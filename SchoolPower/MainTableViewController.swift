@@ -174,7 +174,6 @@ class MainTableViewController: UITableViewController {
 
         } else {
 
-            print("ibvuierdugberugv")
             var sum = 0.0
             var exhr = 0.0
             var exhrme = 0.0

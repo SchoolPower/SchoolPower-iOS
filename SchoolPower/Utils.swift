@@ -245,64 +245,60 @@ extension Utils {
     
     static func getShortName(subjectTitle: String)->String{
         
-        let shorts = ["Homeroom":"HR",
-                      "Morning": "MR",//MARK: Morning Reading
-                      "Planning":"PL",
-                      "Mandarin":"CN",
-                      "Chinese Social Studies":"CSS",
-                      "Foundations":"MATH",
-                      "Physical":"PE",
-                      "English":"ENG",
-                      "Moral":"ME",
-                      "Information": "IT",
-                      "Drama": "DR",
-                      "Social":"SS",
-                      "Communications":"COMM",
-                      "Science":"SCI",
-                      "Physics":"PHY",
-                      "Chemistry":"CHEM",
-                      "Biology": "BIO",//MARK: 生物
-                      "History": "HIS",//MARK: History 历史
-                      "Pre-Calculus":"PCAL",
-                      "Calculus":"CAL",
-                      "Programming":"PROG",
-                      "Computer Science": "AP",//MARK: Computer Science 计算机科学
-                      "Economics": "ECO",//MARK: Economics 经济学
-                      "Marketing": "MAR",//MARK: Marketing 市场营销
-                      "Journalism": "JOU",//MARK: Journalism 新闻学
-                      "Comparative": "CC",//MARK: Comparative Civilizations 文化比较
-                      "Graduation": "GT",//MARK: Graduation Transfer 毕业转移
-                      "Exercise":"EX"//MARK: Exercise Break 间操
-                     ]
-        
-        let splited = subjectTitle.components(separatedBy: " ")
+        let shorts = [
+            "Homeroom":"HR",
+            "Morning": "MR",//MARK: Morning Reading
+            "Planning":"PL",
+            "Mandarin":"CN",
+            "Chinese Social Studies":"CSS",
+            "Foundations":"MATH",
+            "Physical":"PE",
+            "English":"ENG",
+            "Moral":"ME",
+            "Information": "IT",
+            "Drama": "DR",
+            "Social":"SS",
+            "Communications":"COMM",
+            "Science":"SCI",
+            "Physics":"PHY",
+            "Chemistry":"CHEM",
+            "Biology": "BIO",//MARK: 生物
+            "History": "HIS",//MARK: History 历史
+            "Pre-Calculus":"PCAL",
+            "Calculus":"CAL",
+            "Programming":"PROG",
+            "Computer Science": "CS",//MARK: Computer Science 计算机科学
+            "Economics": "ECO",//MARK: Economics 经济学
+            "Marketing": "MAR",//MARK: Marketing 市场营销
+            "Journalism": "JOU",//MARK: Journalism 新闻学
+            "Comparative": "CC",//MARK: Comparative Civilizations 文化比较
+            "Graduation": "GT",//MARK: Graduation Transfer 毕业转移
+            "Exercise":"EX"//MARK: Exercise Break 间操
+        ]
         
         var ret = ""
         
-        if let retn = subjectTitle.rangeOfString("AP") {  
-                let ret += "AP";
-        }
-        
-        
+        //Use Abbr
         for (full, short) in shorts{
-            if let retn = subjectTitle.rangeOfString(shorts) {  
-                let ret = short
-            }
+            if subjectTitle.range(of: full) != nil { ret = short }
         }
         
-        if ret == "CSS" && let retn = subjectTitle.rangeOfString("Politics"){  
-                let ret += "P";
-        }
+        //AP Suffix
+        if subjectTitle.range(of: "AP") != nil { ret += "AP" }
         
-        let ret += splited[splited.count - 1];
+        //CSS Suffixes
+        if ret == "CSS", subjectTitle.range(of: "Music") != nil { ret += "M" }
+        if ret == "CSS", subjectTitle.range(of: "Politics") != nil { ret += "P" }
+        if ret == "CSS", subjectTitle.range(of: "Sci") != nil { ret += "S" }
+        if ret == "CSS", subjectTitle.range(of: "Humanities") != nil { ret += "H" }
+        if ret == "CSS", subjectTitle.range(of: "Arts") != nil { ret += "A" }
         
-        if(ret == ""){
+        if (ret == "") {
             for c in subjectTitle.utf8 {
                 if (c > 64 && c < 91) || (c >= 48 && c <= 57) {ret += String(Character(UnicodeScalar(c)))}
             }
         }
-        
         return ret
-        
     }
 }
+
