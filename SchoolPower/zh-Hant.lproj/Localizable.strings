@@ -57,9 +57,11 @@
 "donateus" = "捐助我們";
 "licenses" = "開源許可";
 "iloveopensource" = "我愛開源軟件。";
-"gpamessage" = "你 %@ 的平均分是";
+"gpamessage" = "的 GPA 是";
 "gpa_not_available" = "GPA 不可用";
 "gpa_not_available_because" = "並沒有數據，所以你的 GPA 目前不可用。";
+"custom_gpa_not_available" = "自定義 GPA 不可用";
+"custom_gpa_not_available_because" = "請先轉到設定來自定義您的 GPA 計算規則。";
 "alright" = "吼啊";
 "all" = "所有";
 "notification" = "提示";
@@ -83,3 +85,13 @@
 "source_code" = "獲取源碼";
 "evaluation" = "評估";
 "comment" = "評語";
+"customize_gpa" = "自定義 GPA";
+"select_subjects" = "選擇科目";
+"calculate_rule" = "計算規則";
+"highest_3" = "最高 3 門";
+"highest_4" = "最高 4 門";
+"highest_5" = "最高 5 門";
+"custom" = "自定義";
+"official" = "官方";
+"calculate_rule_prefix" = "計算";
+"calculate_rule_suffix" = "選擇科目的成績";

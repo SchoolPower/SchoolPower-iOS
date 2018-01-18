@@ -43,7 +43,7 @@ class DashboardCell: FoldingCell {
     var infoItem: Subject! {
         
         didSet {
-            let periodGradeItem = infoItem.getLatestItemGrade()
+            let periodGradeItem = Utils.getLatestItemGrade(grades: infoItem.grades)
             foldSubjectTitle.text = infoItem.title
             foldTeacherName.text = infoItem.teacherName
             foldBlockLetter.text = "Block " + infoItem.blockLetter

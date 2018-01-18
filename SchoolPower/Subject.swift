@@ -91,35 +91,4 @@ class Subject {
                               evaluation: grade["eval"].stringValue)
         }
     }
-    
-    func getLatestItem(forLatestSemester: Bool = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME) == 1) -> String {
-        
-        var termsList = [String]()
-        
-        for key in grades.keys { termsList.append(key) }
-        
-        if forLatestSemester{
-            
-            if termsList.contains("S2") && grades["S2"]?.letter != "--" {return "S2"}
-            else if termsList.contains("S1") && grades["S1"]?.letter != "--" {return "S1"}
-            else if termsList.contains("T4") && grades["T4"]?.letter != "--" {return "T4"}
-            else if termsList.contains("T3") && grades["T3"]?.letter != "--" {return "T3"}
-            else if termsList.contains("T2") && grades["T2"]?.letter != "--" {return "T2"}
-            else if termsList.contains("T1") {return "T1"}
-            else {return ""}
-        }
-            
-        else{ // for latest term
-            
-            if termsList.contains("T4") && grades["T4"]?.letter != "--" {return "T4"}
-            else if termsList.contains("T3") && grades["T3"]?.letter != "--" {return "T3"}
-            else if termsList.contains("T2") && grades["T2"]?.letter != "--" {return "T2"}
-            else if termsList.contains("T1") {return "T1"}
-            else {return ""}
-        }
-    }
-    
-    func getLatestItemGrade(forLatestSemester: Bool = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME) == 1) -> Grade {
-        return grades[getLatestItem(forLatestSemester: forLatestSemester)] ?? Grade(percentage: "--", letter: "--", comment: "", evaluation:"--")
-    }
 }

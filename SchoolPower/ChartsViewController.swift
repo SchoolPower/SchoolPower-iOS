@@ -146,10 +146,10 @@ class ChartsViewController: UIViewController {
         var entries = [RadarChartDataEntry]()
         var minGrade = 100.0
         for it in subjects {
-            if it.getLatestItemGrade().letter == "--" {
+            if Utils.getLatestItemGrade(grades: it.grades).letter == "--" {
                 continue
             }
-            let periodGrade=Double(it.getLatestItemGrade().percentage)!
+            let periodGrade=Double(Utils.getLatestItemGrade(grades: it.grades).percentage)!
             entries.append(RadarChartDataEntry(value: periodGrade))
             if periodGrade<minGrade { minGrade=periodGrade }
         }
@@ -219,7 +219,7 @@ class RadarChartFormatter: NSObject, IAxisValueFormatter{
     
     init(data: [Subject]){
         for subject in data{
-            if subject.getLatestItemGrade().letter == "--" {
+            if Utils.getLatestItemGrade(grades: subject.grades).letter == "--" {
                 continue
             }
             mSubjectsName.append(Utils.getShortName(subjectTitle: subject.title))

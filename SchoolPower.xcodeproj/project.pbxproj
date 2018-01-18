@@ -20,6 +20,9 @@
 		624BDC231EFE46110052EC5D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC221EFE46110052EC5D /* Colors.swift */; };
 		624BDC531EFE77440052EC5D /* CourseDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */; };
 		6271028C1F6FDDBA00676290 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6271028B1F6FDDBA00676290 /* StudentInformation.swift */; };
+		6297EC201FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6297EC1F1FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift */; };
+		6297EC221FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6297EC211FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift */; };
+		6297EC241FF0FC16003E8F1C /* GPADialigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6297EC231FF0FC16003E8F1C /* GPADialigUtil.swift */; };
 		62A8FA441EFB66DA00751ACD /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 62A8FA431EFB66DA00751ACD /* Podfile */; };
 		62AA4E3C1F033B57009C8CFC /* AppNavigationDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AA4E391F033B57009C8CFC /* AppNavigationDrawerController.swift */; };
 		62AA4E3D1F033B57009C8CFC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */; };
@@ -104,6 +107,9 @@
 		624BDC221EFE46110052EC5D /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CourseDetailHeaderCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6271028B1F6FDDBA00676290 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		6297EC1F1FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSubjectTableViewController.swift; sourceTree = "<group>"; };
+		6297EC211FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateRuleTableViewController.swift; sourceTree = "<group>"; };
+		6297EC231FF0FC16003E8F1C /* GPADialigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPADialigUtil.swift; sourceTree = "<group>"; };
 		62A8FA431EFB66DA00751ACD /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		62AA4E391F033B57009C8CFC /* AppNavigationDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationDrawerController.swift; sourceTree = "<group>"; };
 		62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +196,7 @@
 			children = (
 				621DA1B61EFD01A300EFAB5A /* Utils.swift */,
 				624BDC221EFE46110052EC5D /* Colors.swift */,
+				6297EC231FF0FC16003E8F1C /* GPADialigUtil.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -255,6 +262,8 @@
 				62C34DFD1F03BCC10078D5F8 /* SettingsViewController.swift */,
 				62C34E041F03DF080078D5F8 /* LanguageTableViewController.swift */,
 				62C34E061F03EC470078D5F8 /* DashboardDisplaysTableViewController.swift */,
+				6297EC1F1FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift */,
+				6297EC211FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -603,6 +612,7 @@
 				62C34E071F03EC470078D5F8 /* DashboardDisplaysTableViewController.swift in Sources */,
 				624BDC231EFE46110052EC5D /* Colors.swift in Sources */,
 				62CFC9C21EFA9972002B4A8D /* MainTableViewController.swift in Sources */,
+				6297EC201FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift in Sources */,
 				62C7867E1EFB98AE00CB28ED /* Assignment.swift in Sources */,
 				624BDC531EFE77440052EC5D /* CourseDetailHeaderCell.swift in Sources */,
 				2705427E1F0887880002C7BE /* AboutViewController.swift in Sources */,
@@ -614,11 +624,13 @@
 				62C34E091F0482050078D5F8 /* LoginViewController.swift in Sources */,
 				62C34E051F03DF080078D5F8 /* LanguageTableViewController.swift in Sources */,
 				62C34DF81F0377050078D5F8 /* DrawerHeaderCell.swift in Sources */,
+				6297EC241FF0FC16003E8F1C /* GPADialigUtil.swift in Sources */,
 				6204A07E1F39E5CE004B2118 /* NothingView.swift in Sources */,
 				6271028C1F6FDDBA00676290 /* StudentInformation.swift in Sources */,
 				62FD1FA51F28F0BD0097A696 /* MKRingProgressGroupView.swift in Sources */,
 				6205B9181FDB80F400A124E0 /* TermDialog.swift in Sources */,
 				62FD1FA61F28F0BD0097A696 /* MKRingProgressGroupButton.swift in Sources */,
+				6297EC221FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift in Sources */,
 				62C786801EFB998D00CB28ED /* Subject.swift in Sources */,
 				62AA4E3E1F033B57009C8CFC /* ChartsViewController.swift in Sources */,
 				62CFC9C01EFA996C002B4A8D /* DashboardCell.swift in Sources */,

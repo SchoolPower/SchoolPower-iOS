@@ -23,6 +23,9 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var languageTitle: UILabel?
     @IBOutlet weak var dspTitle: UILabel?
     @IBOutlet weak var showInactiveTitle: UILabel?
+    @IBOutlet weak var selectSubjectsTitle: UILabel?
+    @IBOutlet weak var calculateRuleTitle: UILabel?
+    
     @IBOutlet weak var notificationTitle: UILabel!
     @IBOutlet weak var showGradesTitle: UILabel!
     @IBOutlet weak var notifyUngeadedTitle: UILabel!
@@ -32,6 +35,7 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var languageDetail: UILabel?
     @IBOutlet weak var dspDetail: UILabel?
+    @IBOutlet weak var calculateRuleDetail: UILabel?
     @IBOutlet weak var reportBugDetail: UILabel!
     
     @IBOutlet weak var showInactiveSwitch: UISwitch!
@@ -58,8 +62,9 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0: return "display".localize
-        case 1: return "notification_header".localize
-        case 2: return "support".localize
+        case 1: return "customize_gpa".localize
+        case 2: return "notification_header".localize
+        case 3: return "support".localize
         default: return ""
         }
     }
@@ -76,11 +81,14 @@ class SettingsTableViewController: UITableViewController {
     func loadDetails() {
         
         let descriptionSets = [["default".localize, "English", "繁體中文", "简体中文"],
-                               ["thisterm".localize, "thissemester".localize]]
+                               ["thisterm".localize, "thissemester".localize],
+                               ["all".localize, "highest_3".localize, "highest_4".localize, "highest_5".localize]]
         
         languageTitle?.text = "language".localize
         dspTitle?.text = "dashboardDisplays".localize
         showInactiveTitle?.text = "show_inactive_title".localize
+        selectSubjectsTitle?.text = "select_subjects".localize
+        calculateRuleTitle?.text = "calculate_rule".localize
         notificationTitle?.text = "enable_notification".localize
         showGradesTitle?.text = "notification_show_grade".localize
         notifyUngeadedTitle?.text = "notification_show_no_grade_assignment".localize
@@ -90,6 +98,10 @@ class SettingsTableViewController: UITableViewController {
         
         languageDetail?.text = descriptionSets[0][userDefaults.integer(forKey: LANGUAGE_KEY_NAME)]
         dspDetail?.text = descriptionSets[1][userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME)]
+        calculateRuleDetail?.text = String.init(format: "%@%@%@",
+                                                "calculate_rule_prefix".localize,
+                                                descriptionSets[2][userDefaults.integer(forKey: CALCULATE_RULE_KEY_NAME)].lowercased(),
+                                                "calculate_rule_suffix".localize)
         reportBugDetail?.text = "report_bug_summary".localize
         
         showInactiveSwitch.setOn(userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME), animated: false)
@@ -129,7 +141,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
         
-        if indexPath.section == 2 {
+        if indexPath.section == 3 {
             switch indexPath.row {
             case 0:
                 let mailComposeViewController = configuredMailComposeViewController()
@@ -150,6 +162,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
     }
     
     func configuredMailComposeViewController() -> MFMailComposeViewController {
+        
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
         mailComposerVC.setToRecipients([SUPPORT_EMAIL])

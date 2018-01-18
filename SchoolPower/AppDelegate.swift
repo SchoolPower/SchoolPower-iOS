@@ -30,6 +30,8 @@ let TOKEN_KEY_NAME = "apns_token"
 let LANGUAGE_KEY_NAME = "language"
 let DASHBOARD_DISPLAY_KEY_NAME = "dashboardDisplays"
 let SHOW_INACTIVE_KEY_NAME = "showInactive"
+let SELECT_SUBJECTS_KEY_NAME = "selectSubjects"
+let CALCULATE_RULE_KEY_NAME = "calculateRule"
 let ENABLE_NOTIFICATION_KEY_NAME = "enableNotification"
 let SHOW_GRADES_KEY_NAME = "showGradesInNotification"
 let NOTIFY_UNGRADED_KEY_NAME = "notifyUngraded"
@@ -38,7 +40,7 @@ let USERNAME_KEY_NAME = "username"
 let PASSWORD_KEY_NAME = "password"
 let STUDENT_NAME_KEY_NAME = "studentname"
 
-let keySetse = ["language", "dashboardDisplays", "showInactive", "enableNotification", "showGradesInNotification", "notifyUngraded"]
+let CUSTOM_RULES = ["all", "highest_3", "highest_4", "highest_5"]
 
 let JSON_FILE_NAME = "dataMap.json"
 
@@ -326,6 +328,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.object(forKey: LANGUAGE_KEY_NAME) == nil { userDefaults.register(defaults: [LANGUAGE_KEY_NAME: 0]) }
         if userDefaults.object(forKey: DASHBOARD_DISPLAY_KEY_NAME) == nil { userDefaults.register(defaults: [DASHBOARD_DISPLAY_KEY_NAME: 1]) }
         if userDefaults.object(forKey: SHOW_INACTIVE_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_INACTIVE_KEY_NAME: false]) }
+        if userDefaults.object(forKey: SELECT_SUBJECTS_KEY_NAME) == nil { userDefaults.register(defaults: [SELECT_SUBJECTS_KEY_NAME: [String]()]) }
+        if userDefaults.object(forKey: CALCULATE_RULE_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_INACTIVE_KEY_NAME: 0]) }
         if userDefaults.object(forKey: ENABLE_NOTIFICATION_KEY_NAME) == nil { userDefaults.register(defaults: [ENABLE_NOTIFICATION_KEY_NAME: true]) }
         if userDefaults.object(forKey: SHOW_GRADES_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_GRADES_KEY_NAME: true]) }
         if userDefaults.object(forKey: NOTIFY_UNGRADED_KEY_NAME) == nil { userDefaults.register(defaults: [NOTIFY_UNGRADED_KEY_NAME: true]) }

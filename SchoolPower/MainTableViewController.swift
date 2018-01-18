@@ -25,11 +25,13 @@ import DGElasticPullToRefresh
 var subjects = [Subject]()
 var filteredSubjects = [Subject]()
 var attendances = [Attendance]()
+var studentInfo = StudentInformation(json: "{}")
 
 class MainTableViewController: UITableViewController {
 
     var bannerView: GADBannerView!
     var loadingView: DGElasticPullToRefreshLoadingViewCircle!
+    var GPADialog = GPADialogUtil()
 
     let kRowsCount = 30
     let kOpenCellHeight: CGFloat = 315
@@ -85,7 +87,7 @@ class MainTableViewController: UITableViewController {
         if (!userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME)) {
             filteredSubjects = [Subject]()
             for subject in subjects{
-                if subject.getLatestItemGrade().letter != "--" || !subject.assignments.isEmpty {
+                if Utils.getLatestItemGrade(grades: subject.grades).letter != "--" || !subject.assignments.isEmpty {
                     filteredSubjects.append(subject)
                 }
             }
@@ -168,115 +170,19 @@ class MainTableViewController: UITableViewController {
 
         if subjects.count == 0 {
 
-            UIAlertView(title: "gpa_not_available".localize, message: "gpa_not_available_because".localize,
-                    delegate: nil, cancelButtonTitle: "alright".localize)
+            UIAlertView(title: "gpa_not_available".localize,
+                        message: "gpa_not_available_because".localize,
+                        delegate: nil,
+                        cancelButtonTitle: "alright".localize)
                     .show()
 
         } else {
-
-            var sum = 0.0
-            var exhr = 0.0
-            var exhrme = 0.0
-            var contain_hr = false
-            var contain_me = false
-            var num = 0
-            var periodApplied = ""
-            for subject in subjects {
-                let periodName = subject.getLatestItem()
-                if periodName != "--" {
-                    if periodApplied=="" { periodApplied = periodName }
-                    let period = subject.grades[periodName]
-                    if period == nil || period!.letter == "--" { continue }
-                    let grade = Double(period!.percentage)!
-                    sum += grade
-                    num += 1
-                    if subject.title.contains("Homeroom") {
-                        contain_hr = true
-                        continue
-                    }
-                    exhr += grade
-                    if subject.title.contains("Moral Education") {
-                        contain_me = true
-                        continue
-                    }
-                    exhrme += grade
-                }
-            }
-            if num == 0 {
-                UIAlertView(title: "gpa_not_available".localize, message: "gpa_not_available_because".localize,
-                        delegate: nil, cancelButtonTitle: "alright".localize)
-                        .show()
-                return
-            }
-            let doubleNum = Double(num)
-            let standerdWidth = self.view.frame.width * 0.8
-            let alert = CustomIOSAlertView.init()
-            let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: standerdWidth * 1.5))
-            let gpaDialog = GPADialog.instanceFromNib(width: standerdWidth)
-            let gpaSegments = gpaDialog.viewWithTag(2) as? GPASegmentedControl
-
-            percentageLabel?.format = "%.3f%%"
-            descriptionLabel?.text = String(format: "gpamessage".localize, periodApplied)
-            ring?.ring1.startColor = Utils.getColorByLetterGrade(
-                    letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: sum / doubleNum))
-            ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
-
-            gpaSegments?.sum = sum / doubleNum / 100
-            var num_to_minus: Double = 0.0
-            if (contain_hr) {
-                num_to_minus += 1
-            }
-            gpaSegments?.exhr = exhr / (doubleNum - num_to_minus) / 100
-            if (contain_me) {
-                num_to_minus += 1
-            }
-            gpaSegments?.exhrme = exhrme / (doubleNum - num_to_minus) / 100
-
-            gpaSegments?.setTitle("all".localize, forSegmentAt: 0)
-            gpaSegments?.apportionsSegmentWidthsByContent = true
-            gpaSegments?.addTarget(self, action: #selector(animateProgressView), for: .valueChanged)
-            gpaDialog.center = subview.center
-            subview.addSubview(gpaDialog)
-
-            alert?.containerView = subview
-            alert?.closeOnTouchUpOutside = true
-            alert?.buttonTitles = nil
-            alert?.show()
-
-            let when = DispatchTime.now() + 0.1
-            DispatchQueue.main.asyncAfter(deadline: when) {
-                self.animateProgressView(sender: gpaSegments!)
-            }
+            
+            self.GPADialog = GPADialogUtil(view: self.view,
+                                           subjectsForGPA: subjects,
+                                           GPAOfficial: studentInfo.GPA ?? Double.nan)
+            self.GPADialog.show()
         }
-    }
-
-    func animateProgressView(sender: GPASegmentedControl) {
-
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(1.0)
-
-        var value: Double = 0
-        let formerStr = percentageLabel?.text ?? ""
-        var strPos: Float = 0
-        if formerStr != "" {
-            strPos = Float((formerStr.substring(to: formerStr.index(formerStr.endIndex, offsetBy: -1))))!
-        }
-
-        switch sender.selectedSegmentIndex {
-        case 0: value = sender.sum!
-        case 1: value = sender.exhr!
-        case 2: value = sender.exhrme!
-        default: value = sender.sum ?? 0
-        }
-
-        ring?.ring1.progress = value
-        ring?.ring1.startColor = Utils.getColorByLetterGrade(
-                letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: value * 100))
-        ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
-        percentageLabel?.countFrom(fromValue: strPos, to: Float(value * 100), withDuration: 1.0,
-                andAnimationType: .EaseOut, andCountingType: .Custom)
-
-        CATransaction.commit()
     }
 }
 
@@ -343,7 +249,6 @@ extension MainTableViewController {
                                 item.isNew = true
                             }
                         }
-
                     }
                 }
                 for item in attendances {
@@ -585,35 +490,3 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         alert?.show()
     }
 }
-
-class GPASegmentedControl: UISegmentedControl {
-
-    var sum: Double?
-    var exhr: Double?
-    var exhrme: Double?
-}
-
-extension UIColor {
-
-    func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
-        return self.adjust(by: abs(percentage))
-    }
-
-    func darker(by percentage: CGFloat = 30.0) -> UIColor? {
-        return self.adjust(by: -1 * abs(percentage))
-    }
-
-    func adjust(by percentage: CGFloat = 30.0) -> UIColor? {
-
-        var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
-        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-            return UIColor.init(hue: hue - percentage / 100,
-                    saturation: saturation + percentage / 100,
-                    brightness: brightness + percentage / 100,
-                    alpha: alpha)
-        } else {
-            return nil
-        }
-    }
-}
-

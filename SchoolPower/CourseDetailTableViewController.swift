@@ -34,8 +34,8 @@ class CourseDetailTableViewController: UITableViewController {
         self.title = infoItem.title
         
         initTermList()
-        setAllTerms(termsList: termsList)
-        self.navigationController?.navigationBar.barTintColor = Utils.getColorByGrade(item: infoItem.getLatestItemGrade())
+        setAllTerms()
+        self.navigationController?.navigationBar.barTintColor = Utils.getColorByGrade(item: Utils.getLatestItemGrade(grades: infoItem.grades))
     }
     
     override func viewDidLoad() {
@@ -75,7 +75,7 @@ class CourseDetailTableViewController: UITableViewController {
         for (termName, _) in infoItem.grades{ termsList.append(termName) }
     }
     
-    func setAllTerms(termsList: Array<String>) {
+    func setAllTerms() {
         setTerm(term: "ANY")
     }
     
@@ -99,10 +99,11 @@ class CourseDetailTableViewController: UITableViewController {
             picker, value, index in
             
             self.currentTerm = value
-            if value == 0 { self.setAllTerms(termsList: self.termsList) }
+            if value == 0 { self.setAllTerms() }
             else {self.setTerm(term: self.termsList[value])}
             self.tableView.reloadData()
             return
+                    
         }, cancel: { ActionStringCancelBlock in return }, origin: self.tableView)
         
         let cancelButton = UIBarButtonItem()

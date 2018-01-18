@@ -51,7 +51,7 @@ class CourseDetailHeaderCell: UITableViewCell, MFMailComposeViewControllerDelega
     var infoItem: Subject! {
         
         didSet {
-            let grade = infoItem.getLatestItemGrade()
+            let grade = Utils.getLatestItemGrade(grades: infoItem.grades)
             headerTeacherName.text = infoItem.teacherName
             headerBlockLetter.text = "Block " + infoItem.blockLetter
             headerRoomNumber.text = "room".localize + infoItem.roomNumber

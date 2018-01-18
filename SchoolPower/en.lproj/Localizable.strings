@@ -57,9 +57,11 @@
 "donateus" = "Donate Us";
 "licenses" = "Licenses";
 "iloveopensource" = "I love open source software.";
-"gpamessage" = "Your GPA for %@ is";
+"gpamessage" = "has a GPA of";
 "gpa_not_available" = "GPA not available";
 "gpa_not_available_because" = "Your GPA is currently not available because there is no data.";
+"custom_gpa_not_available" = "Custom GPA not available";
+"custom_gpa_not_available_because" = "Please go to settings to customize your GPA calculate rules.";
 "alright" = "Alright";
 "all" = "All";
 "notification" = "Notification";
@@ -83,3 +85,13 @@
 "source_code" = "Get Source Code";
 "evaluation" = "Evaluation";
 "comment" = "Comment";
+"customize_gpa" = "Customize GPA";
+"select_subjects" = "Select Subjects";
+"calculate_rule" = "Calculation Rule";
+"highest_3" = "Highest 3";
+"highest_4" = "Highest 4";
+"highest_5" = "Highest 5";
+"custom" = "Custom";
+"official" = "Official";
+"calculate_rule_prefix" = "Calculate the ";
+"calculate_rule_suffix" = " subjects in your selections";

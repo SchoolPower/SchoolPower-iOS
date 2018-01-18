@@ -24,6 +24,8 @@ class GPADialog: UIView {
         ring = view.viewWithTag(1) as? MKRingProgressGroupView
         percentageLabel = view.viewWithTag(3) as? SACountingLabel
         descriptionLabel = view.viewWithTag(4) as? UILabel
+        descriptionLabel?.text = "gpamessage".localize
+        
         return view
     }
 }
