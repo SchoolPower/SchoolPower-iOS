@@ -15,7 +15,7 @@ class GPADialogUtil {
     
     var view: UIView
     var gpaDialog = UIView()
-    var allPeriods: Array<String> = Array()
+    var allPeriods = NSMutableSet()
     var currentTerm = 0
     
     var subjectsForGPA: [Subject]
@@ -42,14 +42,14 @@ class GPADialogUtil {
             latestPeriods[key] = subjects[$0].grades[key]
             for keyFilter in subjects[$0].grades.keys {
                 if subjects[$0].grades[keyFilter]?.letter != "--" {
-                    allPeriods.append(keyFilter)
+                    allPeriods.add(keyFilter)
                 }
             }
         })
         
         // overall latest period, usually indicate the current term
         let latestPeriod = Utils.getLatestItem(grades: latestPeriods)
-        currentTerm = allPeriods.index(of: latestPeriod)!
+        currentTerm = (allPeriods.allObjects as! [String]).index(of: latestPeriod)!
             
         constructView()
     }
@@ -64,8 +64,8 @@ class GPADialogUtil {
     
     private func updateData(segmentPos: Int){
         
-        let GPAAll = self.calculateGPA(term: self.allPeriods[currentTerm])
-        let GPACustom = self.calculateCustomGPA(term: self.allPeriods[currentTerm])
+        let GPAAll = self.calculateGPA(term: self.allPeriods.allObjects[currentTerm] as! String)
+        let GPACustom = self.calculateCustomGPA(term: self.allPeriods.allObjects[currentTerm] as! String)
         
         switch segmentPos {
         case 0:
@@ -103,7 +103,7 @@ class GPADialogUtil {
         gpaSegments.apportionsSegmentWidthsByContent = true
         gpaSegments.addTarget(self, action: #selector(segmentOnClick), for: .valueChanged)
         termPullDown.addTarget(self, action: #selector(termOnClick), for: .touchUpInside)
-        termPullDown.setTitle(self.allPeriods[currentTerm], for: .normal)
+        termPullDown.setTitle(self.allPeriods.allObjects[currentTerm] as? String, for: .normal)
         
         percentageLabel?.format = "%.3f%%"
         gpaDialog.center = subview.center
@@ -130,13 +130,13 @@ class GPADialogUtil {
         
         let termPullDown = gpaDialog.viewWithTag(5) as! UIButton
         let gpaSegments = gpaDialog.viewWithTag(2) as! UISegmentedControl
-        let picker = ActionSheetStringPicker.init(title: "selectterm".localize, rows: allPeriods,
+        let picker = ActionSheetStringPicker.init(title: "selectterm".localize, rows: allPeriods.allObjects,
             initialSelection: currentTerm, doneBlock: {
                 picker, value, index in
                 
                 self.currentTerm = value
                 self.updateData(segmentPos: gpaSegments.selectedSegmentIndex)
-                termPullDown.setTitle(self.allPeriods[value], for: .normal)
+                termPullDown.setTitle(self.allPeriods.allObjects[value] as? String, for: .normal)
                 return
                 
         }, cancel: { ActionStringCancelBlock in return }, origin: self.view)
