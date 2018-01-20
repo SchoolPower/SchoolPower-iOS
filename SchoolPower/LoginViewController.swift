@@ -93,7 +93,8 @@ class LoginViewController: UIViewController {
                 self.userDefaults.set(password, forKey: PASSWORD_KEY_NAME)
                 self.userDefaults.set(true, forKey: LOGGED_IN_KEY_NAME)
                 
-                let (studentInfo, _, data) = Utils.parseJsonResult(jsonStr: response)
+                let (studentInfo, _, data, disabled, disabled_title, disabled_message) = Utils.parseJsonResult(jsonStr: response)
+                
                 self.userDefaults.set(studentInfo.getFullName(), forKey: STUDENT_NAME_KEY_NAME)
                 self.userDefaults.synchronize()
                 
@@ -125,8 +126,6 @@ class LoginViewController: UIViewController {
         UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(
                 rootViewController: mainController, leftViewController: leftViewController, rightViewController: nil)
     }
-    
-    
     
     func showSnackbar(msg: String) {
         

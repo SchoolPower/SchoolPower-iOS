@@ -1040,8 +1040,33 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.035693757236003876" green="0.19345766305923462" blue="0.29338455200195312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="n9F-tG-P16" detailTextLabel="hrW-Kp-7K4" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="PZp-Nc-vAL" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="330" width="414" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PZp-Nc-vAL" id="ShI-z9-6vr">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Visit Feedback Forum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9F-tG-P16">
+                                                    <rect key="frame" x="20" y="8.9999999999999982" width="166" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Give suggestions or report bugs at our forum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hrW-Kp-7K4">
+                                                    <rect key="frame" x="20" y="31.333333333333332" width="255" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.92146831750000002" green="0.92162638900000005" blue="0.92145836349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.035693757239999999" green="0.19345766310000001" blue="0.29338455200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="kC9-1V-mIS" style="IBUITableViewCellStyleDefault" id="ref-Pu-akW" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="330" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="386" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ref-Pu-akW" id="hYD-4W-G9I">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -1060,7 +1085,7 @@
                                         <color key="tintColor" red="0.035693757239999999" green="0.19345766310000001" blue="0.29338455200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ZGG-aa-QuB" style="IBUITableViewCellStyleDefault" id="Whw-sa-z0N" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="374" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="430" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Whw-sa-z0N" id="5in-yB-K2d">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -1082,7 +1107,7 @@
                             <tableViewSection id="jw1-9G-wC5">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="14i-2d-vbp" style="IBUITableViewCellStyleDefault" id="19q-LJ-PgQ">
-                                        <rect key="frame" x="0.0" y="454" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="510" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="19q-LJ-PgQ" id="HI3-7U-vWN">
                                             <rect key="frame" x="0.0" y="0.0" width="376" height="44"/>
@@ -1108,6 +1133,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="VisitForumDetail" destination="hrW-Kp-7K4" id="caP-Gd-eXH"/>
                         <outlet property="getSourceCodeTitle" destination="ZGG-aa-QuB" id="5xx-VY-agD"/>
                         <outlet property="headerCell" destination="SY7-Df-2fe" id="j8D-r7-FIQ"/>
                         <outlet property="licensesCell" destination="19q-LJ-PgQ" id="ADi-5d-rd5"/>
@@ -1116,6 +1142,7 @@
                         <outlet property="reportBugTitle" destination="jsc-LB-N4d" id="NPj-QZ-HQn"/>
                         <outlet property="versionLabel" destination="IFw-my-XAe" id="eTO-hZ-njs"/>
                         <outlet property="versionLable" destination="jIQ-7K-DVB" id="kJp-hi-Hqz"/>
+                        <outlet property="visitForumTitle" destination="n9F-tG-P16" id="uxZ-1k-lYg"/>
                         <outlet property="visitWebsiteTitle" destination="kC9-1V-mIS" id="XlO-B5-Fme"/>
                     </connections>
                 </tableViewController>

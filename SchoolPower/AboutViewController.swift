@@ -27,6 +27,9 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
     @IBOutlet weak var licensesLable: UILabel!
     @IBOutlet weak var reportBugTitle: UILabel!
     @IBOutlet weak var reportBugDetail: UILabel!
+    @IBOutlet weak var visitForumTitle: UILabel!
+    @IBOutlet weak var VisitForumDetail: UILabel!
+
     @IBOutlet weak var visitWebsiteTitle: UILabel!
     @IBOutlet weak var getSourceCodeTitle: UILabel!
     
@@ -41,9 +44,11 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         versionLable.text = "version".localize
         licensesLable.text = "licenses".localize
         reportBugTitle?.text = "report_bug".localize
+        visitForumTitle?.text = "feedback_forum".localize
         visitWebsiteTitle?.text = "visit_website".localize
         getSourceCodeTitle?.text = "source_code".localize
         reportBugDetail?.text = "report_bug_summary".localize
+        VisitForumDetail?.text = "feedback_forum_summary".localize
         
         versionLabel?.text =  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     }
@@ -72,10 +77,15 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
                 }
                 break
             case 1:
+                UIApplication.shared.openURL(NSURL(string: FORUM_URL)! as URL)
+                break
+            case 2:
                 UIApplication.shared.openURL(NSURL(string: WEBSITE_URL)! as URL)
                 break
-            default:
+            case 3:
                 UIApplication.shared.openURL(NSURL(string: CODE_URL)! as URL)
+                break
+            default:
                 break
             }
         case 3:

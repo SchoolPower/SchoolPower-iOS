@@ -123,10 +123,21 @@ class AttendanceTableViewController: UITableViewController {
                 
             } else if response.contains("{") {
                 
+                var disabled = false
+                // Don't need to localize these
+                // cuz the server shall always return a title & message when disabled
+                // these are JUST IN CASE
+                var disabled_title = "Access is denied"
+                var disabled_message = "PowerSchool 目前被学校禁用，请联系学校以获得更多信息。"
+
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
-                (_, attendances, subjects) = Utils.parseJsonResult(jsonStr: response)
+                (_, attendances, subjects, disabled, disabled_title, disabled_message) = Utils.parseJsonResult(jsonStr: response)
                 //self.updateFilteredSubjects()
                 Utils.saveHistoryGrade(data: subjects)
+                
+                if disabled {
+                    self.showDisabledDialog(title: disabled_title, message: disabled_message)
+                }
                 
                 // Diff
                 if subjects.count == oldSubjects.count && !subjects.isEmpty {
@@ -182,6 +193,14 @@ class AttendanceTableViewController: UITableViewController {
                 self.showSnackbar(msg: "cannot_connect".localize)
             }
         }
+    }
+    
+    func showDisabledDialog(title: String, message: String) {
+        UIAlertView(title: title,
+                    message: message,
+                    delegate: nil,
+                    cancelButtonTitle: "alright".localize)
+            .show()
     }
     
     func menuOnClick(sender: UINavigationItem) {

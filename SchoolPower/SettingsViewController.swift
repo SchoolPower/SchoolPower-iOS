@@ -30,6 +30,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var showGradesTitle: UILabel!
     @IBOutlet weak var notifyUngeadedTitle: UILabel!
     @IBOutlet weak var reportBugTitle: UILabel!
+    @IBOutlet weak var visitForumTitle: UILabel!
     @IBOutlet weak var visitWebsiteTitle: UILabel!
     @IBOutlet weak var getSourceCodeTitle: UILabel!
     
@@ -37,6 +38,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var dspDetail: UILabel?
     @IBOutlet weak var calculateRuleDetail: UILabel?
     @IBOutlet weak var reportBugDetail: UILabel!
+    @IBOutlet weak var visitForumDetail: UILabel!
     
     @IBOutlet weak var showInactiveSwitch: UISwitch!
     @IBOutlet weak var enableNotificationSwitch: UISwitch!
@@ -93,6 +95,7 @@ class SettingsTableViewController: UITableViewController {
         showGradesTitle?.text = "notification_show_grade".localize
         notifyUngeadedTitle?.text = "notification_show_no_grade_assignment".localize
         reportBugTitle?.text = "report_bug".localize
+        visitForumTitle?.text = "feedback_forum".localize
         visitWebsiteTitle?.text = "visit_website".localize
         getSourceCodeTitle?.text = "source_code".localize
         
@@ -103,6 +106,7 @@ class SettingsTableViewController: UITableViewController {
                                                 descriptionSets[2][userDefaults.integer(forKey: CALCULATE_RULE_KEY_NAME)].lowercased(),
                                                 "calculate_rule_suffix".localize)
         reportBugDetail?.text = "report_bug_summary".localize
+        visitForumDetail?.text = "feedback_forum_summary".localize
         
         showInactiveSwitch.setOn(userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME), animated: false)
         enableNotificationSwitch.setOn(userDefaults.bool(forKey: ENABLE_NOTIFICATION_KEY_NAME), animated: false)
@@ -150,9 +154,12 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 }
                 break
             case 1:
-                UIApplication.shared.openURL(NSURL(string: WEBSITE_URL)! as URL)
+                UIApplication.shared.openURL(NSURL(string: FORUM_URL)! as URL)
                 break
             case 2:
+                UIApplication.shared.openURL(NSURL(string: WEBSITE_URL)! as URL)
+                break
+            case 3:
                 UIApplication.shared.openURL(NSURL(string: CODE_URL)! as URL)
                 break
             default:

@@ -27,6 +27,13 @@ var filteredSubjects = [Subject]()
 var attendances = [Attendance]()
 var studentInfo = StudentInformation(json: "{}")
 
+var disabled = false
+// Don't need to localize these
+// cuz the server shall always return a title & message when disabled
+// these are JUST IN CASE
+var disabled_title = "Access is denied"
+var disabled_message = "PowerSchool 目前被学校禁用，请联系学校以获得更多信息。"
+
 class MainTableViewController: UITableViewController {
 
     var bannerView: GADBannerView!
@@ -87,7 +94,7 @@ class MainTableViewController: UITableViewController {
         if (!userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME)) {
             filteredSubjects = [Subject]()
             for subject in subjects{
-                if Utils.getLatestItemGrade(grades: subject.grades).letter != "--" || !subject.assignments.isEmpty {
+                if Date().isBetweeen(date: subject.startDate, andDate: subject.endDate) {
                     filteredSubjects.append(subject)
                 }
             }
@@ -101,7 +108,7 @@ class MainTableViewController: UITableViewController {
         initUI()
         let input = Utils.readDataArrayList()
         if input != nil {
-            (_,attendances,subjects) = input!
+            (_, attendances, subjects, disabled, disabled_title, disabled_message) = input!
             updateFilteredSubjects()
         }
         if self.navigationController?.view.tag == 1 {
@@ -222,9 +229,15 @@ extension MainTableViewController {
                 self.logOut()
                 
             } else if response.contains("{") {
-
+                
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
-                (_, attendances, subjects) = Utils.parseJsonResult(jsonStr: response)
+                (_, attendances, subjects, disabled, disabled_title, disabled_message) = Utils.parseJsonResult(jsonStr: response)
+                
+                if disabled {
+                    DispatchQueue.main.async {
+                        self.showDisabledDialog(title: disabled_title, message: disabled_message)
+                    }
+                }
                 
                 self.updateFilteredSubjects()
                 Utils.saveHistoryGrade(data: subjects)
@@ -281,6 +294,14 @@ extension MainTableViewController {
                 self.showSnackbar(msg: "cannot_connect".localize)
             }
         }
+    }
+    
+    func showDisabledDialog(title: String, message: String) {
+        UIAlertView(title: title,
+                    message: message,
+                    delegate: nil,
+                    cancelButtonTitle: "alright".localize)
+            .show()
     }
 
     func logOut() {
@@ -488,5 +509,11 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         alert?.closeOnTouchUpOutside = true
         alert?.buttonTitles = nil
         alert?.show()
+    }
+}
+
+extension Date {
+    func isBetweeen(date date1: Date, andDate date2: Date) -> Bool {
+        return date1.compare(self).rawValue * self.compare(date2).rawValue >= 0
     }
 }

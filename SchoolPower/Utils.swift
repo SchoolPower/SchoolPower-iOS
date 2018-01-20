@@ -137,7 +137,7 @@ extension Utils {
         return nil
     }
     
-    static func readDataArrayList() -> (StudentInformation, [Attendance], [Subject])? {
+    static func readDataArrayList() -> (StudentInformation, [Attendance], [Subject], Bool, String, String)? {
         return parseJsonResult(jsonStr: readStringFromFile(filename: JSON_FILE_NAME)!)
     }
     
@@ -221,6 +221,36 @@ extension Utils {
 //MARK: Others
 extension Utils {
     
+    static func getAllPeriods(subject: [Subject]) -> NSMutableSet {
+        
+        let allPeriods = NSMutableSet()
+        var latestPeriods = [String: Grade]()
+        
+        subject.indices.forEach ({
+            let key = self.getLatestItem(grades: subjects[$0].grades)
+            latestPeriods[key] = subjects[$0].grades[key]
+            for keyFilter in subjects[$0].grades.keys {
+                if subjects[$0].grades[keyFilter]?.letter != "--" {
+                    allPeriods.add(keyFilter)
+                }
+            }
+        })
+        return allPeriods
+    }
+    
+    static func getLatestPeriod(subject: [Subject]) -> String {
+        
+        var latestPeriods = [String: Grade]()
+        
+        subject.indices.forEach ({
+            let key = self.getLatestItem(grades: subjects[$0].grades)
+            latestPeriods[key] = subjects[$0].grades[key]
+        })
+        
+        // overall latest period, usually indicates the current term
+        return Utils.getLatestItem(grades: latestPeriods)
+    }
+    
     static func getLatestItem(grades: [String: Grade]) -> String {
         
         let forLatestSemester: Bool = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME) == 1
@@ -253,11 +283,14 @@ extension Utils {
         return grades[getLatestItem(grades: grades)] ?? Grade(percentage: "--", letter: "--", comment: "", evaluation:"--")
     }
     
-    static func parseJsonResult(jsonStr: String) ->(StudentInformation, [Attendance], [Subject]) {
+    static func parseJsonResult(jsonStr: String) ->(
+        StudentInformation, [Attendance], [Subject],
+        Bool, String, String) {
         
         let studentData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
         if (studentData["information"] == JSON.null) { // not successful
-            return (StudentInformation(json: "{}"), [Attendance](), [Subject]())
+            return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
+                    false, "", "")
         }
         let studentInfo = StudentInformation(json: studentData["information"])
         var subjects = [Subject]()
@@ -272,7 +305,18 @@ extension Utils {
             return $0.blockLetter < $1.blockLetter
         }
         
-        return (studentInfo, attendances, subjects)
+        let disabled = studentData["disabled"] != JSON.null
+        var disabled_title = ""
+        var disabled_message = ""
+        
+        if (disabled) {
+            let disableInfo = studentData["disabled"]
+            disabled_title = disableInfo["title"].stringValue
+            disabled_message = disableInfo["message"].stringValue
+        }
+        
+        return (studentInfo, attendances, subjects,
+                disabled, disabled_title, disabled_message)
     }
     
     static func getShortName(subjectTitle: String)->String{
@@ -333,4 +377,3 @@ extension Utils {
         return ret
     }
 }
-

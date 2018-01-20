@@ -35,21 +35,9 @@ class GPADialogUtil {
     
     func show () {
         
-        var latestPeriods = [String: Grade]()
-        
-        subjectsForGPA.indices.forEach ({
-            let key = Utils.getLatestItem(grades: subjects[$0].grades)
-            latestPeriods[key] = subjects[$0].grades[key]
-            for keyFilter in subjects[$0].grades.keys {
-                if subjects[$0].grades[keyFilter]?.letter != "--" {
-                    allPeriods.add(keyFilter)
-                }
-            }
-        })
-        
-        // overall latest period, usually indicate the current term
-        let latestPeriod = Utils.getLatestItem(grades: latestPeriods)
-        currentTerm = (allPeriods.allObjects as! [String]).index(of: latestPeriod)!
+        allPeriods = Utils.getAllPeriods(subject: subjectsForGPA)
+        currentTerm = (allPeriods.allObjects as! [String])
+            .index(of: Utils.getLatestPeriod(subject: subjectsForGPA))!
             
         constructView()
     }

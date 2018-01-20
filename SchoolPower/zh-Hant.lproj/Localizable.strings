@@ -78,6 +78,8 @@
 "support" = "支持";
 "report_bug" = "提交Bug";
 "report_bug_summary" = "用電子郵件聯繫開發者";
+"feedback_forum" = "訪問反饋論壇";
+"feedback_forum_summary" = "在我們的論壇裡提交意見和建議";
 "choose_email_app" = "選擇一個郵件應用…";
 "bug_report_email_subject" = "SchoolPower 有 Bug";
 "bug_report_email_content" = "請提供盡可能詳細的信息，如如何复现问题，預期的結果是什麼。\n調試信息: SchoolPower Android %@.\nPowerSchool用戶名與密碼（可選，有助於我們更快修復問題）：\n";

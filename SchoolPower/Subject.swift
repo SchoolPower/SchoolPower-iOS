@@ -66,17 +66,24 @@ class Subject {
     var teacherEmail: String
     var blockLetter: String
     var roomNumber: String
+    var startDate: Date
+    var endDate: Date
     
     var assignments: [Assignment] = [Assignment]()
     var grades:[String: Grade] = [String: Grade]()
     
     init(json:JSON) {
         
+        let df1 = DateFormatter()
+        df1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
         title = json["name"].stringValue
         teacherName = json["teacher"]["firstName"].stringValue + " " + json["teacher"]["lastName"].stringValue
         teacherEmail = json["teacher"]["email"].stringValue
         blockLetter = json["expression"].stringValue
         roomNumber = json["roomName"].stringValue
+        startDate = df1.date(from: json["startDate"].stringValue)!
+        endDate = df1.date(from: json["endDate"].stringValue)!
         
         let jsonAssignments = json["assignments"].arrayValue
         for assignment in jsonAssignments{

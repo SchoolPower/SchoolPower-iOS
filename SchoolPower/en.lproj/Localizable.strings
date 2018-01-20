@@ -69,15 +69,17 @@
 "i_understand" = "I Understand";
 "notification_header" = "Notification";
 "enable_notification" = "Enable notifications";
-"show_inactive_summary" = "Show subjects that currently have no assignment and grade.";
-"show_inactive_title" = "Show inactive subjects";
+"show_inactive_summary" = "Show the courses that you are not currently taking.";
+"show_inactive_title" = "Show inactive courses";
 "notification_show_grade" = "Show Grades in Notification";
 "notification_show_no_grade_assignment" = "Notify Ungraded Assignments";
 "notification_new" = "New Assignments";
 "attendance_new" = "New Attendances";
 "support" = "Support";
 "report_bug" = "Report a Bug";
-"report_bug_summary" = "Contact developer with email";
+"report_bug_summary" = "Contact developer via email";
+"feedback_forum" = "Visit Feedback Forum";
+"feedback_forum_summary" = "Give suggestions or report bugs at our forum";
 "choose_email_app" = "Choose an email app…";
 "bug_report_email_subject" = "Found Bug(s) in SchoolPower";
 "bug_report_email_content" = "Please provide as much info as possible, such as how to reproduce it, what is the expected result.\nDebug Info: SchoolPower iOS %@.\nPowerSchool Username and Password (Optional, help us solve it faster): \n";
@@ -86,7 +88,7 @@
 "evaluation" = "Evaluation";
 "comment" = "Comment";
 "customize_gpa" = "Customize GPA";
-"select_subjects" = "Select Subjects";
+"select_subjects" = "Select Courses";
 "calculate_rule" = "Calculation Rule";
 "highest_3" = "Highest 3";
 "highest_4" = "Highest 4";
@@ -94,4 +96,4 @@
 "custom" = "Custom";
 "official" = "Official";
 "calculate_rule_prefix" = "Calculate the ";
-"calculate_rule_suffix" = " subjects in your selections";
+"calculate_rule_suffix" = " courses in your selections";

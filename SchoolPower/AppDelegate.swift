@@ -22,6 +22,7 @@ import IQKeyboardManagerSwift
 
 let GET_DATA_URL = "https://schoolpower.harrynull.tech:8443/api/2.0/get_data.php"
 let REGISTER_URL = "https://schoolpower.harrynull.tech:8443/api/notifications/register.php"
+let FORUM_URL = "https://feedback.schoolpower.studio"
 let WEBSITE_URL = "https://www.schoolpower.studio"
 let CODE_URL = "https://github.com/SchoolPower"
 let SUPPORT_EMAIL = "harryyunull@gmail.com"
@@ -212,8 +213,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     var attendances : [Attendance]
                     var oldAttendances : [Attendance]
                     
-                    (_, attendances, subjects) = Utils.parseJsonResult(jsonStr: response)
-                    (_, oldAttendances, oldSubjects) = Utils.readDataArrayList()!
+                    (_, attendances, subjects, disabled, disabled_title, disabled_message) = Utils.parseJsonResult(jsonStr: response)
+                    (_, oldAttendances, oldSubjects, disabled, disabled_title, disabled_message) = Utils.readDataArrayList()!
                     
                     var updatedSubjects : [String] = []
                     var updatedGradedSubjects : [String] = []

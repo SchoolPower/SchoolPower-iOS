@@ -286,14 +286,38 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="cRo-rs-3Zd" style="IBUITableViewCellStyleDefault" id="6Wa-Lp-uog" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="674.5" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="LZh-Ec-n7b" detailTextLabel="X4p-pf-Gwz" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="7G5-GF-1fJ" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="674.5" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Wa-Lp-uog" id="AL2-rA-RCf">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7G5-GF-1fJ" id="lYU-Xk-ypN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Visit Feedback Forum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LZh-Ec-n7b">
+                                                    <rect key="frame" x="16" y="10" width="166" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Give suggestions or report bugs at our forum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X4p-pf-Gwz">
+                                                    <rect key="frame" x="16" y="31.5" width="255" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ik9-AA-fvO" style="IBUITableViewCellStyleDefault" id="Dml-Q4-qva" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="730.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dml-Q4-qva" id="HvX-Fr-Nfm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Visit Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cRo-rs-3Zd">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Visit Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ik9-AA-fvO">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -304,7 +328,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="jn0-uY-h0J" style="IBUITableViewCellStyleDefault" id="SWf-jz-EpR" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="718.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="774.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SWf-jz-EpR" id="sPr-Rb-YXA">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -350,7 +374,9 @@
                         <outlet property="showGradesTitle" destination="Y8e-Ny-Leb" id="G0l-aW-jXK"/>
                         <outlet property="showInactiveSwitch" destination="OaB-c4-Jsi" id="1gP-wg-JLQ"/>
                         <outlet property="showInactiveTitle" destination="7oA-83-qoS" id="U9j-yL-qVM"/>
-                        <outlet property="visitWebsiteTitle" destination="cRo-rs-3Zd" id="9Qz-Aa-GMA"/>
+                        <outlet property="visitForumDetail" destination="X4p-pf-Gwz" id="TUx-uN-70T"/>
+                        <outlet property="visitForumTitle" destination="LZh-Ec-n7b" id="97j-FG-U0T"/>
+                        <outlet property="visitWebsiteTitle" destination="ik9-AA-fvO" id="oqx-sF-Fcy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGE-Mg-ir0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -474,7 +500,6 @@
         <!--Dashboard Displays-->
         <scene sceneID="qFP-nB-rkv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="832-oM-D91" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="Dashboard Displays" id="6uh-IZ-Bus" customClass="DashboardDisplaysTableViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="5" sectionFooterHeight="18" id="VP0-J4-D5K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -533,6 +558,7 @@
                         <outlet property="itemTermTitle" destination="bUn-Vn-7BN" id="iIH-7L-8b1"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="832-oM-D91" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1521" y="-1079"/>
         </scene>
