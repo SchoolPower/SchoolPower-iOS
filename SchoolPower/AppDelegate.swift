@@ -238,7 +238,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                         }
                                         else { // otherwise, the grade is new.
                                             grade = it.score
-                                            
                                         }
                                     }
                                 }
@@ -293,7 +292,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 }
                             }
                         }
-                        
                     } else { completionHandler(.noData) }
                 } else { completionHandler(.failed) }
             }
@@ -311,7 +309,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //See if the premission is still there
                 UNUserNotificationCenter.current().getNotificationSettings { (settings) in
                     guard settings.authorizationStatus == .authorized else { return }
-                    UIApplication.shared.registerForRemoteNotifications()
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
                 }
             }
         } else {

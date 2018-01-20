@@ -57,14 +57,14 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rT1-me-xUb" userLabel="Left View">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="110"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ama-d5-oQ3" userLabel="Fold Letter Grade">
-                                                                    <rect key="frame" x="0.0" y="19" width="100" height="0.0"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ama-d5-oQ3" userLabel="Fold Letter Grade">
+                                                                    <rect key="frame" x="0.0" y="19" width="100" height="29.333333333333329"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="25"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kzl-cW-ZjY" userLabel="Fold Percentage Grade">
-                                                                    <rect key="frame" x="0.0" y="27" width="100" height="0.0"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kzl-cW-ZjY" userLabel="Fold Percentage Grade">
+                                                                    <rect key="frame" x="0.0" y="56.333333333333343" width="100" height="35"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="30"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -82,20 +82,20 @@
                                                                 <constraint firstAttribute="width" constant="100" id="yMM-UV-ApR"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="LGB-vo-Pzp" userLabel="Fold Subject Title">
-                                                            <rect key="frame" x="120" y="20" width="205" height="0.0"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pre-Calculus 11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="LGB-vo-Pzp" userLabel="Fold Subject Title">
+                                                            <rect key="frame" x="120" y="20" width="205" height="25.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.23921568630000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQ2-0Z-XPy" userLabel="Fold Teacher Name">
-                                                            <rect key="frame" x="120" y="27" width="205" height="0.0"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alex Appiah" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQ2-0Z-XPy" userLabel="Fold Teacher Name">
+                                                            <rect key="frame" x="120" y="52.666666666666664" width="205" height="15.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.23921568630000001" blue="0.26274509800000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnr-g9-4ry" userLabel="Fold Block Letter">
-                                                            <rect key="frame" x="120" y="31" width="205" height="0.0"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blocks here but who cares" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnr-g9-4ry" userLabel="Fold Block Letter">
+                                                            <rect key="frame" x="120" y="72" width="205" height="15.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.23921568630000001" blue="0.26274509800000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -137,16 +137,16 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="345" height="140"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xmL-8Q-dj8" userLabel="Left View">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="207" height="140"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="265" height="140"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yoq-RH-8Za" userLabel="Unfold Subject Title">
-                                                                            <rect key="frame" x="20" y="125" width="187" height="0.0"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pre-Calculus 11" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yoq-RH-8Za" userLabel="Unfold Subject Title">
+                                                                            <rect key="frame" x="20" y="99" width="245" height="26"/>
                                                                             <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="22"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmd-uJ-utx" userLabel="Unfold Teacher Name">
-                                                                            <rect key="frame" x="20" y="120" width="0.0" height="0.0"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alex Appiah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmd-uJ-utx" userLabel="Unfold Teacher Name">
+                                                                            <rect key="frame" x="20" y="78.666666666666657" width="71.666666666666671" height="15.666666666666671"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -154,31 +154,74 @@
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstItem="Tmd-uJ-utx" firstAttribute="leading" secondItem="xmL-8Q-dj8" secondAttribute="leading" constant="20" id="1BR-HX-9jH"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="Yoq-RH-8Za" secondAttribute="trailing" id="1l9-V0-8fe"/>
                                                                         <constraint firstItem="Yoq-RH-8Za" firstAttribute="leading" secondItem="xmL-8Q-dj8" secondAttribute="leading" constant="20" id="9Rp-go-IXW"/>
                                                                         <constraint firstItem="Yoq-RH-8Za" firstAttribute="top" secondItem="Tmd-uJ-utx" secondAttribute="bottom" constant="5" id="Aja-Zy-9Dt"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="Yoq-RH-8Za" secondAttribute="trailing" id="ZJ0-kj-Kcy"/>
                                                                         <constraint firstAttribute="bottom" secondItem="Yoq-RH-8Za" secondAttribute="bottom" constant="15" id="oCV-iP-H8E"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghv-nt-mQs" userLabel="Unfold Percentage Grade">
-                                                                    <rect key="frame" x="215" y="20" width="110" height="51"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghv-nt-mQs" userLabel="Unfold Percentage Grade">
+                                                                    <rect key="frame" x="284" y="20" width="41" height="51"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="110" id="Oh6-gf-kfn"/>
                                                                         <constraint firstAttribute="height" constant="51" id="eHO-Tb-TOc"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="68"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZj-yg-tnQ">
+                                                                    <rect key="frame" x="202.66666666666666" y="20" width="65.999999999999972" height="25"/>
+                                                                    <subviews>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_trending_up_white" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-OQ-FHD">
+                                                                            <rect key="frame" x="8" y="3" width="19" height="19"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="eHI-OQ-FHD" secondAttribute="height" multiplier="1:1" id="D89-vy-lXT"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qse-VK-jkU">
+                                                                            <rect key="frame" x="35" y="0.0" width="23" height="25"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                            <color key="textColor" red="0.85848445595854916" green="0.134531038977693" blue="0.06210268058419692" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="eHI-OQ-FHD" firstAttribute="leading" secondItem="xZj-yg-tnQ" secondAttribute="leading" constant="8" id="7as-WK-0Pp"/>
+                                                                        <constraint firstItem="qse-VK-jkU" firstAttribute="top" secondItem="xZj-yg-tnQ" secondAttribute="top" id="Afz-72-PGS"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="eHI-OQ-FHD" secondAttribute="bottom" constant="3" id="Dwq-Qd-9P4"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="qse-VK-jkU" secondAttribute="bottom" id="MoK-2d-2JX"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="qse-VK-jkU" secondAttribute="trailing" constant="8" id="R8f-sq-gr0"/>
+                                                                        <constraint firstAttribute="height" constant="25" id="iVf-1E-bVH"/>
+                                                                        <constraint firstItem="qse-VK-jkU" firstAttribute="leading" secondItem="eHI-OQ-FHD" secondAttribute="trailing" constant="8" id="nzS-Im-K86"/>
+                                                                        <constraint firstItem="eHI-OQ-FHD" firstAttribute="top" secondItem="xZj-yg-tnQ" secondAttribute="top" constant="3" id="orb-Wy-PbC"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                            <size key="value" width="0.0" height="2"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                            <real key="value" value="4"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.035294117649999998" green="0.19215686269999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="xmL-8Q-dj8" secondAttribute="bottom" id="5KY-Oa-HTp"/>
                                                                 <constraint firstAttribute="height" constant="140" id="7co-La-clK"/>
+                                                                <constraint firstItem="ghv-nt-mQs" firstAttribute="leading" secondItem="xZj-yg-tnQ" secondAttribute="trailing" constant="16" id="Eds-wt-94w"/>
                                                                 <constraint firstAttribute="trailing" secondItem="ghv-nt-mQs" secondAttribute="trailing" constant="20" id="Opg-C3-en7"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="el4-Uj-gSr"/>
-                                                                <constraint firstItem="ghv-nt-mQs" firstAttribute="leading" secondItem="xmL-8Q-dj8" secondAttribute="trailing" constant="8" id="fST-sf-gBQ"/>
                                                                 <constraint firstItem="xmL-8Q-dj8" firstAttribute="top" secondItem="4de-4J-GYx" secondAttribute="top" id="fu2-lf-hfi"/>
+                                                                <constraint firstAttribute="trailing" secondItem="xmL-8Q-dj8" secondAttribute="trailing" constant="80" id="id4-mA-IYa"/>
+                                                                <constraint firstItem="xZj-yg-tnQ" firstAttribute="top" secondItem="4de-4J-GYx" secondAttribute="top" constant="20" id="jSZ-Fo-crq"/>
                                                                 <constraint firstItem="xmL-8Q-dj8" firstAttribute="leading" secondItem="4de-4J-GYx" secondAttribute="leading" id="nAn-YV-WKh"/>
                                                                 <constraint firstItem="ghv-nt-mQs" firstAttribute="top" secondItem="4de-4J-GYx" secondAttribute="top" constant="20" id="wjD-uA-iOi"/>
                                                             </constraints>
@@ -273,6 +316,9 @@
                                     <outlet property="unFoldTeacherName" destination="Tmd-uJ-utx" id="vLm-bL-2Tl"/>
                                     <outlet property="unfoldBackground" destination="4de-4J-GYx" id="2Gz-u8-u5J"/>
                                     <outlet property="unfoldBorderView" destination="sbD-az-47b" id="r2b-sf-7k2"/>
+                                    <outlet property="unfoldTrendBackground" destination="xZj-yg-tnQ" id="S8x-eE-Omh"/>
+                                    <outlet property="unfoldTrendImage" destination="eHI-OQ-FHD" id="zGd-yQ-W7T"/>
+                                    <outlet property="unfoldTrendLabel" destination="qse-VK-jkU" id="6Ix-vh-5bN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -293,7 +339,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ZN-rQ-Ck7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-208.80000000000001" y="-3057.1214392803599"/>
+            <point key="canvasLocation" x="-209.42028985507247" y="-3057.472826086957"/>
         </scene>
         <!--Course Detail-->
         <scene sceneID="ePX-kH-SIw">
@@ -1346,6 +1392,7 @@
         <image name="ic_email" width="24" height="24"/>
         <image name="ic_keyboard_arrow_down_18pt" width="18" height="18"/>
         <image name="ic_launcher-web" width="512" height="512"/>
+        <image name="ic_trending_up_white" width="24" height="24"/>
         <image name="icon_light" width="1024" height="1024"/>
     </resources>
 </document>

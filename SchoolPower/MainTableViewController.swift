@@ -260,6 +260,15 @@ extension MainTableViewController {
                             }
                             if !found {
                                 item.isNew = true
+                                
+                                var oldPercent = 0
+                                var newPercent = 0
+                                let oldPercentStr = Utils.getLatestItemGrade(grades: oldSubjects[i].grades).percentage
+                                let newPercentStr = Utils.getLatestItemGrade(grades: subjects[i].grades).percentage
+                                if oldPercentStr != "--" { oldPercent = Int.init(oldPercentStr)! }
+                                if newPercentStr != "--" { newPercent = Int.init(newPercentStr)! }
+                                
+                                item.margin = newPercent - oldPercent
                             }
                         }
                     }
@@ -279,12 +288,10 @@ extension MainTableViewController {
                     }
                 }
                 DispatchQueue.main.async {
-
                     self.tableView.dg_stopLoading()
                     self.tableView.reloadData()
                 }
                 self.showSnackbar(msg: "data_updated".localize)
-
 
             } else {
 

@@ -45,7 +45,6 @@ import SwiftyJSON
  */
 class Assignment {
     
-    var isNew = false
     var title: String
     var date: String
     var percentage: String
@@ -56,6 +55,10 @@ class Assignment {
     var weight: String
     var maximumScore: String
     var terms: [String]
+    
+    var isNew = false
+    // increase/decrease
+    var margin = 0
 
     init(json: JSON) {
         
