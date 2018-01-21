@@ -84,7 +84,7 @@ class Assignment {
             ("late", json["status"]["late"].boolValue),
             ("missing", json["status"]["missing"].boolValue),
             ("exempt", json["status"]["exempt"].boolValue),
-            ("excludeInFinalGrade", !json["status"]["includeInFinalGrade"].boolValue),
+            ("excludeInFinalGrade", !(json["status"]["includeInFinalGrade"].isEmpty ? true : json["status"]["includeInFinalGrade"].boolValue)),
         ]
 //        flags = [
 //            ("collected", true),

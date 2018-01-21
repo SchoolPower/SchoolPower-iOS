@@ -82,8 +82,8 @@ class Subject {
         teacherEmail = json["teacher"]["email"].stringValue
         blockLetter = json["expression"].stringValue
         roomNumber = json["roomName"].stringValue
-        startDate = df1.date(from: json["startDate"].stringValue)!
-        endDate = df1.date(from: json["endDate"].stringValue)!
+        startDate = df1.date(from: json["startDate"].stringValue) ?? Date()
+        endDate = df1.date(from: json["endDate"].stringValue) ?? Date()
         
         let jsonAssignments = json["assignments"].arrayValue
         for assignment in jsonAssignments{
