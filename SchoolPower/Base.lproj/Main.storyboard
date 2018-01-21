@@ -582,26 +582,49 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7j-rc-YF4">
                                                             <rect key="frame" x="20" y="0.0" width="209" height="70"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKy-x6-7Dy" userLabel="Detail Assignment Title">
-                                                                    <rect key="frame" x="0.0" y="15" width="209" height="0.0"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Science Fair Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKy-x6-7Dy" userLabel="Detail Assignment Title">
+                                                                    <rect key="frame" x="0.0" y="15.000000000000002" width="209" height="21.666666666666671"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3B-hi-zxs" userLabel="Detail Assignment Date">
-                                                                    <rect key="frame" x="0.0" y="19" width="209" height="0.0"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018/01/03" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3B-hi-zxs" userLabel="Detail Assignment Date">
+                                                                    <rect key="frame" x="0.0" y="41" width="64.333333333333329" height="15"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-VN-j14">
+                                                                    <rect key="frame" x="75" y="41" width="134" height="14"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="ksT-Si-h16">
+                                                                        <size key="itemSize" width="15" height="15"/>
+                                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                    </collectionViewFlowLayout>
+                                                                    <cells>
+                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sWd-62-1lf">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                            </view>
+                                                                        </collectionViewCell>
+                                                                    </cells>
+                                                                </collectionView>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstItem="Kc2-VN-j14" firstAttribute="top" secondItem="fKy-x6-7Dy" secondAttribute="bottom" constant="4" id="4Oh-qu-ciZ"/>
                                                                 <constraint firstItem="N3B-hi-zxs" firstAttribute="leading" secondItem="E7j-rc-YF4" secondAttribute="leading" id="7Ls-mL-xh2"/>
                                                                 <constraint firstItem="fKy-x6-7Dy" firstAttribute="top" secondItem="E7j-rc-YF4" secondAttribute="top" constant="15" id="8ak-Z7-kP0"/>
                                                                 <constraint firstItem="fKy-x6-7Dy" firstAttribute="leading" secondItem="E7j-rc-YF4" secondAttribute="leading" id="8rX-Sy-i6t"/>
                                                                 <constraint firstItem="N3B-hi-zxs" firstAttribute="top" secondItem="fKy-x6-7Dy" secondAttribute="bottom" constant="4" id="EXg-KD-evb"/>
-                                                                <constraint firstAttribute="trailing" secondItem="N3B-hi-zxs" secondAttribute="trailing" id="SUU-VK-u03"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Kc2-VN-j14" secondAttribute="bottom" constant="15" id="QE8-MH-WK6"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Kc2-VN-j14" secondAttribute="trailing" id="lNU-9C-wLi"/>
                                                                 <constraint firstAttribute="trailing" secondItem="fKy-x6-7Dy" secondAttribute="trailing" id="r4Y-bl-Htw"/>
+                                                                <constraint firstItem="Kc2-VN-j14" firstAttribute="leading" secondItem="E7j-rc-YF4" secondAttribute="leading" constant="75" id="r4g-mS-uGl"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -637,6 +660,7 @@
                                     <outlet property="assignmentDividedGrade" destination="lk8-xL-KS8" id="y5X-Fq-aFF"/>
                                     <outlet property="assignmentPercentageGrade" destination="7uD-Qg-HOQ" id="F46-Hs-khP"/>
                                     <outlet property="assignmentTitle" destination="fKy-x6-7Dy" id="VjU-LM-SgU"/>
+                                    <outlet property="flagCollectionView" destination="Kc2-VN-j14" id="yXC-rd-cnZ"/>
                                     <outlet property="foreBackground" destination="TSx-Tj-zNK" id="iuD-Rr-YhV"/>
                                     <outlet property="foregroundBroader" destination="o4r-CL-F3T" id="1hq-rF-Jau"/>
                                     <outlet property="gradeBackground" destination="GUt-CY-5no" id="cDz-MK-ZwG"/>

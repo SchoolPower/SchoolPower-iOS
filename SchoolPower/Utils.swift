@@ -221,6 +221,40 @@ extension Utils {
 //MARK: Others
 extension Utils {
     
+    static func getAssignmentFlagIconAndDescripWithKey(key: String) -> (UIImage, String) {
+        
+        var icon = UIImage()
+        var descrip = ""
+        
+        switch key {
+        case "collected":
+            icon = #imageLiteral(resourceName: "ic_check_box_white")
+            descrip = "collected".localize
+            break
+        case "late":
+            icon = #imageLiteral(resourceName: "ic_late_white")
+            descrip = "late".localize
+            break
+        case "missing":
+            icon = #imageLiteral(resourceName: "ic_missing_white")
+            descrip = "missing".localize
+            break
+        case "exempt":
+            icon = #imageLiteral(resourceName: "ic_exempt_white")
+            descrip = "exempt".localize
+            break
+        case "excludeInFinalGrade":
+            icon = #imageLiteral(resourceName: "ic_exclude_white")
+            descrip = "include_in_final_grade".localize
+            break
+        default:
+            icon = #imageLiteral(resourceName: "ic_info")
+            descrip = "unknown_flag".localize
+            break
+        }
+        return (icon, descrip)
+    }
+    
     static func getAllPeriods(subject: [Subject]) -> NSMutableSet {
         
         let allPeriods = NSMutableSet()

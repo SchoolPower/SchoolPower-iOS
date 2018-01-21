@@ -16,6 +16,7 @@
 
 import UIKit
 import GoogleMobileAds
+import CustomIOSAlertView
 import ActionSheetPicker_3_0
 
 class CourseDetailTableViewController: UITableViewController {
@@ -25,6 +26,9 @@ class CourseDetailTableViewController: UITableViewController {
     var bannerView: GADBannerView!
     var termsList: Array<String> = Array()
     var list: [Assignment] = Array()
+    var storedOffsets = [Int: CGFloat]()
+    
+    fileprivate var flags: [(key: String, value: Bool)] = []
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -169,6 +173,55 @@ extension CourseDetailTableViewController {
         cell.selectionStyle = .none
         cell.location = indexPath.row
         cell.assignments = list
+        cell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+        cell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
     }
     
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? AssignmentCell else {
+            return
+        }
+        storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
+    }
+    
+    //MARK: ASSIGNMENT ONCLICK, SHOW ASSIGNMENT DIALOG
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let standerdWidth = self.view.frame.width * 0.8
+        let alert = CustomIOSAlertView.init()
+        let assignmentDialog = AssignmentDialog.instanceFromNib(
+            width: standerdWidth,
+            subject: infoItem.title,
+            assignment: list.sorted(by: {$0.date > $1.date})[indexPath.row])
+        
+        let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: assignmentDialog.bounds.size.height))
+        assignmentDialog.center = subview.center
+        subview.addSubview(assignmentDialog)
+        alert?.containerView = subview
+        alert?.closeOnTouchUpOutside = true
+        alert?.buttonTitles = nil
+        alert?.show()
+    }
+    
+}
+
+//MARK: Collection View
+extension CourseDetailTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return list.sorted(by: {$0.date > $1.date})[collectionView.tag].trueFlags.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        collectionView.register(UINib(nibName: "AssignmentFlagCollectionCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: 15.0, height: 15.0)
+        
+        let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        let (icon, _) = Utils.getAssignmentFlagIconAndDescripWithKey(key: list.sorted(by: {$0.date > $1.date})[collectionView.tag].trueFlags[indexPath.row].key)
+        (collectionCell.viewWithTag(1) as! UIImageView).image = icon
+        collectionCell.backgroundColor = .clear
+        
+        return collectionCell
+    }
 }

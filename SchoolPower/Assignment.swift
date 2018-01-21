@@ -55,6 +55,8 @@ class Assignment {
     var weight: String
     var maximumScore: String
     var terms: [String]
+    var flags: [(key: String, value: Bool)]
+    var trueFlags: [(key: String, value: Bool)]
     
     var isNew = false
     // increase/decrease
@@ -77,6 +79,26 @@ class Assignment {
         weight = json["weight"].stringValue
         maximumScore = json["pointsPossible"].stringValue
         terms = json["terms"].arrayObject as! [String]
+        flags = [
+            ("collected", json["status"]["collected"].boolValue),
+            ("late", json["status"]["late"].boolValue),
+            ("missing", json["status"]["missing"].boolValue),
+            ("exempt", json["status"]["exempt"].boolValue),
+            ("excludeInFinalGrade", !json["status"]["includeInFinalGrade"].boolValue),
+        ]
+//        flags = [
+//            ("collected", true),
+//            ("late", true),
+//            ("missing", true),
+//            ("exempt", true),
+//            ("includeInFinalGrade", true),
+//        ]
+        trueFlags = []
+        for flag in flags {
+            if flag.value {
+                trueFlags.append(flag)
+            }
+        }
     }
     
     func getDividedScore() -> String { return score+"/"+maximumScore; }

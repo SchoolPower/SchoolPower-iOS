@@ -8,8 +8,6 @@
 
 
 import UIKit
-import MKRingProgressView
-import SACountingLabel
 
 class TermDialog: UIView {
     
@@ -52,4 +50,3 @@ class TermDialog: UIView {
         return view
     }
 }
-

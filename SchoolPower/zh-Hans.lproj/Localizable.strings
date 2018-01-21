@@ -97,3 +97,12 @@
 "official" = "官方";
 "calculate_rule_prefix" = "计算";
 "calculate_rule_suffix" = "选择科目的成绩";
+"score" = "分数";
+"weight" = "权重";
+"flags" = "标记";
+"unknown_flag" = "未知标记";
+"collected" = "已交";
+"late" = "迟交";
+"missing" = "缺少";
+"exempt" = "得分独立于最终成绩";
+"include_in_final_grade" = "作业不包含在最终成绩中";

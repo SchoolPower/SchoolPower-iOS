@@ -483,6 +483,11 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         collectionCell.layer.cornerRadius = 7.0
         collectionCell.layer.masksToBounds = true
+        collectionCell.layer.shouldRasterize = true
+        collectionCell.layer.rasterizationScale = UIScreen.main.scale
+        collectionCell.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
+        collectionCell.layer.shadowRadius = 1
+        collectionCell.layer.shadowOpacity = 0.2
 
         let grades = filteredSubjects[collectionView.tag].grades
         let termName = Array(grades.keys)[indexPath.row]

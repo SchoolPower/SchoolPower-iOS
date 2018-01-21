@@ -27,6 +27,7 @@ class AssignmentCell: UITableViewCell {
     @IBOutlet weak var gradeBackground: UIView!
     @IBOutlet weak var foreBackground: UIView!
     @IBOutlet weak var foregroundBroader: UIView!
+    @IBOutlet weak var flagCollectionView: UICollectionView!
     
     override func awakeFromNib() {
         
@@ -64,5 +65,21 @@ class AssignmentCell: UITableViewCell {
                 assignmentDate.textColor = UIColor(rgb: Colors.text_tertiary_black)
             }
         }
+    }
+    
+    func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
+        
+        flagCollectionView.delegate = dataSourceDelegate
+        flagCollectionView.dataSource = dataSourceDelegate
+        flagCollectionView.tag = row
+        flagCollectionView.isUserInteractionEnabled = false
+        flagCollectionView.setContentOffset(flagCollectionView.contentOffset, animated:false)
+        flagCollectionView.reloadData()
+    }
+    
+    var collectionViewOffset: CGFloat {
+        
+        set { flagCollectionView.contentOffset.x = newValue }
+        get { return flagCollectionView.contentOffset.x }
     }
 }

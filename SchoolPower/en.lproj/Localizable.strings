@@ -97,3 +97,12 @@
 "official" = "Official";
 "calculate_rule_prefix" = "Calculate the ";
 "calculate_rule_suffix" = " courses in your selections";
+"score" = "Score";
+"weight" = "Weight";
+"flags" = "Flags";
+"unknown_flag" = "Unknown Flag";
+"collected" = "Collected";
+"late" = "Late";
+"missing" = "Missing";
+"exempt" = "Score is exempt from final grade";
+"include_in_final_grade" = "Assignment is not included in final grade";
