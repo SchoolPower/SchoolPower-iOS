@@ -173,6 +173,10 @@ class ChartsViewController: UIViewController {
         xAxis.xOffset = 10
         xAxis.valueFormatter = RadarChartFormatter(data: subjects)
         
+        if (xAxis.valueFormatter as! RadarChartFormatter).mSubjectsName.count == 0 {
+            return
+        }
+        
         let yAxis = radarChart.yAxis
         yAxis.axisMinimum = minGrade/3*2
         yAxis.axisMaximum = 110.0 - 10.0
@@ -215,7 +219,7 @@ class LineChartFormatter: NSObject, IAxisValueFormatter{
 
 class RadarChartFormatter: NSObject, IAxisValueFormatter{
     
-    private var mSubjectsName = [String]()
+    var mSubjectsName = [String]()
     
     init(data: [Subject]){
         for subject in data{
@@ -227,7 +231,12 @@ class RadarChartFormatter: NSObject, IAxisValueFormatter{
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String{
-        return mSubjectsName[Int(value) % mSubjectsName.count]
+        if mSubjectsName.count == 0 {
+            return ""
+        }
+        else {
+            return mSubjectsName[Int(value) % mSubjectsName.count]
+        }
     }
 }
 

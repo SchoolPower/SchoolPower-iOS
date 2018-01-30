@@ -37,7 +37,16 @@ class GPADialogUtil {
         
         allPeriods = Utils.getAllPeriods(subject: subjectsForGPA)
         currentTerm = (allPeriods.allObjects as! [String])
-            .index(of: Utils.getLatestPeriod(subject: subjectsForGPA))!
+            .index(of: Utils.getLatestPeriod(subject: subjectsForGPA)) ?? -1
+        
+        if currentTerm == -1 {
+            UIAlertView(title: "gpa_not_available".localize,
+                        message: "gpa_not_available_because".localize,
+                        delegate: nil,
+                        cancelButtonTitle: "alright".localize)
+                .show()
+            return
+        }
             
         constructView()
     }
