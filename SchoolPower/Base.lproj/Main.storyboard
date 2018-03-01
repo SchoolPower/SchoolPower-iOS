@@ -483,7 +483,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V8r-5v-agM">
-                                            <rect key="frame" x="313" y="105" width="47" height="27"/>
+                                            <rect key="frame" x="323" y="105" width="37" height="27"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34J-2F-WCi">
                                                     <rect key="frame" x="0.0" y="14" width="0.0" height="0.0"/>
@@ -492,7 +492,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_keyboard_arrow_down_18pt" translatesAutoresizingMaskIntoConstraints="NO" id="dK8-Fi-tXx">
-                                                    <rect key="frame" x="20" y="0.0" width="27" height="27"/>
+                                                    <rect key="frame" x="10" y="0.0" width="27" height="27"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="dK8-Fi-tXx" secondAttribute="height" multiplier="1:1" id="q8O-5L-LuU"/>
@@ -501,7 +501,7 @@
                                             </subviews>
                                             <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstItem="dK8-Fi-tXx" firstAttribute="leading" secondItem="34J-2F-WCi" secondAttribute="trailing" constant="20" id="Gfb-1Y-tr2"/>
+                                                <constraint firstItem="dK8-Fi-tXx" firstAttribute="leading" secondItem="34J-2F-WCi" secondAttribute="trailing" constant="10" id="Gfb-1Y-tr2"/>
                                                 <constraint firstAttribute="trailing" secondItem="dK8-Fi-tXx" secondAttribute="trailing" id="Ttz-vk-b9L"/>
                                                 <constraint firstAttribute="bottom" secondItem="dK8-Fi-tXx" secondAttribute="bottom" id="U8h-sv-QK0"/>
                                                 <constraint firstItem="dK8-Fi-tXx" firstAttribute="top" secondItem="V8r-5v-agM" secondAttribute="top" id="d81-Pg-Ish"/>
@@ -547,13 +547,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSx-Tj-zNK" userLabel="Foreground" customClass="RotatedView" customModule="FoldingCell">
-                                            <rect key="frame" x="23" y="11" width="329" height="70"/>
+                                            <rect key="frame" x="16" y="11" width="343" height="70"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o4r-CL-F3T">
-                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="70"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUt-CY-5no" userLabel="Right View">
-                                                            <rect key="frame" x="249" y="0.0" width="80" height="70"/>
+                                                            <rect key="frame" x="263" y="0.0" width="80" height="70"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uD-Qg-HOQ" userLabel="Detail Assignment Letter Grade">
                                                                     <rect key="frame" x="0.0" y="15" width="80" height="0.0"/>
@@ -580,10 +580,10 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7j-rc-YF4">
-                                                            <rect key="frame" x="20" y="0.0" width="209" height="70"/>
+                                                            <rect key="frame" x="20" y="0.0" width="223" height="70"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Science Fair Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKy-x6-7Dy" userLabel="Detail Assignment Title">
-                                                                    <rect key="frame" x="0.0" y="15.000000000000002" width="209" height="21.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="15.000000000000002" width="223" height="21.666666666666671"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -594,9 +594,9 @@
                                                                     <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-VN-j14">
-                                                                    <rect key="frame" x="75" y="41" width="134" height="14"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kc2-VN-j14">
+                                                                    <rect key="frame" x="75" y="41" width="148" height="14"/>
+                                                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="ksT-Si-h16">
                                                                         <size key="itemSize" width="15" height="15"/>
                                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -651,8 +651,8 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="TSx-Tj-zNK" firstAttribute="top" secondItem="IAC-ie-PeV" secondAttribute="topMargin" id="2eP-nO-QIj"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="TSx-Tj-zNK" secondAttribute="trailing" constant="7" id="QPG-1O-5vO"/>
-                                        <constraint firstItem="TSx-Tj-zNK" firstAttribute="leading" secondItem="IAC-ie-PeV" secondAttribute="leadingMargin" constant="7" id="Tdg-Uh-o8T"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="TSx-Tj-zNK" secondAttribute="trailing" id="QPG-1O-5vO"/>
+                                        <constraint firstItem="TSx-Tj-zNK" firstAttribute="leading" secondItem="IAC-ie-PeV" secondAttribute="leadingMargin" id="Tdg-Uh-o8T"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
