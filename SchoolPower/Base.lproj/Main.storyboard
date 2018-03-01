@@ -964,6 +964,9 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6C2-HM-tgb">
@@ -988,7 +991,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YLk-HI-Wuv" firstAttribute="top" secondItem="bpq-Ne-Jbp" secondAttribute="bottom" constant="12" id="3tm-mW-3nm"/>
                             <constraint firstItem="YLk-HI-Wuv" firstAttribute="height" secondItem="THE-qy-IXm" secondAttribute="height" multiplier="0.5" constant="-8" id="Co7-ua-P3L"/>

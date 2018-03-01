@@ -122,10 +122,15 @@ class ChartsViewController: UIViewController {
         lineChart.rightAxis.gridLineDashLengths = [10, 10, 0]
         lineChart.legend.form = Legend.Form.line
         lineChart.backgroundColor = .white
+        lineChart.layer.cornerRadius = 10
+        lineChart.layer.masksToBounds = true
         
-        topHalfView?.shadowOffset = CGSize.init(width: 0, height: 3)
-        topHalfView?.shadowRadius = 2
-        topHalfView?.shadowOpacity = 0.2
+        topHalfView?.layer.shouldRasterize = true
+        topHalfView?.layer.rasterizationScale = UIScreen.main.scale
+        topHalfView?.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
+        topHalfView?.layer.shadowRadius = 1
+        topHalfView?.layer.shadowOpacity = 0.2
+        topHalfView?.layer.backgroundColor = UIColor.clear.cgColor
         
         lineChart.translatesAutoresizingMaskIntoConstraints = false
         topHalfView?.addSubview(lineChart)
@@ -184,10 +189,15 @@ class ChartsViewController: UIViewController {
         radarChart.chartDescription?.enabled=false
         radarChart.legend.enabled=false
         radarChart.backgroundColor = .white
+        radarChart.layer.cornerRadius = 10
+        radarChart.layer.masksToBounds = true
         
-        buttomHalfView?.shadowOffset = CGSize.init(width: 0, height: 3)
-        buttomHalfView?.shadowRadius = 2
-        buttomHalfView?.shadowOpacity = 0.2
+        buttomHalfView?.layer.shouldRasterize = true
+        buttomHalfView?.layer.rasterizationScale = UIScreen.main.scale
+        buttomHalfView?.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
+        buttomHalfView?.layer.shadowRadius = 1
+        buttomHalfView?.layer.shadowOpacity = 0.2
+        buttomHalfView?.layer.backgroundColor = UIColor.clear.cgColor
         
         radarChart.translatesAutoresizingMaskIntoConstraints = false
         buttomHalfView?.addSubview(radarChart)
