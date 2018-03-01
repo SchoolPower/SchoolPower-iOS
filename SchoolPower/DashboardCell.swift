@@ -87,8 +87,8 @@ class DashboardCell: FoldingCell {
                     } else {
                         // Not changed
                         unfoldTrendImage.image = #imageLiteral(resourceName: "ic_trending_flat_white").withRenderingMode(.alwaysTemplate)
-                        unfoldTrendImage.tintColor = UIColor.init(rgb: Colors.accent)
-                        unfoldTrendLabel.textColor = UIColor.init(rgb: Colors.accent)
+                        unfoldTrendImage.tintColor = UIColor.init(rgb: Colors.gray)
+                        unfoldTrendLabel.textColor = UIColor.init(rgb: Colors.gray)
                     }
                     unfoldTrendLabel.text = String.init(abs(assignmentItem.margin))
                     unfoldTrendBackground.layer.shadowOffset = CGSize.init(width: 0, height: 2.5)

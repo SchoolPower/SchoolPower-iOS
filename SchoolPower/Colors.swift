@@ -58,7 +58,7 @@ class Colors{
     static let primary_dark = 0x07263b
     static let primary_darker = 0x061d2f
     static let accent = 0x00c4cf
-    static let gray = 0x757575
+    static let gray = 0x727272
     static let white = 0xFFFFFF
     static let white_0_5 = 0x32FFFFFF
     static let white_0_10 = 0x64FFFFFF
