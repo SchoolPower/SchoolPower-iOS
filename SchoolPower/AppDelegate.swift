@@ -20,10 +20,10 @@ import GoogleMobileAds
 import UserNotifications
 import IQKeyboardManagerSwift
 
-let GET_DATA_URL = "https://schoolpower.harrynull.tech:8443/api/2.0/get_data.php"
-let REGISTER_URL = "https://schoolpower.harrynull.tech:8443/api/notifications/register.php"
+let GET_DATA_URL = "https://api.schoolpower.tech/api/2.0/get_data.php"
+let REGISTER_URL = "https://api.schoolpower.tech/api/notifications/register.php"
 let FORUM_URL = "https://feedback.schoolpower.studio"
-let WEBSITE_URL = "https://www.schoolpower.studio"
+let WEBSITE_URL = "https://www.schoolpower.tech"
 let CODE_URL = "https://github.com/SchoolPower"
 let SUPPORT_EMAIL = "harryyunull@gmail.com"
 
