@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,6 +49,8 @@ class AssignmentCell: UITableViewCell {
         didSet {
             let sortedList = assignments.sorted(by: {$0.date > $1.date})
             let assignmentItem = sortedList[location]
+            let theme = ThemeManager.currentTheme()
+            
             assignmentTitle.text = assignmentItem.title
             assignmentDate.text = assignmentItem.date
             assignmentPercentageGrade.text = assignmentItem.percentage
@@ -60,9 +62,9 @@ class AssignmentCell: UITableViewCell {
                 assignmentTitle.textColor = .white
                 assignmentDate.textColor = UIColor(rgb: Int(Colors.white_0_20))
             } else {
-                foregroundBroader.backgroundColor = .white
-                assignmentTitle.textColor = UIColor(rgb: Colors.text_primary_black)
-                assignmentDate.textColor = UIColor(rgb: Colors.text_tertiary_black)
+                foregroundBroader.backgroundColor = ThemeManager.currentTheme().cardBackgroundColor
+                assignmentTitle.textColor = theme.primaryTextColor
+                assignmentDate.textColor = theme.secondaryTextColor
             }
         }
     }

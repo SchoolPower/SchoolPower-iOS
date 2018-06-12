@@ -25,6 +25,7 @@
 		624BDC531EFE77440052EC5D /* CourseDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */; };
 		624CDDE720143E0200BDED7C /* AssignmentFlagCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 624CDDE620143E0200BDED7C /* AssignmentFlagCollectionCell.xib */; };
 		6271028C1F6FDDBA00676290 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6271028B1F6FDDBA00676290 /* StudentInformation.swift */; };
+		628721EA20CF38F100B9FE33 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628721E920CF38F100B9FE33 /* ThemeManager.swift */; };
 		6297EC201FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6297EC1F1FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift */; };
 		6297EC221FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6297EC211FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift */; };
 		6297EC241FF0FC16003E8F1C /* GPADialigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6297EC231FF0FC16003E8F1C /* GPADialigUtil.swift */; };
@@ -33,7 +34,6 @@
 		62AA4E3D1F033B57009C8CFC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */; };
 		62AA4E3E1F033B57009C8CFC /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AA4E3B1F033B57009C8CFC /* ChartsViewController.swift */; };
 		62C34DF51F035F340078D5F8 /* DrawerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C34DF41F035F340078D5F8 /* DrawerViewCell.swift */; };
-		62C34DF81F0377050078D5F8 /* DrawerHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C34DF71F0377050078D5F8 /* DrawerHeaderCell.swift */; };
 		62C34DFE1F03BCC10078D5F8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C34DFD1F03BCC10078D5F8 /* SettingsViewController.swift */; };
 		62C34E001F03C9C10078D5F8 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C34DFF1F03C9C10078D5F8 /* SettingsCell.swift */; };
 		62C34E051F03DF080078D5F8 /* LanguageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C34E041F03DF080078D5F8 /* LanguageTableViewController.swift */; };
@@ -117,6 +117,7 @@
 		624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CourseDetailHeaderCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		624CDDE620143E0200BDED7C /* AssignmentFlagCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentFlagCollectionCell.xib; sourceTree = "<group>"; };
 		6271028B1F6FDDBA00676290 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		628721E920CF38F100B9FE33 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		6297EC1F1FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSubjectTableViewController.swift; sourceTree = "<group>"; };
 		6297EC211FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateRuleTableViewController.swift; sourceTree = "<group>"; };
 		6297EC231FF0FC16003E8F1C /* GPADialigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPADialigUtil.swift; sourceTree = "<group>"; };
@@ -125,7 +126,6 @@
 		62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		62AA4E3B1F033B57009C8CFC /* ChartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChartsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		62C34DF41F035F340078D5F8 /* DrawerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DrawerViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		62C34DF71F0377050078D5F8 /* DrawerHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerHeaderCell.swift; sourceTree = "<group>"; };
 		62C34DFD1F03BCC10078D5F8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		62C34DFF1F03C9C10078D5F8 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		62C34E041F03DF080078D5F8 /* LanguageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTableViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +207,7 @@
 				621DA1B61EFD01A300EFAB5A /* Utils.swift */,
 				624BDC221EFE46110052EC5D /* Colors.swift */,
 				6297EC231FF0FC16003E8F1C /* GPADialigUtil.swift */,
+				628721E920CF38F100B9FE33 /* ThemeManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -290,7 +291,6 @@
 				62C34E311F06216D0078D5F8 /* CourseDetailFooterCell.swift */,
 				62FC12771FADB6AC00BCD79D /* AttendanceCell.swift */,
 				62C34DF41F035F340078D5F8 /* DrawerViewCell.swift */,
-				62C34DF71F0377050078D5F8 /* DrawerHeaderCell.swift */,
 				62C34DFF1F03C9C10078D5F8 /* SettingsCell.swift */,
 				62FD1F8C1F2891D10097A696 /* GPADialog.swift */,
 				6205B9171FDB80F400A124E0 /* TermDialog.swift */,
@@ -395,7 +395,6 @@
 				62CFC98B1EFA9940002B4A8D /* Frameworks */,
 				62CFC98C1EFA9940002B4A8D /* Resources */,
 				CD7CEA7401774E26DF625D24 /* [CP] Embed Pods Frameworks */,
-				AB168965C7D195BED0FB0181 /* [CP] Copy Pods Resources */,
 				62AA4E2F1F028537009C8CFC /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -456,7 +455,7 @@
 					62CFC98D1EFA9940002B4A8D = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = MPPUFL3L6R;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -561,21 +560,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AB168965C7D195BED0FB0181 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SchoolPower/Pods-SchoolPower-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CD7CEA7401774E26DF625D24 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -640,10 +624,10 @@
 				62CFC9941EFA9940002B4A8D /* CourseDetailTableViewController.swift in Sources */,
 				62FC12781FADB6AC00BCD79D /* AttendanceCell.swift in Sources */,
 				6201D3192013938E00A9255C /* AssignmentDialog.swift in Sources */,
+				628721EA20CF38F100B9FE33 /* ThemeManager.swift in Sources */,
 				62C34E091F0482050078D5F8 /* LoginViewController.swift in Sources */,
 				62C34E051F03DF080078D5F8 /* LanguageTableViewController.swift in Sources */,
 				6201D31B2013A05100A9255C /* AssignmentFlagCell.swift in Sources */,
-				62C34DF81F0377050078D5F8 /* DrawerHeaderCell.swift in Sources */,
 				6297EC241FF0FC16003E8F1C /* GPADialigUtil.swift in Sources */,
 				6204A07E1F39E5CE004B2118 /* NothingView.swift in Sources */,
 				6271028C1F6FDDBA00676290 /* StudentInformation.swift in Sources */,
@@ -871,7 +855,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -901,7 +886,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

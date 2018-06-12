@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -22,6 +22,8 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var presentFragment: Int?
     
+    @IBOutlet weak var viewBackground: UIView?
+    @IBOutlet weak var headerBackground: UIView?
     @IBOutlet weak var table: UITableView?
     @IBOutlet weak var headerUsername: UILabel?
     @IBOutlet weak var headerUserID: UILabel?
@@ -36,16 +38,23 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func setup(){
         
+        let theme = ThemeManager.currentTheme()
+        
+        headerBackground?.backgroundColor = theme.primaryColor
+        viewBackground?.backgroundColor = theme.primaryColor
+        
         table?.delegate = self
         table?.dataSource = self
-        table?.separatorColor = .clear
+        table?.separatorColor = theme.windowBackgroundColor
         table?.contentInset = UIEdgeInsetsMake(16, 0, 0, 0)
+        table?.backgroundColor = theme.windowBackgroundColor
         
         headerUsername?.text = userDefaults.string(forKey: STUDENT_NAME_KEY_NAME)
         headerUserID?.text = "userid".localize + userDefaults.string(forKey: USERNAME_KEY_NAME)!
     }
     
     func reloadData() {
+        setup()
         table?.reloadData()
     }
     
@@ -129,15 +138,16 @@ extension LeftViewController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if section == 1 {
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: "DrawerHeaderCell") as! DrawerHeaderCell
-            headerCell.categoryStr = "preference".localize
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: "DrawerHeaderCell")
+            headerCell?.contentView.viewWithTag(1)?
+                .backgroundColor = ThemeManager.currentTheme().secondaryTextColor.withAlphaComponent(0.5)
             return headerCell
         } else { return nil }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if section == 1 { return 56 }
+        if section == 1 { return 20 }
         else { return 0 }
     }
     

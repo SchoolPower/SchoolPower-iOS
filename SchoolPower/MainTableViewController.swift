@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,9 +47,11 @@ class MainTableViewController: UITableViewController {
     var storedOffsets = [Int: CGFloat]()
     
     let userDefaults = UserDefaults.standard
+    var theme = ThemeManager.currentTheme()
     
     override func viewWillAppear(_ animated: Bool) {
         
+        theme = ThemeManager.currentTheme()
         UIApplication.shared.applicationIconBadgeNumber = 0
         
         let gpaItem = UIBarButtonItem(image: UIImage(named: "ic_grade_white")?.withRenderingMode(.alwaysOriginal),
@@ -59,9 +61,9 @@ class MainTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItems = [gpaItem]
         navigationItem.leftBarButtonItems = [menuItem]
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navigationController?.navigationBar.tintColor = .white;
+        self.navigationController?.navigationBar.barTintColor = theme.primaryColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.tintColor = theme.windowBackgroundColor;
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
@@ -71,11 +73,15 @@ class MainTableViewController: UITableViewController {
                                                name:NSNotification.Name(rawValue: "updateFilteredSubjects"), object: nil)
         
         tableView.reloadData()
+        initTableView()
     }
     
     override func viewDidLoad() {
         
+        theme = ThemeManager.currentTheme()
         super.viewDidLoad()
+        
+        initBannerView()
         initValue()
         
         // send device token for notification
@@ -89,7 +95,7 @@ class MainTableViewController: UITableViewController {
         }
     }
     
-    func updateFilteredSubjects(){
+    @objc func updateFilteredSubjects(){
         
         if (!userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME)) {
             filteredSubjects = [Subject]()
@@ -118,7 +124,6 @@ class MainTableViewController: UITableViewController {
     
     func initUI() {
         
-        initBannerView()
         initTableView()
     }
     
@@ -147,7 +152,7 @@ class MainTableViewController: UITableViewController {
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.estimatedRowHeight = kCloseCellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
+        tableView.backgroundColor = theme.windowBackgroundColor
         tableView.separatorColor = .clear
         tableView.contentInset = UIEdgeInsetsMake(0, 0, bannerView.frame.height, 0)
         initRefreshView()
@@ -159,21 +164,21 @@ class MainTableViewController: UITableViewController {
         loadingView.tintColor = UIColor(rgb: Colors.accent)
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson() },
                                                        loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(UIColor(rgb: Colors.primary))
-        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+        tableView.dg_setPullToRefreshFillColor(theme.primaryColor)
+        tableView.dg_setPullToRefreshBackgroundColor(theme.windowBackgroundColor)
     }
     
-    func fabOnClick(sender: UIButton) {
+    @objc func fabOnClick(sender: UIButton) {
         performSegue(withIdentifier: "gotoDetail", sender: sender)
     }
     
-    func menuOnClick(sender: UINavigationItem) {
+    @objc func menuOnClick(sender: UINavigationItem) {
         
         navigationDrawerController?.toggleLeftView()
         (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
     }
     
-    func gpaOnClick(sender: UINavigationItem) {
+    @objc func gpaOnClick(sender: UINavigationItem) {
         
         if subjects.count == 0 {
             
@@ -351,6 +356,7 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "MainHeaderCell")
+        headerCell?.backgroundColor = theme.windowBackgroundColor
         return headerCell
     }
     
@@ -358,12 +364,10 @@ extension MainTableViewController {
         
         if filteredSubjects.count == 0 {
             tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: #imageLiteral(resourceName: "no_grades"), text: "nothing_here".localize)
-            tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.nothing_light))
             return 0
             
         } else {
             tableView.backgroundView = nil
-            tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.foreground_material_dark))
             return 20
         }
     }
@@ -387,6 +391,7 @@ extension MainTableViewController {
         cell.backgroundColor = .clear
         cell.number = indexPath.row
         cell.infoItem = filteredSubjects[indexPath.row]
+        cell.backViewColor = theme.cardBackgroundColor
     }
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath?) {
@@ -494,9 +499,12 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         let grades = filteredSubjects[collectionView.tag].grades
         let termName = Array(grades.keys)[indexPath.row]
         let grade = grades[termName]!
+        (collectionCell.viewWithTag(1) as! UILabel).textColor = theme.primaryTextColor
         (collectionCell.viewWithTag(1) as! UILabel).text = termName
         (collectionCell.viewWithTag(2) as! UILabel).text = grade.letter
         (collectionCell.viewWithTag(3) as! UILabel).text = grade.percentage
+        collectionCell.viewWithTag(4)?.backgroundColor = theme.windowBackgroundColor
+        
         collectionCell.backgroundColor = Utils.getColorByGrade(item: grade)
         
         return collectionCell

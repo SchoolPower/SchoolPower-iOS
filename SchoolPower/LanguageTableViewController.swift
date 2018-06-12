@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ class LanguageTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         self.title = "language".localize
         languageIndex = userDefaults.integer(forKey: LANGUAGE_KEY_NAME)
         loadCells()
@@ -39,6 +40,7 @@ class LanguageTableViewController: UITableViewController {
         let itemSet = [itemdef, itemeng, itemchit, itemchis]
         for item in itemSet {
             item?.accessoryType = .none
+            item?.textLabel?.textColor = ThemeManager.currentTheme().primaryTextColor
             if itemSet.index(where: {$0 === item})! == languageIndex { item?.accessoryType = .checkmark }
         }
         itemdefLable?.text = "default".localize

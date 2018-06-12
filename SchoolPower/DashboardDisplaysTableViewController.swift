@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ class DashboardDisplaysTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         self.title = "dashboardDisplays".localize
         dspIndex = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME)
         loadCells()
@@ -42,6 +43,7 @@ class DashboardDisplaysTableViewController: UITableViewController {
         let itemSet = [itemTerm, itemSemester]
         for item in itemSet {
             item?.accessoryType = .none
+            item?.textLabel?.textColor = ThemeManager.currentTheme().primaryTextColor
             if itemSet.index(where: {$0 === item})! == dspIndex { item?.accessoryType = .checkmark }
         }
     }

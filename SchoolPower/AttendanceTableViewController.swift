@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,34 +25,39 @@ class AttendanceTableViewController: UITableViewController {
     var bannerView: GADBannerView!
     var attendanceList: [Attendance] = Array()
     var loadingView: DGElasticPullToRefreshLoadingViewCircle!
+    var theme = ThemeManager.currentTheme()
     
     override func viewWillAppear(_ animated: Bool) {
         
+        theme = ThemeManager.currentTheme()
         self.title = "attendance".localize
         let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal) ,
                                        style: .plain ,target: self, action: #selector(menuOnClick))
         self.navigationItem.leftBarButtonItems = [menuItem]
-        self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        self.navigationController?.navigationBar.barTintColor = theme.primaryColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
+        setup()
         tableView.reloadData()
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        initBannerView()
         setup()
     }
     
     private func setup() {
         
         initRefreshView()
-        initBannerView()
         attendanceList = attendances
-        tableView.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
+        theme = ThemeManager.currentTheme()
+        tableView.backgroundColor = theme.windowBackgroundColor
         tableView.separatorColor = .clear
         tableView.contentInset = UIEdgeInsetsMake(0, 0, bannerView.frame.height, 0)
     }
@@ -63,8 +68,8 @@ class AttendanceTableViewController: UITableViewController {
         loadingView.tintColor = UIColor(rgb: Colors.accent)
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson() },
                                                        loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(UIColor(rgb: Colors.primary))
-        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+        tableView.dg_setPullToRefreshFillColor(theme.primaryColor)
+        tableView.dg_setPullToRefreshBackgroundColor(theme.windowBackgroundColor)
     }
     
     deinit {
@@ -203,7 +208,7 @@ class AttendanceTableViewController: UITableViewController {
             .show()
     }
     
-    func menuOnClick(sender: UINavigationItem) {
+    @objc func menuOnClick(sender: UINavigationItem) {
         
         navigationDrawerController?.toggleLeftView()
         (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
@@ -229,12 +234,10 @@ extension AttendanceTableViewController {
         
         if attendanceList.count == 0 {
             tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: #imageLiteral(resourceName: "perfect_attendance"), text: "perfect_attendance".localize)
-            tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.nothing_light))
             return UIView()
             
         } else {
             tableView.backgroundView = nil
-            tableView.dg_setPullToRefreshBackgroundColor(UIColor(rgb: Colors.foreground_material_dark))
             
             let footerCell = tableView.dequeueReusableCell(withIdentifier: "CourseDetailFooterCell")
             footerCell?.backgroundColor = .clear

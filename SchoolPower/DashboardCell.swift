@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,6 +46,9 @@ class DashboardCell: FoldingCell {
     var infoItem: Subject! {
         
         didSet {
+            
+            let theme = ThemeManager.currentTheme()
+            
             let periodGradeItem = Utils.getLatestItemGrade(grades: infoItem.grades)
             foldSubjectTitle.text = infoItem.title
             foldTeacherName.text = infoItem.teacherName
@@ -59,10 +62,11 @@ class DashboardCell: FoldingCell {
             unfoldBackground.backgroundColor = Utils.getColorByGrade(item: periodGradeItem)
             unfoldTrendBackground.isHidden = true
             
-            foldBorderView.backgroundColor = .white
-            foldSubjectTitle.textColor = UIColor(rgb: Colors.text_primary_black)
-            foldTeacherName.textColor = UIColor(rgb: Colors.text_tertiary_black)
-            foldBlockLetter.textColor = UIColor(rgb: Colors.text_tertiary_black)
+            unfoldBorderView.backgroundColor = theme.cardBackgroundColor
+            foldBorderView.backgroundColor = theme.cardBackgroundColor
+            foldSubjectTitle.textColor = theme.primaryTextColor
+            foldTeacherName.textColor = theme.secondaryTextColor
+            foldBlockLetter.textColor = theme.secondaryTextColor
             
             for assignmentItem in infoItem.assignments {
                 if assignmentItem.isNew {
@@ -143,6 +147,7 @@ extension DashboardCell {
         periodGradeCollectionView.dataSource = dataSourceDelegate
         periodGradeCollectionView.tag = row
         periodGradeCollectionView.setContentOffset(periodGradeCollectionView.contentOffset, animated:false)
+        periodGradeCollectionView.backgroundColor = ThemeManager.currentTheme().cardBackgroundColor
         periodGradeCollectionView.reloadData()
     }
     

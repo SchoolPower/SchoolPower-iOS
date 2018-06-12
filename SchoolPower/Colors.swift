@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 import Foundation
 import UIKit
+import MaterialComponents.MaterialPalettes
 
 extension UIColor {
     
@@ -69,6 +70,18 @@ class Colors{
     static let text_tertiary_black = 0x909090
     static let cardview_dark_background = 0x424242
     static let nothing_light = 0xFAFAFA
+    
+    static let light_window_color = 0xF4F4F4
+    static let light_text_color_primary = 0x212121
+    static let light_text_color_secondary = 0x757575
+    static let light_card_background = 0xFFFFFF
+    
+    static let dark_color_primary = 0x2D3035
+    static let dark_color_primary_dark = 0x26282C
+    static let dark_window_color = 0x22252A
+    static let dark_text_color_primary = 0xEEEEEE
+    static let dark_text_color_secondary = MDCPalette.grey.tint500
+    static let dark_card_background = 0x2D3035
     
     static let chartColorList = [
         

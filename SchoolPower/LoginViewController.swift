@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func loginAction() {
+    @objc func loginAction() {
         
         let username = usernameField.text
         let password = passwordField.text

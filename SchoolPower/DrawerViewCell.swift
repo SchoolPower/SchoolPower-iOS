@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,9 +43,15 @@ class DrawerFragmentCell: UITableViewCell {
     var presentSelected = 0 {
         
         didSet{
+            
+            let theme = ThemeManager.currentTheme()
             background.backgroundColor = .clear
+            itemTitle.textColor = theme.secondaryTextColor
+            itemImage.tintColor = theme.secondaryTextColor
             if section == 0 && location == presentSelected {
-                background.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
+                background.backgroundColor = theme.secondaryTextColor.withAlphaComponent(0.2)
+                itemTitle.textColor = UIColor(rgb: Colors.accent)
+                itemImage.tintColor = UIColor(rgb: Colors.accent)
             }
         }
     }

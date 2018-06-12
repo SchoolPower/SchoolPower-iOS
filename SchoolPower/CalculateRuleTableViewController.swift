@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ class CalculateRuleTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         self.title = "calculate_rule".localize
         ruleIndex = userDefaults.integer(forKey: CALCULATE_RULE_KEY_NAME)
         loadCells()
@@ -43,6 +44,7 @@ class CalculateRuleTableViewController: UITableViewController {
         let itemSet = [itemAll, itemHighest3, itemHighest4, itemHighest5]
         for item in itemSet {
             item?.accessoryType = .none
+            item?.textLabel?.textColor = ThemeManager.currentTheme().primaryTextColor
             if itemSet.index(where: {$0 === item})! == ruleIndex { item?.accessoryType = .checkmark }
         }
         itemAllLabel?.text = CUSTOM_RULES[0].localize

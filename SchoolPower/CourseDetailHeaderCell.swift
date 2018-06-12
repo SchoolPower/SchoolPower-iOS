@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,8 +43,11 @@ class CourseDetailHeaderCell: UITableViewCell, MFMailComposeViewControllerDelega
         
         foreground.layer.cornerRadius = 10
         foreground.layer.masksToBounds = true
+        foreground.layer.backgroundColor = ThemeManager.currentTheme().cardBackgroundColor.cgColor
         
         assignments?.text = "assignments".localize
+        assignments?.textColor = ThemeManager.currentTheme().primaryTextColor
+        
         super.awakeFromNib()
     }
     
@@ -52,6 +55,14 @@ class CourseDetailHeaderCell: UITableViewCell, MFMailComposeViewControllerDelega
         
         didSet {
             let grade = Utils.getLatestItemGrade(grades: infoItem.grades)
+            
+            let theme = ThemeManager.currentTheme()
+            headerTeacherName.textColor = theme.primaryTextColor
+            headerBlockLetter.textColor = theme.secondaryTextColor
+            headerRoomNumber.textColor = theme.secondaryTextColor
+            termLable.textColor = theme.primaryTextColor
+            chooseIcon.tintColor = theme.primaryTextColor
+            
             headerTeacherName.text = infoItem.teacherName
             headerBlockLetter.text = "Block " + infoItem.blockLetter
             headerRoomNumber.text = "room".localize + infoItem.roomNumber

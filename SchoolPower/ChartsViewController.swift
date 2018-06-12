@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ class ChartsViewController: UIViewController {
                 style: .plain ,target: self, action: #selector(menuOnClick))
         self.navigationItem.leftBarButtonItems = [menuItem]
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
     }
@@ -54,7 +54,7 @@ class ChartsViewController: UIViewController {
         }
     }
     
-    func menuOnClick(sender: UINavigationItem) {
+    @objc func menuOnClick(sender: UINavigationItem) {
         
         navigationDrawerController?.toggleLeftView()
         (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()

@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -63,7 +63,6 @@ class Assignment {
     var margin = 0
 
     init(json: JSON) {
-        
         let df1 = DateFormatter()
         let df2 = DateFormatter()
         df1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -84,7 +83,7 @@ class Assignment {
             ("late", json["status"]["late"].boolValue),
             ("missing", json["status"]["missing"].boolValue),
             ("exempt", json["status"]["exempt"].boolValue),
-            ("excludeInFinalGrade", !(json["status"]["includeInFinalGrade"].isEmpty ? true : json["status"]["includeInFinalGrade"].boolValue)),
+            ("excludeInFinalGrade", !(json["status"]["includeInFinalGrade"].boolValue)),
         ]
 //        flags = [
 //            ("collected", true),

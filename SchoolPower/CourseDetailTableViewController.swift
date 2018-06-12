@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ class CourseDetailTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.title = infoItem.title
@@ -40,18 +40,21 @@ class CourseDetailTableViewController: UITableViewController {
         initTermList()
         setAllTerms()
         self.navigationController?.navigationBar.barTintColor = Utils.getColorByGrade(item: Utils.getLatestItemGrade(grades: infoItem.grades))
+        
+        //TODO: SETUP WHEN THEME CHANGED
+        setup()
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        initBannerView()
         setup()
     }
     
     private func setup() {
         
-        initBannerView()
-        tableView.backgroundColor = UIColor(rgb: Colors.foreground_material_dark)
+        tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         tableView.separatorColor = .clear
         tableView.contentInset = UIEdgeInsetsMake(20, 0, bannerView.frame.height, 0)
     }

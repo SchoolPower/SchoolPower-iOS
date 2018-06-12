@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,6 +19,9 @@ import MessageUI
 import MaterialComponents
 
 class SettingsTableViewController: UITableViewController {
+    
+    @IBOutlet weak var darkThemeTitle: UILabel?
+    @IBOutlet weak var accentColorTitle: UILabel?
     
     @IBOutlet weak var languageTitle: UILabel?
     @IBOutlet weak var dspTitle: UILabel?
@@ -40,6 +43,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var reportBugDetail: UILabel!
     @IBOutlet weak var visitForumDetail: UILabel!
     
+    @IBOutlet weak var darkThemeSwitch: UISwitch!
     @IBOutlet weak var showInactiveSwitch: UISwitch!
     @IBOutlet weak var enableNotificationSwitch: UISwitch!
     @IBOutlet weak var showGradesSwitch: UISwitch!
@@ -48,43 +52,68 @@ class SettingsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         self.title = "settings".localize
-        self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        self.navigationController?.navigationBar.barTintColor = ThemeManager.currentTheme().primaryColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         
         loadDetails()
+        tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         tableView.reloadData()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = UIColor(rgb: Colors.accent)
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return "display".localize
-        case 1: return "customize_gpa".localize
-        case 2: return "notification_header".localize
-        case 3: return "support".localize
+        case 0: return "theme".localize
+        case 1: return "display".localize
+        case 2: return "customize_gpa".localize
+        case 3: return "notification_header".localize
+        case 4: return "support".localize
         default: return ""
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
-        case 0: return "show_inactive_summary".localize
+        case 1: return "show_inactive_summary".localize
         default: return ""
         }
     }
-    
-    
     
     func loadDetails() {
         
         let descriptionSets = [["default".localize, "English", "繁體中文", "简体中文"],
                                ["thisterm".localize, "thissemester".localize],
                                ["all".localize, "highest_3".localize, "highest_4".localize, "highest_5".localize]]
+        
+        let theme = ThemeManager.currentTheme()
+        languageTitle?.textColor = theme.primaryTextColor
+        dspTitle?.textColor = theme.primaryTextColor
+        showInactiveTitle?.textColor = theme.primaryTextColor
+        selectSubjectsTitle?.textColor = theme.primaryTextColor
+        calculateRuleTitle?.textColor = theme.primaryTextColor
+        notificationTitle?.textColor = theme.primaryTextColor
+        showGradesTitle?.textColor = theme.primaryTextColor
+        notifyUngeadedTitle?.textColor = theme.primaryTextColor
+        reportBugTitle?.textColor = theme.primaryTextColor
+        visitForumTitle?.textColor = theme.primaryTextColor
+        visitWebsiteTitle?.textColor = theme.primaryTextColor
+        getSourceCodeTitle?.textColor = theme.primaryTextColor
+        darkThemeTitle?.textColor = theme.primaryTextColor
+        accentColorTitle?.textColor = theme.primaryTextColor
+        
+        languageDetail?.textColor = theme.secondaryTextColor
+        dspDetail?.textColor = theme.secondaryTextColor
+        calculateRuleDetail?.textColor = theme.secondaryTextColor
+        reportBugDetail?.textColor = theme.secondaryTextColor
+        visitForumDetail?.textColor = theme.secondaryTextColor
+        
         
         languageTitle?.text = "language".localize
         dspTitle?.text = "dashboardDisplays".localize
@@ -98,6 +127,8 @@ class SettingsTableViewController: UITableViewController {
         visitForumTitle?.text = "feedback_forum".localize
         visitWebsiteTitle?.text = "visit_website".localize
         getSourceCodeTitle?.text = "source_code".localize
+        darkThemeTitle?.text = "dark_theme".localize
+        accentColorTitle?.text = "accent_color".localize
         
         languageDetail?.text = descriptionSets[0][userDefaults.integer(forKey: LANGUAGE_KEY_NAME)]
         dspDetail?.text = descriptionSets[1][userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME)]
@@ -108,10 +139,17 @@ class SettingsTableViewController: UITableViewController {
         reportBugDetail?.text = "report_bug_summary".localize
         visitForumDetail?.text = "feedback_forum_summary".localize
         
+        darkThemeSwitch.setOn(userDefaults.bool(forKey: DARK_THEME_KEY_NAME), animated: false)
+        
         showInactiveSwitch.setOn(userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME), animated: false)
         enableNotificationSwitch.setOn(userDefaults.bool(forKey: ENABLE_NOTIFICATION_KEY_NAME), animated: false)
         showGradesSwitch.setOn(userDefaults.bool(forKey: SHOW_GRADES_KEY_NAME), animated: false)
         notifyUngradedSwitch.setOn(userDefaults.bool(forKey: NOTIFY_UNGRADED_KEY_NAME), animated: false)
+    }
+    
+    @IBAction func darkThemeSwitchOnChange(_ sender: Any) {
+        ThemeManager.applyTheme(theme: darkThemeSwitch.isOn ? .dark : .light)
+        viewWillAppear(true)
     }
     
     @IBAction func showInactiveSwichOnChange(_ sender: Any) {
@@ -145,7 +183,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.isSelected = false
         
-        if indexPath.section == 3 {
+        if indexPath.section == 4 {
             switch indexPath.row {
             case 0:
                 let mailComposeViewController = configuredMailComposeViewController()
@@ -154,12 +192,9 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 }
                 break
             case 1:
-                UIApplication.shared.openURL(NSURL(string: FORUM_URL)! as URL)
-                break
-            case 2:
                 UIApplication.shared.openURL(NSURL(string: WEBSITE_URL)! as URL)
                 break
-            case 3:
+            case 2:
                 UIApplication.shared.openURL(NSURL(string: CODE_URL)! as URL)
                 break
             default:

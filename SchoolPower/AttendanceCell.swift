@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ class AttendanceCell: UITableViewCell {
     @IBOutlet weak var foregroundBroader: UIView!
     
     override func awakeFromNib() {
-
+        
         foreBackground.layer.shouldRasterize = true
         foreBackground.layer.rasterizationScale = UIScreen.main.scale
         foreBackground.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
@@ -60,10 +60,12 @@ class AttendanceCell: UITableViewCell {
                 attendanceSubject.textColor = UIColor(rgb: Int(Colors.white_0_20))
                 attendanceDate.textColor = UIColor(rgb: Int(Colors.white_0_20))
             } else {
-                foregroundBroader.backgroundColor = .white
-                attendanceDescription.textColor = UIColor(rgb: Colors.text_primary_black)
-                attendanceSubject.textColor = UIColor(rgb: Colors.text_tertiary_black)
-                attendanceDate.textColor = UIColor(rgb: Colors.text_tertiary_black)
+                
+                let theme = ThemeManager.currentTheme()
+                foregroundBroader.backgroundColor = theme.cardBackgroundColor
+                attendanceDescription.textColor = theme.primaryTextColor
+                attendanceSubject.textColor = theme.secondaryTextColor
+                attendanceDate.textColor = theme.secondaryTextColor
             }
         }
     }

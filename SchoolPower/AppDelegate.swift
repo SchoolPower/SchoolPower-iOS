@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ let LOGGED_IN_KEY_NAME = "loggedin"
 let USERNAME_KEY_NAME = "username"
 let PASSWORD_KEY_NAME = "password"
 let STUDENT_NAME_KEY_NAME = "studentname"
+let DARK_THEME_KEY_NAME = "darkTheme"
 
 let CUSTOM_RULES = ["all", "highest_3", "highest_4", "highest_5"]
 
@@ -67,6 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.configure(withApplicationID: "ca-app-pub-9841217337381410~2237579488")
         registerForPushNotifications(application: application)
         application.applicationIconBadgeNumber = 0
+        
+        ThemeManager.applyTheme(theme: userDefaults.bool(forKey: DARK_THEME_KEY_NAME) ? .dark : .light)
         
         let story = UIStoryboard(name: "Main", bundle: nil)
         var gotoController: UIViewController
@@ -335,6 +338,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.object(forKey: SHOW_GRADES_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_GRADES_KEY_NAME: true]) }
         if userDefaults.object(forKey: NOTIFY_UNGRADED_KEY_NAME) == nil { userDefaults.register(defaults: [NOTIFY_UNGRADED_KEY_NAME: true]) }
         if userDefaults.object(forKey: LOGGED_IN_KEY_NAME) == nil { userDefaults.register(defaults: [LOGGED_IN_KEY_NAME: false]) }
+        if userDefaults.object(forKey: DARK_THEME_KEY_NAME) == nil { userDefaults.register(defaults: [DARK_THEME_KEY_NAME: false]) }
         
         userDefaults.synchronize()
     }

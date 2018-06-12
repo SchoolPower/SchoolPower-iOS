@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -77,12 +77,9 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
                 }
                 break
             case 1:
-                UIApplication.shared.openURL(NSURL(string: FORUM_URL)! as URL)
-                break
-            case 2:
                 UIApplication.shared.openURL(NSURL(string: WEBSITE_URL)! as URL)
                 break
-            case 3:
+            case 2:
                 UIApplication.shared.openURL(NSURL(string: CODE_URL)! as URL)
                 break
             default:

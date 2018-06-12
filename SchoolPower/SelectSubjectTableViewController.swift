@@ -1,5 +1,5 @@
 //
-//  Copyright 2017 SchoolPower Studio
+//  Copyright 2018 SchoolPower Studio
 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ class SelectSubjectsTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         self.title = "select_subjects".localize
         selectedCourceTitles = userDefaults.array(forKey: SELECT_SUBJECTS_KEY_NAME) as! [String]
     }
@@ -49,6 +50,8 @@ extension SelectSubjectsTableViewController {
         cell.textLabel?.text = String.init(format: "(%@%%) %@",
                                            Utils.getLatestItemGrade(grades: filteredSubjects[indexPath.row].grades).percentage,
                                            filteredSubjects[indexPath.row].title)
+        
+        cell.textLabel?.textColor = ThemeManager.currentTheme().primaryTextColor
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
