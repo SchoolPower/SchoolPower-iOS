@@ -161,10 +161,10 @@ extension LoginViewController {
         
         usernameField.textColor = UIColor(rgb: Colors.white)
         usernameField.placeholderNormalColor = UIColor(rgb: Colors.primary_darker)
-        usernameField.placeholderActiveColor = UIColor(rgb: Colors.accent)
+        usernameField.placeholderActiveColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
         usernameField.dividerColor = UIColor(rgb: Colors.primary_darker)
-        usernameField.dividerActiveColor = UIColor(rgb: Colors.accent)
-        usernameField.clearIconButton?.tintColor = UIColor(rgb: Colors.accent)
+        usernameField.dividerActiveColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        usernameField.clearIconButton?.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
         
         view.layout(usernameField).center(offsetY: -20).left(36).right(36)
     }
@@ -181,10 +181,10 @@ extension LoginViewController {
         
         passwordField.textColor = UIColor(rgb: Colors.white)
         passwordField.placeholderNormalColor = UIColor(rgb: Colors.primary_darker)
-        passwordField.placeholderActiveColor = UIColor(rgb: Colors.accent)
+        passwordField.placeholderActiveColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
         passwordField.dividerColor = UIColor(rgb: Colors.primary_darker)
-        passwordField.dividerActiveColor = UIColor(rgb: Colors.accent)
-        passwordField.visibilityIconButton?.tintColor = UIColor(rgb: Colors.accent)
+        passwordField.dividerActiveColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        passwordField.visibilityIconButton?.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
                 .withAlphaComponent(passwordField.isSecureTextEntry ? 0.38 : 1.0)
         
         view.layout(passwordField).center(offsetY: +usernameField.height + 20).left(36).right(36)
@@ -198,7 +198,7 @@ extension LoginViewController {
         
         button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: .white)
         button.pulseColor = .white
-        button.backgroundColor = UIColor(rgb: Colors.accent)
+        button.backgroundColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
         view.addSubview(button)

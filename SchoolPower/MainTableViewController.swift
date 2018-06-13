@@ -161,7 +161,7 @@ class MainTableViewController: UITableViewController {
     func initRefreshView() {
         
         loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor(rgb: Colors.accent)
+        loadingView.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson() },
                                                        loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(theme.primaryColor)
@@ -426,7 +426,7 @@ extension MainTableViewController {
         
         let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: .white)
         button.pulseColor = .white
-        button.backgroundColor = UIColor(rgb: Colors.accent)
+        button.backgroundColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
         button.shadowOffset = CGSize.init(width: 0, height: 2.5)
         button.shadowRadius = 2
         button.shadowOpacity = 0.2

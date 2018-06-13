@@ -65,7 +65,7 @@ class AttendanceTableViewController: UITableViewController {
     func initRefreshView() {
         
         loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor(rgb: Colors.accent)
+        loadingView.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson() },
                                                        loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(theme.primaryColor)

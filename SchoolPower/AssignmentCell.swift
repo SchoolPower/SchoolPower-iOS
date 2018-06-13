@@ -58,7 +58,7 @@ class AssignmentCell: UITableViewCell {
             gradeBackground.backgroundColor = Utils.getColorByLetterGrade(letterGrade: assignmentItem.letterGrade)
             
             if assignmentItem.isNew {
-                foregroundBroader.backgroundColor = UIColor(rgb: Colors.accent)
+                foregroundBroader.backgroundColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
                 assignmentTitle.textColor = .white
                 assignmentDate.textColor = UIColor(rgb: Int(Colors.white_0_20))
             } else {

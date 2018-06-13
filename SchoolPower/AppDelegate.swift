@@ -41,6 +41,7 @@ let USERNAME_KEY_NAME = "username"
 let PASSWORD_KEY_NAME = "password"
 let STUDENT_NAME_KEY_NAME = "studentname"
 let DARK_THEME_KEY_NAME = "darkTheme"
+let ACCENT_COLOR_KEY_NAME = "accentColor"
 
 let CUSTOM_RULES = ["all", "highest_3", "highest_4", "highest_5"]
 

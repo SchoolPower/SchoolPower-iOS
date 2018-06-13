@@ -64,7 +64,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
-            headerView.textLabel?.textColor = UIColor(rgb: Colors.accent)
+            headerView.textLabel?.textColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
         }
     }
     
@@ -148,8 +148,10 @@ class SettingsTableViewController: UITableViewController {
     }
     
     @IBAction func darkThemeSwitchOnChange(_ sender: Any) {
-        ThemeManager.applyTheme(theme: darkThemeSwitch.isOn ? .dark : .light)
-        viewWillAppear(true)
+        UIView.animate(withDuration: 0.5, delay: 0,options: UIViewAnimationOptions.curveEaseOut,animations: {
+            ThemeManager.applyTheme(theme: self.darkThemeSwitch.isOn ? .dark : .light)
+            self.viewWillAppear(true)
+        }, completion: nil)
     }
     
     @IBAction func showInactiveSwichOnChange(_ sender: Any) {

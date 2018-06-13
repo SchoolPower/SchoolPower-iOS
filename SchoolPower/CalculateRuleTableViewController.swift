@@ -64,4 +64,3 @@ class CalculateRuleTableViewController: UITableViewController {
         self.navigationController?.popViewController(animated: true)
     }
 }
-
