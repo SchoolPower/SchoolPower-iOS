@@ -340,6 +340,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.object(forKey: NOTIFY_UNGRADED_KEY_NAME) == nil { userDefaults.register(defaults: [NOTIFY_UNGRADED_KEY_NAME: true]) }
         if userDefaults.object(forKey: LOGGED_IN_KEY_NAME) == nil { userDefaults.register(defaults: [LOGGED_IN_KEY_NAME: false]) }
         if userDefaults.object(forKey: DARK_THEME_KEY_NAME) == nil { userDefaults.register(defaults: [DARK_THEME_KEY_NAME: false]) }
+        if userDefaults.object(forKey: ACCENT_COLOR_KEY_NAME) == nil { userDefaults.register(defaults: [ACCENT_COLOR_KEY_NAME: 7]) }
         
         userDefaults.synchronize()
     }
