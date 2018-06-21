@@ -8,7 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -910,27 +909,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Te-Sb-DDv">
-                                <rect key="frame" x="12" y="62" width="390" height="560"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LtU-6R-7yS">
+                                <rect key="frame" x="0.0" y="48" width="414" height="624"/>
+                            </scrollView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kqS-WM-LMz" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="h6K-55-cap"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="MFR-yG-6S0">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5Te-Sb-DDv" secondAttribute="trailing" constant="12" id="NCK-5Z-xdp"/>
-                            <constraint firstItem="5Te-Sb-DDv" firstAttribute="top" secondItem="ctv-jn-DFs" secondAttribute="bottom" constant="62" id="NNE-KW-UcD"/>
-                            <constraint firstItem="5Te-Sb-DDv" firstAttribute="leading" secondItem="cQV-NJ-amV" secondAttribute="leading" constant="12" id="UlL-Sc-qoA"/>
-                            <constraint firstItem="RwT-SL-pPf" firstAttribute="top" secondItem="5Te-Sb-DDv" secondAttribute="bottom" constant="50" id="VbU-ea-23a"/>
+                            <constraint firstItem="LtU-6R-7yS" firstAttribute="top" secondItem="ctv-jn-DFs" secondAttribute="bottom" constant="48" id="DZZ-0U-FAb"/>
+                            <constraint firstItem="kqS-WM-LMz" firstAttribute="leading" secondItem="cQV-NJ-amV" secondAttribute="leading" id="MkN-3H-M4O"/>
+                            <constraint firstAttribute="trailing" secondItem="LtU-6R-7yS" secondAttribute="trailing" id="Ofv-7B-e5L"/>
+                            <constraint firstItem="LtU-6R-7yS" firstAttribute="leading" secondItem="cQV-NJ-amV" secondAttribute="leading" id="PoU-7Q-2Pd"/>
+                            <constraint firstAttribute="trailing" secondItem="kqS-WM-LMz" secondAttribute="trailing" id="XHb-zA-Fyq"/>
+                            <constraint firstItem="RwT-SL-pPf" firstAttribute="top" secondItem="LtU-6R-7yS" secondAttribute="bottom" id="e6c-09-zmB"/>
+                            <constraint firstItem="kqS-WM-LMz" firstAttribute="top" secondItem="ctv-jn-DFs" secondAttribute="bottom" id="pz1-Bn-FMY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Charts" id="S59-F8-UU6">
                         <barButtonItem key="backBarButtonItem" title=" " id="q5H-ik-E0G"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="bottomNALabel" destination="yFF-mp-x6L" id="y1R-dg-Keq"/>
-                        <outlet property="buttomHalfView" destination="6C2-HM-tgb" id="ANn-Gj-QIt"/>
-                        <outlet property="containerView" destination="5Te-Sb-DDv" id="e90-4O-ORo"/>
-                        <outlet property="topHalfView" destination="YLk-HI-Wuv" id="TVi-fu-aZN"/>
+                        <outlet property="buttonBarView" destination="kqS-WM-LMz" id="Vfg-3e-UEZ"/>
+                        <outlet property="containerView" destination="LtU-6R-7yS" id="Sd3-wf-Gby"/>
                         <outlet property="topNALabel" destination="TqE-OJ-l63" id="b2s-b8-2t6"/>
                     </connections>
                 </viewController>
@@ -938,84 +951,51 @@
             </objects>
             <point key="canvasLocation" x="-200.00000000000003" y="-2223.0978260869565"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Uxy-tt-fqv">
+        <!--Bar Chart View Controller-->
+        <scene sceneID="FhS-mU-Nhl">
             <objects>
-                <viewController id="CsB-Of-kXN" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CrK-A7-LMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="BarChartVC" id="QwN-7R-bug" customClass="BarChartViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aGL-O0-ljT"/>
-                        <viewControllerLayoutGuide type="bottom" id="X4l-Ru-7H9"/>
+                        <viewControllerLayoutGuide type="top" id="bwS-cy-Ery"/>
+                        <viewControllerLayoutGuide type="bottom" id="B46-km-c6Z"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6Pe-KZ-Edc">
+                    <view key="view" contentMode="scaleToFill" id="QHp-AC-GtV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="THE-qy-IXm">
-                                <rect key="frame" x="0.0" y="32" width="414" height="672"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLk-HI-Wuv">
-                                        <rect key="frame" x="12" y="12" width="390" height="328"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Chart Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqE-OJ-l63">
-                                                <rect key="frame" x="121.66666666666667" y="154" width="146.66666666666663" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="TqE-OJ-l63" firstAttribute="centerY" secondItem="YLk-HI-Wuv" secondAttribute="centerY" id="i9s-gs-SRm"/>
-                                            <constraint firstItem="TqE-OJ-l63" firstAttribute="centerX" secondItem="YLk-HI-Wuv" secondAttribute="centerX" id="jGw-dO-c9M"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6C2-HM-tgb">
-                                        <rect key="frame" x="12" y="356" width="390" height="304"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Chart Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFF-mp-x6L">
-                                                <rect key="frame" x="121.99999999999999" y="142" width="146.66666666666663" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="yFF-mp-x6L" firstAttribute="centerX" secondItem="6C2-HM-tgb" secondAttribute="centerX" id="CWm-AK-hLU"/>
-                                            <constraint firstItem="yFF-mp-x6L" firstAttribute="centerY" secondItem="6C2-HM-tgb" secondAttribute="centerY" id="s6X-TJ-7nV"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="YLk-HI-Wuv" firstAttribute="height" secondItem="THE-qy-IXm" secondAttribute="height" multiplier="0.5" constant="-8" id="Co7-ua-P3L"/>
-                                    <constraint firstItem="6C2-HM-tgb" firstAttribute="leading" secondItem="THE-qy-IXm" secondAttribute="leading" constant="12" id="Udr-Zr-INb"/>
-                                    <constraint firstAttribute="trailing" secondItem="YLk-HI-Wuv" secondAttribute="trailing" constant="12" id="Xoi-Ek-vEt"/>
-                                    <constraint firstAttribute="trailing" secondItem="6C2-HM-tgb" secondAttribute="trailing" constant="12" id="d7Q-az-Twv"/>
-                                    <constraint firstItem="6C2-HM-tgb" firstAttribute="top" secondItem="YLk-HI-Wuv" secondAttribute="bottom" constant="16" id="n4L-n1-vWl"/>
-                                    <constraint firstItem="YLk-HI-Wuv" firstAttribute="leading" secondItem="THE-qy-IXm" secondAttribute="leading" constant="12" id="zd9-aZ-3ql"/>
-                                </constraints>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQ7-By-nKs">
+                                <rect key="frame" x="16" y="16" width="382" height="704"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chart Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URq-rd-axD">
+                                <rect key="frame" x="133" y="357" width="146.66666666666663" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="B46-km-c6Z" firstAttribute="top" secondItem="fQ7-By-nKs" secondAttribute="bottom" constant="16" id="33x-mj-Gu4"/>
+                            <constraint firstItem="fQ7-By-nKs" firstAttribute="top" secondItem="QHp-AC-GtV" secondAttribute="top" constant="16" id="55z-de-wuC"/>
+                            <constraint firstItem="fQ7-By-nKs" firstAttribute="leading" secondItem="QHp-AC-GtV" secondAttribute="leading" constant="16" id="MMM-fZ-KRZ"/>
+                            <constraint firstAttribute="trailing" secondItem="fQ7-By-nKs" secondAttribute="trailing" constant="16" id="OVX-ul-DqV"/>
+                            <constraint firstItem="URq-rd-axD" firstAttribute="centerY" secondItem="QHp-AC-GtV" secondAttribute="centerY" id="dPK-ik-HmI"/>
+                            <constraint firstItem="URq-rd-axD" firstAttribute="centerX" secondItem="QHp-AC-GtV" secondAttribute="centerX" id="gPN-Eb-hzC"/>
+                        </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jmy-g3-Jn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1152" y="-1998"/>
+            <point key="canvasLocation" x="1880" y="-2223"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="TMf-8R-RJG">
@@ -1386,6 +1366,106 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jom-3s-4JY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-181.15942028985509" y="-1392.3913043478262"/>
+        </scene>
+        <!--Line Chart View Controller-->
+        <scene sceneID="2qk-ZG-jcg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RqU-a9-1d5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="LineChartVC" id="BX6-1b-qR4" customClass="LineChartViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Eq-nB-lrj"/>
+                        <viewControllerLayoutGuide type="bottom" id="0HG-fm-WNq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KJx-8j-qsq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIn-B0-AX0">
+                                <rect key="frame" x="16" y="16" width="382" height="704"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chart Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdi-ht-DRL">
+                                <rect key="frame" x="133" y="357" width="146.66666666666663" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Qdi-ht-DRL" firstAttribute="centerY" secondItem="KJx-8j-qsq" secondAttribute="centerY" id="3DA-0j-mQB"/>
+                            <constraint firstItem="TIn-B0-AX0" firstAttribute="leading" secondItem="KJx-8j-qsq" secondAttribute="leading" constant="16" id="9Ld-V0-Kui"/>
+                            <constraint firstItem="0HG-fm-WNq" firstAttribute="top" secondItem="TIn-B0-AX0" secondAttribute="bottom" constant="16" id="DBU-zj-4Ke"/>
+                            <constraint firstAttribute="trailing" secondItem="TIn-B0-AX0" secondAttribute="trailing" constant="16" id="Hg0-0F-nO0"/>
+                            <constraint firstItem="TIn-B0-AX0" firstAttribute="top" secondItem="KJx-8j-qsq" secondAttribute="top" constant="16" id="INR-ej-cSy"/>
+                            <constraint firstItem="Qdi-ht-DRL" firstAttribute="centerX" secondItem="KJx-8j-qsq" secondAttribute="centerX" id="Xdx-Wf-a61"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="CNALabel" destination="Qdi-ht-DRL" id="gJo-52-HZ7"/>
+                        <outlet property="containerView" destination="TIn-B0-AX0" id="Oan-Rk-owA"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="635" y="-2223"/>
+        </scene>
+        <!--Radar Chart View Controller-->
+        <scene sceneID="BcV-z4-hBn">
+            <objects>
+                <viewController storyboardIdentifier="RadarChartVC" id="rA7-fS-m3l" customClass="RadarChartViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="loQ-UU-dRj"/>
+                        <viewControllerLayoutGuide type="bottom" id="44L-tE-tyg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3Wj-kb-XJM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLk-HI-Wuv">
+                                <rect key="frame" x="16" y="16" width="382" height="704"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chart Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqE-OJ-l63">
+                                <rect key="frame" x="133" y="357" width="146.66666666666663" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TqE-OJ-l63" firstAttribute="centerX" secondItem="3Wj-kb-XJM" secondAttribute="centerX" id="A7C-CD-ii7"/>
+                            <constraint firstItem="YLk-HI-Wuv" firstAttribute="top" secondItem="3Wj-kb-XJM" secondAttribute="top" constant="16" id="ZNZ-37-2L2"/>
+                            <constraint firstItem="TqE-OJ-l63" firstAttribute="centerY" secondItem="3Wj-kb-XJM" secondAttribute="centerY" id="emS-Zv-1eB"/>
+                            <constraint firstAttribute="trailing" secondItem="YLk-HI-Wuv" secondAttribute="trailing" constant="16" id="od7-ot-nr7"/>
+                            <constraint firstItem="YLk-HI-Wuv" firstAttribute="leading" secondItem="3Wj-kb-XJM" secondAttribute="leading" constant="16" id="r7t-c5-bCF"/>
+                            <constraint firstItem="44L-tE-tyg" firstAttribute="top" secondItem="YLk-HI-Wuv" secondAttribute="bottom" constant="16" id="xpd-Rt-Pc8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="CNALabel" destination="TqE-OJ-l63" id="oeU-Ij-PlH"/>
+                        <outlet property="containerView" destination="YLk-HI-Wuv" id="Vob-L6-gRz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S7y-0S-k4l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1255" y="-2223"/>
         </scene>
     </scenes>
     <resources>
