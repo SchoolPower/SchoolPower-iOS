@@ -954,7 +954,6 @@
         <!--Bar Chart View Controller-->
         <scene sceneID="FhS-mU-Nhl">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CrK-A7-LMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="BarChartVC" id="QwN-7R-bug" customClass="BarChartViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bwS-cy-Ery"/>
@@ -994,6 +993,7 @@
                         </constraints>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CrK-A7-LMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1880" y="-2223"/>
         </scene>
@@ -1370,7 +1370,6 @@
         <!--Line Chart View Controller-->
         <scene sceneID="2qk-ZG-jcg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RqU-a9-1d5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LineChartVC" id="BX6-1b-qR4" customClass="LineChartViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Eq-nB-lrj"/>
@@ -1414,6 +1413,7 @@
                         <outlet property="containerView" destination="TIn-B0-AX0" id="Oan-Rk-owA"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RqU-a9-1d5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="635" y="-2223"/>
         </scene>

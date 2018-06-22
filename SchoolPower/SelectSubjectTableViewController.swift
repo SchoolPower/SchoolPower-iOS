@@ -33,14 +33,14 @@ class SelectSubjectsTableViewController: UITableViewController {
 extension SelectSubjectsTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredSubjects.count
+        return subjects.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectSubjectsCell", for: indexPath)
         cell.accessoryType = .none
-        if selectedCourceTitles.contains(filteredSubjects[indexPath.row].title) {
+        if selectedCourceTitles.contains(subjects[indexPath.row].title) {
             cell.accessoryType = .checkmark
         }
         return cell
@@ -48,8 +48,8 @@ extension SelectSubjectsTableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.textLabel?.text = String.init(format: "(%@%%) %@",
-                                           Utils.getLatestItemGrade(grades: filteredSubjects[indexPath.row].grades).percentage,
-                                           filteredSubjects[indexPath.row].title)
+                                           Utils.getLatestItemGrade(grades: subjects[indexPath.row].grades).percentage,
+                                           subjects[indexPath.row].title)
         
         cell.textLabel?.textColor = ThemeManager.currentTheme().primaryTextColor
     }
@@ -60,7 +60,7 @@ extension SelectSubjectsTableViewController {
         cell?.isSelected = false
         cell?.accessoryType = .none
         
-        let title = filteredSubjects[indexPath.row].title
+        let title = subjects[indexPath.row].title
         if selectedCourceTitles.contains(title) {
             selectedCourceTitles.remove(at: selectedCourceTitles.index(of: title)!)
         } else {
