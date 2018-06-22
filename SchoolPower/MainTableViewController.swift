@@ -72,8 +72,8 @@ class MainTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilteredSubjects),
                                                name:NSNotification.Name(rawValue: "updateFilteredSubjects"), object: nil)
         
-        tableView.reloadData()
-        initTableView()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
+                                               name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -107,6 +107,12 @@ class MainTableViewController: UITableViewController {
         }else{
             filteredSubjects = subjects
         }
+    }
+    
+    @objc func updateTheme() {
+        theme = ThemeManager.currentTheme()
+        initTableView()
+        tableView.reloadData()
     }
     
     func initValue() {

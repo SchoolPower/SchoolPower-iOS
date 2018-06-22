@@ -34,9 +34,8 @@ class ChartsViewController: ButtonBarPagerTabStripViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
-        reloadViewFromNib()
-        view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
-        self.reloadPagerTabStripView()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
+                                               name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -49,6 +48,13 @@ class ChartsViewController: ButtonBarPagerTabStripViewController {
         
         navigationDrawerController?.toggleLeftView()
         (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
+    }
+    
+    @objc func updateTheme() {
+        
+        reloadViewFromNib()
+        view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        self.reloadPagerTabStripView()
     }
     
     func initTabBar() {

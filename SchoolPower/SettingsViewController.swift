@@ -152,6 +152,7 @@ class SettingsTableViewController: UITableViewController {
             ThemeManager.applyTheme(theme: self.darkThemeSwitch.isOn ? .dark : .light)
             self.viewWillAppear(true)
         }, completion: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateTheme"), object: nil)
     }
     
     @IBAction func showInactiveSwichOnChange(_ sender: Any) {

@@ -40,8 +40,8 @@ class AttendanceTableViewController: UITableViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
-        setup()
-        tableView.reloadData()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
+                                               name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -50,6 +50,12 @@ class AttendanceTableViewController: UITableViewController {
         
         initBannerView()
         setup()
+    }
+    
+    @objc func updateTheme() {
+        
+        setup()
+        tableView.reloadData()
     }
     
     private func setup() {
