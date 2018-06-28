@@ -106,15 +106,6 @@
 "missing" = "缺少";
 "exempt" = "得分獨立於最終成績";
 "include_in_final_grade" = "作業不包含在最終成績中";
-"score" = "分數";
-"weight" = "權重";
-"flags" = "標記";
-"unknown_flag" = "未知標記";
-"collected" = "已交";
-"late" = "遲交";
-"missing" = "缺少";
-"exempt" = "得分獨立於最終成績";
-"include_in_final_grade" = "作業不包含在最終成績中";
 "theme" = "主題";
 "dark_theme" = "暗主題";
 "accent_color" = "強調色";
