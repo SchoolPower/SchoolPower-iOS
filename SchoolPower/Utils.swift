@@ -83,7 +83,6 @@ class Utils {
     ]
     
     static func indexOfString (searchString: String, domain: Array<String>) -> Int {
-        print("[][]["+searchString)
         if domain.index(of: searchString) != nil {
             return domain.index(of: searchString)!
         } else {
