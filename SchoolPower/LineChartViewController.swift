@@ -17,22 +17,30 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var CNALabel: UILabel!
     
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "LINE")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loadTheView),
+                                               name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
+    }
+    
+    override func viewDidLoad() {
+        loadTheView()
+    }
+    
+    @objc func loadTheView() {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
         initContainer()
-        
         if subjects.count > 0 {
             initLineChart()
         }
     }
     
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "LINE")
-    }
-    
     func initContainer() {
         
-        CNALabel.isHidden = true
         containerView?.layer.shouldRasterize = true
         containerView?.layer.rasterizationScale = UIScreen.main.scale
         containerView?.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
@@ -49,6 +57,8 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
     
     func initLineChart(){
         
+        print("wtf[][][][")
+        CNALabel.isHidden = true
         let historyData = Utils.readHistoryGrade()
         lineChart = LineChartView()
         

@@ -33,6 +33,7 @@ class ChartsViewController: ButtonBarPagerTabStripViewController {
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        self.view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)

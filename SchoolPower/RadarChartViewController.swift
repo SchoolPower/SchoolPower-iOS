@@ -17,17 +17,26 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var CNALabel: UILabel!
     
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "RADAR")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loadTheView),
+                                               name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
+    }
+    
+    override func viewDidLoad() {
+        loadTheView()
+    }
+    
+    @objc func loadTheView() {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
         initContainer()
-        
         if subjects.count > 0 {
             initRadarChart()
         }
-    }
-    
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "RADAR")
     }
     
     func initContainer() {
