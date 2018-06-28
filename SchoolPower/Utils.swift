@@ -87,7 +87,7 @@ class Utils {
             return domain.index(of: searchString)!
         } else {
             // return the "--" color if the letter grade is not found
-            return 7
+            return domain.index(of: "--")!
         }
     }
 }
