@@ -68,9 +68,9 @@
 "only_alert" = "SchoolPower is currently ONLY available for the students in Maple Leaf Education System (MLES) in China.";
 "i_understand" = "I Understand";
 "notification_header" = "Notification";
-"enable_notification" = "Enable notifications";
+"enable_notification" = "Enable Notifications";
 "show_inactive_summary" = "Show the courses that you are not currently taking.";
-"show_inactive_title" = "Show inactive courses";
+"show_inactive_title" = "Show Inactive Courses";
 "notification_show_grade" = "Show Grades in Notification";
 "notification_show_no_grade_assignment" = "Notify Ungraded Assignments";
 "notification_new" = "New Assignments";
@@ -106,3 +106,6 @@
 "missing" = "Missing";
 "exempt" = "Score is exempt from final grade";
 "include_in_final_grade" = "Assignment is not included in final grade";
+"theme" = "Theme";
+"dark_theme" = "Dark Theme";
+"accent_color" = "Accent Color";
