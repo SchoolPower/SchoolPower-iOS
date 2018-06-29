@@ -116,8 +116,10 @@ extension LeftViewController {
             case 0:
                 (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(settingsStory.instantiateViewController(withIdentifier: "Settings"), animated: true)
             case 1:
-                (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(mainStory.instantiateViewController(withIdentifier: "About"), animated: true)
+                (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(mainStory.instantiateViewController(withIdentifier: "Support Us"), animated: true)
             case 2:
+                (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(mainStory.instantiateViewController(withIdentifier: "About"), animated: true)
+            case 3:
                 confirmLogOut()
             
             default:

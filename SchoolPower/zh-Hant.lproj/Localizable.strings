@@ -109,3 +109,6 @@
 "theme" = "主題";
 "dark_theme" = "暗主題";
 "accent_color" = "強調色";
+"bar" = "柱狀圖";
+"line" = "折線圖";
+"radar" = "雷達圖";

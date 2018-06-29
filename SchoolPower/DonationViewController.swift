@@ -15,16 +15,25 @@
 
 
 import UIKit
+import XLPagerTabStrip
 
-class NothingView: UIView {
+class DonationViewController: UIViewController, IndicatorInfoProvider {
     
-    class func instanceFromNib(width: CGFloat = 0, height: CGFloat = 0, image: UIImage, text: String) -> UIView {
+    
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "donation".localize)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loadTheView),
+                                               name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
+    }
+    
+    override func viewDidLoad() {
+        loadTheView()
+    }
+    
+    @objc func loadTheView() {
         
-        let view = UINib(nibName: "NothingView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-        view.bounds.size.width = width
-        view.bounds.size.height = height
-        (view.viewWithTag(1) as? UILabel)?.text = text
-        (view.viewWithTag(2) as? UIImageView)?.image = image
-        return view
     }
 }

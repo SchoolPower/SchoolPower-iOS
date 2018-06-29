@@ -109,3 +109,6 @@
 "theme" = "Theme";
 "dark_theme" = "Dark Theme";
 "accent_color" = "Accent Color";
+"bar" = "BAR";
+"line" = "LINE";
+"radar" = "RADAR";
