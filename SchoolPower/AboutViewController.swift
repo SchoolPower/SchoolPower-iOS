@@ -27,8 +27,6 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
     @IBOutlet weak var licensesLable: UILabel!
     @IBOutlet weak var reportBugTitle: UILabel!
     @IBOutlet weak var reportBugDetail: UILabel!
-    @IBOutlet weak var visitForumTitle: UILabel!
-    @IBOutlet weak var VisitForumDetail: UILabel!
 
     @IBOutlet weak var visitWebsiteTitle: UILabel!
     @IBOutlet weak var getSourceCodeTitle: UILabel!
@@ -41,15 +39,16 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         self.title = "about".localize
         self.tableView.separatorColor = .clear
         
+        self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
+        self.tableView.backgroundColor = UIColor(rgb: Colors.primary_dark)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
         versionLable.text = "version".localize
         licensesLable.text = "licenses".localize
         reportBugTitle?.text = "report_bug".localize
-        visitForumTitle?.text = "feedback_forum".localize
         visitWebsiteTitle?.text = "visit_website".localize
         getSourceCodeTitle?.text = "source_code".localize
         reportBugDetail?.text = "report_bug_summary".localize
-        VisitForumDetail?.text = "feedback_forum_summary".localize
-        
         versionLabel?.text =  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     }
     

@@ -63,7 +63,7 @@ class MainTableViewController: UITableViewController {
         
         self.navigationController?.navigationBar.barTintColor = theme.primaryColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        self.navigationController?.navigationBar.tintColor = theme.windowBackgroundColor;
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
