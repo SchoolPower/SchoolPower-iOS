@@ -35,6 +35,9 @@ class CourseDetailTableViewController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
+        
+        self.navigationDrawerController?.isLeftViewEnabled = false
+        
         self.title = infoItem.title
         
         initTermList()

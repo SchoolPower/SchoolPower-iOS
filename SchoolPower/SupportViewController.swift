@@ -25,37 +25,21 @@ class SupportViewController: ButtonBarPagerTabStripViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         self.title = "support_us".localize
-        let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal) ,
-                                       style: .plain ,target: self, action: #selector(menuOnClick))
-        self.navigationItem.leftBarButtonItems = [menuItem]
         self.navigationController?.navigationBar.barTintColor = ThemeManager.currentTheme().primaryColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        self.view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
-                                               name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
+        self.navigationDrawerController?.isLeftViewEnabled = false
+        
+        self.view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
     }
     
     override func viewDidLoad() {
         
         initTabBar()
         super.viewDidLoad()
-    }
-    
-    @objc func menuOnClick(sender: UINavigationItem) {
-        
-        navigationDrawerController?.toggleLeftView()
-        (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
-    }
-    
-    @objc func updateTheme() {
-        
-        reloadViewFromNib()
-        view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
-        self.reloadPagerTabStripView()
     }
     
     func initTabBar() {
@@ -77,7 +61,7 @@ class SupportViewController: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         
-        let promotion = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PromorionVC")
+        let promotion = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PromotionVC")
         let donation = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DonationVC")
         return [promotion, donation]
     }

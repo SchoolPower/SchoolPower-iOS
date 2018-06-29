@@ -22,20 +22,23 @@ class DrawerFragmentCell: UITableViewCell {
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var background: UIView!
     
-    let images = [[UIImage(named: "ic_dashboard_white")?.withRenderingMode(.alwaysTemplate),
-                   UIImage(named: "ic_insert_chart_white")?.withRenderingMode(.alwaysTemplate),
-                   UIImage(named: "ic_beenhere_white")?.withRenderingMode(.alwaysTemplate)],
-                  [UIImage(named: "ic_settings_white")?.withRenderingMode(.alwaysTemplate),
-                   UIImage(named: "ic_info_white")?.withRenderingMode(.alwaysTemplate),
-                   UIImage(named: "ic_exit_to_app_white")?.withRenderingMode(.alwaysTemplate)]]
+    let images = [[#imageLiteral(resourceName: "ic_dashboard_white").withRenderingMode(.alwaysTemplate),
+                   #imageLiteral(resourceName: "ic_insert_chart_white").withRenderingMode(.alwaysTemplate),
+                   #imageLiteral(resourceName: "ic_beenhere_white").withRenderingMode(.alwaysTemplate)],
+                  [#imageLiteral(resourceName: "ic_settings_white").withRenderingMode(.alwaysTemplate),
+                   #imageLiteral(resourceName: "ic_star_white").withRenderingMode(.alwaysTemplate),
+                   #imageLiteral(resourceName: "ic_info_white").withRenderingMode(.alwaysTemplate),
+                   #imageLiteral(resourceName: "ic_exit_to_app_white").withRenderingMode(.alwaysTemplate)]]
+    
+    let titles = [["dashboard".localize, "charts".localize, "attendance".localize],
+                  ["settings".localize, "support_us".localize, "about".localize, "signout".localize]]
     
     var section = 0
     
     var location: Int = 0 {
         
         didSet {
-            itemTitle.text = [["dashboard".localize, "charts".localize, "attendance".localize],
-                              ["settings".localize, "about".localize, "signout".localize]][section][location]
+            itemTitle.text = titles[section][location]
             itemImage.image = images[section][location]
         }
     }

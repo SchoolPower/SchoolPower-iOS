@@ -161,7 +161,7 @@ extension LeftViewController {
         
         switch section {
         case 0: return 3
-        case 1: return 3
+        case 1: return 4
         default: return 0
         }
     }

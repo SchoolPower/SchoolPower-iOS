@@ -57,6 +57,8 @@ class SettingsTableViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         
+        self.navigationDrawerController?.isLeftViewEnabled = false
+        
         loadDetails()
         tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         tableView.reloadData()

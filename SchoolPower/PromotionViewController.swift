@@ -35,5 +35,8 @@ class PromotionViewController: UIViewController, IndicatorInfoProvider {
     
     @objc func loadTheView() {
         
+        let theme = ThemeManager.currentTheme()
+        view.backgroundColor = theme.windowBackgroundColor
+        
     }
 }

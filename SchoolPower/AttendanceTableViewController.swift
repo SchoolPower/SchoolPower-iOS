@@ -40,6 +40,8 @@ class AttendanceTableViewController: UITableViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
+        self.navigationDrawerController?.isLeftViewEnabled = true
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
     }

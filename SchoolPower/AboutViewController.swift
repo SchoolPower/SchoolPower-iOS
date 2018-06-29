@@ -43,6 +43,9 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         self.tableView.backgroundColor = UIColor(rgb: Colors.primary_dark)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
+        
+        self.navigationDrawerController?.isLeftViewEnabled = false
+        
         versionLable.text = "version".localize
         licensesLable.text = "licenses".localize
         reportBugTitle?.text = "report_bug".localize

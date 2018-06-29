@@ -67,6 +67,8 @@ class MainTableViewController: UITableViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
+        self.navigationDrawerController?.isLeftViewEnabled = true
+        
         self.title = "dashboard".localize
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilteredSubjects),
