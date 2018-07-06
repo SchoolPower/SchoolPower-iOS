@@ -65,30 +65,50 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
     
     func initLineChart(){
         
-        print("wtf[][][][")
         CNALabel.isHidden = true
-        let historyData = Utils.readHistoryGrade()
         lineChart = LineChartView()
-        
         let theme = ThemeManager.currentTheme()
+        
         // [SubjectName: [Entry<Date, Grade>]]
+        let historyData = Utils.readHistoryGrade()
         var organizedData = [String: [ChartDataEntry]]()
         var lastData = [String: ChartDataEntry]()
         let lineData = LineChartData()
         
-        for (date, subjects):(String, JSON) in historyData {
+        for (date, subjectsJson):(String, JSON) in historyData {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let doubleDate = Double(Int(dateFormatter.date(from: date)!.timeIntervalSince1970/60.0/60.0/24.0))
             
-            for subjectNow in subjects.arrayValue {
-                let subjectName = Utils.getShortName(subjectTitle: subjectNow["name"].stringValue)
+            for subjectNow in subjectsJson.arrayValue {
+                let subjectName = subjectNow["name"].stringValue
                 let subjectGrade = subjectNow["grade"].doubleValue
                 let entry = ChartDataEntry(x: doubleDate, y: subjectGrade)
                 
                 if organizedData[subjectName]==nil {
                     organizedData[subjectName] = [ChartDataEntry]()
                 }
+                
+                // TODO: Better way to CONTINUE the loop (inside Foreach)
+                if !userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME) {
+                    
+                    // Show current cources only
+                    var skipThisOne = false
+                    let currentTime = Date.init()
+                    
+                    subjects.indices.forEach ({
+                        if subjects[$0].title == subjectName {
+                            let it = subjects[$0]
+                            if (currentTime < it.startDate || currentTime > it.endDate) {
+                                skipThisOne = true
+                            }
+                        }
+                    })
+                    if skipThisOne {
+                        continue
+                    }
+                }
+                
                 lastData[subjectName]=entry
                 
                 let subjectItem = organizedData[subjectName]!
@@ -98,21 +118,22 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
                 organizedData[subjectName]!.append(entry)
             }
         }
+        
         for (name, grade) in lastData { organizedData[name]!.append(grade) }
         
         var count = 0
         for (subjectName, value) in organizedData {
             let dataSet = LineChartDataSet(values: value, label: subjectName)
-            var colors = [UIColor]()
-            for _ in 0...value.count-1 { colors.append(Colors.chartColorList[count]) }
-            dataSet.colors = colors
-            dataSet.circleColors = colors
+            let color = Colors.chartColorList[count]
+            dataSet.colors = [color]
+            //??????
+            dataSet.circleColors = [color]
             dataSet.circleRadius = 5
             dataSet.circleHoleRadius = 2
             dataSet.valueTextColor = .black
             dataSet.lineWidth = 2.0
-            dataSet.valueTextColor = theme.primaryTextColor
             lineData.addDataSet(dataSet)
+            dataSet.valueTextColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
             count+=1
         }
         
@@ -130,8 +151,9 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         lineChart.rightAxis.gridLineDashLengths = [10, 10, 0]
         lineChart.leftAxis.labelTextColor = theme.primaryTextColor
         lineChart.rightAxis.labelTextColor = theme.primaryTextColor
-        lineChart.legend.form = Legend.Form.line
+        lineChart.legend.form = Legend.Form.circle
         lineChart.legend.textColor = theme.primaryTextColor
+        lineChart.legend.wordWrapEnabled = true
         lineChart.translatesAutoresizingMaskIntoConstraints = false
         containerView?.addSubview(lineChart)
         let heightConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: -24)

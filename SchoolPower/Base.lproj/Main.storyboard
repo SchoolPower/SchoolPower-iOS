@@ -812,7 +812,7 @@
                                 <rect key="frame" x="0.0" y="200" width="375" height="467"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerHeaderCell" rowHeight="20" id="lmh-on-5G3" customClass="DrawerHeaderCell" customModule="SchoolPower" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerHeaderCell" rowHeight="20" id="lmh-on-5G3" customClass="DrawerHeaderCell" customModule="SchoolPower" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lmh-on-5G3" id="hnE-eo-Gfl">
@@ -820,7 +820,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F96-ed-Lsi">
-                                                    <rect key="frame" x="0.0" y="10" width="375" height="1"/>
+                                                    <rect key="frame" x="0.0" y="10" width="336" height="1"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="1Nr-Os-fqk"/>
@@ -834,7 +834,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerFragmentCell" rowHeight="48" id="o17-TR-OEg" customClass="DrawerFragmentCell" customModule="SchoolPower" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerFragmentCell" rowHeight="48" id="o17-TR-OEg" customClass="DrawerFragmentCell" customModule="SchoolPower" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="48" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o17-TR-OEg" id="zdm-qC-2ZS">
@@ -900,7 +900,6 @@
         <!--Charts-->
         <scene sceneID="Sbn-R0-XeT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dsX-q4-Mpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="FGa-7e-7TW" customClass="ChartsViewController" customModule="SchoolPower" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ctv-jn-DFs"/>
@@ -948,6 +947,7 @@
                         <outlet property="topNALabel" destination="TqE-OJ-l63" id="b2s-b8-2t6"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dsX-q4-Mpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-200.00000000000003" y="-2223.0978260869565"/>
         </scene>
@@ -1177,7 +1177,6 @@
         <!--Navigation Controller-->
         <scene sceneID="oPD-ij-dw0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pz8-76-Q2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="ChartsNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WCs-77-PvE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -1191,6 +1190,7 @@
                         <segue destination="FGa-7e-7TW" kind="relationship" relationship="rootViewController" id="44s-R6-4l8"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pz8-76-Q2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1029" y="-2223"/>
         </scene>
