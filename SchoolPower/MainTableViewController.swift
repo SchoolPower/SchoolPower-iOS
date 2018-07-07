@@ -23,7 +23,6 @@ import CustomIOSAlertView
 import DGElasticPullToRefresh
 
 var subjects = [Subject]()
-var filteredSubjects = [Subject]()
 var attendances = [Attendance]()
 var studentInfo = StudentInformation(json: "{}")
 
@@ -71,11 +70,10 @@ class MainTableViewController: UITableViewController {
         
         self.title = "dashboard".localize
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateFilteredSubjects),
-                                               name:NSNotification.Name(rawValue: "updateFilteredSubjects"), object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadTableView),
+                                               name:NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -97,23 +95,13 @@ class MainTableViewController: UITableViewController {
         }
     }
     
-    @objc func updateFilteredSubjects(){
-        
-        if (!userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME)) {
-            filteredSubjects = [Subject]()
-            for subject in subjects{
-                if Date().isBetweeen(date: subject.startDate, andDate: subject.endDate) {
-                    filteredSubjects.append(subject)
-                }
-            }
-        }else{
-            filteredSubjects = subjects
-        }
-    }
-    
     @objc func updateTheme() {
         theme = ThemeManager.currentTheme()
         initTableView()
+        tableView.reloadData()
+    }
+    
+    @objc func reloadTableView() {
         tableView.reloadData()
     }
     
@@ -123,7 +111,6 @@ class MainTableViewController: UITableViewController {
         let input = Utils.readDataArrayList()
         if input != nil {
             (_, attendances, subjects, disabled, disabled_title, disabled_message) = input!
-            updateFilteredSubjects()
         }
         if self.navigationController?.view.tag == 1 {
             initDataJson()
@@ -252,7 +239,6 @@ extension MainTableViewController {
                     }
                 }
                 
-                self.updateFilteredSubjects()
                 Utils.saveHistoryGrade(data: subjects)
                 
                 // Diff
@@ -370,7 +356,7 @@ extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if filteredSubjects.count == 0 {
+        if Utils.getFilteredSubjects(subjects: subjects).count == 0 {
             tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: #imageLiteral(resourceName: "no_grades"), text: "nothing_here".localize)
             return 0
             
@@ -381,7 +367,7 @@ extension MainTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredSubjects.count
+        return Utils.getFilteredSubjects(subjects: subjects).count
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -398,7 +384,7 @@ extension MainTableViewController {
         }
         cell.backgroundColor = .clear
         cell.number = indexPath.row
-        cell.infoItem = filteredSubjects[indexPath.row]
+        cell.infoItem = Utils.getFilteredSubjects(subjects: subjects)[indexPath.row]
         cell.backViewColor = theme.cardBackgroundColor
     }
     
@@ -477,7 +463,7 @@ extension MainTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoDetail" {
-            (segue.destination as? CourseDetailTableViewController)?.infoItem = filteredSubjects[(sender as! UIButton).tag]
+            (segue.destination as? CourseDetailTableViewController)?.infoItem = Utils.getFilteredSubjects(subjects: subjects)[(sender as! UIButton).tag]
             (segue.destination as? CourseDetailTableViewController)?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
     }
@@ -487,7 +473,7 @@ extension MainTableViewController {
 extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredSubjects[collectionView.tag].grades.count
+        return Utils.getFilteredSubjects(subjects: subjects)[collectionView.tag].grades.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -504,7 +490,7 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         collectionCell.layer.shadowRadius = 1
         collectionCell.layer.shadowOpacity = 0.2
         
-        let grades = filteredSubjects[collectionView.tag].grades
+        let grades = Utils.getFilteredSubjects(subjects: subjects)[collectionView.tag].grades
         let termName = Array(grades.keys)[indexPath.row]
         let grade = grades[termName]!
         (collectionCell.viewWithTag(1) as! UILabel).textColor = theme.primaryTextColor
@@ -521,7 +507,7 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
     //MARK: TERM ONCLICK, SHOW TERM DIALOG
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let grades = filteredSubjects[collectionView.tag].grades
+        let grades = Utils.getFilteredSubjects(subjects: subjects)[collectionView.tag].grades
         let termName = Array(grades.keys)[indexPath.row]
         let grade = grades[termName]!
         let standerdWidth = self.view.frame.width * 0.8
@@ -529,7 +515,7 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         let termDialog = TermDialog.instanceFromNib(
             width: standerdWidth,
             name: termName,
-            subject: filteredSubjects[collectionView.tag].title,
+            subject: Utils.getFilteredSubjects(subjects: subjects)[collectionView.tag].title,
             grade: grade)
         
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: termDialog.bounds.size.height))

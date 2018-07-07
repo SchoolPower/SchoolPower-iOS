@@ -160,7 +160,7 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func showInactiveSwichOnChange(_ sender: Any) {
         userDefaults.set(showInactiveSwitch.isOn, forKey: SHOW_INACTIVE_KEY_NAME)
         userDefaults.synchronize()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateFilteredSubjects"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
     }
     
     @IBAction func enableNotificationSwichOnChange(_ sender: Any) {

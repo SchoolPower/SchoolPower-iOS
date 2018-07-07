@@ -32,6 +32,8 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(self.loadTheView),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loadTheView),
+                                               name:NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
     }
     
     override func viewDidLoad() {

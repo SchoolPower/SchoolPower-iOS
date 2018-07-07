@@ -145,7 +145,7 @@ class AttendanceTableViewController: UITableViewController {
 
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
                 (_, attendances, subjects, disabled, disabled_title, disabled_message) = Utils.parseJsonResult(jsonStr: response)
-                //self.updateFilteredSubjects()
+                
                 Utils.saveHistoryGrade(data: subjects)
                 
                 if disabled {

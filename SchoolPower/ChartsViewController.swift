@@ -40,6 +40,8 @@ class ChartsViewController: ButtonBarPagerTabStripViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loadTheView),
+                                               name:NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -58,6 +60,10 @@ class ChartsViewController: ButtonBarPagerTabStripViewController {
         
         reloadViewFromNib()
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        self.reloadPagerTabStripView()
+    }
+    
+    @objc func loadTheView() {
         self.reloadPagerTabStripView()
     }
     
