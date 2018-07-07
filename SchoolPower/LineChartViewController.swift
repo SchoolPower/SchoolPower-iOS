@@ -123,6 +123,11 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         
         for (name, grade) in lastData { organizedData[name]!.append(grade) }
         
+        if organizedData.count == 0 {
+            triggerNothingSituation()
+            return
+        }
+        
         var count = 0
         for (subjectName, value) in organizedData {
             let dataSet = LineChartDataSet(values: value, label: subjectName)
@@ -166,6 +171,11 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         
         lineChart.animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
         
+    }
+    
+    func triggerNothingSituation() {
+        CNALabel.isHidden = false
+        lineChart.isHidden = true
     }
 }
 

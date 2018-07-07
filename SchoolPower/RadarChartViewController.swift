@@ -71,7 +71,15 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
         let theme = ThemeManager.currentTheme()
         var entries = [RadarChartDataEntry]()
         var minGrade = 100.0
+        
         for it in subjects {
+            
+            if !userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME) {
+                let currentTime = Date.init()
+                if (currentTime < it.startDate || currentTime > it.endDate) {
+                    continue
+                }
+            }
             if Utils.getLatestItemGrade(grades: it.grades).letter == "--" {
                 continue
             }
@@ -79,6 +87,11 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
             entries.append(RadarChartDataEntry(value: periodGrade))
             if periodGrade<minGrade { minGrade=periodGrade }
         }
+        if entries.count == 0 {
+            triggerNothingSituation()
+            return
+        }
+        
         
         let set = RadarChartDataSet(values: entries, label: "Grades")
         let accentColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
@@ -120,6 +133,11 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
         containerView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
         
         radarChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
+    }
+    
+    func triggerNothingSituation() {
+        CNALabel.isHidden = false
+        radarChart.isHidden = true
     }
 }
 
