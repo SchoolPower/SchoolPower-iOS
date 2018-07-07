@@ -88,6 +88,24 @@ enum Theme: Int {
             return .black
         }
     }
+    
+    var noGradeImage: UIImage {
+        switch self {
+        case .light:
+            return #imageLiteral(resourceName: "no_grades")
+        case .dark:
+            return #imageLiteral(resourceName: "no_grades_dark")
+        }
+    }
+    
+    var perfectAttendanceImage: UIImage {
+        switch self {
+        case .light:
+            return #imageLiteral(resourceName: "perfect_attendance")
+        case .dark:
+            return #imageLiteral(resourceName: "perfect_attendance_dark")
+        }
+    }
 }
 
 class ThemeManager {

@@ -242,7 +242,8 @@ extension AttendanceTableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
         if attendanceList.count == 0 {
-            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: #imageLiteral(resourceName: "perfect_attendance"), text: "perfect_attendance".localize)
+            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: ThemeManager.currentTheme().perfectAttendanceImage, text: "perfect_attendance".localize)
+            tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
             return UIView()
             
         } else {

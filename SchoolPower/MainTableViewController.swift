@@ -359,7 +359,7 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if Utils.getFilteredSubjects(subjects: subjects).count == 0 {
-            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: #imageLiteral(resourceName: "no_grades"), text: "nothing_here".localize)
+            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: ThemeManager.currentTheme().noGradeImage, text: "nothing_here".localize)
             tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
             return 0
             
