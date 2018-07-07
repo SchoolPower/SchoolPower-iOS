@@ -126,7 +126,7 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         var count = 0
         for (subjectName, value) in organizedData {
             let dataSet = LineChartDataSet(values: value, label: subjectName)
-            let color = Colors.chartColorList[count]
+            let color = Colors.materialChartColorList[count]
             dataSet.colors = [color]
             //??????
             dataSet.circleColors = [color]

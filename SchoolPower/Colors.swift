@@ -85,21 +85,42 @@ class Colors{
     
     static let chartColorList = [
         UIColor(rgb: 0xff1744),
-        UIColor(rgb: 0xf50057),
-        UIColor(rgb: 0xd500f9),
-        UIColor(rgb: 0x651fff),
-        UIColor(rgb: 0x3d5afe),
-        UIColor(rgb: 0x00b0ff),
-        UIColor(rgb: 0x00e5ff),
-        UIColor(rgb: 0x00e676),
-        UIColor(rgb: 0x76ff03),
-        UIColor(rgb: 0xc6ff00),
-        UIColor(rgb: 0xffea00),
-        UIColor(rgb: 0xffc400),
-        UIColor(rgb: 0xff3d00),
-        UIColor(rgb: 0xff9100),
-        UIColor(rgb: 0x3e2723)
+        UIColor(rgb: 0x534550),
+        UIColor(rgb: 0xc0de32),
+        UIColor(rgb: 0x904cdb),
+        UIColor(rgb: 0x76ca52),
+        UIColor(rgb: 0xc953b8),
+        UIColor(rgb: 0x67bc84),
+        UIColor(rgb: 0x5d4da6),
+        UIColor(rgb: 0xc3a83f),
+        UIColor(rgb: 0x858fbf),
+        UIColor(rgb: 0xd7552d),
+        UIColor(rgb: 0x65bebe),
+        UIColor(rgb: 0xb8517b),
+        UIColor(rgb: 0x919652),
+        UIColor(rgb: 0xad5844),
+        UIColor(rgb: 0xa49a85)
         
+    ]
+    
+    static let materialChartColorList = [
+        MDCPalette.red.tint500,
+        MDCPalette.purple.tint500,
+        MDCPalette.purple.accent400!,
+        MDCPalette.deepPurple.tint500,
+        MDCPalette.indigo.tint500,
+        MDCPalette.blue.tint500,
+        MDCPalette.cyan.tint500,
+        MDCPalette.teal.tint500,
+        MDCPalette.teal.accent700!,
+        MDCPalette.lightGreen.tint500,
+        MDCPalette.yellow.tint500,
+        MDCPalette.yellow.accent100!,
+        MDCPalette.orange.tint500,
+        MDCPalette.deepOrange.tint500,
+        MDCPalette.brown.tint500,
+        MDCPalette.grey.tint500,
+        MDCPalette.blueGrey.tint500
     ]
     
     static let accentColors = [
