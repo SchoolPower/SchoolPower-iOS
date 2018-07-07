@@ -42,7 +42,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
         initContainer()
-        if subjects.count > 0 {
+        if Utils.getFilteredSubjects(subjects: subjects).count > 0 {
 //            initBarChart()
         }
     }

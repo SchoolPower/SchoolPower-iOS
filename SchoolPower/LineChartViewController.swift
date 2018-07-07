@@ -42,7 +42,7 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
         initContainer()
-        if subjects.count > 0 {
+        if Utils.getFilteredSubjects(subjects: subjects).count > 0 {
             initLineChart()
         }
     }
@@ -123,11 +123,6 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         
         for (name, grade) in lastData { organizedData[name]!.append(grade) }
         
-        if organizedData.count == 0 {
-            triggerNothingSituation()
-            return
-        }
-        
         var count = 0
         for (subjectName, value) in organizedData {
             let dataSet = LineChartDataSet(values: value, label: subjectName)
@@ -171,11 +166,6 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         
         lineChart.animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
         
-    }
-    
-    func triggerNothingSituation() {
-        CNALabel.isHidden = false
-        lineChart.isHidden = true
     }
 }
 

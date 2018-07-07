@@ -322,40 +322,61 @@ extension Utils {
         return grades[getLatestItem(grades: grades)] ?? Grade(percentage: "--", letter: "--", comment: "", evaluation:"--")
     }
     
+    static func getFilteredSubjects(subjects: Array<Subject>) -> Array<Subject> {
+        
+        var filteredSubjects: Array<Subject>
+        if (!userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME)) {
+            
+            filteredSubjects = Array()
+            let currentTime = Date.init()
+            
+            subjects.forEach ({
+                if (currentTime > $0.startDate && currentTime < $0.endDate) {
+                    filteredSubjects.append($0)
+                }
+            })
+            
+        } else {
+            filteredSubjects = subjects
+        }
+        
+        return filteredSubjects
+    }
+    
     static func parseJsonResult(jsonStr: String) ->(
         StudentInformation, [Attendance], [Subject],
         Bool, String, String) {
-        
-        let studentData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
-        if (studentData["information"] == JSON.null) { // not successful
-            return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
-                    false, "", "")
-        }
-        let studentInfo = StudentInformation(json: studentData["information"])
-        var subjects = [Subject]()
-        for subject in studentData["sections"].arrayValue { subjects.append(Subject(json: subject)) }
-        
-        var attendances = [Attendance]()
-        for attendance in studentData["attendances"].arrayValue { attendances.append(Attendance(json: attendance)) }
-        
-        subjects = subjects.sorted {
-            if $0.blockLetter == "HR(A-E)" { return true }
-            if $1.blockLetter == "HR(A-E)" { return false }
-            return $0.blockLetter < $1.blockLetter
-        }
-        
-        let disabled = studentData["disabled"] != JSON.null
-        var disabled_title = ""
-        var disabled_message = ""
-        
-        if (disabled) {
-            let disableInfo = studentData["disabled"]
-            disabled_title = disableInfo["title"].stringValue
-            disabled_message = disableInfo["message"].stringValue
-        }
-        
-        return (studentInfo, attendances, subjects,
-                disabled, disabled_title, disabled_message)
+            
+            let studentData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
+            if (studentData["information"] == JSON.null) { // not successful
+                return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
+                        false, "", "")
+            }
+            let studentInfo = StudentInformation(json: studentData["information"])
+            var subjects = [Subject]()
+            for subject in studentData["sections"].arrayValue { subjects.append(Subject(json: subject)) }
+            
+            var attendances = [Attendance]()
+            for attendance in studentData["attendances"].arrayValue { attendances.append(Attendance(json: attendance)) }
+            
+            subjects = subjects.sorted {
+                if $0.blockLetter == "HR(A-E)" { return true }
+                if $1.blockLetter == "HR(A-E)" { return false }
+                return $0.blockLetter < $1.blockLetter
+            }
+            
+            let disabled = studentData["disabled"] != JSON.null
+            var disabled_title = ""
+            var disabled_message = ""
+            
+            if (disabled) {
+                let disableInfo = studentData["disabled"]
+                disabled_title = disableInfo["title"].stringValue
+                disabled_message = disableInfo["message"].stringValue
+            }
+            
+            return (studentInfo, attendances, subjects,
+                    disabled, disabled_title, disabled_message)
     }
     
     static func getShortName(subjectTitle: String)->String{
