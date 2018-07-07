@@ -89,6 +89,7 @@ extension AccentColorViewController {
             userDefaults.set(indexSelected, forKey: ACCENT_COLOR_KEY_NAME)
             ThemeManager.applyTheme(theme: ThemeManager.currentTheme())
             
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateTheme"), object: nil)
         }
     }
 }
