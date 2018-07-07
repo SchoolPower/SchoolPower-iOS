@@ -76,18 +76,15 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         let lineData = LineChartData()
         
         for (date, subjectsJson):(String, JSON) in historyData {
+            
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let doubleDate = Double(Int(dateFormatter.date(from: date)!.timeIntervalSince1970/60.0/60.0/24.0))
             
             for subjectNow in subjectsJson.arrayValue {
+                
                 let subjectName = subjectNow["name"].stringValue
                 let subjectGrade = subjectNow["grade"].doubleValue
-                let entry = ChartDataEntry(x: doubleDate, y: subjectGrade)
-                
-                if organizedData[subjectName]==nil {
-                    organizedData[subjectName] = [ChartDataEntry]()
-                }
                 
                 // TODO: Better way to CONTINUE the loop (inside Foreach)
                 if !userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME) {
@@ -107,6 +104,11 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
                     if skipThisOne {
                         continue
                     }
+                }
+                
+                let entry = ChartDataEntry(x: doubleDate, y: subjectGrade)
+                if organizedData[subjectName]==nil {
+                    organizedData[subjectName] = [ChartDataEntry]()
                 }
                 
                 lastData[subjectName]=entry
