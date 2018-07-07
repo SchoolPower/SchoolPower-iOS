@@ -30,6 +30,10 @@ class AccentColorViewController: UICollectionViewController {
         indexSelected = userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateTheme"), object: nil)
+    }
+    
     func loadAccentColors() -> Array<UIColor> {
         return Colors.accentColors
     }
@@ -87,9 +91,10 @@ extension AccentColorViewController {
             }, completion: nil)
             
             userDefaults.set(indexSelected, forKey: ACCENT_COLOR_KEY_NAME)
-            ThemeManager.applyTheme(theme: ThemeManager.currentTheme())
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateTheme"), object: nil)
+            ThemeManager.applyTheme(theme: ThemeManager.currentTheme())
+            
         }
     }
 }

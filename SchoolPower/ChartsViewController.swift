@@ -35,19 +35,24 @@ class ChartsViewController: ButtonBarPagerTabStripViewController {
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
         self.navigationDrawerController?.isLeftViewEnabled = true
-        
         self.view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
-                                               name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
+        do { try updateTheme() }
+        catch { print("ChartsVC: Update theme failed!") }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.loadTheView),
                                                name:NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
     }
     
     override func viewDidLoad() {
         
         initTabBar()
         super.viewDidLoad()
+        self.reloadPagerTabStripView()
     }
     
     @objc func menuOnClick(sender: UINavigationItem) {
@@ -56,7 +61,7 @@ class ChartsViewController: ButtonBarPagerTabStripViewController {
         (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
     }
     
-    @objc func updateTheme() {
+    func updateTheme() throws -> Void {
         
         reloadViewFromNib()
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor

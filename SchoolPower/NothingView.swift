@@ -24,6 +24,7 @@ class NothingView: UIView {
         view.bounds.size.width = width
         view.bounds.size.height = height
         (view.viewWithTag(1) as? UILabel)?.text = text
+        (view.viewWithTag(1) as? UILabel)?.textColor = ThemeManager.currentTheme().secondaryTextColor
         (view.viewWithTag(2) as? UIImageView)?.image = image
         return view
     }

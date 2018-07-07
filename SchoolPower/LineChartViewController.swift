@@ -36,6 +36,11 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
                                                name:NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateTheme"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
+    }
+    
     override func viewDidLoad() {
         loadTheView()
     }
@@ -59,7 +64,7 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         containerView?.backgroundColor = ThemeManager.currentTheme().cardBackgroundColor
         containerView?.layer.cornerRadius = 10
         containerView?.layer.masksToBounds = true
-       
+        
         if (containerView?.subviews.count)! > 0 {
             containerView?.subviews[0].removeFromSuperview()
         }

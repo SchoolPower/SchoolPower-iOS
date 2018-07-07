@@ -29,6 +29,10 @@ class PromotionViewController: UIViewController, IndicatorInfoProvider {
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateTheme"), object: nil)
+    }
+    
     override func viewDidLoad() {
         loadTheView()
     }

@@ -84,6 +84,7 @@ class AttendanceTableViewController: UITableViewController {
         if tableView != nil {
             tableView.dg_removePullToRefresh()
         }
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateTheme"), object: nil)
     }
     
     func initBannerView() {

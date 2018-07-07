@@ -93,6 +93,8 @@ class MainTableViewController: UITableViewController {
         if tableView != nil {
             tableView.dg_removePullToRefresh()
         }
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateTheme"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
     }
     
     @objc func updateTheme() {
@@ -358,6 +360,7 @@ extension MainTableViewController {
         
         if Utils.getFilteredSubjects(subjects: subjects).count == 0 {
             tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: #imageLiteral(resourceName: "no_grades"), text: "nothing_here".localize)
+            tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
             return 0
             
         } else {
