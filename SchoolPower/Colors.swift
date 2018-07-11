@@ -83,6 +83,12 @@ class Colors{
     static let dark_text_color_secondary = MDCPalette.grey.tint500
     static let dark_card_background = 0x2D3035
     
+    static let alipay_blue = 0x1296db
+    static let wechat_green = 0x22AC38
+    static let paypal_blue = 0x253B80
+    static let bitcoin_orange = 0xF7931A
+    static let ethereum_black = 0x282828
+    
     static let chartColorList = [
         UIColor(rgb: 0xff1744),
         UIColor(rgb: 0x534550),
