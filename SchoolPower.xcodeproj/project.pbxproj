@@ -25,6 +25,8 @@
 		6218E23A20E5D83F005CBCED /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218E23920E5D83F005CBCED /* PromotionViewController.swift */; };
 		6218E23C20E5D853005CBCED /* DonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218E23B20E5D853005CBCED /* DonationViewController.swift */; };
 		621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DA1B61EFD01A300EFAB5A /* Utils.swift */; };
+		62245FC420FB4F770093E813 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62245FC320FB4F770093E813 /* InstructionViewController.m */; };
+		62245FC920FB51A50093E813 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62245FC820FB51A40093E813 /* OnboardingContentViewController.m */; };
 		62368CA51F88825000519608 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62368CA41F88825000519608 /* MessageUI.framework */; };
 		6244238D20F5027F0038F59B /* DonationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6244238C20F5027F0038F59B /* DonationCard.swift */; };
 		624BDC211EFE2F6A0052EC5D /* AssignmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */; };
@@ -126,6 +128,11 @@
 		6218E23920E5D83F005CBCED /* PromotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
 		6218E23B20E5D853005CBCED /* DonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
 		621DA1B61EFD01A300EFAB5A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Utils.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		62245FC220FB4F770093E813 /* SchoolPower-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SchoolPower-Bridging-Header.h"; sourceTree = "<group>"; };
+		62245FC320FB4F770093E813 /* InstructionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstructionViewController.m; sourceTree = "<group>"; };
+		62245FC520FB4FC20093E813 /* InstructionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstructionViewController.h; sourceTree = "<group>"; };
+		62245FC720FB51A40093E813 /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController.h; path = Pods/Onboard/Source/OnboardingContentViewController.h; sourceTree = SOURCE_ROOT; };
+		62245FC820FB51A40093E813 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = Pods/Onboard/Source/OnboardingContentViewController.m; sourceTree = SOURCE_ROOT; };
 		62368CA41F88825000519608 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6244238C20F5027F0038F59B /* DonationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationCard.swift; sourceTree = "<group>"; };
 		624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AssignmentCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -236,6 +243,7 @@
 				6218E23720E5D7A9005CBCED /* SupportViewController.swift */,
 				6218E23920E5D83F005CBCED /* PromotionViewController.swift */,
 				6218E23B20E5D853005CBCED /* DonationViewController.swift */,
+				62245FC620FB51680093E813 /* Instruction */,
 			);
 			name = Supports;
 			sourceTree = "<group>";
@@ -249,6 +257,17 @@
 				628721E920CF38F100B9FE33 /* ThemeManager.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		62245FC620FB51680093E813 /* Instruction */ = {
+			isa = PBXGroup;
+			children = (
+				62245FC720FB51A40093E813 /* OnboardingContentViewController.h */,
+				62245FC820FB51A40093E813 /* OnboardingContentViewController.m */,
+				62245FC320FB4F770093E813 /* InstructionViewController.m */,
+				62245FC520FB4FC20093E813 /* InstructionViewController.h */,
+			);
+			name = Instruction;
 			sourceTree = "<group>";
 		};
 		628EF6401EFB302F008E0C4D /* ViewControllers */ = {
@@ -291,6 +310,7 @@
 		628EF6421EFB307F008E0C4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				62245FC220FB4F770093E813 /* SchoolPower-Bridging-Header.h */,
 				62CFC9911EFA9940002B4A8D /* AppDelegate.swift */,
 				62C34E2C1F05FAAD0078D5F8 /* DGLocalization.swift */,
 				2705427B1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist */,
@@ -625,6 +645,7 @@
 				"${BUILT_PRODUCTS_DIR}/MotionAnimator/MotionAnimator.framework",
 				"${BUILT_PRODUCTS_DIR}/MotionInterchange/MotionInterchange.framework",
 				"${BUILT_PRODUCTS_DIR}/MotionTransitioning/MotionTransitioning.framework",
+				"${BUILT_PRODUCTS_DIR}/Onboard/Onboard.framework",
 				"${BUILT_PRODUCTS_DIR}/SACountingLabel/SACountingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/VTAcknowledgementsViewController/VTAcknowledgementsViewController.framework",
@@ -646,6 +667,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionAnimator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionInterchange.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionTransitioning.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Onboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SACountingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VTAcknowledgementsViewController.framework",
@@ -676,6 +698,7 @@
 				2705427E1F0887880002C7BE /* AboutViewController.swift in Sources */,
 				6209FFC920DB2CBD00B96754 /* LineChartViewController.swift in Sources */,
 				62AA4E3D1F033B57009C8CFC /* LeftViewController.swift in Sources */,
+				62245FC420FB4F770093E813 /* InstructionViewController.m in Sources */,
 				621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */,
 				62AA4E3C1F033B57009C8CFC /* AppNavigationDrawerController.swift in Sources */,
 				62CFC9941EFA9940002B4A8D /* CourseDetailTableViewController.swift in Sources */,
@@ -689,6 +712,7 @@
 				6209FFCB20DB3CAE00B96754 /* RadarChartViewController.swift in Sources */,
 				6297EC241FF0FC16003E8F1C /* GPADialigUtil.swift in Sources */,
 				6204A07E1F39E5CE004B2118 /* NothingView.swift in Sources */,
+				62245FC920FB51A50093E813 /* OnboardingContentViewController.m in Sources */,
 				6271028C1F6FDDBA00676290 /* StudentInformation.swift in Sources */,
 				62FD1FA51F28F0BD0097A696 /* MKRingProgressGroupView.swift in Sources */,
 				6205B9181FDB80F400A124E0 /* TermDialog.swift in Sources */,
@@ -915,7 +939,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = studio.schoolpower.SchoolPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SchoolPower/SchoolPower-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -947,7 +971,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = studio.schoolpower.SchoolPower;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SchoolPower/SchoolPower-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -969,6 +993,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CarbonylGroup.com.SchoolPowerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SchoolPower.app/SchoolPower";
 			};
@@ -989,6 +1014,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CarbonylGroup.com.SchoolPowerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SchoolPower.app/SchoolPower";
 			};

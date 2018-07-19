@@ -115,3 +115,16 @@
 "support_us" = "Support Us";
 "promotion" = "PROMOTION";
 "donation" = "DONATION";
+"donation_title" = "Lorem ipsum dolor";
+"donation_message" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nibh vel justo dignissim scelerisque. ";
+"donation_cancel" = "NO THANKS";
+"donation_ok" = "DONATE";
+"donation_promote" = "PROMOTE";
+"wechat_instruction_page1_title" = "How to donate with Wechat Pay";
+"wechat_instruction_page1_des" = "We will need store our payment QR code in your machine, so that you can pay us";
+"wechat_instruction_page2_des" = "We will redirect you to the QR scanning view in Wechat App";
+"wechat_instruction_page3_des" = "Tap the menu button top right";
+"wechat_instruction_page4_des" = "Tap 'Choose QR Code from Album'";
+"wechat_instruction_page5_des" = "Choose our QR code, which should be the first image in the list";
+"storage_permission_denied" = "Sorry, we cannot store our QR code without permission";
+"storage_permission_exp_title" = "We need permission";

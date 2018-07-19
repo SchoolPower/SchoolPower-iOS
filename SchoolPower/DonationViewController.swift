@@ -17,8 +17,11 @@
 import UIKit
 import XLPagerTabStrip
 import MaterialComponents
+import Photos
 
 class DonationViewController: UIViewController, IndicatorInfoProvider {
+    
+    var navController: UINavigationController!
     
     @IBOutlet weak var wechatCard: MDCCard!
     
@@ -34,7 +37,7 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateTheme"), object: nil)
     }
-      
+    
     override func viewDidLoad() {
         loadTheView()
     }
@@ -43,15 +46,175 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
     }
     
     @IBAction func weChatOnClick(_ sender: Any) {
+        initWechatInstruction()
+    }
+    
+    func initWechatInstruction() {
         
-        UIImageWriteToSavedPhotosAlbum(#imageLiteral(resourceName: "wechat_qr"), nil, nil, nil)
-        UIApplication.shared.openURL(NSURL(string: "weixin://scanqrcode")! as URL)
+        let page1 = OnboardingContentViewController(
+            title: "wechat_instruction_page1_title".localize,
+            body: "wechat_instruction_page1_des".localize,
+            image: #imageLiteral(resourceName: "ic_wechat_pay"),
+            buttonText: "") {}
+        
+        let page2 = OnboardingContentViewController(
+            title: "",
+            body: "wechat_instruction_page2_des".localize,
+            image: #imageLiteral(resourceName: "page2"),
+            buttonText: "") {}
+        
+        let page3 = OnboardingContentViewController(
+            title: "",
+            body: "wechat_instruction_page3_des".localize,
+            image: #imageLiteral(resourceName: "page3"),
+            buttonText: "") {}
+        
+        let page4 = OnboardingContentViewController(
+            title: "",
+            body: "wechat_instruction_page4_des".localize,
+            image: #imageLiteral(resourceName: "page4"),
+            buttonText: "") {}
+        
+        let page5 = OnboardingContentViewController(
+            title: "",
+            body: "wechat_instruction_page5_des".localize,
+            image: #imageLiteral(resourceName: "page5"),
+            buttonText: "") {}
+
+        let onboardingVC = InstructionViewController(
+            backgroundImage: UIImage.from(color: UIColor.init(rgb: Colors.B_score_green)),
+            contents: [
+                page1.fitFirst(view: view),
+                page2.fitRest(view: view),
+                page3.fitRest(view: view),
+                page4.fitRest(view: view),
+                page5.fitRest(view: view),
+            ]
+        )
+        
+        onboardingVC?.skipButton = MDCButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        onboardingVC?.skipButton.setTitle("skip".localize, for: .normal)
+        onboardingVC?.skipButton.titleLabel?.textColor = .white
+        onboardingVC?.skipButton.backgroundColor = .clear
+        onboardingVC?.skipButton.addTarget(self, action: #selector(gotoWechat), for: .touchUpInside)
+        onboardingVC?.okButton = MDCButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        onboardingVC?.okButton.setTitle("ok".localize, for: .normal)
+        onboardingVC?.okButton.titleLabel?.textColor = .white
+        onboardingVC?.okButton.backgroundColor = .clear
+        onboardingVC?.okButton.addTarget(self, action: #selector(gotoWechat), for: .touchUpInside)
+        
+        onboardingVC?.shouldMaskBackground = false
+        onboardingVC?.allowSkipping = true
+        onboardingVC?.fadeSkipButtonOnLastPage = true
+        onboardingVC?.okHandler = { self.gotoWechat() }
+        onboardingVC?.shouldFadeTransitions = true
+        
+        navController = UINavigationController.init(rootViewController: onboardingVC!)
+        navController.modalTransitionStyle = .coverVertical;
+        self.navigationController?.present(navController, animated: true, completion: {})
+    }
+    
+    @objc func gotoWechat() {
+        
+        if UIApplication.shared.canOpenURL(NSURL(string: "weixin://scanqrcode")! as URL) {
+            if isPhotoPermissionGranted() {
+                UIImageWriteToSavedPhotosAlbum(#imageLiteral(resourceName: "wechat_qr"), nil, nil, nil)
+                UIApplication.shared.openURL(NSURL(string: "weixin://scanqrcode")! as URL)
+                dissmissInstruction()
+            } else {
+                dissmissInstruction()
+                notifyPermissionNotGranted()
+            }
+        } else {
+            dissmissInstruction()
+            notifyWechatUnavailable()
+        }
+    }
+    
+    func dissmissInstruction() {
+        if navController != nil {
+            navController.dismiss(animated: true, completion: {})
+        }
+    }
+    
+    func isPhotoPermissionGranted() -> Bool {
+        // Get the current authorization state.
+        var permission = false
+        let status = PHPhotoLibrary.authorizationStatus()
+        if (status == PHAuthorizationStatus.authorized) { return true }
+        else if (status == PHAuthorizationStatus.denied) { return false }
+        else if (status == PHAuthorizationStatus.notDetermined) {
+            PHPhotoLibrary.requestAuthorization({ (newStatus) in
+                if (newStatus == PHAuthorizationStatus.authorized) { permission = true }
+            })
+        }
+        return permission
+    }
+    
+    func updateNavigationBarWithColor(color: UIColor) {
+        
+        self.navigationController?.navigationBar.barTintColor = color
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+    }
+    
+    func notifyWechatUnavailable() {
+        
+        let alert = UIAlertController.init(title: "cant_open_wechat".localize, message: "wechat_not_installed".localize, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "emm".localize, style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func notifyPermissionNotGranted() {
+        
+        let alert = UIAlertController.init(title: "storage_permission_exp_title".localize, message: "storage_permission_denied".localize, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "emm".localize, style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
     @objc func loadTheView() {
         
         let theme = ThemeManager.currentTheme()
         view.backgroundColor = theme.windowBackgroundColor
-        
+    }
+}
+
+extension UIImage {
+    static func from(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
+}
+
+extension OnboardingContentViewController {
+    
+    func fitFirst(view: UIView) -> OnboardingContentViewController {
+        self.topPadding = view.bounds.height * 2 / 10
+        self.bottomPadding = 20
+        self.iconImageView.contentMode = .scaleAspectFit
+        self.iconHeight = view.bounds.height * 5 / 10
+        self.iconWidth = view.bounds.width * 8 / 10
+        self.bodyLabel.font = self.bodyLabel.font.withSize(18.0)
+        self.bodyLabel.textColor = UIColor.white.withAlphaComponent(0.8)
+        return self
+    }
+    
+    func fitRest(view: UIView) -> OnboardingContentViewController {
+        self.topPadding = view.bounds.height * 2 / 10
+        self.bottomPadding = 20
+        self.iconImageView.contentMode = .scaleAspectFit
+        self.iconHeight = view.bounds.height * 7 / 10
+        self.iconWidth = view.bounds.width * 8 / 10
+        self.bodyLabel.font = self.bodyLabel.font.withSize(18.0)
+        self.bodyLabel.textColor = UIColor.white.withAlphaComponent(0.8)
+        return self
     }
 }

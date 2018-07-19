@@ -134,7 +134,7 @@ class Locale: NSObject {
 //MARK:- extension
 extension String {
     
-    var localize:String{
+    var localize: String{
         return DGLocalization.sharedInstance.getTranslationForKey(key: self as NSString) as String
     }
 }
