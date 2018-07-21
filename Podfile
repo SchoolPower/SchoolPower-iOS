@@ -6,7 +6,6 @@ target "SchoolPower" do
     
     pod "MaterialComponents"
     pod "Material"
-    pod "FoldingCell"
     pod "SwiftyJSON"
     pod "Charts"
     pod "Google-Mobile-Ads-SDK"

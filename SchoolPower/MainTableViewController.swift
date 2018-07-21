@@ -16,7 +16,6 @@
 
 import UIKit
 import Material
-import FoldingCell
 import GoogleMobileAds
 import MaterialComponents
 import CustomIOSAlertView
@@ -58,7 +57,7 @@ class MainTableViewController: UITableViewController {
         let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal),
                                        style: .plain, target: self, action: #selector(menuOnClick))
         self.navigationItem.rightBarButtonItems = [gpaItem]
-        navigationItem.leftBarButtonItems = [menuItem]
+        self.navigationItem.leftBarButtonItems = [menuItem]
         
         self.navigationController?.navigationBar.barTintColor = theme.primaryColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -120,7 +119,6 @@ class MainTableViewController: UITableViewController {
     }
     
     func initUI() {
-        
         initTableView()
     }
     
@@ -351,9 +349,33 @@ extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: "MainHeaderCell")
-        headerCell?.backgroundColor = theme.windowBackgroundColor
-        return headerCell
+//        let headerCell = tableView.dequeueReusableCell(withIdentifier: "MainHeaderCell")
+//        headerCell?.backgroundColor = theme.windowBackgroundColor
+        
+        let accent = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        let view = DonationDialog.instanceFromNib()
+        
+        let donationButton = (view.viewWithTag(4) as! MDCFlatButton)
+        let promotionButton = (view.viewWithTag(5) as! MDCFlatButton)
+        let dismissButton = (view.viewWithTag(6) as! MDCFlatButton)
+        
+        let title = donationButton.attributedTitle(for: .normal)!
+        title.setValue("donate".localize, forKey: "string")
+        donationButton.setAttributedTitle(title, for: .normal)
+        donationButton.titleLabel?.textColor = accent
+        donationButton.backgroundColor = .clear
+
+        title.setValue("promote", forKey: "string")
+        promotionButton.setAttributedTitle(title, for: .normal)
+        promotionButton.titleLabel?.textColor = accent
+        promotionButton.backgroundColor = .clear
+
+        title.setValue("dismiss_donation", forKey: "string")
+        dismissButton.setAttributedTitle(title, for: .normal)
+        dismissButton.titleLabel?.textColor = theme.primaryTextColor
+        dismissButton.backgroundColor = .clear
+        
+        return view
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -361,11 +383,11 @@ extension MainTableViewController {
         if Utils.getFilteredSubjects(subjects: subjects).count == 0 {
             tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: ThemeManager.currentTheme().noGradeImage, text: "nothing_here".localize)
             tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
-            return 0
+            return 20
             
         } else {
             tableView.backgroundView = nil
-            return 20
+            return DonationDialog.instanceFromNib().bounds.height + 20
         }
     }
     
@@ -416,6 +438,7 @@ extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        print("[][][][][=++++_+___+_血小板]")
         let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
         if cell.isAnimating() {
             return

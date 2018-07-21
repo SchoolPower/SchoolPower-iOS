@@ -15,7 +15,7 @@
 
 
 import UIKit
-import FoldingCell
+import MaterialComponents
 
 class DashboardCell: FoldingCell {
     
@@ -26,6 +26,7 @@ class DashboardCell: FoldingCell {
     @IBOutlet weak var foldPercentageGrade: UILabel!
     @IBOutlet weak var foldBackground: UIView!
     @IBOutlet weak var foldBorderView: UIView!
+    @IBOutlet weak var foldForegroundView: RotatedView!
     
     @IBOutlet weak var unFoldTeacherName: UILabel!
     @IBOutlet weak var unFoldSubjectTitle: UILabel!
@@ -48,7 +49,6 @@ class DashboardCell: FoldingCell {
         didSet {
             
             let theme = ThemeManager.currentTheme()
-            
             let periodGradeItem = Utils.getLatestItemGrade(grades: infoItem.grades)
             foldSubjectTitle.text = infoItem.title
             foldTeacherName.text = infoItem.teacherName

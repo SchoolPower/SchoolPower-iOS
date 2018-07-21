@@ -28,9 +28,13 @@ class GPADialog: UIView {
         
         let theme = ThemeManager.currentTheme()
         let view = UINib(nibName: "GPADialog", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
+        
+        view.backgroundColor = theme.windowBackgroundColor
+        view.bounds.size.width = width
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
         view.bounds.size.width = width
         view.bounds.size.height = width * 1.5
-        view.backgroundColor = theme.windowBackgroundColor
         ring = view.viewWithTag(1) as? MKRingProgressGroupView
         percentageLabel = view.viewWithTag(3) as? SACountingLabel
         descriptionLabel = view.viewWithTag(4) as? UILabel

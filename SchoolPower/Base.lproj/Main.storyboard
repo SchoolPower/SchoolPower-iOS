@@ -37,7 +37,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="666.66666666666663"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grv-kP-SOi" userLabel="Foreground" customClass="RotatedView" customModule="FoldingCell">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grv-kP-SOi" userLabel="Foreground" customClass="RotatedView" customModule="SchoolPower" customModuleProvider="target">
                                             <rect key="frame" x="15" y="0.0" width="345" height="110"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qCj-oG-X5L">
@@ -119,7 +119,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K0R-Cp-lzD" userLabel="Container">
                                             <rect key="frame" x="0.0" y="125" width="375" height="315"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbD-az-47b">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbD-az-47b" customClass="MDCInkView">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="300"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4de-4J-GYx" userLabel="Unfold Header">
@@ -291,6 +291,7 @@
                                     <outlet property="foldBackground" destination="rT1-me-xUb" id="8np-9X-bl0"/>
                                     <outlet property="foldBlockLetter" destination="Hnr-g9-4ry" id="KrD-0i-RYa"/>
                                     <outlet property="foldBorderView" destination="qCj-oG-X5L" id="4hy-Ef-2Wu"/>
+                                    <outlet property="foldForegroundView" destination="grv-kP-SOi" id="4O7-cb-ScK"/>
                                     <outlet property="foldLetterGrade" destination="ama-d5-oQ3" id="VU5-nI-aBX"/>
                                     <outlet property="foldPercentageGrade" destination="Kzl-cW-ZjY" id="bmt-07-UWu"/>
                                     <outlet property="foldSubjectTitle" destination="LGB-vo-Pzp" id="foy-MP-Lsk"/>
@@ -813,7 +814,7 @@
                                 <rect key="frame" x="0.0" y="200" width="375" height="467"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerHeaderCell" rowHeight="20" id="lmh-on-5G3" customClass="DrawerHeaderCell" customModule="SchoolPower" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerHeaderCell" rowHeight="20" id="lmh-on-5G3" customClass="DrawerHeaderCell" customModule="SchoolPower" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lmh-on-5G3" id="hnE-eo-Gfl">
@@ -821,7 +822,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F96-ed-Lsi">
-                                                    <rect key="frame" x="0.0" y="10" width="336" height="1"/>
+                                                    <rect key="frame" x="0.0" y="10" width="375" height="1"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="1Nr-Os-fqk"/>
@@ -835,7 +836,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerFragmentCell" rowHeight="48" id="o17-TR-OEg" customClass="DrawerFragmentCell" customModule="SchoolPower" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerFragmentCell" rowHeight="48" id="o17-TR-OEg" customClass="DrawerFragmentCell" customModule="SchoolPower" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="48" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o17-TR-OEg" id="zdm-qC-2ZS">

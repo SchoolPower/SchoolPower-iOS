@@ -115,6 +115,9 @@
 "support_us" = "Support Us";
 "promotion" = "PROMOTION";
 "donation" = "DONATION";
+"promote" = "promote";
+"donate" = "donate";
+"dismiss_donation" = "no thanks";
 "donation_title" = "Lorem ipsum dolor";
 "donation_message" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nibh vel justo dignissim scelerisque. ";
 "donation_cancel" = "NO THANKS";
