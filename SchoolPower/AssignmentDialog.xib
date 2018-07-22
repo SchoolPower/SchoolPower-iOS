@@ -47,11 +47,11 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-7v-zLh" userLabel="Unfold Percentage Grade">
-                                    <rect key="frame" x="211" y="20" width="109" height="51"/>
+                                    <rect key="frame" x="224" y="20" width="96" height="51"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="51" id="xQH-78-8mL"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="68"/>
+                                    <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="60"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
