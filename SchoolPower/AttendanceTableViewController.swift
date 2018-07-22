@@ -236,7 +236,7 @@ class AttendanceTableViewController: UITableViewController {
 extension AttendanceTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return 16
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
