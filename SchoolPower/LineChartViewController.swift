@@ -187,8 +187,7 @@ class LineChartFormatter: NSObject, IAxisValueFormatter{
         mFormat.dateFormat = "MM/dd"
     }
     
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String{
-        let x=mFormat.string(from: Date(timeIntervalSince1970:value*60.0*60.0*24.0))
-        return x
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return mFormat.string(from: Date(timeIntervalSince1970:value*60.0*60.0*24.0))
     }
 }
