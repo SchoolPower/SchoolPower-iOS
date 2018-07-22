@@ -27,6 +27,8 @@ let FORUM_URL = "https://feedback.schoolpower.studio"
 let WEBSITE_URL = "https://www.schoolpower.tech"
 let CODE_URL = "https://github.com/SchoolPower"
 let SUPPORT_EMAIL = "harryyunull@gmail.com"
+let ANDROID_DOWNLOAD_ADDRESS = "https://api.schoolpower.tech/dist/latest.php"
+let IOS_DOWNLOAD_ADDRESS = "https://itunes.apple.com/cn/app/schoolpower/id1255370309"
 
 let TOKEN_KEY_NAME = "apns_token"
 let LANGUAGE_KEY_NAME = "language"

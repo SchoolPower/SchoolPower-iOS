@@ -1533,9 +1533,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrH-aJ-afh">
-                                <rect key="frame" x="16" y="16" width="382" height="704"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrH-aJ-afh" customClass="MDCCard">
+                                <rect key="frame" x="88.999999999999986" y="50" width="236.66666666666663" height="237"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wechat_qr" translatesAutoresizingMaskIntoConstraints="NO" id="f13-rd-bhy">
+                                        <rect key="frame" x="24" y="24" width="189.33333333333334" height="189.33333333333334"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="f13-rd-bhy" secondAttribute="height" multiplier="1:1" id="gSi-Ly-AV7"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="f13-rd-bhy" firstAttribute="centerY" secondItem="OrH-aJ-afh" secondAttribute="centerY" id="6Ca-of-lwn"/>
+                                    <constraint firstItem="f13-rd-bhy" firstAttribute="width" secondItem="OrH-aJ-afh" secondAttribute="width" multiplier="0.8" id="7dh-X7-EbB"/>
+                                    <constraint firstItem="f13-rd-bhy" firstAttribute="height" secondItem="OrH-aJ-afh" secondAttribute="height" multiplier="0.8" id="g5x-35-rsA"/>
+                                    <constraint firstItem="f13-rd-bhy" firstAttribute="centerX" secondItem="OrH-aJ-afh" secondAttribute="centerX" id="lIC-gl-EsI"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
@@ -1545,23 +1558,31 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chart Not Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRo-xZ-srB">
-                                <rect key="frame" x="133" y="357" width="146.66666666666663" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YxY-D4-cPD">
+                                <rect key="frame" x="87.999999999999986" y="303" width="236.66666666666663" height="29"/>
+                                <segments>
+                                    <segment title="Android"/>
+                                    <segment title="iOS"/>
+                                </segments>
+                                <connections>
+                                    <action selector="androidSegmentChanges:" destination="iBM-m0-2oH" eventType="valueChanged" id="cSR-4W-qhB"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fRo-xZ-srB" firstAttribute="centerX" secondItem="L8M-iI-sPE" secondAttribute="centerX" id="QG1-Kc-X2Y"/>
-                            <constraint firstAttribute="trailing" secondItem="OrH-aJ-afh" secondAttribute="trailing" constant="16" id="aTG-9Y-f8V"/>
-                            <constraint firstItem="k5m-l4-5o6" firstAttribute="top" secondItem="OrH-aJ-afh" secondAttribute="bottom" constant="16" id="aiF-dW-mIT"/>
-                            <constraint firstItem="fRo-xZ-srB" firstAttribute="centerY" secondItem="L8M-iI-sPE" secondAttribute="centerY" id="b4R-Vk-ZVD"/>
-                            <constraint firstItem="OrH-aJ-afh" firstAttribute="leading" secondItem="L8M-iI-sPE" secondAttribute="leading" constant="16" id="ova-BU-IrW"/>
-                            <constraint firstItem="OrH-aJ-afh" firstAttribute="top" secondItem="L8M-iI-sPE" secondAttribute="top" constant="16" id="r2F-zg-ekv"/>
+                            <constraint firstItem="OrH-aJ-afh" firstAttribute="top" secondItem="L8M-iI-sPE" secondAttribute="top" constant="50" id="2Yr-av-9vd"/>
+                            <constraint firstItem="OrH-aJ-afh" firstAttribute="width" secondItem="L8M-iI-sPE" secondAttribute="width" multiplier="4:7" id="DPn-z6-Skt"/>
+                            <constraint firstItem="YxY-D4-cPD" firstAttribute="centerX" secondItem="L8M-iI-sPE" secondAttribute="centerX" id="JhD-gO-F03"/>
+                            <constraint firstItem="YxY-D4-cPD" firstAttribute="top" secondItem="OrH-aJ-afh" secondAttribute="bottom" constant="16" id="Qgl-7e-DuW"/>
+                            <constraint firstItem="OrH-aJ-afh" firstAttribute="centerX" secondItem="L8M-iI-sPE" secondAttribute="centerX" id="rZZ-QM-hlG"/>
+                            <constraint firstItem="YxY-D4-cPD" firstAttribute="width" secondItem="OrH-aJ-afh" secondAttribute="width" id="vp3-Zt-Mya"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="QRImageView" destination="f13-rd-bhy" id="ylj-Ff-IxB"/>
+                        <outlet property="androidSegmented" destination="YxY-D4-cPD" id="fdS-Fx-9TX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QxE-0r-Yav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1746,5 +1767,6 @@
         <image name="ic_trending_up_white" width="24" height="24"/>
         <image name="ic_wechat_pay" width="1000" height="1000"/>
         <image name="icon_light" width="1024" height="1024"/>
+        <image name="wechat_qr" width="1242" height="1704"/>
     </resources>
 </document>
