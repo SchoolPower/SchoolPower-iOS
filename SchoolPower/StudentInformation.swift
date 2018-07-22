@@ -43,7 +43,7 @@ class StudentInformation {
     }
     
     var GPA: Double?
-    var id : Int=0
+    var id : Int = 0
     var gender : Gender
     var dob : String
     var firstName : String
@@ -61,8 +61,12 @@ class StudentInformation {
         lastName   = json["lastName"].stringValue
         photoDate  = json["photoDate"].stringValue
     }
-
     
-    func getFullName() -> String { return middleName+" "+firstName+", "+lastName }
-
+    func getFullName() -> String {
+        var middleNamePrefix = middleName
+        if middleNamePrefix != "" {
+            middleNamePrefix += " "
+        }
+        return middleNamePrefix + firstName + ", " + lastName
+    }
 }
