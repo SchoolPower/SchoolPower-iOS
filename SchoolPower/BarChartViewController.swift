@@ -21,7 +21,7 @@ import XLPagerTabStrip
 
 class BarChartViewController: UIViewController, IndicatorInfoProvider {
     
-    var radarChart: BarChartView!
+    var barChart: BarChartView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var CNALabel: UILabel!
     
@@ -49,9 +49,74 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
         initContainer()
-        if Utils.getFilteredSubjects(subjects: subjects).count > 0 {
-//            initBarChart()
+
+        if subjects.isEmpty { return }
+        
+        var gradedSubjects = [Subject]() // Subjects that have grades
+        
+        for subject in subjects {
+            let grade = subject.grades[Utils.getLatestItem(grades: subject.grades)]
+            if grade != nil && grade?.letter != "--" {
+                gradedSubjects.append(subject)
+            }
         }
+        if gradedSubjects.isEmpty { return }
+        barChart = BarChartView()
+        barChart.chartDescription?.enabled = false
+        
+        var dataSets = [BarChartDataSet]()
+        var subjectStrings = [String]()
+        
+        let termStrings = ["T1","T2","T3","T4"]
+        
+        // second run -- group them in terms
+        var count = 0
+        for term in termStrings {
+            var group = [ChartDataEntry]()
+            
+            for subject in gradedSubjects {
+                subjectStrings.append(subject.title)
+                if subject.grades[term] != nil && subject.grades[term]!.percentage != "0" {
+                    group.append(BarChartDataEntry(x: Double(subjectStrings.count - 1),
+                                                y: Double(subject.grades[term]!.percentage)!))
+                }else{
+                    group.append(BarChartDataEntry(x: Double(subjectStrings.count - 1), y: Double.nan))
+                }
+            }
+            
+            let dataSet = BarChartDataSet(values: group, label: term)
+            dataSet.colors = [Colors.materialChartColorList[count]]
+            dataSets.append(dataSet)
+            count+=1
+        }
+        
+        barChart.xAxis.labelPosition = .bottom
+        barChart.xAxis.granularity = 4.0
+        barChart.xAxis.axisMinimum = 0.0
+        barChart.xAxis.axisMaximum = Double(4 * gradedSubjects.count)
+        barChart.xAxis.centerAxisLabelsEnabled = true
+        barChart.xAxis.valueFormatter = BarChartFormatter(subjectStrings: subjectStrings)
+        
+        let barData = BarChartData(dataSets: dataSets)
+        barData.setDrawValues(true)
+        barData.setValueTextColor(Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)])
+
+        //barChart.legend.isEnabled = false
+        barChart.legend.horizontalAlignment = .center
+        barChart.data = barData
+        barChart.groupBars(fromX: 0.0, groupSpace: 0.2, barSpace: 0.1)
+        barChart.setVisibleXRange(minXRange: 0.0, maxXRange: 12.0)
+
+        barChart.setScaleEnabled(true)
+        
+        containerView?.addSubview(barChart)
+        let heightConstraint = NSLayoutConstraint(item: barChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: -24)
+        let widthConstraint = NSLayoutConstraint(item: barChart, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.width, multiplier: 1, constant: -24)
+        let verticalConstraint = NSLayoutConstraint(item: barChart, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+        let horizontalConstraint = NSLayoutConstraint(item: barChart, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        containerView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
+        
+        barChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
     }
     
     func initContainer() {
@@ -70,3 +135,20 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         }
     }
 }
+
+class BarChartFormatter: NSObject, IAxisValueFormatter{
+    
+    private let mFormat = DateFormatter()
+    private var mSubjectStrings: [String]
+    init(subjectStrings: [String]){
+        mFormat.dateFormat = "MM/dd"
+        mSubjectStrings = subjectStrings
+    }
+    
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String{
+        let index = Int(value/4)
+        if index < 0 || index >= mSubjectStrings.count { return "" }
+        return mSubjectStrings[index]
+    }
+}
+

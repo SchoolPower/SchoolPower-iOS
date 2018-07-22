@@ -141,6 +141,7 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
             dataSet.circleHoleRadius = 2
             dataSet.valueTextColor = .black
             dataSet.lineWidth = 2.0
+            dataSet.mode = .horizontalBezier
             lineData.addDataSet(dataSet)
             dataSet.valueTextColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
             count+=1
@@ -186,8 +187,7 @@ class LineChartFormatter: NSObject, IAxisValueFormatter{
         mFormat.dateFormat = "MM/dd"
     }
     
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String{
-        let x=mFormat.string(from: Date(timeIntervalSince1970:value*60.0*60.0*24.0))
-        return x
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return mFormat.string(from: Date(timeIntervalSince1970:value*60.0*60.0*24.0))
     }
 }
