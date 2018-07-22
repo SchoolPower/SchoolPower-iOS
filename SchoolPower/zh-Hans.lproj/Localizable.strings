@@ -126,5 +126,12 @@
 "wechat_instruction_page3_des" = "点击右上角的菜单按钮";
 "wechat_instruction_page4_des" = "点击「从相册选取二维码」";
 "wechat_instruction_page5_des" = "选择我们的支付码（应该是第一个）";
-"storage_permission_denied" = "抱歉，没有权限我们不能储存我们的支付码";
+"Alipay" = "支付宝";
+"Wechat" = "微信支付";
+"cant_open_alipay" = "微信不可用";
+"AlipayNotFound" = "你好像没有安装支付宝";
+"cant_open_wechat" = "微信不可用";
+"WechatNotFound" = "你好像没有安装微信";
+"emm" = "emm";
+"storage_permission_denied" = "抱歉，没有权限我们不能储存我们的支付码。请在系统设置中给予 SchoolPower 访问相册的权限。";
 "storage_permission_exp_title" = "需要权限";

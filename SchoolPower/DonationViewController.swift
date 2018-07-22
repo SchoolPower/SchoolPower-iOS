@@ -42,7 +42,12 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
         loadTheView()
     }
     @IBAction func alipayOnClick(_ sender: Any)  {
-        UIApplication.shared.openURL(NSURL(string: "alipayqr://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=https://qr.alipay.com/tsx09230fuwngogndwbkg3b")! as URL)
+        
+        if UIApplication.shared.canOpenURL(NSURL(string: "alipayqr://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=https://qr.alipay.com/tsx09230fuwngogndwbkg3b")! as URL) {
+            UIApplication.shared.openURL(NSURL(string: "alipayqr://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=https://qr.alipay.com/tsx09230fuwngogndwbkg3b")! as URL)
+        } else {
+            notifyAlipayUnavailable()
+        }
     }
     
     @IBAction func weChatOnClick(_ sender: Any) {
@@ -160,9 +165,16 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
     
+    func notifyAlipayUnavailable() {
+        
+        let alert = UIAlertController.init(title: "cant_open_alipay".localize, message: "AlipayNotFound".localize, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "emm".localize, style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
     func notifyWechatUnavailable() {
         
-        let alert = UIAlertController.init(title: "cant_open_wechat".localize, message: "wechat_not_installed".localize, preferredStyle: .alert)
+        let alert = UIAlertController.init(title: "cant_open_wechat".localize, message: "WechatNotFound".localize, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "emm".localize, style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }

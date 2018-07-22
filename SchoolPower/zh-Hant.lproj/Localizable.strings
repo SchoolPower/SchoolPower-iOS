@@ -126,5 +126,12 @@
 "wechat_instruction_page3_des" = "點擊右上角的菜單按鈕";
 "wechat_instruction_page4_des" = "點擊「從相簿中選擇 QR Code」";
 "wechat_instruction_page5_des" = "選擇我們的支付碼（應該是第一個）";
-"storage_permission_denied" = "抱歉，沒有權限我們不能儲存我們的支付碼";
+"Alipay" = "支付寶";
+"Wechat" = "微信支付";
+"cant_open_alipay" = "支付寶不可用";
+"AlipayNotFound" = "​​你好像沒有安裝支付寶";
+"cant_open_wechat" = "微信不可用";
+"WechatNotFound" = "​​你好像沒有安裝微信";
+"emm" = "emm";
+"storage_permission_denied" = "抱歉，沒有權限我們不能儲存我們的支付碼。請在系統設置中給予 SchoolPower 訪問相簿的權限。";
 "storage_permission_exp_title" = "需要權限";
