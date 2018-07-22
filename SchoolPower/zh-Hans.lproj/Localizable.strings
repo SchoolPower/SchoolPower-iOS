@@ -115,3 +115,16 @@
 "support_us" = "支持我们";
 "promotion" = "推广";
 "donation" = "赞助";
+"donation_title" = "我们快没钱了…";
+"donation_message" = "抛开大量的时间成本不计，仅是高昂的苹果开发者年费和服务器服务器费用就达数千元。而我们的唯一的广告收入运营一年以来合计仅 118.78 美元。截止至今我们已经净亏损上千元。\n\n如果您觉得这款 App 帮到了您，想要支持我们一下，或希望能尽快摆脱广告的话，欢迎您赞助我们，或者将其介绍给您身边的同学。感激不尽 (´,,•ω•,,)♡。";
+"donation_cancel" = "才不帮你们呢哼-^-";
+"donation_ok" = "赞助我们";
+"donation_promote" = "宣传应用";
+"wechat_instruction_page1_title" = "怎么用「微信支付」赞助我们";
+"wechat_instruction_page1_des" = "为了你能支付，我们需要在你的手机里储存我们的支付码";
+"wechat_instruction_page2_des" = "我们将弹出微信应用的扫码界面";
+"wechat_instruction_page3_des" = "点击右上角的菜单按钮";
+"wechat_instruction_page4_des" = "点击「从相册选取二维码」";
+"wechat_instruction_page5_des" = "选择我们的支付码（应该是第一个）";
+"storage_permission_denied" = "抱歉，没有权限我们不能储存我们的支付码";
+"storage_permission_exp_title" = "需要权限";

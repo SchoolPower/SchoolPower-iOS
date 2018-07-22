@@ -72,6 +72,8 @@ class MainTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadTableView),
+                                               name:NSNotification.Name(rawValue: "updateLanguage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadTableView),
                                                name:NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
     }
     
@@ -339,8 +341,45 @@ extension MainTableViewController {
         
         let message = MDCSnackbarMessage()
         message.text = msg
-        message.duration = 2
+        message.duration = 2    // 2s
         MDCSnackbarManager.show(message)
+    }
+    
+    func shouldShowDonationHeader() -> Bool {
+        // Show donate every 30 days
+        return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
+//        return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
+//        return true
+    }
+    
+    func getLastDonateShowedDate() -> Date {
+        let df = DateFormatter()
+        let dateStr = userDefaults.string(forKey: LAST_TIME_DONATION_SHOWED_KEY_NAME) ?? ""
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if dateStr != "" { return df.date(from: dateStr)! }
+        else { return Date(timeIntervalSince1970: 0) }
+    }
+    
+    func setLastDonateShowedDate(date: Date) {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        userDefaults.set(df.string(from: date), forKey: LAST_TIME_DONATION_SHOWED_KEY_NAME)
+    }
+    
+    @objc func gotoDonation() {
+        userDefaults.set(true, forKey: IM_COMING_FOR_DONATION_KEY_NAME)
+        (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Support Us"), animated: true)
+        dismissDonationHeader()
+    }
+    
+    @objc func gotoPromotion() {
+        (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Support Us"), animated: true)
+        dismissDonationHeader()
+    }
+    
+    @objc func dismissDonationHeader() {
+        setLastDonateShowedDate(date: Date.init())
+        tableView.reloadSections([0], with: .automatic)
     }
 }
 
@@ -349,45 +388,35 @@ extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-//        let headerCell = tableView.dequeueReusableCell(withIdentifier: "MainHeaderCell")
-//        headerCell?.backgroundColor = theme.windowBackgroundColor
-        
-        let accent = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
-        let view = DonationDialog.instanceFromNib()
-        
-        let donationButton = (view.viewWithTag(4) as! MDCFlatButton)
-        let promotionButton = (view.viewWithTag(5) as! MDCFlatButton)
-        let dismissButton = (view.viewWithTag(6) as! MDCFlatButton)
-        
-        let title = donationButton.attributedTitle(for: .normal)!
-        title.setValue("donate".localize, forKey: "string")
-        donationButton.setAttributedTitle(title, for: .normal)
-        donationButton.titleLabel?.textColor = accent
-        donationButton.backgroundColor = .clear
-
-        title.setValue("promote", forKey: "string")
-        promotionButton.setAttributedTitle(title, for: .normal)
-        promotionButton.titleLabel?.textColor = accent
-        promotionButton.backgroundColor = .clear
-
-        title.setValue("dismiss_donation", forKey: "string")
-        dismissButton.setAttributedTitle(title, for: .normal)
-        dismissButton.titleLabel?.textColor = theme.primaryTextColor
-        dismissButton.backgroundColor = .clear
-        
-        return view
+        if Utils.getFilteredSubjects(subjects: subjects).count == 0 {
+            // If there's no cource, always show NothingView
+            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: ThemeManager.currentTheme().noGradeImage, text: "nothing_here".localize)
+            tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        } else {
+            tableView.backgroundView = nil
+            if shouldShowDonationHeader() {
+                // Show donation dialog as header
+                let view = DonationDialog.instanceFromNib(width: tableView.frame.width - 30)
+                (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(gotoDonation), for: .touchUpInside)
+                (view.viewWithTag(5) as! MDCFlatButton).addTarget(self, action: #selector(gotoPromotion), for: .touchUpInside)
+                (view.viewWithTag(6) as! MDCFlatButton).addTarget(self, action: #selector(dismissDonationHeader), for: .touchUpInside)
+                return view
+            } else {
+                // Show a blank padding view as header
+                let headerCell = tableView.dequeueReusableCell(withIdentifier: "MainHeaderCell")
+                headerCell?.backgroundColor = theme.windowBackgroundColor
+                return headerCell
+            }
+        }
+        return nil
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        if Utils.getFilteredSubjects(subjects: subjects).count == 0 {
-            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: ThemeManager.currentTheme().noGradeImage, text: "nothing_here".localize)
-            tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
-            return 20
             
+        if shouldShowDonationHeader() {
+            return DonationDialog.instanceFromNib().bounds.height
         } else {
-            tableView.backgroundView = nil
-            return DonationDialog.instanceFromNib().bounds.height + 20
+            return 16   // Padding top
         }
     }
     
@@ -438,7 +467,6 @@ extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print("[][][][][=++++_+___+_血小板]")
         let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
         if cell.isAnimating() {
             return

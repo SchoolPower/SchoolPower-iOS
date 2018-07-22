@@ -43,6 +43,9 @@ let PASSWORD_KEY_NAME = "password"
 let STUDENT_NAME_KEY_NAME = "studentname"
 let DARK_THEME_KEY_NAME = "darkTheme"
 let ACCENT_COLOR_KEY_NAME = "accentColor"
+let LAST_TIME_DONATION_SHOWED_KEY_NAME = "lastTimeDonateShowed"
+let IM_COMING_FOR_DONATION_KEY_NAME = "ImComingForDonation"
+
 
 let CUSTOM_RULES = ["all", "highest_3", "highest_4", "highest_5"]
 
@@ -342,6 +345,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.object(forKey: LOGGED_IN_KEY_NAME) == nil { userDefaults.register(defaults: [LOGGED_IN_KEY_NAME: false]) }
         if userDefaults.object(forKey: DARK_THEME_KEY_NAME) == nil { userDefaults.register(defaults: [DARK_THEME_KEY_NAME: false]) }
         if userDefaults.object(forKey: ACCENT_COLOR_KEY_NAME) == nil { userDefaults.register(defaults: [ACCENT_COLOR_KEY_NAME: 7]) }
+        if userDefaults.object(forKey: LAST_TIME_DONATION_SHOWED_KEY_NAME) == nil { userDefaults.register(defaults: [LAST_TIME_DONATION_SHOWED_KEY_NAME: ""]) }
+        if userDefaults.object(forKey: IM_COMING_FOR_DONATION_KEY_NAME) == nil { userDefaults.register(defaults: [IM_COMING_FOR_DONATION_KEY_NAME: false]) }
         
         userDefaults.synchronize()
     }

@@ -31,7 +31,6 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     let userDefaults = UserDefaults.standard
     
     open override func viewDidLoad() {
-        
         super.viewDidLoad()
         setup()
     }

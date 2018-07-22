@@ -115,3 +115,16 @@
 "support_us" = "支援我們";
 "promotion" = "推廣";
 "donation" = "贊助";
+"donation_title" = "我們快沒錢了…";
+"donation_message" = "拋開大量的時間成本不計，僅是高昂的蘋果開發者年費和服務器服務器費用就達數千元。而我們的唯一的廣告收入運營一年以來合計僅 118.78 美元。截止至今我們已經淨虧損上千元。\n\n如果您覺得這款 App 幫到了您，想要支持我們一下，或希望能盡快擺脫廣告的話，歡迎您贊助我們，或者將其介紹給您身邊的同學。感激不盡 (´,,•ω•,,)♡。";
+"donation_cancel" = "才不幫你們呢哼-^-";
+"donation_ok" = "贊助我們";
+"donation_promote" = "宣傳 APP";
+"wechat_instruction_page1_title" = "怎麼用「微信支付」贊助我們";
+"wechat_instruction_page1_des" = "為了你能支付，我們需要在你的手機裡儲存我們的支付碼";
+"wechat_instruction_page2_des" = "我們將彈出微信應用的掃碼界面";
+"wechat_instruction_page3_des" = "點擊右上角的菜單按鈕";
+"wechat_instruction_page4_des" = "點擊「從相簿中選擇 QR Code」";
+"wechat_instruction_page5_des" = "選擇我們的支付碼（應該是第一個）";
+"storage_permission_denied" = "抱歉，沒有權限我們不能儲存我們的支付碼";
+"storage_permission_exp_title" = "需要權限";
