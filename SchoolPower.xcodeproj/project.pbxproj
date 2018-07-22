@@ -29,6 +29,7 @@
 		62245FC920FB51A50093E813 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62245FC820FB51A40093E813 /* OnboardingContentViewController.m */; };
 		62368CA51F88825000519608 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62368CA41F88825000519608 /* MessageUI.framework */; };
 		62377E9321044171004DE715 /* TouchThroughCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62377E9221044171004DE715 /* TouchThroughCard.swift */; };
+		62377E9721047F92004DE715 /* transtr.py in Resources */ = {isa = PBXBuildFile; fileRef = 62377E9621047F91004DE715 /* transtr.py */; };
 		624BDC211EFE2F6A0052EC5D /* AssignmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */; };
 		624BDC231EFE46110052EC5D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC221EFE46110052EC5D /* Colors.swift */; };
 		624BDC531EFE77440052EC5D /* CourseDetailHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */; };
@@ -138,6 +139,7 @@
 		62245FC820FB51A40093E813 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = SchoolPower/OnboardingContentViewController.m; sourceTree = SOURCE_ROOT; };
 		62368CA41F88825000519608 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		62377E9221044171004DE715 /* TouchThroughCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchThroughCard.swift; sourceTree = "<group>"; };
+		62377E9621047F91004DE715 /* transtr.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = transtr.py; sourceTree = "<group>"; };
 		624BDC201EFE2F6A0052EC5D /* AssignmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AssignmentCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		624BDC221EFE46110052EC5D /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		624BDC521EFE77440052EC5D /* CourseDetailHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CourseDetailHeaderCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -317,6 +319,7 @@
 		628EF6421EFB307F008E0C4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				62377E9621047F91004DE715 /* transtr.py */,
 				62245FC220FB4F770093E813 /* SchoolPower-Bridging-Header.h */,
 				627F9289210090DF001F953B /* FoldingCell.swift */,
 				62CFC9911EFA9940002B4A8D /* AppDelegate.swift */,
@@ -586,6 +589,7 @@
 				2705427C1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist in Resources */,
 				6204A07C1F39E5A9004B2118 /* NothingView.xib in Resources */,
 				62A8FA441EFB66DA00751ACD /* Podfile in Resources */,
+				62377E9721047F92004DE715 /* transtr.py in Resources */,
 				62C34E291F05F5990078D5F8 /* Localizable.strings in Resources */,
 				271386941F07711300EC7F2F /* BACKUP.xib in Resources */,
 				62C34E121F05F2280078D5F8 /* Main.storyboard in Resources */,

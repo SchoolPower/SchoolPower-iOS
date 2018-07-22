@@ -78,8 +78,10 @@ class LoginViewController: UIViewController {
                                "&version=\(version)" +
                                "&os=ios" +
                                "&action=login"){ (value) in
-            
-            alert.dismiss(withClickedButtonIndex: -1, animated: true)
+                                
+            DispatchQueue.main.async {
+                alert.dismiss(withClickedButtonIndex: -1, animated: true)
+            }
             let response = value
             
             if response.contains("Something went wrong! Invalid Username or password") {
