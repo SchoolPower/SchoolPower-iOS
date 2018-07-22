@@ -87,7 +87,6 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
                 page2.fitRest(view: view),
                 page3.fitRest(view: view),
                 page4.fitRest(view: view),
-                page5.fitRest(view: view),
             ]
         )
         
