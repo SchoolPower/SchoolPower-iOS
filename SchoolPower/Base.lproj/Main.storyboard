@@ -791,23 +791,27 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launcher-web" translatesAutoresizingMaskIntoConstraints="NO" id="dQv-Bd-x6v">
-                                        <rect key="frame" x="20" y="76" width="90" height="90"/>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orx-nO-PEJ" customClass="MDCFloatingButton">
+                                        <rect key="frame" x="20" y="73" width="90" height="90"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="M3d-Ve-jL3"/>
-                                            <constraint firstAttribute="width" constant="90" id="ZhO-AF-nyF"/>
+                                            <constraint firstAttribute="width" constant="90" id="IgR-Sd-6ZN"/>
+                                            <constraint firstAttribute="height" constant="90" id="WMg-hd-vvm"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" backgroundImage="ic_launcher-web"/>
+                                        <connections>
+                                            <action selector="avatarOnClick:" destination="YcF-ge-1Ob" eventType="touchUpInside" id="Fcg-W9-dUx"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.035294117649999998" green="0.19215686269999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="pHc-MM-0Om" firstAttribute="top" secondItem="Gka-dH-3M0" secondAttribute="bottom" constant="2" id="1bR-Af-MNs"/>
-                                    <constraint firstItem="dQv-Bd-x6v" firstAttribute="leading" secondItem="dVf-0V-oE0" secondAttribute="leading" constant="20" id="7lh-tF-tXi"/>
+                                    <constraint firstItem="orx-nO-PEJ" firstAttribute="leading" secondItem="dVf-0V-oE0" secondAttribute="leading" constant="20" id="8Wy-Rx-Q14"/>
                                     <constraint firstAttribute="bottom" secondItem="pHc-MM-0Om" secondAttribute="bottom" constant="16" id="VKC-yI-M8f"/>
                                     <constraint firstItem="Gka-dH-3M0" firstAttribute="leading" secondItem="dVf-0V-oE0" secondAttribute="leading" constant="20" id="ZJQ-rr-Do0"/>
                                     <constraint firstAttribute="height" constant="200" id="axP-Bc-mqt"/>
                                     <constraint firstItem="pHc-MM-0Om" firstAttribute="leading" secondItem="dVf-0V-oE0" secondAttribute="leading" constant="20" id="h5Z-7l-cG3"/>
-                                    <constraint firstItem="Gka-dH-3M0" firstAttribute="top" secondItem="dQv-Bd-x6v" secondAttribute="bottom" constant="16" id="kj5-0R-2hK"/>
+                                    <constraint firstItem="Gka-dH-3M0" firstAttribute="top" secondItem="orx-nO-PEJ" secondAttribute="bottom" constant="19" id="waj-45-VIc"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ulw-7R-rjC">
@@ -888,6 +892,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="avatarButton" destination="orx-nO-PEJ" id="Fgn-7e-I6h"/>
                         <outlet property="headerBackground" destination="dVf-0V-oE0" id="2An-Ft-Div"/>
                         <outlet property="headerUserID" destination="pHc-MM-0Om" id="grN-Up-EBs"/>
                         <outlet property="headerUsername" destination="Gka-dH-3M0" id="Vfd-Gs-Mg2"/>

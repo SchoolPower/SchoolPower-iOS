@@ -70,3 +70,4 @@ class StudentInformation {
         return middleNamePrefix + firstName + ", " + lastName
     }
 }
+

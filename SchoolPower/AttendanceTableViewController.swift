@@ -145,7 +145,7 @@ class AttendanceTableViewController: UITableViewController {
                 var disabled_message = "PowerSchool 目前被学校禁用，请联系学校以获得更多信息。"
 
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
-                (_, attendances, subjects, disabled, disabled_title, disabled_message) = Utils.parseJsonResult(jsonStr: response)
+                (_, attendances, subjects, disabled, disabled_title, disabled_message, _) = Utils.parseJsonResult(jsonStr: response)
                 
                 Utils.saveHistoryGrade(data: subjects)
                 

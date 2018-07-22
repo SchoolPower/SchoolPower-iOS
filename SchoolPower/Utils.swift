@@ -142,7 +142,7 @@ extension Utils {
         return nil
     }
     
-    static func readDataArrayList() -> (StudentInformation, [Attendance], [Subject], Bool, String, String)? {
+    static func readDataArrayList() -> (StudentInformation, [Attendance], [Subject], Bool, String, String, ExtraInfo)? {
         return parseJsonResult(jsonStr: readStringFromFile(filename: JSON_FILE_NAME)!)
     }
     
@@ -345,12 +345,12 @@ extension Utils {
     
     static func parseJsonResult(jsonStr: String) ->(
         StudentInformation, [Attendance], [Subject],
-        Bool, String, String) {
+        Bool, String, String, ExtraInfo) {
             
             let studentData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
             if (studentData["information"] == JSON.null) { // not successful
                 return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
-                        false, "", "")
+                        false, "", "", ExtraInfo(avatar: ""))
             }
             let studentInfo = StudentInformation(json: studentData["information"])
             var subjects = [Subject]()
@@ -375,8 +375,16 @@ extension Utils {
                 disabled_message = disableInfo["message"].stringValue
             }
             
+            let extraInfo: ExtraInfo
+            if studentData["additional"] != JSON.null {
+                let additional = studentData["additional"]
+                extraInfo = ExtraInfo(avatar: additional["avatar"].stringValue)
+            } else {
+                extraInfo = ExtraInfo(avatar: "")
+            }
+            
             return (studentInfo, attendances, subjects,
-                    disabled, disabled_title, disabled_message)
+                    disabled, disabled_title, disabled_message, extraInfo)
     }
     
     static func getShortName(subjectTitle: String)->String{
@@ -435,5 +443,12 @@ extension Utils {
             }
         }
         return ret
+    }
+    
+    class ExtraInfo {
+        var avatar: String
+        init(avatar: String) {
+            self.avatar = avatar
+        }
     }
 }

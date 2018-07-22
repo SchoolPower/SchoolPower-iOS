@@ -113,7 +113,7 @@ class MainTableViewController: UITableViewController {
         initUI()
         let input = Utils.readDataArrayList()
         if input != nil {
-            (_, attendances, subjects, disabled, disabled_title, disabled_message) = input!
+            (_, attendances, subjects, disabled, disabled_title, disabled_message, _) = input!
         }
         if self.navigationController?.view.tag == 1 {
             initDataJson()
@@ -232,8 +232,10 @@ extension MainTableViewController {
                 
             } else if response.contains("{") {
                 
+                let extraInfo: Utils.ExtraInfo
+                
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
-                (_, attendances, subjects, disabled, disabled_title, disabled_message) = Utils.parseJsonResult(jsonStr: response)
+                (_, attendances, subjects, disabled, disabled_title, disabled_message, extraInfo) = Utils.parseJsonResult(jsonStr: response)
                 
                 if disabled {
                     DispatchQueue.main.async {
@@ -242,6 +244,7 @@ extension MainTableViewController {
                 }
                 
                 Utils.saveHistoryGrade(data: subjects)
+                self.userDefaults.set(extraInfo.avatar, forKey: USER_AVATAR_KEY_NAME)
                 
                 // Diff
                 if subjects.count == oldSubjects.count && !subjects.isEmpty {

@@ -29,6 +29,8 @@ let CODE_URL = "https://github.com/SchoolPower"
 let SUPPORT_EMAIL = "harryyunull@gmail.com"
 let ANDROID_DOWNLOAD_ADDRESS = "https://api.schoolpower.tech/dist/latest.php"
 let IOS_DOWNLOAD_ADDRESS = "https://itunes.apple.com/cn/app/schoolpower/id1255370309"
+let AVATAR_URL = "https://api.schoolpower.tech/api/2.0/set_avatar.php"
+let IMAGE_UPLOAD_URL = "https://sm.ms/api/upload"
 
 let TOKEN_KEY_NAME = "apns_token"
 let LANGUAGE_KEY_NAME = "language"
@@ -47,6 +49,7 @@ let DARK_THEME_KEY_NAME = "darkTheme"
 let ACCENT_COLOR_KEY_NAME = "accentColor"
 let LAST_TIME_DONATION_SHOWED_KEY_NAME = "lastTimeDonateShowed"
 let IM_COMING_FOR_DONATION_KEY_NAME = "ImComingForDonation"
+let USER_AVATAR_KEY_NAME = "userAvatar"
 
 
 let CUSTOM_RULES = ["all", "highest_3", "highest_4", "highest_5"]
@@ -223,8 +226,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     var attendances : [Attendance]
                     var oldAttendances : [Attendance]
                     
-                    (_, attendances, subjects, disabled, disabled_title, disabled_message) = Utils.parseJsonResult(jsonStr: response)
-                    (_, oldAttendances, oldSubjects, disabled, disabled_title, disabled_message) = Utils.readDataArrayList()!
+                    (_, attendances, subjects, disabled, disabled_title, disabled_message, _) = Utils.parseJsonResult(jsonStr: response)
+                    (_, oldAttendances, oldSubjects, disabled, disabled_title, disabled_message, _) = Utils.readDataArrayList()!
                     
                     var updatedSubjects : [String] = []
                     var updatedGradedSubjects : [String] = []
@@ -349,6 +352,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.object(forKey: ACCENT_COLOR_KEY_NAME) == nil { userDefaults.register(defaults: [ACCENT_COLOR_KEY_NAME: 7]) }
         if userDefaults.object(forKey: LAST_TIME_DONATION_SHOWED_KEY_NAME) == nil { userDefaults.register(defaults: [LAST_TIME_DONATION_SHOWED_KEY_NAME: ""]) }
         if userDefaults.object(forKey: IM_COMING_FOR_DONATION_KEY_NAME) == nil { userDefaults.register(defaults: [IM_COMING_FOR_DONATION_KEY_NAME: false]) }
+        if userDefaults.object(forKey: USER_AVATAR_KEY_NAME) == nil { userDefaults.register(defaults: [USER_AVATAR_KEY_NAME: ""]) }
         
         userDefaults.synchronize()
     }

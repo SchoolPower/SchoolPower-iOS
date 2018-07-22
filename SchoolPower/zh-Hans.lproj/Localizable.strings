@@ -134,3 +134,13 @@
 "emm" = "emm";
 "storage_permission_denied" = "抱歉，没有权限我们不能储存我们的支付码。请在系统设置中给予 SchoolPower 访问相册的权限。";
 "storage_permission_exp_title" = "需要权限";
+"accept" = "同意";
+"decline" = "拒绝";
+"avatar_agreement_title" = "头像上传许可协议";
+"avatar_agreement_message" = "SchoolPower 使用了第三方图床网站 SM.MS 来储存用户的头像。\n点击“同意”代表您同意我们将您所选择的头像上传到上述网站，并且同意接受上述网站的许可协议。\n\nSM.MS 许可协议摘抄如下（若有更新，请以该网站上的最新版为准）：\n{SM.MS 协议从此开始}\n在法律允许范围内，请随意使用本图床。\n严禁上传及分享如下类型的图片：\n含有色情、暴力、宣扬恐怖主义的图片\n侵犯版权、未经授权的图片\n其他违反中华人民共和国法律的图片\n其他违反香港法律的图片\n{SM.MS 协议至此结束}\n\nSchoolPower 未经上述网站的认可，赞助，附属或以其他任何方式授权。\nSchoolPower 不对用户因使用上述网站或因违反其协议导致的任何问题负责。\nSchoolPower 不保证上述网站的服务稳定性，不保证用户头像会被永久保存，不保证用户头像不会被上述网站泄漏，不保证用户可以在其希望的时候永久删除其头像。";
+"avatar_upload_failed" = "头像上传失败，请重试";
+"avatar_upload_success" = "头像上传成功";
+"change_avatar" = "修改头像";
+"remove_avatar" = "删除头像";
+"take_photo" = "拍照";
+"choose_from_album" = "从相册选择";

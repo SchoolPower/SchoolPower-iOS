@@ -134,3 +134,13 @@
 "emm" = "emm";
 "storage_permission_denied" = "Sorry, we cannot store our QR code without permission.\n\nPlease give SchoolPower permission to access Photo Library in system settings.";
 "storage_permission_exp_title" = "We need permission";
+"accept" = "Accept";
+"decline" = "Decline";
+"avatar_agreement_title" = "Avatar Upload Agreement";
+"avatar_agreement_message" = "SchoolPower uses the third-party website SM.MS (\"the website\") to store the user\'s avatar.\nBy clicking \"Agree\" you agree that we will upload your chosen avatar to the website and agree to accept the website\'s license agreement.\n\nThe SM.MS license agreement is excerpted as follows (it is only a translation. please refer to the original version on the website):\n{Start of SM.MS Agreement}\nTo the extent permitted by law, please feel free to use this bed.\nIt is forbidden to upload and share the following types of pictures:\nImage containing pornography, violence, and promotion of terrorism\nCopyright infringement, unauthorized pictures\nOther pictures that violate the laws of the People\'s Republic\nOther pictures that violate Hong Kong law\n{End of SM.MS Agreement}\nSchoolPower is not authorized by, sponsored by, affiliated with, or otherwise authorized by any of the above websites.\n\nSchoolPower is not responsible for any breach of their agreement.\nSchoolPower does not guarantee stability of the above-mentioned website.\nSchoolPower does not guarantee that the user\'s picture will be permanently saved or the user\'s picture will not be leaked by the above websites or the user can permanently delete his/her picture when he wishes.";
+"avatar_upload_failed" = "Avatar upload failed. Please try again.";
+"avatar_upload_success" = "Avatar uploaded";
+"change_avatar" = "Change avatar";
+"remove_avatar" = "Remove avatar";
+"take_photo" = "Take photo";
+"choose_from_album" = "Choose from album";

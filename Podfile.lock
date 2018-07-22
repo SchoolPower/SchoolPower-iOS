@@ -1,8 +1,10 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
+  - Alamofire (4.7.2)
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
+  - CropViewController (2.3.6)
   - CustomIOSAlertView (0.9.5)
   - DGElasticPullToRefresh (1.1)
   - Google-Mobile-Ads-SDK (7.21.0)
@@ -454,7 +456,9 @@ PODS:
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
+  - Alamofire
   - Charts
+  - CropViewController
   - CustomIOSAlertView
   - DGElasticPullToRefresh
   - Google-Mobile-Ads-SDK
@@ -470,7 +474,9 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
+    - Alamofire
     - Charts
+    - CropViewController
     - CustomIOSAlertView
     - DGElasticPullToRefresh
     - Google-Mobile-Ads-SDK
@@ -490,7 +496,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
+  CropViewController: e6d4bd512d15a1709e9ddf71fe7d98ffd05dda0f
   CustomIOSAlertView: cc4fa8e36219be3fd5ebcd40789f5b4aaae0f38e
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   Google-Mobile-Ads-SDK: 4a6f1b43c8cc0e1e95a3b59d9f52a01671c6f9f3
@@ -508,6 +516,6 @@ SPEC CHECKSUMS:
   VTAcknowledgementsViewController: e1de80f2c0ce31cc7e1c6f1c8aaeec2770371f09
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: b07ea59bbaaadc6570305d77794cde718cb70c5e
+PODFILE CHECKSUM: e63a45352a0162ec75c13c5ba13e05d2443d52cf
 
 COCOAPODS: 1.5.2

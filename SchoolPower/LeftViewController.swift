@@ -16,9 +16,14 @@
 
 import UIKit
 import Material
+import Alamofire
+import SwiftyJSON
+import MaterialComponents
+import CropViewController
 import VTAcknowledgementsViewController
 
-class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
+UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImagePickerControllerDelegate {
     
     var presentFragment: Int?
     
@@ -27,8 +32,11 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var table: UITableView?
     @IBOutlet weak var headerUsername: UILabel?
     @IBOutlet weak var headerUserID: UILabel?
+    @IBOutlet weak var avatarButton: MDCFloatingButton!
     
     let userDefaults = UserDefaults.standard
+    var navController: UINavigationController!
+    var imagePicker = UIImagePickerController()
     
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +58,214 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         headerUsername?.text = userDefaults.string(forKey: STUDENT_NAME_KEY_NAME)
         headerUserID?.text = "userid".localize + userDefaults.string(forKey: USERNAME_KEY_NAME)!
+        
+        avatarButton.inkColor = UIColor.black.withAlphaComponent(0.1)
+        updateAvatar()
+    }
+    
+    @IBAction func avatarOnClick(_ sender: MDCFloatingButton) {
+        
+        if (userDefaults.string(forKey: USER_AVATAR_KEY_NAME) != "") {
+            let avatarActions = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "cancel".localize, destructiveButtonTitle: nil)
+            avatarActions.tag = 1
+            avatarActions.addButton(withTitle: "change_avatar".localize)
+            avatarActions.addButton(withTitle: "remove_avatar".localize)
+            avatarActions.show(in: view)
+        } else {
+            changeAvatar()
+        }
+    }
+    
+    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
+        switch actionSheet.tag {
+        case 1:
+            switch buttonIndex {
+            case 1: changeAvatar()
+            case 2: removeAvatar()
+            default: return
+            }
+        case 2:
+            switch buttonIndex {
+            case 1: takePhoto()
+            case 2: pickImage()
+            default: return
+            }
+        default: return
+        }
+    }
+    
+    func changeAvatar() {
+        
+        let avatarAgreement = UIAlertController(title: "avatar_agreement_title".localize, message: "avatar_agreement_message".localize, preferredStyle: .alert)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.left
+        let messageText = NSMutableAttributedString(
+            string: "avatar_agreement_message".localize,
+            attributes: [
+                .paragraphStyle: paragraphStyle,
+                .font: UIFont.systemFont(ofSize: 13.0)
+            ]
+        )
+        avatarAgreement.setValue(messageText, forKey: "attributedMessage")
+        avatarAgreement.addAction(UIAlertAction(title: "decline".localize, style: .cancel, handler: { (_) in
+            avatarAgreement.dismiss(animated: true, completion: nil)
+        }))
+        
+        avatarAgreement.addAction(UIAlertAction(title: "accept".localize, style: .default, handler: { (_) in
+            // Change Avatar
+            let imageActions = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "cancel".localize, destructiveButtonTitle: nil)
+            imageActions.tag = 2
+            imageActions.addButton(withTitle: "take_photo".localize)
+            imageActions.addButton(withTitle: "choose_from_album".localize)
+            imageActions.show(in: self.view)
+        }))
+        
+        show(avatarAgreement, sender: self)
+    }
+    
+    func takePhoto() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func pickImage() {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum;
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        cropImage(image: info[UIImagePickerControllerOriginalImage] as! UIImage)
+    }
+    
+    func cropImage(image: UIImage) {
+        let cropViewController = CropViewController(croppingStyle: .circular, image: image)
+        cropViewController.delegate = self
+        navController = UINavigationController.init(rootViewController: cropViewController)
+        navController.modalTransitionStyle = .coverVertical;
+        self.present(navController, animated: true, completion: {})
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didCropToCircularImage image: UIImage,
+                            withRect cropRect: CGRect, angle: Int) {
+        uploadAvatar(image: image)
+        if navController != nil {
+            navController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func uploadAvatar(image: UIImage) {
+        
+        let data = UIImagePNGRepresentation(image)
+        
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                multipartFormData.append(data!, withName: "smfile", fileName: "avatar.png", mimeType: "image/png")
+        },
+            to: IMAGE_UPLOAD_URL,
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        let responseJson = JSON.init(data: response.data!)
+                        if (responseJson["code"] != "success") {
+                            self.closeNavigationDrawer()
+                            self.showSnackbar(msg:
+                                "avatar_upload_failed".localize
+                                    + "\n"
+                                    + responseJson["msg"].stringValue)
+                            return
+                        } else {
+                            
+                            let avatarUrl = responseJson["data"]["url"].stringValue
+                            let username = self.userDefaults.string(forKey: USERNAME_KEY_NAME)
+                            let password = self.userDefaults.string(forKey: PASSWORD_KEY_NAME)
+                            
+                            Utils.sendPost(url: AVATAR_URL, params:
+                                "username=\(username!)"
+                                    + "&password=\(password!)"
+                                    + "&new_avatar=\(avatarUrl)"
+                                    + "&remove_code=\(responseJson["data"]["hash"].stringValue)") { (value) in
+                                        
+                                        let response = value
+                                        if response.contains("error") {
+                                            DispatchQueue.main.async {
+                                                self.showSnackbar(msg: JSON(data:response.data(using: .utf8, allowLossyConversion: false)!)["error"].stringValue)
+                                            }
+                                        }
+                                        
+                                        self.userDefaults.set(avatarUrl, forKey: USER_AVATAR_KEY_NAME)
+                                        self.updateAvatar()
+                            }
+                        }
+                    }
+                case .failure(let encodingError):
+                    self.showSnackbar(msg:
+                        "avatar_upload_failed".localize
+                            + "\n"
+                            + encodingError.localizedDescription)
+                }
+        })
+    }
+    
+    func removeAvatar() {
+        
+        let username = userDefaults.string(forKey: USERNAME_KEY_NAME)
+        let password = userDefaults.string(forKey: PASSWORD_KEY_NAME)
+        
+        Utils.sendPost(url: AVATAR_URL, params:
+            "username=\(username!)"
+                + "&password=\(password!)"
+                + "&new_avatar="
+                + "&remove_code=") { (value) in
+                    
+                    let response = value
+                    if response.contains("NETWORK_ERROR") {
+                        DispatchQueue.main.async {
+                            self.showSnackbar(msg: "cannot_connect".localize)
+                        }
+                        return
+                    }
+                    if response.contains("error") {
+                        DispatchQueue.main.async {
+                            self.showSnackbar(msg: JSON(data:response.data(using: .utf8, allowLossyConversion: false)!)["error"].stringValue)
+                        }
+                    } else {
+                        self.userDefaults.set("", forKey: USER_AVATAR_KEY_NAME)
+                        self.updateAvatar()
+                    }
+                    
+        }
+    }
+    
+    func updateAvatar() {
+        let avatarURL = userDefaults.string(forKey: USER_AVATAR_KEY_NAME)
+        var avatar = #imageLiteral(resourceName: "ic_launcher-web")
+        if avatarURL != "" {
+            let url = URL(string: avatarURL!)
+            let data = try!Data(contentsOf: url!)
+            avatar = UIImage(data: data)!
+        }
+        DispatchQueue.main.async {
+            self.avatarButton.setBackgroundImage(avatar, for: .normal)
+            self.avatarButton.setNeedsDisplay()
+        }
+    }
+    
+    func showSnackbar(msg: String) {
+        
+        let message = MDCSnackbarMessage()
+        message.text = msg
+        message.duration = 2    // 2s
+        MDCSnackbarManager.show(message)
     }
     
     func reloadData() {
@@ -120,7 +336,7 @@ extension LeftViewController {
                 (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(mainStory.instantiateViewController(withIdentifier: "About"), animated: true)
             case 3:
                 confirmLogOut()
-            
+                
             default:
                 print("NoViewToGoTo")
             }
