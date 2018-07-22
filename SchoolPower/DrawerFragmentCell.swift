@@ -30,7 +30,7 @@ class DrawerFragmentCell: UITableViewCell {
                    #imageLiteral(resourceName: "ic_info_white").withRenderingMode(.alwaysTemplate),
                    #imageLiteral(resourceName: "ic_exit_to_app_white").withRenderingMode(.alwaysTemplate)]]
     
-    let titles = [["dashboard".localize, "charts".localize, "attendance".localize],
+    var titles = [["dashboard".localize, "charts".localize, "attendance".localize],
                   ["settings".localize, "support_us".localize, "about".localize, "signout".localize]]
     
     var section = 0
@@ -38,6 +38,7 @@ class DrawerFragmentCell: UITableViewCell {
     var location: Int = 0 {
         
         didSet {
+            refreshTitles()
             itemTitle.text = titles[section][location]
             itemImage.image = images[section][location]
         }
@@ -57,5 +58,10 @@ class DrawerFragmentCell: UITableViewCell {
                 itemImage.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
             }
         }
+    }
+    
+    func refreshTitles() {
+        titles = [["dashboard".localize, "charts".localize, "attendance".localize],
+                  ["settings".localize, "support_us".localize, "about".localize, "signout".localize]]
     }
 }
