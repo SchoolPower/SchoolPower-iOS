@@ -116,7 +116,7 @@
 "promotion" = "PROMOTION";
 "donation" = "DONATION";
 "donation_title" = "We are running out of money…";
-"donation_message" = "The expensive Apple developers fee and server costs thousands of yuan every year, not to mention the enormous time cost. Our only income, displaying ads, brought us merely $118.78 the last year. We have had a net loss over a thousand yuan so far.\n\nIf you feel that this app has helped you or you hope to get rid of the ads soon, you are more than welcome to donate us, or introduce this app to the students around you. Any help would be much appreciated ( ́,,•ω•,,)♡.";
+"donation_message" = "The expensive Apple developers fee and server cost thousands of yuan every year, not to mention the enormous time cost. Our only income, displaying ads, brought us merely $118.78 the last year. We have had a net loss over a thousand yuan so far.\n\nIf you feel that this app has helped you or you hope to get rid of the ads soon, you are more than welcome to donate us, or introduce this app to the students around you. Any help would be much appreciated ( ́,,•ω•,,)♡.";
 "donation_cancel" = "NO THANKS";
 "donation_ok" = "DONATE";
 "donation_promote" = "PROMOTE";
