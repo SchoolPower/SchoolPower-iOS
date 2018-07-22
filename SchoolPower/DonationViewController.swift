@@ -61,7 +61,7 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
             body: "wechat_instruction_page1_des".localize,
             image: #imageLiteral(resourceName: "ic_wechat_pay"),
             buttonText: "") {}
-        
+        //TODO CHANGE IMAGES
         let page2 = OnboardingContentViewController(
             title: "",
             body: "wechat_instruction_page2_des".localize,
@@ -77,12 +77,6 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
         let page4 = OnboardingContentViewController(
             title: "",
             body: "wechat_instruction_page4_des".localize,
-            image: #imageLiteral(resourceName: "page4"),
-            buttonText: "") {}
-        
-        let page5 = OnboardingContentViewController(
-            title: "",
-            body: "wechat_instruction_page5_des".localize,
             image: #imageLiteral(resourceName: "page5"),
             buttonText: "") {}
 

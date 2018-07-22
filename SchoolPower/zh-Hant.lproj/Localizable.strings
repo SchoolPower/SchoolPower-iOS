@@ -123,9 +123,8 @@
 "wechat_instruction_page1_title" = "怎麼用「微信支付」贊助我們";
 "wechat_instruction_page1_des" = "為了你能支付，我們需要在你的手機裡儲存我們的支付碼";
 "wechat_instruction_page2_des" = "我們將彈出微信應用的掃碼界面";
-"wechat_instruction_page3_des" = "點擊右上角的菜單按鈕";
-"wechat_instruction_page4_des" = "點擊「從相簿中選擇 QR Code」";
-"wechat_instruction_page5_des" = "選擇我們的支付碼（應該是第一個）";
+"wechat_instruction_page3_des" = "點擊右上角的「相册」";
+"wechat_instruction_page4_des" = "選擇我們的支付碼（應該是時間軸上的最後一個）";
 "Alipay" = "支付寶";
 "Wechat" = "微信支付";
 "cant_open_alipay" = "支付寶不可用";

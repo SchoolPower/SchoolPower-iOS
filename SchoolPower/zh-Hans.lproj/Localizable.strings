@@ -123,9 +123,8 @@
 "wechat_instruction_page1_title" = "怎么用「微信支付」赞助我们";
 "wechat_instruction_page1_des" = "为了你能支付，我们需要在你的手机里储存我们的支付码";
 "wechat_instruction_page2_des" = "我们将弹出微信应用的扫码界面";
-"wechat_instruction_page3_des" = "点击右上角的菜单按钮";
-"wechat_instruction_page4_des" = "点击「从相册选取二维码」";
-"wechat_instruction_page5_des" = "选择我们的支付码（应该是第一个）";
+"wechat_instruction_page3_des" = "点击右上角的的「相册」";
+"wechat_instruction_page4_des" = "选择我们的支付码（应该是时间轴上的最后一个）";
 "Alipay" = "支付宝";
 "Wechat" = "微信支付";
 "cant_open_alipay" = "微信不可用";

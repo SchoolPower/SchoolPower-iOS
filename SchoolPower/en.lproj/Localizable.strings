@@ -123,9 +123,8 @@
 "wechat_instruction_page1_title" = "How to donate with Wechat Pay";
 "wechat_instruction_page1_des" = "We will need store our payment QR code in your machine, so that you can pay us";
 "wechat_instruction_page2_des" = "We will redirect you to the QR scanning view in Wechat App";
-"wechat_instruction_page3_des" = "Tap the menu button top right";
-"wechat_instruction_page4_des" = "Tap 'Choose QR Code from Album'";
-"wechat_instruction_page5_des" = "Choose our QR code, which should be the first image in the list";
+"wechat_instruction_page3_des" = "Tap 'Album' top right";
+"wechat_instruction_page4_des" = "Choose our QR code, which should be the last image on the timeline";
 "Alipay" = "Alipay";
 "Wechat" = "Wechat";
 "cant_open_alipay" = "Alipay unavailable";
