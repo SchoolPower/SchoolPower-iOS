@@ -13,7 +13,7 @@ import MaterialComponents
 
 class DonationDialog: UIView {
     
-    class func instanceFromNib(width: CGFloat = 10) -> UIView {
+    class func instanceFromNib() -> UIView {
         
         let theme = ThemeManager.currentTheme()
         let accent = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
@@ -22,7 +22,6 @@ class DonationDialog: UIView {
         view.backgroundColor = theme.windowBackgroundColor
         
         let card = (view.viewWithTag(1) as! TouchThroughCard)
-        card.bounds.size.width = width
         card.backgroundColor = theme.cardBackgroundColor
         card.cornerRadius = 10
         card.inkView.isHidden = true
@@ -59,12 +58,8 @@ class DonationDialog: UIView {
         dismissButton.backgroundColor = .clear
         dismissButton.inkColor = theme.primaryTextColor.withAlphaComponent(0.1)
         
-        
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        view.bounds.size.height = (view.viewWithTag(1)?.bounds.height)!
-            + 16    // Margin top
-            + 15    // Margin bottom
         
         return view
     }

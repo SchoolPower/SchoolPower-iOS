@@ -43,6 +43,7 @@ class MainTableViewController: UITableViewController {
     let kCloseCellHeight: CGFloat = 125
     var cellHeights: [CGFloat] = []
     var storedOffsets = [Int: CGFloat]()
+    let kSectionHeaderHeight: CGFloat = 16
     
     let userDefaults = UserDefaults.standard
     var theme = ThemeManager.currentTheme()
@@ -68,6 +69,7 @@ class MainTableViewController: UITableViewController {
         self.navigationDrawerController?.isLeftViewEnabled = true
         
         self.title = "dashboard".localize
+        self.tableView.layoutIfNeeded()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
@@ -152,6 +154,10 @@ class MainTableViewController: UITableViewController {
         tableView.backgroundColor = theme.windowBackgroundColor
         tableView.separatorColor = .clear
         tableView.contentInset = UIEdgeInsetsMake(0, 0, bannerView.frame.height, 0)
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        tableView.estimatedSectionHeaderHeight = 300;
+        tableView.estimatedRowHeight = 60;
+        tableView.layoutIfNeeded()
         initRefreshView()
     }
     
@@ -208,11 +214,12 @@ extension MainTableViewController {
         oldAttendances += attendances
         
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
-        Utils.sendPost(url: GET_DATA_URL,
-                       params: "username=\(username!)" +
-                        "&password=\(password!)" +
-                        "&version=\(version)" +
-                        "&os=ios" +
+        Utils.sendPost(
+            url: GET_DATA_URL,
+            params: "username=\(username!)" +
+                "&password=\(password!)" +
+                "&version=\(version)" +
+                "&os=ios" +
         "&action=manual_get_data") { (value) in
             
             let response = value
@@ -351,8 +358,8 @@ extension MainTableViewController {
     func shouldShowDonationHeader() -> Bool {
         // Show donate every 30 days
         return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
-//        return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
-//        return true
+        //        return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
+        //        return true
     }
     
     func getLastDonateShowedDate() -> Date {
@@ -382,7 +389,8 @@ extension MainTableViewController {
     
     @objc func dismissDonationHeader() {
         setLastDonateShowedDate(date: Date.init())
-        tableView.reloadSections([0], with: .automatic)
+        tableView.sectionHeaderHeight = kSectionHeaderHeight
+        tableView.reloadSections([0], with: .top)
     }
 }
 
@@ -399,28 +407,18 @@ extension MainTableViewController {
             tableView.backgroundView = nil
             if shouldShowDonationHeader() {
                 // Show donation dialog as header
-                let view = DonationDialog.instanceFromNib(width: tableView.frame.width - 30)
+                tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+                let view = DonationDialog.instanceFromNib()
                 (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(gotoDonation), for: .touchUpInside)
                 (view.viewWithTag(5) as! MDCFlatButton).addTarget(self, action: #selector(gotoPromotion), for: .touchUpInside)
                 (view.viewWithTag(6) as! MDCFlatButton).addTarget(self, action: #selector(dismissDonationHeader), for: .touchUpInside)
+                tableView.reloadSections([0], with: .top)
                 return view
             } else {
-                // Show a blank padding view as header
-                let headerCell = tableView.dequeueReusableCell(withIdentifier: "MainHeaderCell")
-                headerCell?.backgroundColor = theme.windowBackgroundColor
-                return headerCell
+                tableView.sectionHeaderHeight = kSectionHeaderHeight
             }
         }
         return nil
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            
-        if shouldShowDonationHeader() {
-            return DonationDialog.instanceFromNib().bounds.height
-        } else {
-            return 16   // Padding top
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
