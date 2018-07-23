@@ -160,6 +160,7 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         lineChart.legend.textColor = theme.primaryTextColor
         lineChart.legend.wordWrapEnabled = true
         lineChart.translatesAutoresizingMaskIntoConstraints = false
+        lineChart.backgroundColor = theme.cardBackgroundColor
         lineChart.animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
         
     }

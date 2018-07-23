@@ -18,6 +18,7 @@ import UIKit
 import Charts
 import SwiftyJSON
 import XLPagerTabStrip
+import MaterialComponents
 
 class BarChartViewController: UIViewController, IndicatorInfoProvider {
     
@@ -70,6 +71,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         
         CNALabel.isHidden = true
         
+        let theme = ThemeManager.currentTheme()
         var gradedSubjects = [Subject]() // Subjects that have grades
         
         for subject in Utils.getFilteredSubjects(subjects: subjects) {
@@ -87,6 +89,12 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         var subjectStrings = [String]()
         
         let termStrings = ["T1","T2","T3","T4"]
+        let termColors = [
+            MDCPalette.red.tint600,
+            MDCPalette.yellow.tint600,
+            MDCPalette.lightGreen.tint600,
+            MDCPalette.blue.tint600
+        ]
         
         // second run -- group them in terms
         var count = 0
@@ -104,7 +112,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
             }
             
             let dataSet = BarChartDataSet(values: group, label: term)
-            dataSet.colors = [Colors.materialChartColorList[count]]
+            dataSet.colors = [termColors[count]]
             dataSets.append(dataSet)
             count+=1
         }
@@ -115,17 +123,25 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         barChart.xAxis.axisMaximum = Double(4 * gradedSubjects.count)
         barChart.xAxis.centerAxisLabelsEnabled = true
         barChart.xAxis.valueFormatter = BarChartFormatter(subjectStrings: subjectStrings)
+        barChart.xAxis.gridColor = theme.secondaryTextColor
+        barChart.xAxis.axisLineColor = theme.primaryTextColor
+        barChart.xAxis.labelTextColor = theme.primaryTextColor
+        barChart.leftAxis.axisLineColor = theme.primaryTextColor
+        barChart.leftAxis.labelTextColor = theme.primaryTextColor
+        barChart.rightAxis.axisLineColor = theme.primaryTextColor
+        barChart.rightAxis.labelTextColor = theme.primaryTextColor
         
         let barData = BarChartData(dataSets: dataSets)
         barData.setDrawValues(true)
         barData.setValueTextColor(Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)])
         
-        //barChart.legend.isEnabled = false
+        barChart.legend.textColor = theme.primaryTextColor
         barChart.legend.horizontalAlignment = .center
         barChart.data = barData
         barChart.groupBars(fromX: 0.0, groupSpace: 0.2, barSpace: 0.1)
         barChart.setVisibleXRange(minXRange: 0.0, maxXRange: 12.0)
         barChart.setScaleEnabled(true)
+        barChart.backgroundColor = theme.cardBackgroundColor
         barChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
     }
 }

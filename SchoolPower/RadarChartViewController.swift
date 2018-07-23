@@ -116,6 +116,7 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
         radarChart.chartDescription?.enabled=false
         radarChart.legend.enabled=false
         radarChart.translatesAutoresizingMaskIntoConstraints = false
+        radarChart.backgroundColor = theme.cardBackgroundColor
         radarChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
     }
 }
