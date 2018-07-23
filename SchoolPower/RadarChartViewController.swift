@@ -21,7 +21,7 @@ import XLPagerTabStrip
 
 class RadarChartViewController: UIViewController, IndicatorInfoProvider {
     
-    var radarChart: RadarChartView!
+    @IBOutlet weak var radarChart: RadarChartView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var CNALabel: UILabel!
     
@@ -64,16 +64,11 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
         containerView?.backgroundColor = ThemeManager.currentTheme().cardBackgroundColor
         containerView?.layer.cornerRadius = 10
         containerView?.layer.masksToBounds = true
-        
-        if (containerView?.subviews.count)! > 0 {
-            containerView?.subviews[0].removeFromSuperview()
-        }
     }
     
     func initRadarChart(){
         
         CNALabel.isHidden = true
-        radarChart = RadarChartView()
         
         let theme = ThemeManager.currentTheme()
         var entries = [RadarChartDataEntry]()
@@ -121,13 +116,6 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
         radarChart.chartDescription?.enabled=false
         radarChart.legend.enabled=false
         radarChart.translatesAutoresizingMaskIntoConstraints = false
-        containerView?.addSubview(radarChart)
-        let heightConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: -24)
-        let widthConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.width, multiplier: 1, constant: -24)
-        let verticalConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-        let horizontalConstraint = NSLayoutConstraint(item: radarChart, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-        containerView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
-        
         radarChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
     }
 }

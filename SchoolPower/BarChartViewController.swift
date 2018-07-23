@@ -21,7 +21,7 @@ import XLPagerTabStrip
 
 class BarChartViewController: UIViewController, IndicatorInfoProvider {
     
-    var barChart: BarChartView!
+    @IBOutlet weak var barChart: BarChartView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var CNALabel: UILabel!
     
@@ -49,19 +49,38 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
         initContainer()
-
-        if subjects.isEmpty { return }
+        if Utils.getFilteredSubjects(subjects: subjects).count > 0 {
+            initBarChart()
+        }
+    }
+    
+    func initContainer() {
+        
+        containerView?.layer.shouldRasterize = true
+        containerView?.layer.rasterizationScale = UIScreen.main.scale
+        containerView?.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
+        containerView?.layer.shadowRadius = 1
+        containerView?.layer.shadowOpacity = 0.2
+        containerView?.backgroundColor = ThemeManager.currentTheme().cardBackgroundColor
+        containerView?.layer.cornerRadius = 10
+        containerView?.layer.masksToBounds = true
+    }
+    
+    func initBarChart() {
+        
+        CNALabel.isHidden = true
         
         var gradedSubjects = [Subject]() // Subjects that have grades
         
-        for subject in subjects {
+        for subject in Utils.getFilteredSubjects(subjects: subjects) {
+            
             let grade = subject.grades[Utils.getLatestItem(grades: subject.grades)]
             if grade != nil && grade?.letter != "--" {
                 gradedSubjects.append(subject)
             }
         }
+        
         if gradedSubjects.isEmpty { return }
-        barChart = BarChartView()
         barChart.chartDescription?.enabled = false
         
         var dataSets = [BarChartDataSet]()
@@ -78,7 +97,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
                 subjectStrings.append(subject.title)
                 if subject.grades[term] != nil && subject.grades[term]!.percentage != "0" {
                     group.append(BarChartDataEntry(x: Double(subjectStrings.count - 1),
-                                                y: Double(subject.grades[term]!.percentage)!))
+                                                   y: Double(subject.grades[term]!.percentage)!))
                 }else{
                     group.append(BarChartDataEntry(x: Double(subjectStrings.count - 1), y: Double.nan))
                 }
@@ -100,39 +119,14 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         let barData = BarChartData(dataSets: dataSets)
         barData.setDrawValues(true)
         barData.setValueTextColor(Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)])
-
+        
         //barChart.legend.isEnabled = false
         barChart.legend.horizontalAlignment = .center
         barChart.data = barData
         barChart.groupBars(fromX: 0.0, groupSpace: 0.2, barSpace: 0.1)
         barChart.setVisibleXRange(minXRange: 0.0, maxXRange: 12.0)
-
         barChart.setScaleEnabled(true)
-        
-        containerView?.addSubview(barChart)
-        let heightConstraint = NSLayoutConstraint(item: barChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: -24)
-        let widthConstraint = NSLayoutConstraint(item: barChart, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.width, multiplier: 1, constant: -24)
-        let verticalConstraint = NSLayoutConstraint(item: barChart, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-        let horizontalConstraint = NSLayoutConstraint(item: barChart, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-        containerView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
-        
         barChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
-    }
-    
-    func initContainer() {
-        
-        containerView?.layer.shouldRasterize = true
-        containerView?.layer.rasterizationScale = UIScreen.main.scale
-        containerView?.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
-        containerView?.layer.shadowRadius = 1
-        containerView?.layer.shadowOpacity = 0.2
-        containerView?.backgroundColor = ThemeManager.currentTheme().cardBackgroundColor
-        containerView?.layer.cornerRadius = 10
-        containerView?.layer.masksToBounds = true
-        
-        if (containerView?.subviews.count)! > 0 {
-            containerView?.subviews[0].removeFromSuperview()
-        }
     }
 }
 

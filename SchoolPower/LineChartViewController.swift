@@ -21,7 +21,7 @@ import XLPagerTabStrip
 
 class LineChartViewController: UIViewController, IndicatorInfoProvider {
     
-    var lineChart: LineChartView!
+    @IBOutlet weak var lineChart: LineChartView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var CNALabel: UILabel!
     
@@ -64,16 +64,11 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         containerView?.backgroundColor = ThemeManager.currentTheme().cardBackgroundColor
         containerView?.layer.cornerRadius = 10
         containerView?.layer.masksToBounds = true
-        
-        if (containerView?.subviews.count)! > 0 {
-            containerView?.subviews[0].removeFromSuperview()
-        }
     }
     
     func initLineChart(){
         
         CNALabel.isHidden = true
-        lineChart = LineChartView()
         let theme = ThemeManager.currentTheme()
         
         // [SubjectName: [Entry<Date, Grade>]]
@@ -165,13 +160,6 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         lineChart.legend.textColor = theme.primaryTextColor
         lineChart.legend.wordWrapEnabled = true
         lineChart.translatesAutoresizingMaskIntoConstraints = false
-        containerView?.addSubview(lineChart)
-        let heightConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: -24)
-        let widthConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.width, multiplier: 1, constant: -24)
-        let verticalConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-        let horizontalConstraint = NSLayoutConstraint(item: lineChart, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: containerView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-        containerView?.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
-        
         lineChart.animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
         
     }

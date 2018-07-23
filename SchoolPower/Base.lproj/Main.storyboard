@@ -840,7 +840,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerFragmentCell" rowHeight="48" id="o17-TR-OEg" customClass="DrawerFragmentCell" customModule="SchoolPower" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DrawerFragmentCell" rowHeight="48" id="o17-TR-OEg" customClass="DrawerFragmentCell" customModule="SchoolPower" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o17-TR-OEg" id="zdm-qC-2ZS">
@@ -972,7 +972,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQ7-By-nKs">
                                 <rect key="frame" x="16" y="16" width="382" height="704"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZK-xa-d5y" customClass="BarChartView" customModule="Charts">
+                                        <rect key="frame" x="12" y="12" width="358" height="680"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="YZK-xa-d5y" secondAttribute="trailing" constant="12" id="0bu-96-rhg"/>
+                                    <constraint firstAttribute="bottom" secondItem="YZK-xa-d5y" secondAttribute="bottom" constant="12" id="L1K-7M-Mi4"/>
+                                    <constraint firstItem="YZK-xa-d5y" firstAttribute="top" secondItem="fQ7-By-nKs" secondAttribute="top" constant="12" id="dsT-vr-C3j"/>
+                                    <constraint firstItem="YZK-xa-d5y" firstAttribute="leading" secondItem="fQ7-By-nKs" secondAttribute="leading" constant="12" id="yqX-We-Z2C"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
@@ -1001,12 +1013,13 @@
                     </view>
                     <connections>
                         <outlet property="CNALabel" destination="URq-rd-axD" id="tdP-2U-yyj"/>
+                        <outlet property="barChart" destination="YZK-xa-d5y" id="P2J-Gb-suD"/>
                         <outlet property="containerView" destination="fQ7-By-nKs" id="xMS-By-ljk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CrK-A7-LMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1880" y="-2223"/>
+            <point key="canvasLocation" x="1879.7101449275365" y="-2223.0978260869565"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="TMf-8R-RJG">
@@ -1386,7 +1399,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIn-B0-AX0">
                                 <rect key="frame" x="16" y="16" width="382" height="704"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHH-EU-MvS" customClass="LineChartView" customModule="Charts">
+                                        <rect key="frame" x="12" y="12" width="358" height="680"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="EHH-EU-MvS" secondAttribute="bottom" constant="12" id="65b-Qh-Iua"/>
+                                    <constraint firstItem="EHH-EU-MvS" firstAttribute="top" secondItem="TIn-B0-AX0" secondAttribute="top" constant="12" id="NOZ-Wm-Gce"/>
+                                    <constraint firstAttribute="trailing" secondItem="EHH-EU-MvS" secondAttribute="trailing" constant="12" id="ezR-Jn-Ki5"/>
+                                    <constraint firstItem="EHH-EU-MvS" firstAttribute="leading" secondItem="TIn-B0-AX0" secondAttribute="leading" constant="12" id="rdb-57-Dpp"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
@@ -1416,6 +1441,7 @@
                     <connections>
                         <outlet property="CNALabel" destination="Qdi-ht-DRL" id="gJo-52-HZ7"/>
                         <outlet property="containerView" destination="TIn-B0-AX0" id="Oan-Rk-owA"/>
+                        <outlet property="lineChart" destination="EHH-EU-MvS" id="Pu8-CF-YKg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RqU-a9-1d5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1436,7 +1462,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLk-HI-Wuv">
                                 <rect key="frame" x="16" y="16" width="382" height="704"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vvy-tl-OMD" customClass="RadarChartView" customModule="Charts">
+                                        <rect key="frame" x="12" y="12" width="358" height="680"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Vvy-tl-OMD" secondAttribute="bottom" constant="12" id="CNC-YK-nsG"/>
+                                    <constraint firstItem="Vvy-tl-OMD" firstAttribute="leading" secondItem="YLk-HI-Wuv" secondAttribute="leading" constant="12" id="EeK-D1-ndO"/>
+                                    <constraint firstItem="Vvy-tl-OMD" firstAttribute="top" secondItem="YLk-HI-Wuv" secondAttribute="top" constant="12" id="wJr-HW-mkA"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vvy-tl-OMD" secondAttribute="trailing" constant="12" id="z8m-7d-tg3"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
@@ -1466,6 +1504,7 @@
                     <connections>
                         <outlet property="CNALabel" destination="TqE-OJ-l63" id="oeU-Ij-PlH"/>
                         <outlet property="containerView" destination="YLk-HI-Wuv" id="Vob-L6-gRz"/>
+                        <outlet property="radarChart" destination="Vvy-tl-OMD" id="eCK-G5-CJN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S7y-0S-k4l" userLabel="First Responder" sceneMemberID="firstResponder"/>

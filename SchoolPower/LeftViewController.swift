@@ -254,8 +254,13 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
         var avatar = #imageLiteral(resourceName: "ic_launcher-web")
         if avatarURL != "" {
             let url = URL(string: avatarURL!)
-            let data = try!Data(contentsOf: url!)
-            avatar = UIImage(data: data)!
+            let data: Data
+            do {
+                try data = Data(contentsOf: url!)
+                avatar = UIImage(data: data)!
+            } catch {
+                self.showSnackbar(msg: "cannot_load_avatar".localize)
+            }
         }
         DispatchQueue.main.async {
             self.avatarButton.setBackgroundImage(avatar, for: .normal)

@@ -144,3 +144,4 @@
 "remove_avatar" = "Remove avatar";
 "take_photo" = "Take photo";
 "choose_from_album" = "Choose from album";
+"cannot_load_avatar" = "Cannot load avatar";
