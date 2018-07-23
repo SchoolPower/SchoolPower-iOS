@@ -60,7 +60,10 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
         headerUserID?.text = "userid".localize + userDefaults.string(forKey: USERNAME_KEY_NAME)!
         
         avatarButton.inkColor = UIColor.black.withAlphaComponent(0.1)
-        updateAvatar()
+        
+        DispatchQueue.global(qos:.userInteractive).async {
+            self.updateAvatar()
+        }
     }
     
     @IBAction func avatarOnClick(_ sender: MDCFloatingButton) {
