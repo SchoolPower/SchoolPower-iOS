@@ -59,6 +59,7 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
         headerUsername?.text = userDefaults.string(forKey: STUDENT_NAME_KEY_NAME)
         headerUserID?.text = "userid".localize + userDefaults.string(forKey: USERNAME_KEY_NAME)!
         
+        avatarButton.clipsToBounds = true
         avatarButton.inkColor = UIColor.black.withAlphaComponent(0.1)
         
         DispatchQueue.global(qos:.userInteractive).async {
