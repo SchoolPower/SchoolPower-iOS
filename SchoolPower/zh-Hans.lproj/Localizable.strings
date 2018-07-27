@@ -147,3 +147,6 @@
 "happy_birth_title_builder" = "%@ 岁生日快乐！";
 "happy_birth_message" = "祝你生日快乐，祝你生日快乐。\n祝你生日快乐，祝你生日快乐！";
 "happy_birth_thank" = "蟹蟹";
+"donate_via_bitcoin" = "使用比特币捐助我们";
+"donate_via_eth" = "使用以太坊捐助我们";
+"copied" = "已拷贝";

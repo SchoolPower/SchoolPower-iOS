@@ -17,11 +17,13 @@
 import UIKit
 import XLPagerTabStrip
 import MaterialComponents
+import CustomIOSAlertView
 import Photos
 
 class DonationViewController: UIViewController, IndicatorInfoProvider {
     
     var navController: UINavigationController!
+    var currentCryptoType = CryptoDialog.CryptoType.BITCOIN
     
     @IBOutlet weak var wechatCard: MDCCard!
     
@@ -41,7 +43,7 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
     override func viewDidLoad() {
         loadTheView()
     }
-    @IBAction func alipayOnClick(_ sender: Any)  {
+    @IBAction func alipayOnClick(_ sender: MDCCard)  {
         
         if UIApplication.shared.canOpenURL(NSURL(string: "alipayqr://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=https://qr.alipay.com/tsx09230fuwngogndwbkg3b")! as URL) {
             UIApplication.shared.openURL(NSURL(string: "alipayqr://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=https://qr.alipay.com/tsx09230fuwngogndwbkg3b")! as URL)
@@ -50,8 +52,22 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
         }
     }
     
-    @IBAction func weChatOnClick(_ sender: Any) {
+    @IBAction func weChatOnClick(_ sender: MDCCard) {
         initWechatInstruction()
+    }
+    
+    @IBAction func paypalOnClick(_ sender: MDCCard) {
+        UIApplication.shared.openURL(NSURL(string: PAYPAL_DONATION_URL)! as URL)
+    }
+    
+    @IBAction func bitcoinOnClick(_ sender: MDCCard) {
+        currentCryptoType = CryptoDialog.CryptoType.BITCOIN
+        showCryptoDialog(cryptoType: currentCryptoType)
+    }
+    
+    @IBAction func ethereumOnClick(_ sender: MDCCard) {
+        currentCryptoType = CryptoDialog.CryptoType.ETHEREUM
+        showCryptoDialog(cryptoType: currentCryptoType)
     }
     
     func initWechatInstruction() {
@@ -61,7 +77,7 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
             body: "wechat_instruction_page1_des".localize,
             image: #imageLiteral(resourceName: "ic_wechat_pay"),
             buttonText: "") {}
-        //TODO CHANGE IMAGES
+        
         let page2 = OnboardingContentViewController(
             title: "",
             body: "wechat_instruction_page2_des".localize,
@@ -179,10 +195,44 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
         self.present(alert, animated: true)
     }
     
+    func showCryptoDialog(cryptoType: CryptoDialog.CryptoType) {
+        
+        let standerdWidth = self.view.frame.width * 0.8
+        let alert = CustomIOSAlertView.init()
+        let cryptoDialog = CryptoDialog.instanceFromNib(width: standerdWidth, cryptoType: cryptoType)
+        let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: cryptoDialog.bounds.size.height))
+        (cryptoDialog.viewWithTag(4) as! MDCCard).addTarget(self, action: #selector(copyAddress), for: .touchUpInside)
+        cryptoDialog.center = subview.center
+        subview.addSubview(cryptoDialog)
+        alert?.containerView = subview
+        alert?.closeOnTouchUpOutside = true
+        alert?.buttonTitles = nil
+        alert?.show()
+    }
+    
+    @objc func copyAddress() {
+        
+        var address = ""
+        switch currentCryptoType {
+        case CryptoDialog.CryptoType.BITCOIN: address = BITCOIN_ADDRESS
+        case CryptoDialog.CryptoType.ETHEREUM: address = ETHEREUM_ADDRESS
+        }
+        UIPasteboard.general.string = address
+        self.showSnackbar(msg: "copied".localize)
+    }
+    
     @objc func loadTheView() {
         
         let theme = ThemeManager.currentTheme()
         view.backgroundColor = theme.windowBackgroundColor
+    }
+    
+    func showSnackbar(msg: String) {
+        
+        let message = MDCSnackbarMessage()
+        message.text = msg
+        message.duration = 2    // 2s
+        MDCSnackbarManager.show(message)
     }
 }
 

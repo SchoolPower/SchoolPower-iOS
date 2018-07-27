@@ -1703,6 +1703,9 @@
                                                             <constraint firstAttribute="height" constant="200" id="dRO-1l-12f"/>
                                                             <constraint firstAttribute="trailing" secondItem="GZE-or-QUM" secondAttribute="trailing" id="v9a-zX-M40"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <action selector="paypalOnClick:" destination="CoA-SM-cVG" eventType="touchUpInside" id="Q4N-rr-LH2"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SiC-hX-3JK" customClass="MDCCard">
                                                         <rect key="frame" x="208.66666666666663" y="216" width="150.33333333333337" height="200"/>
@@ -1719,6 +1722,9 @@
                                                             <constraint firstItem="grV-8j-fu5" firstAttribute="top" secondItem="SiC-hX-3JK" secondAttribute="top" id="n2u-ZK-830"/>
                                                             <constraint firstItem="grV-8j-fu5" firstAttribute="leading" secondItem="SiC-hX-3JK" secondAttribute="leading" id="vIS-d1-5Mq"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <action selector="bitcoinOnClick:" destination="CoA-SM-cVG" eventType="touchUpInside" id="gZl-WU-iyU"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5aU-ff-rqf" customClass="MDCCard">
                                                         <rect key="frame" x="208.66666666666663" y="424" width="150.33333333333337" height="200"/>
@@ -1735,6 +1741,9 @@
                                                             <constraint firstItem="Xqh-Re-d7P" firstAttribute="leading" secondItem="5aU-ff-rqf" secondAttribute="leading" id="LZt-db-xfD"/>
                                                             <constraint firstAttribute="trailing" secondItem="Xqh-Re-d7P" secondAttribute="trailing" id="sce-Ei-ic3"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <action selector="ethereumOnClick:" destination="CoA-SM-cVG" eventType="touchUpInside" id="Lna-lh-A8O"/>
+                                                        </connections>
                                                     </view>
                                                 </subviews>
                                                 <constraints>

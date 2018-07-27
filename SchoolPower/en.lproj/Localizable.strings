@@ -148,3 +148,6 @@
 "happy_birth_title_builder" = "Happy %@ Birthday!";
 "happy_birth_message" = "Happy birthday to you, happy birthday to you. \nHappy birthday to you, happy birthday to you!";
 "happy_birth_thank" = "Thx";
+"donate_via_bitcoin" = "Donate via Bitcoin";
+"donate_via_eth" = "Donate via Ethereum";
+"copied" = "Copied";

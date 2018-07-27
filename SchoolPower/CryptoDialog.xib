@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tTO-jv-3Jm" customClass="CryptoDialog" customModule="SchoolPower" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="296" height="425"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUB-d9-TI0">
+                    <rect key="frame" x="0.0" y="0.0" width="296" height="388.5"/>
+                    <subviews>
+                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cov-8v-hDM" customClass="MDCCard">
+                            <rect key="frame" x="25" y="65" width="246" height="246.5"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wechat_qr" translatesAutoresizingMaskIntoConstraints="NO" id="g8e-2n-jSI">
+                                    <rect key="frame" x="25" y="25" width="196.5" height="196.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="g8e-2n-jSI" secondAttribute="height" multiplier="1:1" id="d87-1l-95c"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="g8e-2n-jSI" firstAttribute="height" secondItem="Cov-8v-hDM" secondAttribute="height" multiplier="0.8" id="Hll-75-mZE"/>
+                                <constraint firstItem="g8e-2n-jSI" firstAttribute="centerX" secondItem="Cov-8v-hDM" secondAttribute="centerX" id="VIv-U5-Dro"/>
+                                <constraint firstItem="g8e-2n-jSI" firstAttribute="centerY" secondItem="Cov-8v-hDM" secondAttribute="centerY" id="Wic-HD-zQv"/>
+                                <constraint firstItem="g8e-2n-jSI" firstAttribute="width" secondItem="Cov-8v-hDM" secondAttribute="width" multiplier="0.8" id="dbo-kY-r2R"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9j-Fq-erf" customClass="MDCCard">
+                            <rect key="frame" x="25" y="319.5" width="246" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0x3C170f8dd9A2B28554f8bA034B0fF72FfF92FBa7" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wo9-ad-4Fl">
+                                    <rect key="frame" x="8" y="8" width="230" height="28"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Wo9-ad-4Fl" secondAttribute="bottom" constant="8" id="B4h-4K-dH9"/>
+                                <constraint firstAttribute="trailing" secondItem="Wo9-ad-4Fl" secondAttribute="trailing" constant="8" id="E0f-AL-yey"/>
+                                <constraint firstItem="Wo9-ad-4Fl" firstAttribute="top" secondItem="Z9j-Fq-erf" secondAttribute="top" constant="8" id="EX1-zE-5Tx"/>
+                                <constraint firstItem="Wo9-ad-4Fl" firstAttribute="leading" secondItem="Z9j-Fq-erf" secondAttribute="leading" constant="8" id="j73-xs-dqV"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyt-kT-wl8">
+                            <rect key="frame" x="25" y="25" width="246" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Cov-8v-hDM" firstAttribute="top" secondItem="fyt-kT-wl8" secondAttribute="bottom" constant="16" id="EVN-jZ-Obi"/>
+                        <constraint firstAttribute="bottom" secondItem="Z9j-Fq-erf" secondAttribute="bottom" constant="25" id="Jc6-TB-mWb"/>
+                        <constraint firstItem="Z9j-Fq-erf" firstAttribute="leading" secondItem="jUB-d9-TI0" secondAttribute="leading" constant="25" id="KVk-va-6xd"/>
+                        <constraint firstItem="fyt-kT-wl8" firstAttribute="leading" secondItem="jUB-d9-TI0" secondAttribute="leading" constant="25" id="Lbp-Ar-aEc"/>
+                        <constraint firstItem="Cov-8v-hDM" firstAttribute="leading" secondItem="jUB-d9-TI0" secondAttribute="leading" constant="25" id="Pzv-Z3-PMW"/>
+                        <constraint firstItem="fyt-kT-wl8" firstAttribute="top" secondItem="jUB-d9-TI0" secondAttribute="top" constant="25" id="eN6-ji-I9h"/>
+                        <constraint firstAttribute="trailing" secondItem="Cov-8v-hDM" secondAttribute="trailing" constant="25" id="nW5-EK-cCP"/>
+                        <constraint firstAttribute="trailing" secondItem="Z9j-Fq-erf" secondAttribute="trailing" constant="25" id="sSU-BN-qTp"/>
+                        <constraint firstItem="Z9j-Fq-erf" firstAttribute="top" secondItem="Cov-8v-hDM" secondAttribute="bottom" constant="8" id="uby-05-Kao"/>
+                        <constraint firstAttribute="trailing" secondItem="fyt-kT-wl8" secondAttribute="trailing" constant="25" id="wuG-Lz-CsJ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="jUB-d9-TI0" firstAttribute="leading" secondItem="tTO-jv-3Jm" secondAttribute="leading" id="A0p-M3-mPV"/>
+                <constraint firstAttribute="trailing" secondItem="jUB-d9-TI0" secondAttribute="trailing" id="DzM-sP-NsX"/>
+                <constraint firstItem="jUB-d9-TI0" firstAttribute="top" secondItem="tTO-jv-3Jm" secondAttribute="top" id="HT7-LF-w92"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-194" y="-188.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="wechat_qr" width="1242" height="1704"/>
+    </resources>
+</document>

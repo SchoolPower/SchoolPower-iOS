@@ -29,6 +29,8 @@
 		6218E23C20E5D853005CBCED /* DonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218E23B20E5D853005CBCED /* DonationViewController.swift */; };
 		621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DA1B61EFD01A300EFAB5A /* Utils.swift */; };
 		622248B7210A14A200E7762E /* BirthdayDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622248B6210A14A200E7762E /* BirthdayDialog.swift */; };
+		622248B9210B6D0900E7762E /* CryptoDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 622248B8210B6D0900E7762E /* CryptoDialog.xib */; };
+		622248BB210B6E9000E7762E /* CryptoDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622248BA210B6E9000E7762E /* CryptoDialog.swift */; };
 		62245FC420FB4F770093E813 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62245FC320FB4F770093E813 /* InstructionViewController.m */; };
 		62245FC920FB51A50093E813 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62245FC820FB51A40093E813 /* OnboardingContentViewController.m */; };
 		62368CA51F88825000519608 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62368CA41F88825000519608 /* MessageUI.framework */; };
@@ -140,6 +142,8 @@
 		6218E23B20E5D853005CBCED /* DonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
 		621DA1B61EFD01A300EFAB5A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Utils.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		622248B6210A14A200E7762E /* BirthdayDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayDialog.swift; sourceTree = "<group>"; };
+		622248B8210B6D0900E7762E /* CryptoDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CryptoDialog.xib; sourceTree = "<group>"; };
+		622248BA210B6E9000E7762E /* CryptoDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDialog.swift; sourceTree = "<group>"; };
 		62245FC220FB4F770093E813 /* SchoolPower-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SchoolPower-Bridging-Header.h"; sourceTree = "<group>"; };
 		62245FC320FB4F770093E813 /* InstructionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstructionViewController.m; sourceTree = "<group>"; };
 		62245FC520FB4FC20093E813 /* InstructionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstructionViewController.h; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 				62953B0920D0B869003D681F /* AccentColorCell.xib */,
 				627F928521007DC9001F953B /* DonateDialog.xib */,
 				6207CECB210A0F42001FC013 /* BirthdayDialog.xib */,
+				622248B8210B6D0900E7762E /* CryptoDialog.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				627F928721008677001F953B /* DonationDialog.swift */,
 				62377E9221044171004DE715 /* TouchThroughCard.swift */,
 				622248B6210A14A200E7762E /* BirthdayDialog.swift */,
+				622248BA210B6E9000E7762E /* CryptoDialog.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				6201D31520138A9600A9255C /* AssignmentDialog.xib in Resources */,
 				6207CECC210A0F42001FC013 /* BirthdayDialog.xib in Resources */,
 				6201D3172013932300A9255C /* AssignmentFlagListItem.xib in Resources */,
+				622248B9210B6D0900E7762E /* CryptoDialog.xib in Resources */,
 				6207CECA210A00CA001FC013 /* gift_box.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -743,6 +750,7 @@
 				62C34E051F03DF080078D5F8 /* LanguageTableViewController.swift in Sources */,
 				6201D31B2013A05100A9255C /* AssignmentFlagCell.swift in Sources */,
 				6218E23820E5D7A9005CBCED /* SupportViewController.swift in Sources */,
+				622248BB210B6E9000E7762E /* CryptoDialog.swift in Sources */,
 				6209FFCB20DB3CAE00B96754 /* RadarChartViewController.swift in Sources */,
 				6297EC241FF0FC16003E8F1C /* GPADialigUtil.swift in Sources */,
 				6204A07E1F39E5CE004B2118 /* NothingView.swift in Sources */,

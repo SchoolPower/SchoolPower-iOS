@@ -24,9 +24,9 @@ class PromotionViewController: UIViewController, IndicatorInfoProvider {
     
     func setQRAtPosition(position: Int) {
         switch position {
-        case 0: QRImageView.image = generateQRCode(from: ANDROID_DOWNLOAD_ADDRESS)
-        case 1: QRImageView.image = generateQRCode(from: IOS_DOWNLOAD_ADDRESS)
-        default: QRImageView.image = generateQRCode(from: ANDROID_DOWNLOAD_ADDRESS)
+        case 0: QRImageView.image = Utils.generateQRCode(from: ANDROID_DOWNLOAD_ADDRESS)
+        case 1: QRImageView.image = Utils.generateQRCode(from: IOS_DOWNLOAD_ADDRESS)
+        default: QRImageView.image = Utils.generateQRCode(from: ANDROID_DOWNLOAD_ADDRESS)
         }
     }
     
@@ -59,18 +59,5 @@ class PromotionViewController: UIViewController, IndicatorInfoProvider {
         androidSegmented.tintColor = accent
         androidSegmented.borderColor = accent
         setQRAtPosition(position: androidSegmented.selectedSegmentIndex)
-    }
-    
-    func generateQRCode(from string: String) -> UIImage? {
-        let data = string.data(using: String.Encoding.ascii)
-        
-        if let filter = CIFilter(name: "CIQRCodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 10, y: 10)
-            if let output = filter.outputImage?.transformed(by: transform) {
-                return UIImage(ciImage: output)
-            }
-        }
-        return nil
     }
 }
