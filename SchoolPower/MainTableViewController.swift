@@ -397,9 +397,9 @@ extension MainTableViewController {
     
     func shouldShowDonationHeader() -> Bool {
         // Show donate every 30 days
-//        return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
+        return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
         //        return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
-                return true
+//                return true
     }
     
     func getLastDonateShowedDate() -> Date {
