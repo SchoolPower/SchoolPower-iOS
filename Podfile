@@ -19,6 +19,7 @@ target "SchoolPower" do
     pod 'XLPagerTabStrip'
     pod 'Alamofire'
     pod 'CropViewController'
+    pod 'lottie-ios'
     
     post_install do |installer|
         installer.pods_project.targets.each do |target|

@@ -129,7 +129,7 @@ class ThemeManager {
         bgColorView.backgroundColor = ThemeManager.currentTheme().secondaryTextColor.withAlphaComponent(0.2)
         UITableViewCell.appearance().selectedBackgroundView = bgColorView
         
-        UISwitch.appearance().onTintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)].withAlphaComponent(0.3)
-        UISwitch.appearance().thumbTintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        UISwitch.appearance().onTintColor = Utils.getAccent().withAlphaComponent(0.3)
+        UISwitch.appearance().thumbTintColor = Utils.getAccent()
     }
 }

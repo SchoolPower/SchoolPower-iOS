@@ -71,7 +71,7 @@ class DashboardCell: FoldingCell {
             for assignmentItem in infoItem.assignments {
                 if assignmentItem.isNew {
                     
-                    foldBorderView.backgroundColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+                    foldBorderView.backgroundColor = Utils.getAccent()
                     foldSubjectTitle.textColor = .white
                     foldTeacherName.textColor = UIColor(rgb: Int(Colors.white_0_20))
                     foldBlockLetter.textColor = UIColor(rgb: Int(Colors.white_0_20))

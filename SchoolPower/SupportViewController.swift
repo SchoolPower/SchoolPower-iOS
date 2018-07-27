@@ -54,7 +54,7 @@ class SupportViewController: ButtonBarPagerTabStripViewController {
         
         let theme = ThemeManager.currentTheme()
         
-        settings.style.selectedBarBackgroundColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        settings.style.selectedBarBackgroundColor = Utils.getAccent()
         settings.style.selectedBarHeight = 3
         buttonBarView.backgroundColor = theme.primaryColor
         settings.style.buttonBarItemsShouldFillAvailiableWidth = true

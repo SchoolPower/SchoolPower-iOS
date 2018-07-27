@@ -73,7 +73,7 @@ class AttendanceTableViewController: UITableViewController {
     func initRefreshView() {
         
         loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        loadingView.tintColor = Utils.getAccent()
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson() },
                                                        loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(theme.primaryColor)
@@ -130,7 +130,7 @@ class AttendanceTableViewController: UITableViewController {
                 return
             }
             
-            if response.contains("Something went wrong! Invalid Username or password") {
+            if response.contains("Something went wrong!") {
                 
                 self.showSnackbar(msg: "invalidup".localize)
                 //self.logOut()

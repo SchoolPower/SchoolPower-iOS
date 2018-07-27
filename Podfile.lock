@@ -9,6 +9,7 @@ PODS:
   - DGElasticPullToRefresh (1.1)
   - Google-Mobile-Ads-SDK (7.21.0)
   - IQKeyboardManagerSwift (4.0.10)
+  - lottie-ios (2.5.0)
   - Material (2.6.3):
     - Material/Core (= 2.6.3)
   - Material/Core (2.6.3)
@@ -463,6 +464,7 @@ DEPENDENCIES:
   - DGElasticPullToRefresh
   - Google-Mobile-Ads-SDK
   - IQKeyboardManagerSwift
+  - lottie-ios
   - Material
   - MaterialComponents
   - MKRingProgressView
@@ -481,6 +483,7 @@ SPEC REPOS:
     - DGElasticPullToRefresh
     - Google-Mobile-Ads-SDK
     - IQKeyboardManagerSwift
+    - lottie-ios
     - Material
     - MaterialComponents
     - MDFInternationalization
@@ -503,6 +506,7 @@ SPEC CHECKSUMS:
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   Google-Mobile-Ads-SDK: 4a6f1b43c8cc0e1e95a3b59d9f52a01671c6f9f3
   IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   MaterialComponents: 1a021ab211e40e95e27eb87d9051d558e8f095bd
   MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
@@ -516,6 +520,6 @@ SPEC CHECKSUMS:
   VTAcknowledgementsViewController: e1de80f2c0ce31cc7e1c6f1c8aaeec2770371f09
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: e63a45352a0162ec75c13c5ba13e05d2443d52cf
+PODFILE CHECKSUM: dad2797ec0e921a321b0a2ac6877d610af7dfdd9
 
 COCOAPODS: 1.5.2

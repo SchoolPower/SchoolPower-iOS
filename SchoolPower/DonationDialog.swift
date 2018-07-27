@@ -16,7 +16,7 @@ class DonationDialog: UIView {
     class func instanceFromNib() -> UIView {
         
         let theme = ThemeManager.currentTheme()
-        let accent = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        let accent = Utils.getAccent()
         let view = UINib(nibName: "DonateDialog", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
         
         view.backgroundColor = theme.windowBackgroundColor

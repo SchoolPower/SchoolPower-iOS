@@ -18,6 +18,9 @@
 		6204A07E1F39E5CE004B2118 /* NothingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6204A07D1F39E5CE004B2118 /* NothingView.swift */; };
 		6205B9161FDB77CD00A124E0 /* TermDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6205B9151FDB77CD00A124E0 /* TermDialog.xib */; };
 		6205B9181FDB80F400A124E0 /* TermDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6205B9171FDB80F400A124E0 /* TermDialog.swift */; };
+		6207CEC9210A00CA001FC013 /* cheer.json in Resources */ = {isa = PBXBuildFile; fileRef = 6207CEC7210A00C0001FC013 /* cheer.json */; };
+		6207CECA210A00CA001FC013 /* gift_box.json in Resources */ = {isa = PBXBuildFile; fileRef = 6207CEC8210A00C5001FC013 /* gift_box.json */; };
+		6207CECC210A0F42001FC013 /* BirthdayDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6207CECB210A0F42001FC013 /* BirthdayDialog.xib */; };
 		6209FFC720DB2B1900B96754 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6209FFC620DB2B1900B96754 /* BarChartViewController.swift */; };
 		6209FFC920DB2CBD00B96754 /* LineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6209FFC820DB2CBD00B96754 /* LineChartViewController.swift */; };
 		6209FFCB20DB3CAE00B96754 /* RadarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6209FFCA20DB3CAE00B96754 /* RadarChartViewController.swift */; };
@@ -25,6 +28,7 @@
 		6218E23A20E5D83F005CBCED /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218E23920E5D83F005CBCED /* PromotionViewController.swift */; };
 		6218E23C20E5D853005CBCED /* DonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218E23B20E5D853005CBCED /* DonationViewController.swift */; };
 		621DA1B71EFD01A300EFAB5A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621DA1B61EFD01A300EFAB5A /* Utils.swift */; };
+		622248B7210A14A200E7762E /* BirthdayDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622248B6210A14A200E7762E /* BirthdayDialog.swift */; };
 		62245FC420FB4F770093E813 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62245FC320FB4F770093E813 /* InstructionViewController.m */; };
 		62245FC920FB51A50093E813 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62245FC820FB51A40093E813 /* OnboardingContentViewController.m */; };
 		62368CA51F88825000519608 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62368CA41F88825000519608 /* MessageUI.framework */; };
@@ -124,6 +128,9 @@
 		6204A07D1F39E5CE004B2118 /* NothingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NothingView.swift; sourceTree = "<group>"; };
 		6205B9151FDB77CD00A124E0 /* TermDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermDialog.xib; sourceTree = "<group>"; };
 		6205B9171FDB80F400A124E0 /* TermDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDialog.swift; sourceTree = "<group>"; };
+		6207CEC7210A00C0001FC013 /* cheer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cheer.json; sourceTree = "<group>"; };
+		6207CEC8210A00C5001FC013 /* gift_box.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gift_box.json; sourceTree = "<group>"; };
+		6207CECB210A0F42001FC013 /* BirthdayDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BirthdayDialog.xib; sourceTree = "<group>"; };
 		6209FFC620DB2B1900B96754 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		6209FFC820DB2CBD00B96754 /* LineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartViewController.swift; sourceTree = "<group>"; };
 		6209FFCA20DB3CAE00B96754 /* RadarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarChartViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +139,7 @@
 		6218E23920E5D83F005CBCED /* PromotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
 		6218E23B20E5D853005CBCED /* DonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
 		621DA1B61EFD01A300EFAB5A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Utils.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		622248B6210A14A200E7762E /* BirthdayDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayDialog.swift; sourceTree = "<group>"; };
 		62245FC220FB4F770093E813 /* SchoolPower-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SchoolPower-Bridging-Header.h"; sourceTree = "<group>"; };
 		62245FC320FB4F770093E813 /* InstructionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstructionViewController.m; sourceTree = "<group>"; };
 		62245FC520FB4FC20093E813 /* InstructionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstructionViewController.h; sourceTree = "<group>"; };
@@ -312,6 +320,7 @@
 				271386931F07711300EC7F2F /* BACKUP.xib */,
 				62953B0920D0B869003D681F /* AccentColorCell.xib */,
 				627F928521007DC9001F953B /* DonateDialog.xib */,
+				6207CECB210A0F42001FC013 /* BirthdayDialog.xib */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -319,6 +328,8 @@
 		628EF6421EFB307F008E0C4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6207CEC7210A00C0001FC013 /* cheer.json */,
+				6207CEC8210A00C5001FC013 /* gift_box.json */,
 				62377E9621047F91004DE715 /* transtr.py */,
 				62245FC220FB4F770093E813 /* SchoolPower-Bridging-Header.h */,
 				627F9289210090DF001F953B /* FoldingCell.swift */,
@@ -372,6 +383,7 @@
 				6204A07D1F39E5CE004B2118 /* NothingView.swift */,
 				627F928721008677001F953B /* DonationDialog.swift */,
 				62377E9221044171004DE715 /* TouchThroughCard.swift */,
+				622248B6210A14A200E7762E /* BirthdayDialog.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -589,6 +601,7 @@
 				2705427C1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist in Resources */,
 				6204A07C1F39E5A9004B2118 /* NothingView.xib in Resources */,
 				62A8FA441EFB66DA00751ACD /* Podfile in Resources */,
+				6207CEC9210A00CA001FC013 /* cheer.json in Resources */,
 				62377E9721047F92004DE715 /* transtr.py in Resources */,
 				62C34E291F05F5990078D5F8 /* Localizable.strings in Resources */,
 				271386941F07711300EC7F2F /* BACKUP.xib in Resources */,
@@ -599,7 +612,9 @@
 				62C786821EFBA46000CB28ED /* PeriodGradeListItem.xib in Resources */,
 				6205B9161FDB77CD00A124E0 /* TermDialog.xib in Resources */,
 				6201D31520138A9600A9255C /* AssignmentDialog.xib in Resources */,
+				6207CECC210A0F42001FC013 /* BirthdayDialog.xib in Resources */,
 				6201D3172013932300A9255C /* AssignmentFlagListItem.xib in Resources */,
+				6207CECA210A00CA001FC013 /* gift_box.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +679,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/VTAcknowledgementsViewController/VTAcknowledgementsViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -686,6 +702,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VTAcknowledgementsViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -699,6 +716,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				622248B7210A14A200E7762E /* BirthdayDialog.swift in Sources */,
 				624BDC211EFE2F6A0052EC5D /* AssignmentCell.swift in Sources */,
 				62FC12761FADAA4500BCD79D /* AttendanceTableViewController.swift in Sources */,
 				6218E23A20E5D83F005CBCED /* PromotionViewController.swift in Sources */,

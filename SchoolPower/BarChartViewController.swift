@@ -133,7 +133,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         
         let barData = BarChartData(dataSets: dataSets)
         barData.setDrawValues(true)
-        barData.setValueTextColor(Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)])
+        barData.setValueTextColor(Utils.getAccent())
         
         barChart.legend.textColor = theme.primaryTextColor
         barChart.legend.horizontalAlignment = .center

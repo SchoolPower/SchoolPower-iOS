@@ -138,7 +138,7 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
             dataSet.lineWidth = 2.0
             dataSet.mode = .horizontalBezier
             lineData.addDataSet(dataSet)
-            dataSet.valueTextColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+            dataSet.valueTextColor = Utils.getAccent()
             count+=1
         }
         

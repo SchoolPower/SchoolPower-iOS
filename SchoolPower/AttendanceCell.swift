@@ -55,7 +55,7 @@ class AttendanceCell: UITableViewCell {
             codeBackGround.backgroundColor = Utils.getColorByAttendanceCode(attendanceCode: attendanceItem.code)
             
             if attendanceItem.isNew {
-                foregroundBroader.backgroundColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+                foregroundBroader.backgroundColor = Utils.getAccent()
                 attendanceDescription.textColor = .white
                 attendanceSubject.textColor = UIColor(rgb: Int(Colors.white_0_20))
                 attendanceDate.textColor = UIColor(rgb: Int(Colors.white_0_20))

@@ -50,6 +50,7 @@ let ACCENT_COLOR_KEY_NAME = "accentColor"
 let LAST_TIME_DONATION_SHOWED_KEY_NAME = "lastTimeDonateShowed"
 let IM_COMING_FOR_DONATION_KEY_NAME = "ImComingForDonation"
 let USER_AVATAR_KEY_NAME = "userAvatar"
+let STUDENT_DOB_KEY_NAME = "studentDOB"
 
 
 let CUSTOM_RULES = ["all", "highest_3", "highest_4", "highest_5"]
@@ -353,6 +354,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.object(forKey: LAST_TIME_DONATION_SHOWED_KEY_NAME) == nil { userDefaults.register(defaults: [LAST_TIME_DONATION_SHOWED_KEY_NAME: ""]) }
         if userDefaults.object(forKey: IM_COMING_FOR_DONATION_KEY_NAME) == nil { userDefaults.register(defaults: [IM_COMING_FOR_DONATION_KEY_NAME: false]) }
         if userDefaults.object(forKey: USER_AVATAR_KEY_NAME) == nil { userDefaults.register(defaults: [USER_AVATAR_KEY_NAME: ""]) }
+        if userDefaults.object(forKey: STUDENT_DOB_KEY_NAME) == nil { userDefaults.register(defaults: [STUDENT_DOB_KEY_NAME: ""]) }
         
         userDefaults.synchronize()
     }

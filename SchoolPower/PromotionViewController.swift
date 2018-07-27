@@ -55,7 +55,7 @@ class PromotionViewController: UIViewController, IndicatorInfoProvider {
         
         let theme = ThemeManager.currentTheme()
         view.backgroundColor = theme.windowBackgroundColor
-        let accent = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        let accent = Utils.getAccent()
         androidSegmented.tintColor = accent
         androidSegmented.borderColor = accent
         setQRAtPosition(position: androidSegmented.selectedSegmentIndex)

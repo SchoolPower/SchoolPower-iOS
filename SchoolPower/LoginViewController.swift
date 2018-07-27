@@ -84,7 +84,7 @@ class LoginViewController: UIViewController {
             }
             let response = value
             
-            if response.contains("Something went wrong! Invalid Username or password") {
+            if response.contains("Something went wrong!") {
                 self.showSnackbar(msg: "invalidup".localize)
             }else if response.contains("\"alert\""){
                 self.showSnackbar(msg: JSON(data: ("{\(response)}".data(using: .utf8, allowLossyConversion: false)!))["alert"].stringValue)
@@ -98,6 +98,7 @@ class LoginViewController: UIViewController {
                 let (studentInfo, _, data, disabled, disabled_title, disabled_message, extraInfo) = Utils.parseJsonResult(jsonStr: response)
                 
                 self.userDefaults.set(studentInfo.getFullName(), forKey: STUDENT_NAME_KEY_NAME)
+                self.userDefaults.set(studentInfo.dob, forKey: STUDENT_DOB_KEY_NAME)
                 self.userDefaults.set(extraInfo.avatar, forKey: USER_AVATAR_KEY_NAME)
                 self.userDefaults.synchronize()
                 
@@ -164,10 +165,10 @@ extension LoginViewController {
         
         usernameField.textColor = UIColor(rgb: Colors.white)
         usernameField.placeholderNormalColor = UIColor(rgb: Colors.primary_darker)
-        usernameField.placeholderActiveColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        usernameField.placeholderActiveColor = Utils.getAccent()
         usernameField.dividerColor = UIColor(rgb: Colors.primary_darker)
-        usernameField.dividerActiveColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
-        usernameField.clearIconButton?.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        usernameField.dividerActiveColor = Utils.getAccent()
+        usernameField.clearIconButton?.tintColor = Utils.getAccent()
         
         view.layout(usernameField).center(offsetY: -20).left(36).right(36)
     }
@@ -184,10 +185,10 @@ extension LoginViewController {
         
         passwordField.textColor = UIColor(rgb: Colors.white)
         passwordField.placeholderNormalColor = UIColor(rgb: Colors.primary_darker)
-        passwordField.placeholderActiveColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        passwordField.placeholderActiveColor = Utils.getAccent()
         passwordField.dividerColor = UIColor(rgb: Colors.primary_darker)
-        passwordField.dividerActiveColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
-        passwordField.visibilityIconButton?.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        passwordField.dividerActiveColor = Utils.getAccent()
+        passwordField.visibilityIconButton?.tintColor = Utils.getAccent()
                 .withAlphaComponent(passwordField.isSecureTextEntry ? 0.38 : 1.0)
         
         view.layout(passwordField).center(offsetY: +usernameField.height + 20).left(36).right(36)
@@ -201,7 +202,7 @@ extension LoginViewController {
         
         button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: .white)
         button.pulseColor = .white
-        button.backgroundColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        button.backgroundColor = Utils.getAccent()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
         view.addSubview(button)

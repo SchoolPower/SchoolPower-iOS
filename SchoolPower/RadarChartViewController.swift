@@ -85,7 +85,7 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
         }
         
         let set = RadarChartDataSet(values: entries, label: "Grades")
-        let accentColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        let accentColor = Utils.getAccent()
         set.fillColor = accentColor
         set.colors = [accentColor]
         set.drawFilledEnabled = true

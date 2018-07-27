@@ -95,6 +95,10 @@ class Utils {
 //MARK: Color Handler
 extension Utils {
     
+    static func getAccent() -> UIColor {
+        return Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+    }
+    
     static func getColorByLetterGrade(letterGrade: String) -> UIColor {
         return UIColor(rgb: gradeColorIds[indexOfString(searchString: letterGrade,
                                                         domain: ["A", "B", "C+", "C", "C-", "F", "I", "--"])])
@@ -385,6 +389,76 @@ extension Utils {
             
             return (studentInfo, attendances, subjects,
                     disabled, disabled_title, disabled_message, extraInfo)
+    }
+    
+    static func isBirthDay() -> Bool {
+        
+        let dobStr = userDefaults.string(forKey: STUDENT_DOB_KEY_NAME) ?? ""
+        if dobStr == "" { return false }
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let dob = df.date(from: dobStr)!
+        let now = Date()
+        
+        if (isLeapYear()) {
+            if (isSameDayAndMonth(date1: dob, month: 2, day: 29)) {
+                return isSameDayAndMonth(date1: now, month: 3, day: 1)
+            }
+        }
+        return isSameDayAndMonth(date1: now, date2: dob)
+    }
+    
+    static func isSameDayAndMonth(date1: Date, date2: Date) -> Bool {
+        let components1 = Calendar.current.dateComponents([.month, .day], from: date1)
+        let components2 = Calendar.current.dateComponents([.month, .day], from: date2)
+        return components1.month == components2.month && components1.day == components2.day
+    }
+    
+    static func isSameDayAndMonth(date1: Date, month: Int, day: Int) -> Bool {
+        let components1 = Calendar.current.dateComponents([.month, .day], from: date1)
+        return components1.month == month && components1.day == day
+    }
+    
+    static func isLeapYear(_ year: Int) -> Bool {
+        let isLeapYear = ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
+        return isLeapYear
+    }
+    
+    static func isLeapYear(_ date: Date = Date()) -> Bool {
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.year], from: date)
+        let year = components.year
+        return isLeapYear(year!)
+    }
+    
+    static func getAge(withSuffix: Bool) -> String {
+        
+        let dobStr = userDefaults.string(forKey: STUDENT_DOB_KEY_NAME) ?? ""
+        if dobStr == "" { return "" }
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let dob = df.date(from: dobStr)!
+        
+        let now = Date()
+        df.dateFormat = "YYYY"
+        let age = Int(df.string(from: now))! - Int(df.string(from: dob))!
+        
+        if withSuffix {
+            return String(age) + getSuffixForNumber(num: age)
+        } else {
+            return String(age)
+        }
+    }
+
+    static func getSuffixForNumber(num: Int) -> String {
+        switch (num % 10) {
+            case 1: return "st"
+            case 2: return "nd"
+            case 3: return "rd"
+            default: return "th"
+        }
     }
     
     static func getShortName(subjectTitle: String)->String{

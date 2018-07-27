@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="l1o-9q-S3K" customClass="DonationDialog" customModule="SchoolPower">
+            <rect key="frame" x="0.0" y="0.0" width="296" height="425"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGH-pf-cyj">
+                    <rect key="frame" x="0.0" y="0.0" width="296" height="402"/>
+                    <subviews>
+                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSG-x6-6GQ">
+                            <rect key="frame" x="0.0" y="16" width="296" height="240"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="240" id="dtF-bz-fI9"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happy birthday to you, happy birthday to you. Happy birthday to you, happy birthday to you!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulx-Kd-1Ka">
+                            <rect key="frame" x="25" y="300" width="246" height="32"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UR-yL-TEY">
+                            <rect key="frame" x="25" y="256" width="246" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tHc-BZ-5h1" customClass="MDCFlatButton">
+                            <rect key="frame" x="225" y="352" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="tHc-BZ-5h1" firstAttribute="top" secondItem="Ulx-Kd-1Ka" secondAttribute="bottom" constant="20" id="3tX-l2-ziT"/>
+                        <constraint firstItem="3UR-yL-TEY" firstAttribute="top" secondItem="FSG-x6-6GQ" secondAttribute="bottom" id="4n6-bV-TPD"/>
+                        <constraint firstItem="3UR-yL-TEY" firstAttribute="leading" secondItem="fGH-pf-cyj" secondAttribute="leading" constant="25" id="FWb-xD-tzT"/>
+                        <constraint firstItem="FSG-x6-6GQ" firstAttribute="leading" secondItem="fGH-pf-cyj" secondAttribute="leading" id="Fs6-Rf-YFW"/>
+                        <constraint firstItem="FSG-x6-6GQ" firstAttribute="top" secondItem="fGH-pf-cyj" secondAttribute="top" constant="16" id="RFm-fg-ZaK"/>
+                        <constraint firstAttribute="trailing" secondItem="tHc-BZ-5h1" secondAttribute="trailing" constant="25" id="UD4-Oo-YmS"/>
+                        <constraint firstAttribute="trailing" secondItem="FSG-x6-6GQ" secondAttribute="trailing" id="af9-yT-dzB"/>
+                        <constraint firstItem="Ulx-Kd-1Ka" firstAttribute="leading" secondItem="fGH-pf-cyj" secondAttribute="leading" constant="25" id="fa3-Tg-86y"/>
+                        <constraint firstItem="Ulx-Kd-1Ka" firstAttribute="top" secondItem="3UR-yL-TEY" secondAttribute="bottom" constant="20" id="j2e-pE-jsh"/>
+                        <constraint firstAttribute="trailing" secondItem="Ulx-Kd-1Ka" secondAttribute="trailing" constant="25" id="qVs-Ca-xjj"/>
+                        <constraint firstAttribute="bottom" secondItem="tHc-BZ-5h1" secondAttribute="bottom" constant="20" id="rbb-xm-faD"/>
+                        <constraint firstAttribute="trailing" secondItem="3UR-yL-TEY" secondAttribute="trailing" constant="25" id="y4Q-E8-sSD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="fGH-pf-cyj" secondAttribute="trailing" id="kiB-n4-YqN"/>
+                <constraint firstItem="fGH-pf-cyj" firstAttribute="leading" secondItem="l1o-9q-S3K" secondAttribute="leading" id="lcZ-48-h3E"/>
+                <constraint firstItem="fGH-pf-cyj" firstAttribute="top" secondItem="l1o-9q-S3K" secondAttribute="top" id="qWx-5u-rbP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-194" y="-188.5"/>
+        </view>
+    </objects>
+</document>

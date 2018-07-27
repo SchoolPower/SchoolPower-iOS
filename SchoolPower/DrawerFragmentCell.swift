@@ -54,8 +54,8 @@ class DrawerFragmentCell: UITableViewCell {
             itemImage.tintColor = theme.secondaryTextColor
             if section == 0 && location == presentSelected {
                 background.backgroundColor = theme.secondaryTextColor.withAlphaComponent(0.2)
-                itemTitle.textColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
-                itemImage.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+                itemTitle.textColor = Utils.getAccent()
+                itemImage.tintColor = Utils.getAccent()
             }
         }
     }

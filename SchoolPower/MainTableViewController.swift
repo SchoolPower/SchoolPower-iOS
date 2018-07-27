@@ -15,6 +15,7 @@
 
 
 import UIKit
+import Lottie
 import Material
 import GoogleMobileAds
 import MaterialComponents
@@ -37,6 +38,7 @@ class MainTableViewController: UITableViewController {
     var bannerView: GADBannerView!
     var loadingView: DGElasticPullToRefreshLoadingViewCircle!
     var GPADialog = GPADialogUtil()
+    var birthdayDialogAlert: CustomIOSAlertView!
     
     let kRowsCount = 30
     let kOpenCellHeight: CGFloat = 315
@@ -57,8 +59,24 @@ class MainTableViewController: UITableViewController {
                                       style: .plain, target: self, action: #selector(gpaOnClick))
         let menuItem = UIBarButtonItem(image: UIImage(named: "ic_menu_white")?.withRenderingMode(.alwaysOriginal),
                                        style: .plain, target: self, action: #selector(menuOnClick))
+        
         self.navigationItem.rightBarButtonItems = [gpaItem]
         self.navigationItem.leftBarButtonItems = [menuItem]
+        
+        if (Utils.isBirthDay()) {
+            let birthdayButton = MDCFloatingButton(shape: .mini)
+            let animationView = LOTAnimationView(name: "cheer")
+            animationView.loopAnimation = true
+            animationView.frame = CGRect(x: 6, y: 5, width: 28, height: 28)
+            animationView.isUserInteractionEnabled = false
+            birthdayButton.setBackgroundColor(.clear)
+            birthdayButton.setShadowColor(.clear, for: .normal)
+            birthdayButton.addSubview(animationView)
+            birthdayButton.addTarget(self, action: #selector(birthdayOnClick), for: .touchUpInside)
+            let birthdayItem = UIBarButtonItem(customView: birthdayButton)
+            (birthdayItem.customView?.subviews[(birthdayItem.customView?.subviews.count)! - 1] as! LOTAnimationView).play()
+            self.navigationItem.rightBarButtonItems = [gpaItem, birthdayItem]
+        }
         
         self.navigationController?.navigationBar.barTintColor = theme.primaryColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -164,7 +182,7 @@ class MainTableViewController: UITableViewController {
     func initRefreshView() {
         
         loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        loadingView.tintColor = Utils.getAccent()
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in self?.initDataJson() },
                                                        loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(theme.primaryColor)
@@ -197,6 +215,27 @@ class MainTableViewController: UITableViewController {
                                            subjectsForGPA: subjects,
                                            GPAOfficial: studentInfo.GPA ?? Double.nan)
             self.GPADialog.show()
+        }
+    }
+    
+    @objc func birthdayOnClick() {
+        
+        let standerdWidth = self.view.frame.width * 0.8
+        birthdayDialogAlert = CustomIOSAlertView.init()
+        let birthdayDialog = BirthdayDialog.instanceFromNib(width: standerdWidth)
+        let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: birthdayDialog.bounds.size.height))
+        (birthdayDialog.viewWithTag(5) as! MDCFlatButton).addTarget(self, action: #selector(dismissBirthday), for: .touchUpInside)
+        birthdayDialog.center = subview.center
+        subview.addSubview(birthdayDialog)
+        birthdayDialogAlert?.containerView = subview
+        birthdayDialogAlert?.closeOnTouchUpOutside = true
+        birthdayDialogAlert?.buttonTitles = nil
+        birthdayDialogAlert?.show()
+    }
+    
+    @objc func dismissBirthday() {
+        if birthdayDialogAlert != nil {
+            birthdayDialogAlert.close()
         }
     }
 }
@@ -232,7 +271,7 @@ extension MainTableViewController {
                 return
             }
             
-            if response.contains("Something went wrong! Invalid Username or password") {
+            if response.contains("Something went wrong!") {
                 
                 self.showSnackbar(msg: "invalidup".localize)
                 self.logOut()
@@ -242,7 +281,7 @@ extension MainTableViewController {
                 let extraInfo: Utils.ExtraInfo
                 
                 Utils.saveStringToFile(filename: JSON_FILE_NAME, data: response)
-                (_, attendances, subjects, disabled, disabled_title, disabled_message, extraInfo) = Utils.parseJsonResult(jsonStr: response)
+                (studentInfo, attendances, subjects, disabled, disabled_title, disabled_message, extraInfo) = Utils.parseJsonResult(jsonStr: response)
                 
                 if disabled {
                     DispatchQueue.main.async {
@@ -251,6 +290,7 @@ extension MainTableViewController {
                 }
                 
                 Utils.saveHistoryGrade(data: subjects)
+                self.userDefaults.set(studentInfo.dob, forKey: STUDENT_DOB_KEY_NAME)
                 self.userDefaults.set(extraInfo.avatar, forKey: USER_AVATAR_KEY_NAME)
                 
                 // Diff
@@ -357,9 +397,9 @@ extension MainTableViewController {
     
     func shouldShowDonationHeader() -> Bool {
         // Show donate every 30 days
-        return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
+//        return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
         //        return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
-        //        return true
+                return true
     }
     
     func getLastDonateShowedDate() -> Date {
@@ -475,7 +515,7 @@ extension MainTableViewController {
         
         let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: .white)
         button.pulseColor = .white
-        button.backgroundColor = Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        button.backgroundColor = Utils.getAccent()
         button.shadowOffset = CGSize.init(width: 0, height: 2.5)
         button.shadowRadius = 2
         button.shadowOpacity = 0.2
