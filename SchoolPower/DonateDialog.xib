@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lyJ-Ko-cYr" customClass="DonationDialog" customModule="SchoolPower">
-            <rect key="frame" x="0.0" y="0.0" width="370" height="353"/>
+            <rect key="frame" x="0.0" y="0.0" width="370" height="384"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-iT-Jus" customClass="TouchThroughCard" customModule="SchoolPower" customModuleProvider="target">
-                    <rect key="frame" x="15" y="16" width="340" height="322"/>
+                    <rect key="frame" x="15" y="16" width="340" height="348"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrO-Rn-GUp">
-                            <rect key="frame" x="20" y="205" width="112.5" height="24"/>
+                            <rect key="frame" x="20" y="205" width="300" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -37,20 +37,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtl-77-tgJ" customClass="MDCFlatButton">
-                            <rect key="frame" x="144" y="270" width="180" height="32"/>
-                            <state key="normal">
-                                <attributedString key="attributedTitle">
-                                    <fragment content="this text has to be long enough">
-                                        <attributes>
-                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                            </state>
-                        </button>
-                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bgs-kJ-I5O" customClass="MDCFlatButton">
-                            <rect key="frame" x="-36" y="269.5" width="180" height="27"/>
+                            <rect key="frame" x="144" y="270" width="180" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="gyH-PY-Oxb"/>
+                            </constraints>
                             <state key="normal">
                                 <attributedString key="attributedTitle">
                                     <fragment content="this text has to be long enough">
@@ -63,13 +53,32 @@
                             </state>
                         </button>
                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EHd-z2-Voy" customClass="MDCFlatButton">
-                            <rect key="frame" x="-224" y="269.5" width="188" height="27.5"/>
+                            <rect key="frame" x="144" y="305" width="180" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="agb-wy-rKa"/>
+                            </constraints>
                             <state key="normal">
                                 <attributedString key="attributedTitle">
                                     <fragment content="this text has to be long enough">
                                         <attributes>
-                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </state>
+                        </button>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bgs-kJ-I5O" customClass="MDCFlatButton">
+                            <rect key="frame" x="-44" y="270" width="180" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="7Uq-f3-zBU"/>
+                            </constraints>
+                            <state key="normal">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="this text has to be long enough">
+                                        <attributes>
+                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -79,30 +88,31 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="xtl-77-tgJ" secondAttribute="trailing" constant="16" id="2gj-nB-tfh"/>
                         <constraint firstItem="yrO-Rn-GUp" firstAttribute="leading" secondItem="gaJ-iT-Jus" secondAttribute="leading" constant="20" id="3kS-iD-Ttk"/>
+                        <constraint firstAttribute="bottom" secondItem="EHd-z2-Voy" secondAttribute="bottom" constant="16" id="491-Fw-zhp"/>
                         <constraint firstItem="TUX-GO-TzB" firstAttribute="leading" secondItem="gaJ-iT-Jus" secondAttribute="leading" id="94h-1W-ndO"/>
                         <constraint firstItem="rbv-wq-5EH" firstAttribute="top" secondItem="yrO-Rn-GUp" secondAttribute="bottom" constant="16" id="9fo-sx-Xpt"/>
-                        <constraint firstItem="xtl-77-tgJ" firstAttribute="leading" secondItem="bgs-kJ-I5O" secondAttribute="trailing" id="C4a-Qn-9hC"/>
                         <constraint firstAttribute="trailing" secondItem="TUX-GO-TzB" secondAttribute="trailing" id="JOz-5S-4i2"/>
-                        <constraint firstItem="EHd-z2-Voy" firstAttribute="top" secondItem="rbv-wq-5EH" secondAttribute="bottom" constant="8" id="Ohm-Au-jQZ"/>
                         <constraint firstItem="yrO-Rn-GUp" firstAttribute="top" secondItem="TUX-GO-TzB" secondAttribute="bottom" constant="16" id="P1U-aU-hfz"/>
                         <constraint firstItem="rbv-wq-5EH" firstAttribute="leading" secondItem="gaJ-iT-Jus" secondAttribute="leading" constant="20" id="PwK-mo-M2r"/>
-                        <constraint firstItem="bgs-kJ-I5O" firstAttribute="leading" secondItem="EHd-z2-Voy" secondAttribute="trailing" id="bwl-xI-D4U"/>
+                        <constraint firstItem="bgs-kJ-I5O" firstAttribute="top" secondItem="rbv-wq-5EH" secondAttribute="bottom" constant="8" id="Ukz-rw-wqz"/>
                         <constraint firstAttribute="trailing" secondItem="rbv-wq-5EH" secondAttribute="trailing" constant="20" id="f47-Qe-agK"/>
-                        <constraint firstAttribute="bottom" secondItem="xtl-77-tgJ" secondAttribute="bottom" constant="20" id="lPw-dH-XGD"/>
-                        <constraint firstItem="bgs-kJ-I5O" firstAttribute="top" secondItem="rbv-wq-5EH" secondAttribute="bottom" constant="8" id="mJh-5r-f76"/>
                         <constraint firstItem="TUX-GO-TzB" firstAttribute="top" secondItem="gaJ-iT-Jus" secondAttribute="top" id="nZG-3q-WLg"/>
+                        <constraint firstItem="EHd-z2-Voy" firstAttribute="top" secondItem="xtl-77-tgJ" secondAttribute="bottom" constant="8" id="qZj-Gh-EWS"/>
+                        <constraint firstItem="xtl-77-tgJ" firstAttribute="leading" secondItem="bgs-kJ-I5O" secondAttribute="trailing" constant="8" id="r6n-cw-ohS"/>
+                        <constraint firstAttribute="trailing" secondItem="yrO-Rn-GUp" secondAttribute="trailing" constant="20" id="vPy-mc-ems"/>
                         <constraint firstItem="xtl-77-tgJ" firstAttribute="top" secondItem="rbv-wq-5EH" secondAttribute="bottom" constant="8" id="xGj-Dm-tAh"/>
+                        <constraint firstAttribute="trailing" secondItem="EHd-z2-Voy" secondAttribute="trailing" constant="16" id="yyI-P3-OkI"/>
                     </constraints>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="gaJ-iT-Jus" secondAttribute="bottom" constant="15" id="OMt-In-Swp"/>
+                <constraint firstAttribute="bottom" secondItem="gaJ-iT-Jus" secondAttribute="bottom" constant="20" id="Kck-hc-vf8"/>
                 <constraint firstAttribute="trailing" secondItem="gaJ-iT-Jus" secondAttribute="trailing" constant="15" id="XQY-Ks-hEB"/>
                 <constraint firstItem="gaJ-iT-Jus" firstAttribute="top" secondItem="lyJ-Ko-cYr" secondAttribute="top" constant="16" id="YHc-3r-kmy"/>
                 <constraint firstItem="gaJ-iT-Jus" firstAttribute="leading" secondItem="lyJ-Ko-cYr" secondAttribute="leading" constant="15" id="oUN-po-kB5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-155" y="-118.5"/>
+            <point key="canvasLocation" x="-155" y="-103"/>
         </view>
     </objects>
     <resources>
