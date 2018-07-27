@@ -44,8 +44,8 @@ class CourseDetailTableViewController: UITableViewController {
         setAllTerms()
         self.navigationController?.navigationBar.barTintColor = Utils.getColorByGrade(item: Utils.getLatestItemGrade(grades: infoItem.grades))
         
-        //TODO: SETUP WHEN THEME CHANGED
-        setup()
+        NotificationCenter.default.addObserver(self, selector: #selector(setup),
+                                               name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
     }
     
     override func viewDidLoad() {
@@ -55,7 +55,7 @@ class CourseDetailTableViewController: UITableViewController {
         setup()
     }
     
-    private func setup() {
+    @objc private func setup() {
         
         tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         tableView.separatorColor = .clear
