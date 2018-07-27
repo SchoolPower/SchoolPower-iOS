@@ -77,7 +77,7 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
         let page4 = OnboardingContentViewController(
             title: "",
             body: "wechat_instruction_page4_des".localize,
-            image: #imageLiteral(resourceName: "page5"),
+            image: #imageLiteral(resourceName: "page4"),
             buttonText: "") {}
 
         let onboardingVC = InstructionViewController(
