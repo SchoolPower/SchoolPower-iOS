@@ -127,7 +127,7 @@
 "wechat_instruction_page4_des" = "选择我们的支付码（应该是时间轴上的最后一个）";
 "Alipay" = "支付宝";
 "Wechat" = "微信支付";
-"cant_open_alipay" = "微信不可用";
+"cant_open_alipay" = "支付宝不可用";
 "AlipayNotFound" = "你好像没有安装支付宝";
 "cant_open_wechat" = "微信不可用";
 "WechatNotFound" = "你好像没有安装微信";
