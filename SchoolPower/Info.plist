@@ -17,11 +17,20 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.6</string>
+	<string>1.2.0</string>
 	<key>CFBundleVersion</key>
-	<string>16</string>
+	<string>17</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>alipayauth</string>
+		<string>alipay</string>
+		<string>weixin</string>
+		<string>wechat</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Store the Wechat Payment QR code so that the user can donate with wechat.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -41,16 +50,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Store the Wechat Payment QR code so that the user can donate with wechat.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>alipayauth</string>
-		<string>alipay</string>
-		<string>weixin</string>
-		<string>wechat</string>
-	</array>
 </dict>
 </plist>
