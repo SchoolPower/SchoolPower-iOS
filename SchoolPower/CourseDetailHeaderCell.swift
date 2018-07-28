@@ -73,6 +73,7 @@ class CourseDetailHeaderCell: UITableViewCell, MFMailComposeViewControllerDelega
                 emailButton.width = 0
                 emailButton.isHidden = true
             } else {
+                emailButton.tintColor = theme.primaryTextColor.withAlphaComponent(0.2)
                 self.tracherEmail = infoItem.teacherEmail
             }
         }
