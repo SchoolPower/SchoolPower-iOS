@@ -131,14 +131,14 @@ class DashboardCell: FoldingCell {
     
     override func animationDuration(_ itemIndex:NSInteger, type:AnimationType)-> TimeInterval {
         
-        // durations count equal it itemCount
+        // durations count equals its itemCount
         let durations = [0.33, 0.26, 0.26] // timing animation for each view
         return durations[itemIndex]
     }
 }
 
 
-// MARK: - Actions
+// MARK: - CollectionView
 extension DashboardCell {
     
     func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {

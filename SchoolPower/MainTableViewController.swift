@@ -480,6 +480,7 @@ extension MainTableViewController {
         } else {
             cell.unfold(true, animated: false, completion: nil)
         }
+        cell.selectedBackgroundView = nil
         cell.backgroundColor = .clear
         cell.number = indexPath.row
         cell.infoItem = Utils.getFilteredSubjects(subjects: subjects)[indexPath.row]
