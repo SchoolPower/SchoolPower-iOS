@@ -144,6 +144,7 @@
 "remove_avatar" = "刪除頭像";
 "take_photo" = "拍照";
 "choose_from_album" = "從相簿選擇";
+"cannot_load_avatar" = "加載頭像失敗";
 "happy_birth_title_builder" = "%@ 歲生日快樂！ ";
 "happy_birth_message" = "祝你生日快樂，祝你生日快樂。\n祝你生日快樂，祝你生日快樂！ ";
 "happy_birth_thank" = "蟹蟹";

@@ -62,21 +62,7 @@ class MainTableViewController: UITableViewController {
         
         self.navigationItem.rightBarButtonItems = [gpaItem]
         self.navigationItem.leftBarButtonItems = [menuItem]
-        
-        if (Utils.isBirthDay()) {
-            let birthdayButton = MDCFloatingButton(shape: .mini)
-            let animationView = LOTAnimationView(name: "cheer")
-            animationView.loopAnimation = true
-            animationView.frame = CGRect(x: 6, y: 5, width: 28, height: 28)
-            animationView.isUserInteractionEnabled = false
-            birthdayButton.setBackgroundColor(.clear)
-            birthdayButton.setShadowColor(.clear, for: .normal)
-            birthdayButton.addSubview(animationView)
-            birthdayButton.addTarget(self, action: #selector(birthdayOnClick), for: .touchUpInside)
-            let birthdayItem = UIBarButtonItem(customView: birthdayButton)
-            (birthdayItem.customView?.subviews[(birthdayItem.customView?.subviews.count)! - 1] as! LOTAnimationView).play()
-            self.navigationItem.rightBarButtonItems = [gpaItem, birthdayItem]
-        }
+        if (Utils.isBirthDay()) { showBirthdayButton() }
         
         self.navigationController?.navigationBar.barTintColor = theme.primaryColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -103,6 +89,7 @@ class MainTableViewController: UITableViewController {
         super.viewDidLoad()
         
         initBannerView()
+        initUI()
         initValue()
         
         // send device token for notification
@@ -111,6 +98,7 @@ class MainTableViewController: UITableViewController {
     }
     
     deinit {
+        
         if tableView != nil {
             tableView.dg_removePullToRefresh()
         }
@@ -119,6 +107,7 @@ class MainTableViewController: UITableViewController {
     }
     
     @objc func updateTheme() {
+        
         theme = ThemeManager.currentTheme()
         initTableView()
         tableView.reloadData()
@@ -130,7 +119,6 @@ class MainTableViewController: UITableViewController {
     
     func initValue() {
         
-        initUI()
         let input = Utils.readDataArrayList()
         if input != nil {
             (_, attendances, subjects, disabled, disabled_title, disabled_message, _) = input!
@@ -202,7 +190,6 @@ class MainTableViewController: UITableViewController {
     @objc func gpaOnClick(sender: UINavigationItem) {
         
         if subjects.count == 0 {
-            
             UIAlertView(title: "gpa_not_available".localize,
                         message: "gpa_not_available_because".localize,
                         delegate: nil,
@@ -216,6 +203,22 @@ class MainTableViewController: UITableViewController {
                                            GPAOfficial: studentInfo.GPA ?? Double.nan)
             self.GPADialog.show()
         }
+    }
+    
+    func showBirthdayButton() {
+        
+        let birthdayButton = MDCFloatingButton(shape: .mini)
+        let animationView = LOTAnimationView(name: "cheer")
+        animationView.loopAnimation = true
+        animationView.frame = CGRect(x: 6, y: 5, width: 28, height: 28)
+        animationView.isUserInteractionEnabled = false
+        birthdayButton.setBackgroundColor(.clear)
+        birthdayButton.setShadowColor(.clear, for: .normal)
+        birthdayButton.addSubview(animationView)
+        birthdayButton.addTarget(self, action: #selector(birthdayOnClick), for: .touchUpInside)
+        let birthdayItem = UIBarButtonItem(customView: birthdayButton)
+        (birthdayItem.customView?.subviews[(birthdayItem.customView?.subviews.count)! - 1] as! LOTAnimationView).play()
+        self.navigationItem.rightBarButtonItems?.append(birthdayItem)
     }
     
     @objc func birthdayOnClick() {
@@ -399,7 +402,7 @@ extension MainTableViewController {
         // Show donate every 30 days
         return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
         //        return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
-//                return true
+        //                return true
     }
     
     func getLastDonateShowedDate() -> Date {
@@ -484,12 +487,9 @@ extension MainTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath?) {
-        if (indexPath == nil) {
-            return
-        }
-        guard let tableViewCell = cell as? DashboardCell else {
-            return
-        }
+        
+        if (indexPath == nil) { return  }
+        guard let tableViewCell = cell as? DashboardCell else { return }
         storedOffsets[indexPath!.row] = tableViewCell.collectionViewOffset
     }
     

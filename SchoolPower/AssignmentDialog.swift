@@ -112,4 +112,3 @@ extension AssignmentDialog: UITableViewDelegate, UITableViewDataSource {
         return 40
     }
 }
-
