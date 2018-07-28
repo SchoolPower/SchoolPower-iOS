@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2705427C1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2705427B1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist */; };
 		2705427E1F0887880002C7BE /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2705427D1F0887880002C7BE /* AboutViewController.swift */; };
-		271386941F07711300EC7F2F /* BACKUP.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271386931F07711300EC7F2F /* BACKUP.xib */; };
 		6201D31520138A9600A9255C /* AssignmentDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6201D31420138A9600A9255C /* AssignmentDialog.xib */; };
 		6201D3172013932300A9255C /* AssignmentFlagListItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6201D3162013932300A9255C /* AssignmentFlagListItem.xib */; };
 		6201D3192013938E00A9255C /* AssignmentDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6201D3182013938E00A9255C /* AssignmentDialog.swift */; };
@@ -120,7 +119,6 @@
 		198A4214FD36B15B97C39F02 /* Pods-SchoolPower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SchoolPower.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SchoolPower/Pods-SchoolPower.debug.xcconfig"; sourceTree = "<group>"; };
 		2705427B1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-SchoolPower-acknowledgements.plist"; path = "../Pods/Target Support Files/Pods-SchoolPower/Pods-SchoolPower-acknowledgements.plist"; sourceTree = "<group>"; };
 		2705427D1F0887880002C7BE /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		271386931F07711300EC7F2F /* BACKUP.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BACKUP.xib; sourceTree = "<group>"; };
 		6201D31420138A9600A9255C /* AssignmentDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentDialog.xib; sourceTree = "<group>"; };
 		6201D3162013932300A9255C /* AssignmentFlagListItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentFlagListItem.xib; sourceTree = "<group>"; };
 		6201D3182013938E00A9255C /* AssignmentDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDialog.swift; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 				6205B9151FDB77CD00A124E0 /* TermDialog.xib */,
 				6201D31420138A9600A9255C /* AssignmentDialog.xib */,
 				6204A07B1F39E5A9004B2118 /* NothingView.xib */,
-				271386931F07711300EC7F2F /* BACKUP.xib */,
 				62953B0920D0B869003D681F /* AccentColorCell.xib */,
 				627F928521007DC9001F953B /* DonateDialog.xib */,
 				6207CECB210A0F42001FC013 /* BirthdayDialog.xib */,
@@ -607,7 +604,6 @@
 				6207CEC9210A00CA001FC013 /* cheer.json in Resources */,
 				62377E9721047F92004DE715 /* transtr.py in Resources */,
 				62C34E291F05F5990078D5F8 /* Localizable.strings in Resources */,
-				271386941F07711300EC7F2F /* BACKUP.xib in Resources */,
 				62C34E121F05F2280078D5F8 /* Main.storyboard in Resources */,
 				62C34E151F05F22E0078D5F8 /* Settings.storyboard in Resources */,
 				624CDDE720143E0200BDED7C /* AssignmentFlagCollectionCell.xib in Resources */,
