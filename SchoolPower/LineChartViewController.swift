@@ -49,6 +49,7 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
         initContainer()
+        lineChart.isHidden = true
         if Utils.getFilteredSubjects(subjects: subjects).count > 0 {
             initLineChart()
         }
@@ -69,6 +70,8 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
     func initLineChart(){
         
         CNALabel.isHidden = true
+        lineChart.isHidden = false
+        
         let theme = ThemeManager.currentTheme()
         
         // [SubjectName: [Entry<Date, Grade>]]

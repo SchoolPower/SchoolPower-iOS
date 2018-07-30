@@ -49,6 +49,7 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
         initContainer()
+        radarChart.isHidden = true
         if Utils.getFilteredSubjects(subjects: subjects).count > 0 {
             initRadarChart()
         }
@@ -69,6 +70,7 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
     func initRadarChart(){
         
         CNALabel.isHidden = true
+        radarChart.isHidden = false
         
         let theme = ThemeManager.currentTheme()
         var entries = [RadarChartDataEntry]()

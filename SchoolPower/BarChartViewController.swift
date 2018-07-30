@@ -50,6 +50,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
         initContainer()
+        barChart.isHidden = true
         if Utils.getFilteredSubjects(subjects: subjects).count > 0 {
             initBarChart()
         }
@@ -70,6 +71,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
     func initBarChart() {
         
         CNALabel.isHidden = true
+        barChart.isHidden = false
         
         let theme = ThemeManager.currentTheme()
         var gradedSubjects = [Subject]() // Subjects that have grades
