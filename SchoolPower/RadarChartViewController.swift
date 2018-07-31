@@ -68,11 +68,24 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func initRadarChart(){
+        let theme = ThemeManager.currentTheme()
         
         CNALabel.isHidden = true
         radarChart.isHidden = false
+        radarChart.backgroundColor = theme.cardBackgroundColor
         
-        let theme = ThemeManager.currentTheme()
+        var gradedSubjects = [Subject]() // Subjects that have grades
+        
+        for subject in Utils.getFilteredSubjects(subjects: subjects) {
+            
+            let grade = subject.grades[Utils.getLatestItem(grades: subject.grades)]
+            if grade != nil && grade?.letter != "--" {
+                gradedSubjects.append(subject)
+            }
+        }
+        
+        if gradedSubjects.isEmpty { return }
+        
         var entries = [RadarChartDataEntry]()
         var minGrade = 100.0
         

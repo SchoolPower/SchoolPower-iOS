@@ -70,10 +70,12 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
     
     func initBarChart() {
         
+        let theme = ThemeManager.currentTheme()
+        
         CNALabel.isHidden = true
         barChart.isHidden = false
+        barChart.backgroundColor = theme.cardBackgroundColor
         
-        let theme = ThemeManager.currentTheme()
         var gradedSubjects = [Subject]() // Subjects that have grades
         
         for subject in Utils.getFilteredSubjects(subjects: subjects) {
@@ -143,7 +145,6 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         barChart.groupBars(fromX: 0.0, groupSpace: 0.2, barSpace: 0.1)
         barChart.setVisibleXRange(minXRange: 0.0, maxXRange: 12.0)
         barChart.setScaleEnabled(true)
-        barChart.backgroundColor = theme.cardBackgroundColor
         barChart.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
     }
 }
