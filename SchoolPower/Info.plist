@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.0</string>
 	<key>CFBundleVersion</key>
-	<string>19</string>
+	<string>20</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>alipayqr</string>
@@ -29,12 +29,12 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>我们需要访问您的相机，以拍照上传头像。We need to access the camera so that you can take photos and upload as avatars.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Store the Wechat Payment QR code so that the user can donate with wechat.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>我们需要在相册中储存我们的微信支付码，以便您使用微信捐助我们。We need to store the Wechat Payment QR code so that you can donate us with wechat.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>我们需要访问您的相机，以拍照上传头像。We need to access the camera so that you can take photos and upload as avatars.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
