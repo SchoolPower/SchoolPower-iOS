@@ -32,9 +32,9 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Store the Wechat Payment QR code so that the user can donate with wechat.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Access the photo library so that users can pick their own images and upload as avatars.</string>
+	<string>我们需要在相册中储存我们的微信支付码，以便您使用微信捐助我们。We need to store the Wechat Payment QR code so that you can donate us with wechat.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Access the camera so that users can take photos and upload as avatars.</string>
+	<string>我们需要访问您的相机，以拍照上传头像。We need to access the camera so that you can take photos and upload as avatars.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
