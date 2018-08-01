@@ -22,7 +22,7 @@
 	<string>19</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>alipayauth</string>
+		<string>alipayqr</string>
 		<string>alipay</string>
 		<string>weixin</string>
 		<string>wechat</string>
