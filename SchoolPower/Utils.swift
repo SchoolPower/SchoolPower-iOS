@@ -96,7 +96,13 @@ class Utils {
 extension Utils {
     
     static func getAccent() -> UIColor {
-        return Colors.accentColors[userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)]
+        
+        var accent = userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)
+        if accent == -1 {
+            // Initialize with Cyan
+            accent = Colors.getCyanPosInAccent()
+        }
+        return Colors.accentColors[accent]
     }
     
     static func getColorByLetterGrade(letterGrade: String) -> UIColor {

@@ -28,6 +28,10 @@ class AccentColorViewController: UICollectionViewController {
         collectionView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         
         indexSelected = userDefaults.integer(forKey: ACCENT_COLOR_KEY_NAME)
+        if indexSelected == -1 {
+            // Initialize with Cyan
+            indexSelected = Colors.getCyanPosInAccent()
+        }
     }
     
     deinit {

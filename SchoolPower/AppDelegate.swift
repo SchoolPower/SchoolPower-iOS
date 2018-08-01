@@ -353,7 +353,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.object(forKey: NOTIFY_UNGRADED_KEY_NAME) == nil { userDefaults.register(defaults: [NOTIFY_UNGRADED_KEY_NAME: true]) }
         if userDefaults.object(forKey: LOGGED_IN_KEY_NAME) == nil { userDefaults.register(defaults: [LOGGED_IN_KEY_NAME: false]) }
         if userDefaults.object(forKey: DARK_THEME_KEY_NAME) == nil { userDefaults.register(defaults: [DARK_THEME_KEY_NAME: false]) }
-        if userDefaults.object(forKey: ACCENT_COLOR_KEY_NAME) == nil { userDefaults.register(defaults: [ACCENT_COLOR_KEY_NAME: 7]) }
+        if userDefaults.object(forKey: ACCENT_COLOR_KEY_NAME) == nil { userDefaults.register(defaults: [ACCENT_COLOR_KEY_NAME: -1]) }
         if userDefaults.object(forKey: LAST_TIME_DONATION_SHOWED_KEY_NAME) == nil { userDefaults.register(defaults: [LAST_TIME_DONATION_SHOWED_KEY_NAME: ""]) }
         if userDefaults.object(forKey: IM_COMING_FOR_DONATION_KEY_NAME) == nil { userDefaults.register(defaults: [IM_COMING_FOR_DONATION_KEY_NAME: false]) }
         if userDefaults.object(forKey: USER_AVATAR_KEY_NAME) == nil { userDefaults.register(defaults: [USER_AVATAR_KEY_NAME: ""]) }
