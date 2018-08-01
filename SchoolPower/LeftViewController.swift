@@ -168,7 +168,8 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
     
     func uploadAvatar(image: UIImage) {
         
-        let data = UIImagePNGRepresentation(image)
+        // Compress the image in half in case it's too large
+        let data = UIImageJPEGRepresentation(image, 0.5)
         
         Alamofire.upload(
             multipartFormData: { multipartFormData in
