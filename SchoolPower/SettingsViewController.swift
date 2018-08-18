@@ -153,6 +153,9 @@ class SettingsTableViewController: UITableViewController {
         enableNotificationSwitch.setOn(userDefaults.bool(forKey: ENABLE_NOTIFICATION_KEY_NAME), animated: false)
         showGradesSwitch.setOn(userDefaults.bool(forKey: SHOW_GRADES_KEY_NAME), animated: false)
         notifyUngradedSwitch.setOn(userDefaults.bool(forKey: NOTIFY_UNGRADED_KEY_NAME), animated: false)
+        
+        showGradesSwitch.isEnabled = enableNotificationSwitch.isOn
+        notifyUngradedSwitch.isEnabled = enableNotificationSwitch.isOn
     }
     
     @IBAction func darkThemeSwitchOnChange(_ sender: Any) {
@@ -172,6 +175,8 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func enableNotificationSwichOnChange(_ sender: Any) {
         userDefaults.set(enableNotificationSwitch.isOn, forKey: ENABLE_NOTIFICATION_KEY_NAME)
         userDefaults.synchronize()
+        showGradesSwitch.isEnabled = enableNotificationSwitch.isOn
+        notifyUngradedSwitch.isEnabled = enableNotificationSwitch.isOn
     }
     
     @IBAction func showGradesSwichOnChange(_ sender: Any) {
