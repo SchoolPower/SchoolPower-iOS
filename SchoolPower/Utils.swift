@@ -328,7 +328,6 @@ extension Utils {
             else if termsList.contains("T3") && grades["T3"]?.letter != "--" {return "T3"}
             else if termsList.contains("T2") && grades["T2"]?.letter != "--" {return "T2"}
             else if termsList.contains("T1") {return "T1"}
-            else {return ""}
         }
             
         else{ // for latest term
@@ -337,8 +336,11 @@ extension Utils {
             else if termsList.contains("T3") && grades["T3"]?.letter != "--" {return "T3"}
             else if termsList.contains("T2") && grades["T2"]?.letter != "--" {return "T2"}
             else if termsList.contains("T1") {return "T1"}
-            else {return ""}
         }
+        
+        if termsList.contains("Y1") && grades["Y1"]?.letter != "--" {return "Y1"}
+        
+        return ""
     }
     
     static func getLatestItemGrade(grades: [String: Grade]) -> Grade {
