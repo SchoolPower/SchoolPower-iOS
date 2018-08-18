@@ -24,6 +24,7 @@ class SelectSubjectsTableViewController: UITableViewController {
         
         super.viewDidLoad()
         tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        tableView.separatorColor = ThemeManager.currentTheme().secondaryTextColor.withAlphaComponent(0.3)
         self.title = "select_subjects".localize
         selectedCourceTitles = userDefaults.array(forKey: SELECT_SUBJECTS_KEY_NAME) as! [String]
     }

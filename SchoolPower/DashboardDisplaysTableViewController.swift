@@ -30,6 +30,7 @@ class DashboardDisplaysTableViewController: UITableViewController {
         
         super.viewDidLoad()
         tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        tableView.separatorColor = ThemeManager.currentTheme().secondaryTextColor.withAlphaComponent(0.3)
         self.title = "dashboardDisplays".localize
         dspIndex = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME)
         loadCells()

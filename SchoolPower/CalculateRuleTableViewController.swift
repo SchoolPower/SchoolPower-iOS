@@ -34,6 +34,7 @@ class CalculateRuleTableViewController: UITableViewController {
         
         super.viewDidLoad()
         tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        tableView.separatorColor = ThemeManager.currentTheme().secondaryTextColor.withAlphaComponent(0.3)
         self.title = "calculate_rule".localize
         ruleIndex = userDefaults.integer(forKey: CALCULATE_RULE_KEY_NAME)
         loadCells()

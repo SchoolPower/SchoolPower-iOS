@@ -61,6 +61,7 @@ class SettingsTableViewController: UITableViewController {
         
         loadDetails()
         tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        tableView.separatorColor = ThemeManager.currentTheme().secondaryTextColor.withAlphaComponent(0.3)
         tableView.reloadData()
     }
     

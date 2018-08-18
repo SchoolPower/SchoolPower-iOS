@@ -30,6 +30,7 @@ class LanguageTableViewController: UITableViewController {
         
         super.viewDidLoad()
         tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
+        tableView.separatorColor = ThemeManager.currentTheme().secondaryTextColor.withAlphaComponent(0.3)
         self.title = "language".localize
         languageIndex = userDefaults.integer(forKey: LANGUAGE_KEY_NAME)
         loadCells()
