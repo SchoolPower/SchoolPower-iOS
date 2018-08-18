@@ -48,16 +48,17 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
     
     @objc func loadTheView() {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
-        CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
+        CNALabel.textColor = ThemeManager.currentTheme().secondaryTextColor
+        CNALabel.text = "chart_not_available".localize
         initContainer()
         barChart.isHidden = true
-        if Utils.getFilteredSubjects(subjects: subjects).count > 0 {
+        if Utils.getFilteredSubjects(subjects: subjects).count > 0 &&
+            Utils.getGradedSubjects(subjects: subjects).count > 0 {
             initBarChart()
         }
     }
     
     func initContainer() {
-        
         containerView?.layer.shouldRasterize = true
         containerView?.layer.rasterizationScale = UIScreen.main.scale
         containerView?.layer.shadowOffset = CGSize.init(width: 0, height: 1.5)
@@ -76,19 +77,9 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         barChart.isHidden = false
         barChart.backgroundColor = theme.cardBackgroundColor
         
-        var gradedSubjects = [Subject]() // Subjects that have grades
-        
-        for subject in Utils.getFilteredSubjects(subjects: subjects) {
-            
-            let grade = subject.grades[Utils.getLatestItem(grades: subject.grades)]
-            if grade != nil && grade?.letter != "--" {
-                gradedSubjects.append(subject)
-            }
-        }
-        
-        if gradedSubjects.isEmpty { return }
         barChart.chartDescription?.enabled = false
         
+        let gradedSubjects = Utils.getGradedSubjects(subjects: subjects)
         var dataSets = [BarChartDataSet]()
         var subjectStrings = [String]()
         

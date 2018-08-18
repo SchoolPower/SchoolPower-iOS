@@ -345,8 +345,19 @@ extension Utils {
         return grades[getLatestItem(grades: grades)] ?? Grade(percentage: "--", letter: "--", comment: "", evaluation:"--")
     }
     
+    static func getGradedSubjects(subjects: Array<Subject>) -> Array<Subject> {
+        var gradedSubjects = [Subject]() // Subjects that have grades
+        for subject in getFilteredSubjects(subjects: subjects) {
+            
+            let grade = subject.grades[Utils.getLatestItem(grades: subject.grades)]
+            if grade != nil && grade?.letter != "--" {
+                gradedSubjects.append(subject)
+            }
+        }
+        return gradedSubjects
+    }
+    
     static func getFilteredSubjects(subjects: Array<Subject>) -> Array<Subject> {
-        
         var filteredSubjects: Array<Subject>
         if (!userDefaults.bool(forKey: SHOW_INACTIVE_KEY_NAME)) {
             

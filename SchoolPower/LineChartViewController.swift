@@ -47,10 +47,12 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
     
     @objc func loadTheView() {
         view.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
-        CNALabel.textColor = ThemeManager.currentTheme().primaryTextColor
+        CNALabel.textColor = ThemeManager.currentTheme().secondaryTextColor
+        CNALabel.text = "chart_not_available".localize
         initContainer()
         lineChart.isHidden = true
-        if Utils.getFilteredSubjects(subjects: subjects).count > 0 {
+        if Utils.getFilteredSubjects(subjects: subjects).count > 0 &&
+            Utils.getGradedSubjects(subjects: subjects).count > 0 {
             initLineChart()
         }
     }
@@ -133,7 +135,6 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
             let dataSet = LineChartDataSet(values: value, label: subjectName)
             let color = Colors.materialChartColorList[count]
             dataSet.colors = [color]
-            //??????
             dataSet.circleColors = [color]
             dataSet.circleRadius = 5
             dataSet.circleHoleRadius = 2

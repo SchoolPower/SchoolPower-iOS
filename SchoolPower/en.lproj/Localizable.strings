@@ -151,3 +151,4 @@
 "donate_via_bitcoin" = "Donate via Bitcoin";
 "donate_via_eth" = "Donate via Ethereum";
 "copied" = "Copied";
+"chart_not_available" = "No chart data available";

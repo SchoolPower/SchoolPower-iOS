@@ -219,23 +219,4 @@ class Colors{
     static func getCyanPosInAccent() -> Int {
         return accentColors.index(of: MDCPalette.cyan.tint500) ?? 0
     }
-    
-//    static let accentColors = [
-//        UIColor(rgb: 0xFF1744),
-//        UIColor(rgb: 0xF50057),
-//        UIColor(rgb: 0xD500F9),
-//        UIColor(rgb: 0x651FFF),
-//        UIColor(rgb: 0x3D5AFE),
-//        UIColor(rgb: 0x2979FF),
-//        UIColor(rgb: 0x00B0FF),
-//        UIColor(rgb: 0x00E5FF),
-//        UIColor(rgb: 0x1DE9B6),
-//        UIColor(rgb: 0x00E676),
-//        UIColor(rgb: 0x76FF03),
-//        UIColor(rgb: 0xC6FF00),
-//        UIColor(rgb: 0xFFEA00),
-//        UIColor(rgb: 0xFFC400),
-//        UIColor(rgb: 0xFF9100),
-//        UIColor(rgb: 0xFF3D00)
-//    ]
 }

@@ -151,3 +151,4 @@
 "donate_via_bitcoin" = "使用比特币捐助我们";
 "donate_via_eth" = "使用以太坊捐助我们";
 "copied" = "已拷贝";
+"chart_not_available" = "没有数据呢";
