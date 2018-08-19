@@ -210,7 +210,7 @@ class GPADialogUtil {
         let formerStr = percentageLabel?.text ?? ""
         var strPos: Float = 0
         if formerStr != "" {
-            strPos = Float((formerStr.substring(to: formerStr.index(formerStr.endIndex, offsetBy: -1))))!
+            strPos = Float(formerStr.dropLast())!
         }
         
         ring?.ring1.progress = value.isNaN ? 0.0 : value / divider
