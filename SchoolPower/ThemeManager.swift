@@ -131,5 +131,6 @@ class ThemeManager {
         
         UISwitch.appearance().onTintColor = Utils.getAccent().withAlphaComponent(0.3)
         UISwitch.appearance().thumbTintColor = Utils.getAccent()
+        UISwitch.appearance().tintColor = currentTheme().secondaryTextColor.withAlphaComponent(0.1)
     }
 }
