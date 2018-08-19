@@ -21,6 +21,7 @@ import ActionSheetPicker_3_0
 
 class GPADialogUtil {
     
+    let userDefaults = UserDefaults.standard
     var view: UIView
     var gpaDialog = UIView()
     var allPeriods = NSMutableSet()

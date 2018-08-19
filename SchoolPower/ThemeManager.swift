@@ -110,8 +110,10 @@ enum Theme: Int {
 
 class ThemeManager {
     
+    static let userDefaults = UserDefaults.standard
+    
     static func currentTheme() -> Theme {
-        if let storedTheme = (UserDefaults.standard.value(forKey: DARK_THEME_KEY_NAME) as AnyObject).integerValue {
+        if let storedTheme = (userDefaults.value(forKey: DARK_THEME_KEY_NAME) as AnyObject).integerValue {
             return Theme(rawValue: storedTheme)!
         } else {
             return .dark
@@ -120,8 +122,8 @@ class ThemeManager {
     
     static func applyTheme(theme: Theme) {
         
-        UserDefaults.standard.setValue(theme.rawValue, forKey: DARK_THEME_KEY_NAME)
-        UserDefaults.standard.synchronize()
+        userDefaults.setValue(theme.rawValue, forKey: DARK_THEME_KEY_NAME)
+        userDefaults.synchronize()
         
         UITableViewCell.appearance().backgroundColor = UIColor.clear
         

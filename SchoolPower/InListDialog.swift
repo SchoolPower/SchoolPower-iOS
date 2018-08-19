@@ -17,13 +17,19 @@
 import UIKit
 import MaterialComponents
 
-class DonationDialog: UIView {
+class InListDialog: UIView {
     
-    class func instanceFromNib() -> UIView {
+    class func instanceFromNib(
+        title: String,
+        message: String,
+        primaryText: String,
+        secondaryText: String,
+        dismissText: String
+        ) -> UIView {
         
         let theme = ThemeManager.currentTheme()
         let accent = Utils.getAccent()
-        let view = UINib(nibName: "DonateDialog", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
+        let view = UINib(nibName: "InListDialog", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
         
         view.backgroundColor = theme.windowBackgroundColor
         
@@ -36,29 +42,30 @@ class DonationDialog: UIView {
         card.setShadowColor(UIColor.black.withAlphaComponent(0.5), for: .normal)
         card.setShadowColor(UIColor.black.withAlphaComponent(0.5), for: .highlighted)
         
-        (view.viewWithTag(2) as! UILabel).text = "donation_title".localize
+        
+        (view.viewWithTag(2) as! UILabel).text = title
         (view.viewWithTag(2) as! UILabel).textColor = accent
-        (view.viewWithTag(3) as! UILabel).text = "donation_message".localize
+        (view.viewWithTag(3) as! UILabel).text = message
         (view.viewWithTag(3) as! UILabel).textColor = theme.primaryTextColor
         
-        let donationButton = (view.viewWithTag(4) as! MDCFlatButton)
-        let promotionButton = (view.viewWithTag(5) as! MDCFlatButton)
+        let primaryButton = (view.viewWithTag(4) as! MDCFlatButton)
+        let secondaryButton = (view.viewWithTag(5) as! MDCFlatButton)
         let dismissButton = (view.viewWithTag(6) as! MDCFlatButton)
         
-        let title = donationButton.attributedTitle(for: .normal)!
-        title.setValue("donation_ok".localize, forKey: "string")
-        donationButton.setAttributedTitle(title, for: .normal)
-        donationButton.titleLabel?.textColor = accent
-        donationButton.backgroundColor = .clear
-        donationButton.inkColor = theme.primaryTextColor.withAlphaComponent(0.1)
+        let title = primaryButton.attributedTitle(for: .normal)!
+        title.setValue(primaryText, forKey: "string")
+        primaryButton.setAttributedTitle(title, for: .normal)
+        primaryButton.titleLabel?.textColor = accent
+        primaryButton.backgroundColor = .clear
+        primaryButton.inkColor = theme.primaryTextColor.withAlphaComponent(0.1)
         
-        title.setValue("donation_promote".localize, forKey: "string")
-        promotionButton.setAttributedTitle(title, for: .normal)
-        promotionButton.titleLabel?.textColor = accent
-        promotionButton.backgroundColor = .clear
-        promotionButton.inkColor = theme.primaryTextColor.withAlphaComponent(0.1)
+        title.setValue(secondaryText, forKey: "string")
+        secondaryButton.setAttributedTitle(title, for: .normal)
+        secondaryButton.titleLabel?.textColor = accent
+        secondaryButton.backgroundColor = .clear
+        secondaryButton.inkColor = theme.primaryTextColor.withAlphaComponent(0.1)
         
-        title.setValue("donation_cancel".localize, forKey: "string")
+        title.setValue(dismissText, forKey: "string")
         dismissButton.setAttributedTitle(title, for: .normal)
         dismissButton.titleLabel?.textColor = theme.primaryTextColor
         dismissButton.backgroundColor = .clear

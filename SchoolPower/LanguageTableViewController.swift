@@ -18,6 +18,7 @@ import UIKit
 
 class LanguageTableViewController: UITableViewController {
     
+    let userDefaults = UserDefaults.standard
     @IBOutlet weak var itemdef: UITableViewCell?
     @IBOutlet weak var itemeng: UITableViewCell?
     @IBOutlet weak var itemchit: UITableViewCell?
@@ -53,7 +54,7 @@ class LanguageTableViewController: UITableViewController {
         cell?.isSelected = false
         
         userDefaults.set(indexPath.row, forKey: LANGUAGE_KEY_NAME)
-        userDefaults.synchronize()
+        
         let selectedLang = LOCALE_SET[indexPath.row]
         DGLocalization.sharedInstance.setLanguage(withCode: selectedLang)
         

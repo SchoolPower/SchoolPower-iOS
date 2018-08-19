@@ -32,6 +32,8 @@ let IOS_DOWNLOAD_ADDRESS = "https://itunes.apple.com/cn/app/schoolpower/id125537
 let AVATAR_URL = "https://api.schoolpower.tech/api/2.0/set_avatar.php"
 let IMAGE_UPLOAD_URL = "https://sm.ms/api/upload"
 let PAYPAL_DONATION_URL = "https://paypal.me/GWang828"
+let ILD_URL = "https://files.schoolpower.tech/ild.json"
+
 let BITCOIN_ADDRESS = "1NRdAgeRdapbRe3JQRmNCRfWHR3T664jKf"
 let ETHEREUM_ADDRESS = "0x3C170f8dd9A2B28554f8bA034B0fF72FfF92FBa7"
 
@@ -55,6 +57,8 @@ let IM_COMING_FOR_DONATION_KEY_NAME = "ImComingForDonation"
 let USER_AVATAR_KEY_NAME = "userAvatar"
 let STUDENT_DOB_KEY_NAME = "studentDOB"
 let DONATED_KEY_NAME = "donated"
+let LOCAL_ILD_KEY_NAME = "localILD"
+let DISPLAYED_ILD_KEY_NAME = "displayedILD"
 
 
 let CUSTOM_RULES = ["all", "highest_3", "highest_4", "highest_5"]
@@ -67,13 +71,11 @@ let LOCALE_SET = [Locale().initWithLanguageCode(languageCode: Bundle.main.prefer
                   Locale().initWithLanguageCode(languageCode: "zh-Hant", countryCode: "cn", name: "China"),
                   Locale().initWithLanguageCode(languageCode: "zh-Hans", countryCode: "cn", name: "China")]
 
-let userDefaults = UserDefaults.standard
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var window: UIWindow?
     let userDefaults = UserDefaults.standard
+    var window: UIWindow?
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
@@ -117,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.object(forKey: TOKEN_KEY_NAME) == nil {
             
             userDefaults.register(defaults: [TOKEN_KEY_NAME: token])
-            userDefaults.synchronize()
+            
             
             Utils.sendNotificationRegistry(token: token)
             
@@ -132,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if userDefaults.object(forKey: TOKEN_KEY_NAME) == nil {
             userDefaults.register(defaults: [TOKEN_KEY_NAME: ""])
-            userDefaults.synchronize()
+            
         } else {
             userDefaults.set("", forKey: TOKEN_KEY_NAME)
         }
@@ -360,8 +362,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.object(forKey: USER_AVATAR_KEY_NAME) == nil { userDefaults.register(defaults: [USER_AVATAR_KEY_NAME: ""]) }
         if userDefaults.object(forKey: STUDENT_DOB_KEY_NAME) == nil { userDefaults.register(defaults: [STUDENT_DOB_KEY_NAME: ""]) }
         if userDefaults.object(forKey: DONATED_KEY_NAME) == nil { userDefaults.register(defaults: [DONATED_KEY_NAME: false]) }
-        
-        userDefaults.synchronize()
+        if userDefaults.object(forKey: LOCAL_ILD_KEY_NAME) == nil { userDefaults.register(defaults: [LOCAL_ILD_KEY_NAME: ""]) }
+        if userDefaults.object(forKey: DISPLAYED_ILD_KEY_NAME) == nil { userDefaults.register(defaults: [DISPLAYED_ILD_KEY_NAME: [String]()]) }
     }
 }
 

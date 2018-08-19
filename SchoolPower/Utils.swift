@@ -31,6 +31,8 @@ extension JSON{
 
 class Utils {
     
+    static let userDefaults = UserDefaults.standard
+    
     static let gradeColorIds = [
         Colors.A_score_green,
         Colors.B_score_green,
@@ -206,6 +208,27 @@ extension Utils {
 
 //MARK: Post
 extension Utils {
+    
+    static func sendGet(url: String, params: String, completion: @escaping (_ retResponse: String) -> ()) {
+        
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "GET"
+        request.httpBody = params.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                //networking error
+                completion("NETWORK_ERROR")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                print("response = \(String(describing: response))")
+            }
+            completion(String(data: data, encoding: .utf8)!)
+        }
+        task.resume()
+    }
     
     static func sendPost(url: String, params: String, completion: @escaping (_ retResponse: String) -> ()) {
         

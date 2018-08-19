@@ -18,6 +18,7 @@ import UIKit
 
 class CalculateRuleTableViewController: UITableViewController {
     
+    let userDefaults = UserDefaults.standard
     @IBOutlet weak var itemAll: UITableViewCell?
     @IBOutlet weak var itemHighest3: UITableViewCell?
     @IBOutlet weak var itemHighest4: UITableViewCell?
@@ -60,7 +61,7 @@ class CalculateRuleTableViewController: UITableViewController {
         cell?.isSelected = false
         
         userDefaults.set(indexPath.row, forKey: CALCULATE_RULE_KEY_NAME)
-        userDefaults.synchronize()
+        
         
         self.navigationController?.popViewController(animated: true)
     }

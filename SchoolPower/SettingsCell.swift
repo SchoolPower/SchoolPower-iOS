@@ -18,10 +18,10 @@ import UIKit
 
 class SettingsCell: UITableViewCell {
     
+    let userDefaults = UserDefaults.standard
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var itemDescription: UILabel!
-    
-    let userDefaults = UserDefaults.standard
+
     var keySets = [String]()
     var titleSets = [String]()
     var descriptionSets = [[String]]()

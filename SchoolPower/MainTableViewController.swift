@@ -17,6 +17,7 @@
 import UIKit
 import Lottie
 import Material
+import SwiftyJSON
 import GoogleMobileAds
 import MaterialComponents
 import CustomIOSAlertView
@@ -35,6 +36,7 @@ var disabled_message = "PowerSchool 目前被学校禁用，请联系学校以�
 
 class MainTableViewController: UITableViewController {
     
+    let userDefaults = UserDefaults.standard
     var bannerView: GADBannerView!
     var loadingView: DGElasticPullToRefreshLoadingViewCircle!
     var GPADialog = GPADialogUtil()
@@ -47,8 +49,10 @@ class MainTableViewController: UITableViewController {
     var storedOffsets = [Int: CGFloat]()
     let kSectionHeaderHeight: CGFloat = 16
     
-    let userDefaults = UserDefaults.standard
     var theme = ThemeManager.currentTheme()
+    
+    var needDisplayILD = false
+    var ILDInfo: ILDNotification!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -74,6 +78,7 @@ class MainTableViewController: UITableViewController {
         
         self.title = "dashboard".localize
         self.tableView.layoutIfNeeded()
+        fetchLocalILD()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
@@ -93,7 +98,7 @@ class MainTableViewController: UITableViewController {
         initValue()
         
         // send device token for notification
-        let token = self.userDefaults.string(forKey: TOKEN_KEY_NAME)
+        let token = userDefaults.string(forKey: TOKEN_KEY_NAME)
         if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!) }
     }
     
@@ -125,6 +130,7 @@ class MainTableViewController: UITableViewController {
         }
         if self.navigationController?.view.tag == 1 {
             initDataJson()
+            fetchILD()
         }
     }
     
@@ -239,6 +245,27 @@ class MainTableViewController: UITableViewController {
 
 //MARK: Data Json
 extension MainTableViewController {
+    
+    func fetchLocalILD() {
+        let data = userDefaults.string(forKey: LOCAL_ILD_KEY_NAME) ?? ""
+        if data.contains("{") {
+            self.showILD(data: ILDNotification(json: JSON(parseJSON: data)))
+        }
+    }
+    
+    func fetchILD() {
+        Utils.sendGet(
+            url: ILD_URL,
+            params: "") { (value) in
+            let response = value
+            if response.contains("{") {
+                self.showILD(data: ILDNotification(json: JSON(parseJSON: response)))
+                self.userDefaults.set(response, forKey: LOCAL_ILD_KEY_NAME)
+            } else {
+                self.fetchLocalILD()
+            }
+        }
+    }
     
     func initDataJson() {
         
@@ -399,8 +426,8 @@ extension MainTableViewController {
         } else {
             return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
         }
-        //        return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
-        //                return true
+//                return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
+//                        return false
     }
     
     func isDonated() -> Bool {
@@ -424,18 +451,50 @@ extension MainTableViewController {
     @objc func gotoDonation() {
         userDefaults.set(true, forKey: IM_COMING_FOR_DONATION_KEY_NAME)
         (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Support Us"), animated: true)
-        dismissDonationHeader()
+        setLastDonateShowedDate(date: Date.init())
+        dismissAllILD()
     }
     
     @objc func gotoPromotion() {
         (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Support Us"), animated: true)
-        dismissDonationHeader()
+        setLastDonateShowedDate(date: Date.init())
+        dismissAllILD()
     }
     
-    @objc func dismissDonationHeader() {
+    @objc func dismissDonation() {
         setLastDonateShowedDate(date: Date.init())
-        tableView.sectionHeaderHeight = kSectionHeaderHeight
+        dismissAllILD()
+    }
+    
+    @objc func dismissAllILD() {
+        
+        if needDisplayILD && ILDInfo != nil {
+            if ILDInfo.onlyOnce {
+                var displayedILDs = userDefaults.stringArray(forKey: DISPLAYED_ILD_KEY_NAME) ?? [String]()
+                displayedILDs.append(ILDInfo.uuid)
+                userDefaults.set(displayedILDs, forKey: DISPLAYED_ILD_KEY_NAME)
+            }
+        }
+        
+        needDisplayILD = false
+        ILDInfo = nil
+        DispatchQueue.main.async {
+            self.tableView.sectionHeaderHeight = self.kSectionHeaderHeight
+        }
         tableView.reloadSections([0], with: .top)
+    }
+    
+    private func showILD(data: ILDNotification) {
+        let displayedILDs = userDefaults.stringArray(forKey: DISPLAYED_ILD_KEY_NAME) ?? [String]()
+        if !displayedILDs.contains(data.uuid) {
+            if data.show {
+                needDisplayILD = true
+                ILDInfo = data
+                tableView.reloadData()
+            } else {
+                fetchLocalILD()
+            }
+        }
     }
 }
 
@@ -450,15 +509,48 @@ extension MainTableViewController {
             tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         } else {
             tableView.backgroundView = nil
-            if needToShowDonate() {
-                // Show donation dialog as header
+            
+            if needDisplayILD {
+                
+                var lang = 0
+                switch DGLocalization.sharedInstance.getCurrentLanguage().languageCode {
+                case "en": lang = 0
+                case "zh-Hans": lang = 1
+                case "zh-Hant": lang = 0
+                default: lang = 0
+                }
+                
                 tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
-                let view = DonationDialog.instanceFromNib()
-                (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(gotoDonation), for: .touchUpInside)
-                (view.viewWithTag(5) as! MDCFlatButton).addTarget(self, action: #selector(gotoPromotion), for: .touchUpInside)
-                (view.viewWithTag(6) as! MDCFlatButton).addTarget(self, action: #selector(dismissDonationHeader), for: .touchUpInside)
+                let view = InListDialog.instanceFromNib(
+                    title: ILDInfo.titles[lang],
+                    message: ILDInfo.messages[lang],
+                    primaryText: ILDInfo.primaryTexts[lang],
+                    secondaryText: ILDInfo.secondaryTexts[lang],
+                    dismissText: ILDInfo.dismissTexts[lang]
+                )
+                
+                (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(dismissAllILD), for: .touchUpInside)
                 tableView.reloadSections([0], with: .top)
                 return view
+                
+            } else if needToShowDonate() {
+                
+                // Show donation dialog as header
+                tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+                let donation = ILDNotification(json: JSON())
+                donation.show = true
+                let view = InListDialog.instanceFromNib(
+                    title: "donation_title".localize,
+                    message: "donation_message".localize,
+                    primaryText: "donation_ok".localize,
+                    secondaryText: "donation_promote".localize,
+                    dismissText: "donation_cancel".localize)
+                (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(gotoDonation), for: .touchUpInside)
+                (view.viewWithTag(5) as! MDCFlatButton).addTarget(self, action: #selector(gotoPromotion), for: .touchUpInside)
+                (view.viewWithTag(6) as! MDCFlatButton).addTarget(self, action: #selector(dismissDonation), for: .touchUpInside)
+                tableView.reloadSections([0], with: .top)
+                return view
+                
             } else {
                 tableView.sectionHeaderHeight = kSectionHeaderHeight
             }

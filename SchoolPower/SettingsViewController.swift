@@ -20,6 +20,7 @@ import MaterialComponents
 
 class SettingsTableViewController: UITableViewController {
     
+    let userDefaults = UserDefaults.standard
     @IBOutlet weak var darkThemeTitle: UILabel?
     @IBOutlet weak var accentColorTitle: UILabel?
     
@@ -168,26 +169,26 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func showInactiveSwichOnChange(_ sender: Any) {
         userDefaults.set(showInactiveSwitch.isOn, forKey: SHOW_INACTIVE_KEY_NAME)
-        userDefaults.synchronize()
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateShowInactive"), object: nil)
     }
     
     @IBAction func enableNotificationSwichOnChange(_ sender: Any) {
         userDefaults.set(enableNotificationSwitch.isOn, forKey: ENABLE_NOTIFICATION_KEY_NAME)
-        userDefaults.synchronize()
+        
         showGradesSwitch.isEnabled = enableNotificationSwitch.isOn
         notifyUngradedSwitch.isEnabled = enableNotificationSwitch.isOn
     }
     
     @IBAction func showGradesSwichOnChange(_ sender: Any) {
         userDefaults.set(showGradesSwitch.isOn, forKey: SHOW_GRADES_KEY_NAME)
-        userDefaults.synchronize()
+        
     }
     
     
     @IBAction func notifyUngradedSwichOnChange(_ sender: Any) {
         userDefaults.set(notifyUngradedSwitch.isOn, forKey: NOTIFY_UNGRADED_KEY_NAME)
-        userDefaults.synchronize()
+        
     }
 }
 

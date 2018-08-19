@@ -22,6 +22,7 @@ import Photos
 
 class DonationViewController: UIViewController, IndicatorInfoProvider {
     
+    let userDefaults = UserDefaults.standard
     var navController: UINavigationController!
     var currentCryptoType = CryptoDialog.CryptoType.BITCOIN
     

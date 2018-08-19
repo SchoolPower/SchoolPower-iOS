@@ -18,12 +18,12 @@ import UIKit
 
 class DashboardDisplaysTableViewController: UITableViewController {
 
+    let userDefaults = UserDefaults.standard
     @IBOutlet weak var itemTermTitle: UILabel?
     @IBOutlet weak var itemSemesterTitle: UILabel?
     @IBOutlet weak var itemTerm: UITableViewCell?
     @IBOutlet weak var itemSemester: UITableViewCell?
     
-    let userDefaults = UserDefaults.standard
     var dspIndex: Int = 0
     
     override func viewDidLoad() {
@@ -55,7 +55,7 @@ class DashboardDisplaysTableViewController: UITableViewController {
         cell?.isSelected = false
         
         userDefaults.set(indexPath.row, forKey: DASHBOARD_DISPLAY_KEY_NAME)
-        userDefaults.synchronize()
+        
         
         self.navigationController?.popViewController(animated: true)
     }

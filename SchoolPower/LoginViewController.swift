@@ -23,14 +23,13 @@ var toPop = true
 
 class LoginViewController: UIViewController {
     
+    let userDefaults = UserDefaults.standard
     @IBOutlet weak var appIcon: UIImageView?
     @IBOutlet weak var copyright: UILabel?
     
     var usernameField: TextField!
     var passwordField: TextField!
     var button: FABButton!
-    
-    let userDefaults = UserDefaults.standard
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -100,7 +99,7 @@ class LoginViewController: UIViewController {
                 self.userDefaults.set(studentInfo.getFullName(), forKey: STUDENT_NAME_KEY_NAME)
                 self.userDefaults.set(studentInfo.dob, forKey: STUDENT_DOB_KEY_NAME)
                 self.userDefaults.set(extraInfo.avatar, forKey: USER_AVATAR_KEY_NAME)
-                self.userDefaults.synchronize()
+            
                 
                 let token = self.userDefaults.string(forKey: TOKEN_KEY_NAME)
                 if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!) }

@@ -20,6 +20,7 @@ import XLPagerTabStrip
 
 class SupportViewController: ButtonBarPagerTabStripViewController {
     
+    let userDefaults = UserDefaults.standard
     fileprivate var firstLoaded = false
     
     let promotion = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PromotionVC")

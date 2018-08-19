@@ -22,6 +22,7 @@ import DGElasticPullToRefresh
 
 class AttendanceTableViewController: UITableViewController {
     
+    let userDefaults = UserDefaults.standard
     var bannerView: GADBannerView!
     var attendanceList: [Attendance] = Array()
     var loadingView: DGElasticPullToRefreshLoadingViewCircle!

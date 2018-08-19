@@ -18,6 +18,7 @@ import UIKit
 
 class SelectSubjectsTableViewController: UITableViewController {
     
+    let userDefaults = UserDefaults.standard
     var selectedCourceTitles = [String]()
     
     override func viewDidLoad() {
@@ -70,6 +71,6 @@ extension SelectSubjectsTableViewController {
         }
         
         userDefaults.set(selectedCourceTitles, forKey: SELECT_SUBJECTS_KEY_NAME)
-        userDefaults.synchronize()
+        
     }
 }

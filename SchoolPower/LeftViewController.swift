@@ -25,6 +25,7 @@ import VTAcknowledgementsViewController
 class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
 UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImagePickerControllerDelegate {
     
+    let userDefaults = UserDefaults.standard
     var presentFragment: Int?
     
     @IBOutlet weak var viewBackground: UIView?
@@ -34,7 +35,6 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
     @IBOutlet weak var headerUserID: UILabel?
     @IBOutlet weak var avatarButton: MDCFloatingButton!
     
-    let userDefaults = UserDefaults.standard
     var navController: UINavigationController!
     var imagePicker = UIImagePickerController()
     

@@ -18,6 +18,7 @@ import UIKit
 
 class AccentColorViewController: UICollectionViewController {
     
+    let userDefaults = UserDefaults.standard
     fileprivate let itemDiameter: CGFloat = 70.0
     fileprivate var indexSelected: Int = 0
     

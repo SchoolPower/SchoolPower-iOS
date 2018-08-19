@@ -23,6 +23,7 @@ import UIKit
 
 class DGLocalization:NSObject {
     
+    let userDefaults = UserDefaults.standard
     weak var Delegate:DGLocalizationDelegate?
     
     //MARK:- Instance var
@@ -47,7 +48,6 @@ class DGLocalization:NSObject {
     //MARK:- Methods
     func startLocalization(){
         
-        let userDefaults = UserDefaults.standard
         let languageManager = DGLocalization.sharedInstance
         
         // Check if the language code has been already been set or not.
@@ -82,7 +82,7 @@ class DGLocalization:NSObject {
     
     func setLanguage(withCode langCode: AnyObject) {
         let langCode = langCode as! Locale
-        UserDefaults.standard.set(langCode.languageCode, forKey: DEFAULTS_KEY_LANGUAGE_CODE)
+        userDefaults.set(langCode.languageCode, forKey: DEFAULTS_KEY_LANGUAGE_CODE)
         //delegate
         if let delegate = Delegate {
             delegate.languageDidChanged!(to: langCode.languageCode! as (String))
@@ -94,12 +94,12 @@ class DGLocalization:NSObject {
     // DIP Return a translated string for the given string key.
     func getTranslationForKey(key: NSString)->NSString {
         
-        if UserDefaults.standard.integer(forKey: "language") == 0 {
+        if userDefaults.integer(forKey: "language") == 0 {
             setLanguage(withCode: Locale().initWithLanguageCode(languageCode: Bundle.main.preferredLocalizations.first! as NSString, countryCode: "gb", name: "United Kingdom"))
         }
         
         // Get the language code.
-        let languageCode =  UserDefaults.standard.string(forKey: DEFAULTS_KEY_LANGUAGE_CODE)
+        let languageCode =  userDefaults.string(forKey: DEFAULTS_KEY_LANGUAGE_CODE)
         
         // Get language bundle that is relevant.
         let bundlePath = Bundle.main.path(forResource: languageCode as String?, ofType: "lproj")

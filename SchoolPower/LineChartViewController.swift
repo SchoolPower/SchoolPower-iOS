@@ -21,6 +21,7 @@ import XLPagerTabStrip
 
 class LineChartViewController: UIViewController, IndicatorInfoProvider {
     
+    let userDefaults = UserDefaults.standard
     @IBOutlet weak var lineChart: LineChartView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var CNALabel: UILabel!
