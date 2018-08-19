@@ -43,10 +43,15 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
     override func viewDidLoad() {
         loadTheView()
     }
+    
+    private func setIsDonated(donated: Bool) {
+        userDefaults.set(donated, forKey: DONATED_KEY_NAME)
+    }
+    
     @IBAction func alipayOnClick(_ sender: MDCCard)  {
-        
         if UIApplication.shared.canOpenURL(NSURL(string: "alipayqr://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=https://qr.alipay.com/tsx09230fuwngogndwbkg3b")! as URL) {
             UIApplication.shared.openURL(NSURL(string: "alipayqr://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=https://qr.alipay.com/tsx09230fuwngogndwbkg3b")! as URL)
+            setIsDonated(donated: true)
         } else {
             notifyAlipayUnavailable()
         }
@@ -58,16 +63,19 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
     
     @IBAction func paypalOnClick(_ sender: MDCCard) {
         UIApplication.shared.openURL(NSURL(string: PAYPAL_DONATION_URL)! as URL)
+        setIsDonated(donated: true)
     }
     
     @IBAction func bitcoinOnClick(_ sender: MDCCard) {
         currentCryptoType = CryptoDialog.CryptoType.BITCOIN
         showCryptoDialog(cryptoType: currentCryptoType)
+        setIsDonated(donated: true)
     }
     
     @IBAction func ethereumOnClick(_ sender: MDCCard) {
         currentCryptoType = CryptoDialog.CryptoType.ETHEREUM
         showCryptoDialog(cryptoType: currentCryptoType)
+        setIsDonated(donated: true)
     }
     
     func initWechatInstruction() {
@@ -134,6 +142,7 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
             if isPhotoPermissionGranted() {
                 UIImageWriteToSavedPhotosAlbum(#imageLiteral(resourceName: "wechat_qr"), nil, nil, nil)
                 UIApplication.shared.openURL(NSURL(string: "weixin://scanqrcode")! as URL)
+                setIsDonated(donated: true)
                 dissmissInstruction()
             } else {
                 dissmissInstruction()

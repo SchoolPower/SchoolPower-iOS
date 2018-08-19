@@ -398,11 +398,19 @@ extension MainTableViewController {
         MDCSnackbarManager.show(message)
     }
     
-    func shouldShowDonationHeader() -> Bool {
+    func needToShowDonate() -> Bool {
         // Show donate every 30 days
-        return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
+        if isDonated() {
+            return false
+        } else {
+            return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
+        }
         //        return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
         //                return true
+    }
+    
+    func isDonated() -> Bool {
+        return userDefaults.bool(forKey: DONATED_KEY_NAME)
     }
     
     func getLastDonateShowedDate() -> Date {
@@ -448,7 +456,7 @@ extension MainTableViewController {
             tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         } else {
             tableView.backgroundView = nil
-            if shouldShowDonationHeader() {
+            if needToShowDonate() {
                 // Show donation dialog as header
                 tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
                 let view = DonationDialog.instanceFromNib()
