@@ -189,18 +189,12 @@ class MainTableViewController: UITableViewController {
     
     @objc func gpaOnClick(sender: UINavigationItem) {
         
+        self.GPADialog = GPADialogUtil(view: self.view,
+                                       subjectsForGPA: subjects,
+                                       GPAOfficial: studentInfo.GPA ?? Double.nan)
         if subjects.count == 0 {
-            UIAlertView(title: "gpa_not_available".localize,
-                        message: "gpa_not_available_because".localize,
-                        delegate: nil,
-                        cancelButtonTitle: "alright".localize)
-                .show()
-            
+            self.GPADialog.GPANotAvailable()
         } else {
-            
-            self.GPADialog = GPADialogUtil(view: self.view,
-                                           subjectsForGPA: subjects,
-                                           GPAOfficial: studentInfo.GPA ?? Double.nan)
             self.GPADialog.show()
         }
     }

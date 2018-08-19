@@ -51,7 +51,7 @@ class StudentInformation {
     var photoDate : String
 
     init(json:JSON) {
-        GPA        = json["currentGPA"].double
+        GPA        = json["currentGPA"].doubleValue
         //id         = Int(json["id"].stringValue)!
         gender     = (json["gender"].stringValue == "M") ? Gender.Male : Gender.Female
         dob        = json["dob"].stringValue

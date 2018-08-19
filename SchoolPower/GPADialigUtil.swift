@@ -48,15 +48,19 @@ class GPADialogUtil {
             .index(of: Utils.getLatestPeriod(subject: subjectsForGPA)) ?? -1
         
         if currentTerm == -1 {
-            UIAlertView(title: "gpa_not_available".localize,
-                        message: "gpa_not_available_because".localize,
-                        delegate: nil,
-                        cancelButtonTitle: "alright".localize)
-                .show()
+            GPANotAvailable()
             return
         }
             
         constructView()
+    }
+    
+    func GPANotAvailable() {
+        UIAlertView(title: "gpa_not_available".localize,
+                    message: "gpa_not_available_because".localize,
+                    delegate: nil,
+                    cancelButtonTitle: "alright".localize)
+            .show()
     }
     
     private func customGPANotAvailable() {
@@ -84,7 +88,7 @@ class GPADialogUtil {
             }
             break
         case 2:
-            animateProgressView(value: self.GPAOfficial)
+            animateProgressView(value: self.GPAOfficial, divider: 4.0, multiplier: 1, format: "%.4f")
             break
         default:
             animateProgressView()
@@ -110,7 +114,6 @@ class GPADialogUtil {
         termPullDown.addTarget(self, action: #selector(termOnClick), for: .touchUpInside)
         termPullDown.setTitle(self.allPeriods.allObjects[currentTerm] as? String, for: .normal)
         
-        percentageLabel?.format = "%.3f%%"
         gpaDialog.center = subview.center
         subview.addSubview(gpaDialog)
         
@@ -199,7 +202,7 @@ class GPADialogUtil {
         }
     }
     
-    @objc func animateProgressView(value: Double = 0) {
+    @objc func animateProgressView(value: Double = 0, divider: Double = 1, multiplier: Double = 100, format: String = "%.3f%%") {
         
         CATransaction.begin()
         CATransaction.setAnimationDuration(1.0)
@@ -210,13 +213,14 @@ class GPADialogUtil {
             strPos = Float((formerStr.substring(to: formerStr.index(formerStr.endIndex, offsetBy: -1))))!
         }
         
-        ring?.ring1.progress = value.isNaN ? 0.0 : value
+        ring?.ring1.progress = value.isNaN ? 0.0 : value / divider
         ring?.ring1.startColor = Utils.getColorByLetterGrade(
-            letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: value * 100))
+            letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: value / divider * 100))
         ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
         
         let duration = formerStr.contains("nan") ? 0.0 : 1.0
-        percentageLabel?.countFrom(fromValue: strPos, to: Float(value * 100), withDuration: duration,
+        percentageLabel?.format = format
+        percentageLabel?.countFrom(fromValue: strPos, to: Float(value * multiplier), withDuration: duration,
                                    andAnimationType: .EaseOut, andCountingType: .Custom)
         
         CATransaction.commit()
