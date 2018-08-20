@@ -463,17 +463,20 @@ extension MainTableViewController {
         userDefaults.set(true, forKey: IM_COMING_FOR_DONATION_KEY_NAME)
         (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Support Us"), animated: true)
         setLastDonateShowedDate(date: Date.init())
+        needShowDonate = false
         dismissAllILD()
     }
     
     @objc func gotoPromotion() {
         (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Support Us"), animated: true)
         setLastDonateShowedDate(date: Date.init())
+        needShowDonate = false
         dismissAllILD()
     }
     
     @objc func dismissDonation() {
         setLastDonateShowedDate(date: Date.init())
+        needShowDonate = false
         dismissAllILD()
     }
     
