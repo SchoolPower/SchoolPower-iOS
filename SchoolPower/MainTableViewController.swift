@@ -505,8 +505,9 @@ extension MainTableViewController {
             if data.show {
                 needDisplayILD = true
                 ILDInfo = data
-                tableView.reloadData()
-                tableView.sectionHeaderHeight = (tableView.headerView(forSection: 0)?.height)!
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
                 return true
             }
         }
@@ -532,7 +533,7 @@ extension MainTableViewController {
                 switch DGLocalization.sharedInstance.getCurrentLanguage().languageCode {
                 case "en": lang = 0
                 case "zh-Hans": lang = 1
-                case "zh-Hant": lang = 0
+                case "zh-Hant": lang = 2
                 default: lang = 0
                 }
                 
