@@ -51,6 +51,7 @@ class MainTableViewController: UITableViewController {
     
     var theme = ThemeManager.currentTheme()
     
+    var needShowDonate = false
     var needDisplayILD = false
     var ILDInfo: ILDNotification!
     
@@ -79,6 +80,7 @@ class MainTableViewController: UITableViewController {
         self.title = "dashboard".localize
         self.tableView.layoutIfNeeded()
         fetchLocalILD()
+        needToShowDonate()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
@@ -161,14 +163,13 @@ class MainTableViewController: UITableViewController {
     func initTableView() {
         
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
-        tableView.estimatedRowHeight = kCloseCellHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = kCloseCellHeight
+//        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = theme.windowBackgroundColor
         tableView.separatorColor = .clear
         tableView.contentInset = UIEdgeInsetsMake(0, 0, bannerView.frame.height, 0)
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
         tableView.estimatedSectionHeaderHeight = 300;
-        tableView.estimatedRowHeight = 60;
         tableView.layoutIfNeeded()
         initRefreshView()
     }
@@ -248,8 +249,15 @@ extension MainTableViewController {
     
     func fetchLocalILD() {
         let data = userDefaults.string(forKey: LOCAL_ILD_KEY_NAME) ?? ""
+        var showed = false
         if data.contains("{") {
-            self.showILD(data: ILDNotification(json: JSON(parseJSON: data)))
+            showed = self.showILD(data: ILDNotification(json: JSON(parseJSON: data)))
+        }
+        if showed { return }
+        
+        DispatchQueue.main.async {
+            self.needShowDonate = self.needToShowDonate()
+            self.tableView.reloadData()
         }
     }
     
@@ -259,8 +267,11 @@ extension MainTableViewController {
             params: "") { (value) in
             let response = value
             if response.contains("{") {
-                self.showILD(data: ILDNotification(json: JSON(parseJSON: response)))
+                let showed = self.showILD(data: ILDNotification(json: JSON(parseJSON: response)))
                 self.userDefaults.set(response, forKey: LOCAL_ILD_KEY_NAME)
+                if !showed {
+                    self.fetchLocalILD()
+                }
             } else {
                 self.fetchLocalILD()
             }
@@ -484,17 +495,19 @@ extension MainTableViewController {
         }
     }
     
-    private func showILD(data: ILDNotification) {
+    private func showILD(data: ILDNotification) -> Bool {
+        
         let displayedILDs = userDefaults.stringArray(forKey: DISPLAYED_ILD_KEY_NAME) ?? [String]()
         if !displayedILDs.contains(data.uuid) {
             if data.show {
                 needDisplayILD = true
                 ILDInfo = data
                 tableView.reloadData()
-            } else {
-                fetchLocalILD()
+                tableView.sectionHeaderHeight = (tableView.headerView(forSection: 0)?.height)!
+                return true
             }
         }
+        return false
     }
 }
 
@@ -534,9 +547,10 @@ extension MainTableViewController {
                 (view.viewWithTag(5) as! MDCFlatButton).gone(yes: ILDInfo.hideSecondary)
                 (view.viewWithTag(6) as! MDCFlatButton).gone(yes: ILDInfo.hideDismiss)
                 tableView.reloadSections([0], with: .top)
+                
                 return view
                 
-            } else if needToShowDonate() {
+            } else if needShowDonate {
                 
                 // Show donation dialog as header
                 tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
@@ -553,6 +567,7 @@ extension MainTableViewController {
                 (view.viewWithTag(5) as! MDCFlatButton).addTarget(self, action: #selector(gotoPromotion), for: .touchUpInside)
                 (view.viewWithTag(6) as! MDCFlatButton).addTarget(self, action: #selector(dismissDonation), for: .touchUpInside)
                 tableView.reloadSections([0], with: .top)
+                
                 return view
                 
             } else {
@@ -608,6 +623,7 @@ extension MainTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
+        
         if cell.isAnimating() {
             return
         }
@@ -630,22 +646,18 @@ extension MainTableViewController {
         
         cell.containerView.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
         
-        var duration = 0.0
         let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
         if cellIsCollapsed {
-            cellHeights[indexPath.row] = kOpenCellHeight
-            cell.unfold(true, animated: true, completion: nil)
-            duration = 0.5
-        } else {
-            cellHeights[indexPath.row] = kCloseCellHeight
-            cell.unfold(false, animated: true, completion: nil)
-            duration = 0.8
-        }
-        
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
             tableView.beginUpdates()
+            cell.unfold(true, animated: true, completion: nil)
+            cellHeights[indexPath.row] = kOpenCellHeight
             tableView.endUpdates()
-        }, completion: nil)
+        } else {
+            tableView.beginUpdates()
+            cell.unfold(false, animated: true, completion: nil)
+            cellHeights[indexPath.row] = kCloseCellHeight
+            tableView.endUpdates()
+        }
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
