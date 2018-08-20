@@ -15,11 +15,13 @@
 
 
 import UIKit
+import PocketSVG
 import MaterialComponents
 
 class InListDialog: UIView {
     
     class func instanceFromNib(
+        imageURL: URL,
         title: String,
         message: String,
         primaryText: String,
@@ -42,6 +44,12 @@ class InListDialog: UIView {
         card.setShadowColor(UIColor.black.withAlphaComponent(0.5), for: .normal)
         card.setShadowColor(UIColor.black.withAlphaComponent(0.5), for: .highlighted)
         
+        let svgImageView = SVGImageView.init(contentsOf: imageURL)
+        svgImageView.frame = (view.viewWithTag(10)?.frame)!
+        svgImageView.contentMode = .scaleAspectFit
+        svgImageView.clipsToBounds = true
+        svgImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.viewWithTag(10)?.addSubview(svgImageView)
         
         (view.viewWithTag(2) as! UILabel).text = title
         (view.viewWithTag(2) as! UILabel).textColor = accent

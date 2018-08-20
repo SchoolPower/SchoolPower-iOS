@@ -8,7 +8,6 @@ PODS:
   - CustomIOSAlertView (0.9.5)
   - DGElasticPullToRefresh (1.1)
   - Google-Mobile-Ads-SDK (7.21.0)
-  - IQKeyboardManagerSwift (4.0.10)
   - lottie-ios (2.5.0)
   - Material (2.6.3):
     - Material/Core (= 2.6.3)
@@ -450,7 +449,9 @@ PODS:
     - MotionInterchange (~> 1.6)
   - MotionInterchange (1.6.0)
   - MotionTransitioning (5.0.0)
+  - PocketSVG (2.4.0)
   - SACountingLabel (0.1.1)
+  - SwiftSVG (2.1.5)
   - SwiftyJSON (3.1.4)
   - VTAcknowledgementsViewController (1.2.1)
   - XLPagerTabStrip (8.0.1)
@@ -463,12 +464,13 @@ DEPENDENCIES:
   - CustomIOSAlertView
   - DGElasticPullToRefresh
   - Google-Mobile-Ads-SDK
-  - IQKeyboardManagerSwift
   - lottie-ios
   - Material
   - MaterialComponents
   - MKRingProgressView
+  - PocketSVG
   - SACountingLabel
+  - SwiftSVG
   - SwiftyJSON
   - VTAcknowledgementsViewController
   - XLPagerTabStrip
@@ -482,7 +484,6 @@ SPEC REPOS:
     - CustomIOSAlertView
     - DGElasticPullToRefresh
     - Google-Mobile-Ads-SDK
-    - IQKeyboardManagerSwift
     - lottie-ios
     - Material
     - MaterialComponents
@@ -492,7 +493,9 @@ SPEC REPOS:
     - MotionAnimator
     - MotionInterchange
     - MotionTransitioning
+    - PocketSVG
     - SACountingLabel
+    - SwiftSVG
     - SwiftyJSON
     - VTAcknowledgementsViewController
     - XLPagerTabStrip
@@ -505,7 +508,6 @@ SPEC CHECKSUMS:
   CustomIOSAlertView: cc4fa8e36219be3fd5ebcd40789f5b4aaae0f38e
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   Google-Mobile-Ads-SDK: 4a6f1b43c8cc0e1e95a3b59d9f52a01671c6f9f3
-  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   MaterialComponents: 1a021ab211e40e95e27eb87d9051d558e8f095bd
@@ -515,11 +517,13 @@ SPEC CHECKSUMS:
   MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
   MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
   MotionTransitioning: 23d25edc2f4606efb922403cbac6d81af37aa33a
+  PocketSVG: 8ac7b20a881ca1a3d46ba1e54ee2b0f2307c3d48
   SACountingLabel: 6b0c2a177b77e65ea63772e50f4d4285bb6d5a71
+  SwiftSVG: 9d78f41396a921c210ce9898ada05c85d412acb8
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   VTAcknowledgementsViewController: e1de80f2c0ce31cc7e1c6f1c8aaeec2770371f09
   XLPagerTabStrip: c908b17cbf42fcd2598ee1adfc49bae25444d88a
 
-PODFILE CHECKSUM: dad2797ec0e921a321b0a2ac6877d610af7dfdd9
+PODFILE CHECKSUM: 7040fd0ec882f80672caaab412865dd65ea33eb8
 
 COCOAPODS: 1.5.2

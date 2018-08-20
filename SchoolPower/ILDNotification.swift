@@ -76,7 +76,7 @@ class ILDNotification {
         let notification = json["ildNotification"]
         show = notification["show"].boolValue
         uuid = notification["uuid"].stringValue
-        headerImageURL = notification["headerImageURL"].stringValue
+        headerImageURL = notification["image"].stringValue
         titles = notification["titles"].arrayValue.stringArray
         messages = notification["messages"].arrayValue.stringArray
         primaryTexts = notification["primaryTexts"].arrayValue.stringArray

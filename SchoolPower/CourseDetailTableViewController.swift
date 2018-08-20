@@ -132,6 +132,7 @@ extension CourseDetailTableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "CourseDetailHeaderCell") as! CourseDetailHeaderCell
+        headerCell.vc = self
         headerCell.infoItem = infoItem
         headerCell.currentTerm = termsList[currentTerm]
         headerCell.backgroundColor = .clear

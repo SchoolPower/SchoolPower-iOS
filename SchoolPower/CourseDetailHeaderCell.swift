@@ -79,11 +79,13 @@ class CourseDetailHeaderCell: UITableViewCell, MFMailComposeViewControllerDelega
         }
     }
     
+    var vc: UIViewController!
+    
     @IBAction func emailOnclick(_ sender: Any) {
         
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
-            self.viewController()?.present(mailComposeViewController, animated: true, completion: nil)
+            self.vc.present(mailComposeViewController, animated: true, completion: nil)
         }
     }
     

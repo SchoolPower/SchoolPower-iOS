@@ -421,13 +421,13 @@ extension MainTableViewController {
     
     func needToShowDonate() -> Bool {
         // Show donate every 30 days
-        if isDonated() {
-            return false
-        } else {
-            return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
-        }
+//        if isDonated() {
+//            return false
+//        } else {
+//            return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
+//        }
 //                return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
-//                        return false
+                        return true
     }
     
     func isDonated() -> Bool {
@@ -480,8 +480,8 @@ extension MainTableViewController {
         ILDInfo = nil
         DispatchQueue.main.async {
             self.tableView.sectionHeaderHeight = self.kSectionHeaderHeight
+            self.tableView.reloadSections([0], with: .top)
         }
-        tableView.reloadSections([0], with: .top)
     }
     
     private func showILD(data: ILDNotification) {
@@ -522,6 +522,7 @@ extension MainTableViewController {
                 
                 tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
                 let view = InListDialog.instanceFromNib(
+                    imageURL: URL(string: ILDInfo.headerImageURL)!,
                     title: ILDInfo.titles[lang],
                     message: ILDInfo.messages[lang],
                     primaryText: ILDInfo.primaryTexts[lang],
@@ -529,6 +530,7 @@ extension MainTableViewController {
                     dismissText: ILDInfo.dismissTexts[lang]
                 )
                 
+                (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(dismissAllILD), for: .touchUpInside)
                 (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(dismissAllILD), for: .touchUpInside)
                 tableView.reloadSections([0], with: .top)
                 return view
@@ -540,6 +542,7 @@ extension MainTableViewController {
                 let donation = ILDNotification(json: JSON())
                 donation.show = true
                 let view = InListDialog.instanceFromNib(
+                    imageURL: Bundle.main.url(forResource: "illu_donation", withExtension: "svg")!,
                     title: "donation_title".localize,
                     message: "donation_message".localize,
                     primaryText: "donation_ok".localize,

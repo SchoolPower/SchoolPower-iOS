@@ -19,7 +19,6 @@ import UIKit
 import Material
 import GoogleMobileAds
 import UserNotifications
-import IQKeyboardManagerSwift
 
 let GET_DATA_URL = "https://api.schoolpower.tech/api/2.0/get_data.php"
 let REGISTER_URL = "https://api.schoolpower.tech/api/notifications/register.php"
@@ -80,7 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidFinishLaunching(_ application: UIApplication) {
         
         registerUserDefaults()
-        IQKeyboardManager.sharedManager().enable = true
         DGLocalization.sharedInstance.startLocalization()
         GADMobileAds.configure(withApplicationID: "ca-app-pub-9841217337381410~2237579488")
         registerForPushNotifications(application: application)

@@ -1,7 +1,7 @@
 target "SchoolPower" do
     
     source "https://github.com/CocoaPods/Specs.git"
-    platform :ios, '8.0'
+    platform :ios, '9.0'
     use_frameworks!
     
     pod 'MaterialComponents'
@@ -15,11 +15,12 @@ target "SchoolPower" do
     pod 'CustomIOSAlertView'
     pod 'SACountingLabel'
     pod 'DGElasticPullToRefresh'
-    pod 'IQKeyboardManagerSwift'
     pod 'XLPagerTabStrip'
     pod 'Alamofire'
     pod 'CropViewController'
     pod 'lottie-ios'
+    pod 'SwiftSVG'
+    pod 'PocketSVG'
     
     post_install do |installer|
         installer.pods_project.targets.each do |target|
