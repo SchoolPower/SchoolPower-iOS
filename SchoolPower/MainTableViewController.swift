@@ -421,13 +421,13 @@ extension MainTableViewController {
     
     func needToShowDonate() -> Bool {
         // Show donate every 30 days
-//        if isDonated() {
-//            return false
-//        } else {
-//            return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
-//        }
+        if isDonated() {
+            return false
+        } else {
+            return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
+        }
 //                return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
-                        return true
+//                        return true
     }
     
     func isDonated() -> Bool {
@@ -531,7 +531,8 @@ extension MainTableViewController {
                 )
                 
                 (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(dismissAllILD), for: .touchUpInside)
-                (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(dismissAllILD), for: .touchUpInside)
+                (view.viewWithTag(5) as! MDCFlatButton).gone(yes: ILDInfo.hideSecondary)
+                (view.viewWithTag(6) as! MDCFlatButton).gone(yes: ILDInfo.hideDismiss)
                 tableView.reloadSections([0], with: .top)
                 return view
                 
@@ -718,6 +719,19 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         alert?.closeOnTouchUpOutside = true
         alert?.buttonTitles = nil
         alert?.show()
+    }
+}
+
+extension UIView {
+    
+    func gone(yes: Bool) {
+        if yes {
+            for constraint in self.constraints {
+                constraint.constant = 0
+            }
+            self.isHidden = true
+            self.layoutIfNeeded()
+        }
     }
 }
 

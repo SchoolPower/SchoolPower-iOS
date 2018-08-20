@@ -102,6 +102,7 @@ open class FoldingCell: UITableViewCell {
         var rotatedViews = [RotatedView]()
         
         animationView?.subviews
+            .lazy
             .compactMap({ $0 as? RotatedView })
             .sorted(by: { $0.tag < $1.tag })
             .forEach { itemView in
@@ -137,8 +138,7 @@ open class FoldingCell: UITableViewCell {
     
     func createAnimationView() {
         animationView = UIView(frame: containerView.frame)
-        animationView?.layer.cornerRadius = 10
-        animationView?.masksToBounds = true
+        animationView?.layer.cornerRadius = foregroundView.layer.cornerRadius
         animationView?.backgroundColor = .clear
         animationView?.translatesAutoresizingMaskIntoConstraints = false
         animationView?.alpha = 0

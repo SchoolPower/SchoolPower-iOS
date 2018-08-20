@@ -52,7 +52,7 @@
                                 </attributedString>
                             </state>
                         </button>
-                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EHd-z2-Voy" customClass="MDCFlatButton">
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EHd-z2-Voy" customClass="MDCFlatButton">
                             <rect key="frame" x="177" y="305" width="180" height="27"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="27" id="agb-wy-rKa"/>
