@@ -80,7 +80,6 @@ class MainTableViewController: UITableViewController {
         self.title = "dashboard".localize
         self.tableView.layoutIfNeeded()
         fetchLocalILD()
-        needToShowDonate()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTheme),
                                                name:NSNotification.Name(rawValue: "updateTheme"), object: nil)
