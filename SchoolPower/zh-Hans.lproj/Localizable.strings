@@ -69,7 +69,7 @@
 "i_understand" = "我明白";
 "notification_header" = "通知";
 "enable_notification" = "启用新作业通知";
-"show_inactive_summary" = "显示目前没有作业和成绩的课程。";
+"show_inactive_summary" = "显示你目前没有在修的课程";
 "show_inactive_title" = "显示不活跃课程";
 "notification_show_grade" = "在通知里显示成绩";
 "notification_show_no_grade_assignment" = "通知还没出分的作业";
