@@ -649,18 +649,22 @@ extension MainTableViewController {
         
         cell.containerView.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
         
+        var duration = 0.0
         let cellIsCollapsed = cellHeights[indexPath.row] == kCloseCellHeight
         if cellIsCollapsed {
-            tableView.beginUpdates()
             cell.unfold(true, animated: true, completion: nil)
             cellHeights[indexPath.row] = kOpenCellHeight
-            tableView.endUpdates()
+            duration = 0.5
         } else {
-            tableView.beginUpdates()
             cell.unfold(false, animated: true, completion: nil)
             cellHeights[indexPath.row] = kCloseCellHeight
-            tableView.endUpdates()
+            duration = 0.8
         }
+        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }, completion: nil)
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
