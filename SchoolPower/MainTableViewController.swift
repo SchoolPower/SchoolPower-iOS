@@ -131,12 +131,12 @@ class MainTableViewController: UITableViewController {
         }
         if self.navigationController?.view.tag == 1 {
             initDataJson()
-            fetchILD()
         }
     }
     
     func initUI() {
         initTableView()
+        fetchILD()
     }
     
     func initBannerView() {
@@ -252,11 +252,8 @@ extension MainTableViewController {
         if data.contains("{") {
             showed = self.showILD(data: ILDNotification(json: JSON(parseJSON: data)))
         }
-        if showed { return }
-        
-        DispatchQueue.main.async {
-            self.needShowDonate = self.needToShowDonate()
-            self.tableView.reloadData()
+        if !showed {
+            showDonateIfNeeded()
         }
     }
     
@@ -266,14 +263,10 @@ extension MainTableViewController {
             params: "") { (value) in
             let response = value
             if response.contains("{") {
-                let showed = self.showILD(data: ILDNotification(json: JSON(parseJSON: response)))
+                self.needShowDonate = false
                 self.userDefaults.set(response, forKey: LOCAL_ILD_KEY_NAME)
-                if !showed {
-                    self.fetchLocalILD()
-                }
-            } else {
-                self.fetchLocalILD()
             }
+            self.fetchLocalILD()
         }
     }
     
@@ -494,6 +487,15 @@ extension MainTableViewController {
         DispatchQueue.main.async {
             self.tableView.sectionHeaderHeight = self.kSectionHeaderHeight
             self.tableView.reloadSections([0], with: .top)
+        }
+    }
+    
+    private func showDonateIfNeeded() {
+        if (self.needToShowDonate()) {
+            self.needShowDonate = true
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
