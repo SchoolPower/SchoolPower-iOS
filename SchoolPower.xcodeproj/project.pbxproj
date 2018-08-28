@@ -75,6 +75,7 @@
 		62CFC9B21EFA9940002B4A8D /* SchoolPowerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC9B11EFA9940002B4A8D /* SchoolPowerUITests.swift */; };
 		62CFC9C01EFA996C002B4A8D /* DashboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC9BF1EFA996C002B4A8D /* DashboardCell.swift */; };
 		62CFC9C21EFA9972002B4A8D /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC9C11EFA9972002B4A8D /* MainTableViewController.swift */; };
+		62E5798A213517C4005BFED7 /* glacial_indifference_regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 62E579892135177F005BFED7 /* glacial_indifference_regular.otf */; };
 		62FC12761FADAA4500BCD79D /* AttendanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FC12751FADAA4500BCD79D /* AttendanceTableViewController.swift */; };
 		62FC12781FADB6AC00BCD79D /* AttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FC12771FADB6AC00BCD79D /* AttendanceCell.swift */; };
 		62FC127A1FADBC3000BCD79D /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FC12791FADBC3000BCD79D /* Attendance.swift */; };
@@ -198,6 +199,7 @@
 		62CFC9B31EFA9940002B4A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62CFC9BF1EFA996C002B4A8D /* DashboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DashboardCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		62CFC9C11EFA9972002B4A8D /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		62E579892135177F005BFED7 /* glacial_indifference_regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glacial_indifference_regular.otf; sourceTree = "<group>"; };
 		62FC12751FADAA4500BCD79D /* AttendanceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTableViewController.swift; sourceTree = "<group>"; };
 		62FC12771FADB6AC00BCD79D /* AttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCell.swift; sourceTree = "<group>"; };
 		62FC12791FADBC3000BCD79D /* Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendance.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				6207CEC7210A00C0001FC013 /* cheer.json */,
 				6207CEC8210A00C5001FC013 /* gift_box.json */,
 				62377E9621047F91004DE715 /* transtr.py */,
+				62E579892135177F005BFED7 /* glacial_indifference_regular.otf */,
 				620D465B1F85D0A500280320 /* SchoolPower.entitlements */,
 				62CFC99D1EFA9940002B4A8D /* Info.plist */,
 				62A8FA431EFB66DA00751ACD /* Podfile */,
@@ -601,6 +604,7 @@
 				62CFC99C1EFA9940002B4A8D /* LaunchScreen.storyboard in Resources */,
 				62953B0A20D0B869003D681F /* AccentColorCell.xib in Resources */,
 				62CFC9991EFA9940002B4A8D /* Assets.xcassets in Resources */,
+				62E5798A213517C4005BFED7 /* glacial_indifference_regular.otf in Resources */,
 				2705427C1F0882420002C7BE /* Pods-SchoolPower-acknowledgements.plist in Resources */,
 				6204A07C1F39E5A9004B2118 /* NothingView.xib in Resources */,
 				62A8FA441EFB66DA00751ACD /* Podfile in Resources */,
