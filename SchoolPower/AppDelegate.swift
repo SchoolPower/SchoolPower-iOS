@@ -137,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             notification.sound = UNNotificationSound.default()
             notification.title = "\(String(assignmentNum)) \("notification_new".localize)"
             notification.body = messageBody
-            notification.badge = ((notification.badge?.intValue)! + assignmentNum) as NSNumber
+            notification.badge = ((notification.badge?.intValue) ?? 0 + assignmentNum) as NSNumber
             
             let identifier = "newAssignmentNotification"
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
