@@ -337,9 +337,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if userDefaults.object(forKey: LANGUAGE_KEY_NAME) == nil { userDefaults.register(defaults: [LANGUAGE_KEY_NAME: 0]) }
         if userDefaults.object(forKey: DASHBOARD_DISPLAY_KEY_NAME) == nil { userDefaults.register(defaults: [DASHBOARD_DISPLAY_KEY_NAME: 1]) }
-        if userDefaults.object(forKey: SHOW_INACTIVE_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_INACTIVE_KEY_NAME: false]) }
+        if userDefaults.object(forKey: SHOW_INACTIVE_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_INACTIVE_KEY_NAME: true]) }
         if userDefaults.object(forKey: SELECT_SUBJECTS_KEY_NAME) == nil { userDefaults.register(defaults: [SELECT_SUBJECTS_KEY_NAME: [String]()]) }
-        if userDefaults.object(forKey: CALCULATE_RULE_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_INACTIVE_KEY_NAME: 0]) }
+        if userDefaults.object(forKey: CALCULATE_RULE_KEY_NAME) == nil { userDefaults.register(defaults: [CALCULATE_RULE_KEY_NAME: 0]) }
         if userDefaults.object(forKey: ENABLE_NOTIFICATION_KEY_NAME) == nil { userDefaults.register(defaults: [ENABLE_NOTIFICATION_KEY_NAME: true]) }
         if userDefaults.object(forKey: SHOW_GRADES_KEY_NAME) == nil { userDefaults.register(defaults: [SHOW_GRADES_KEY_NAME: true]) }
         if userDefaults.object(forKey: NOTIFY_UNGRADED_KEY_NAME) == nil { userDefaults.register(defaults: [NOTIFY_UNGRADED_KEY_NAME: true]) }
