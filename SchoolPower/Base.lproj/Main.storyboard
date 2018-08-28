@@ -164,7 +164,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZj-yg-tnQ">
-                                                                    <rect key="frame" x="211.33333333333334" y="20" width="60.000000000000028" height="25"/>
+                                                                    <rect key="frame" x="208.33333333333334" y="20" width="63.000000000000028" height="25"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_trending_up_white" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-OQ-FHD">
                                                                             <rect key="frame" x="8" y="3" width="19" height="19"/>
@@ -173,8 +173,8 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qse-VK-jkU">
-                                                                            <rect key="frame" x="34.999999999999972" y="0.0" width="17" height="25"/>
-                                                                            <fontDescription key="fontDescription" name="GlacialIndifference-Regular" family="Glacial Indifference" pointSize="12"/>
+                                                                            <rect key="frame" x="34.999999999999972" y="0.0" width="20" height="25"/>
+                                                                            <fontDescription key="fontDescription" name="GlacialIndifference-Regular" family="Glacial Indifference" pointSize="14"/>
                                                                             <color key="textColor" red="0.85848445595854916" green="0.134531038977693" blue="0.06210268058419692" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
