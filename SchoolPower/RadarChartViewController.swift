@@ -41,7 +41,12 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
         radarChart.isHidden = true
         if Utils.getFilteredSubjects(subjects: subjects).count > 0 &&
             Utils.getGradedSubjects(subjects: subjects).count > 0 {
-            initRadarChart()
+            do { try initRadarChart() }
+            catch {
+                print("initRadarChart: RadarChart Initialization failed!")
+                radarChart.isHidden = true
+                CNALabel.isHidden = false
+            }
         }
     }
     
@@ -57,7 +62,7 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
         containerView?.layer.masksToBounds = true
     }
     
-    func initRadarChart(){
+    func initRadarChart() throws -> Void {
         let theme = ThemeManager.currentTheme()
         
         CNALabel.isHidden = true

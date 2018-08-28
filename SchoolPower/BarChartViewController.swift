@@ -42,7 +42,12 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         barChart.isHidden = true
         if Utils.getFilteredSubjects(subjects: subjects).count > 0 &&
             Utils.getGradedSubjects(subjects: subjects).count > 0 {
-            initBarChart()
+            do { try initBarChart() }
+            catch {
+                print("initBarChart: BarChart Initialization failed!")
+                barChart.isHidden = true
+                CNALabel.isHidden = false
+            }
         }
     }
     
@@ -57,7 +62,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         containerView?.layer.masksToBounds = true
     }
     
-    func initBarChart() {
+    func initBarChart() throws -> Void {
         
         let theme = ThemeManager.currentTheme()
         

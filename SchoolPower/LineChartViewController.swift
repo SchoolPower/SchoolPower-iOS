@@ -42,7 +42,12 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         lineChart.isHidden = true
         if Utils.getFilteredSubjects(subjects: subjects).count > 0 &&
             Utils.getGradedSubjects(subjects: subjects).count > 0 {
-            initLineChart()
+            do { try initLineChart() }
+            catch {
+                print("initLineChart: LineChart Initialization failed!")
+                lineChart.isHidden = true
+                CNALabel.isHidden = false
+            }
         }
     }
     
@@ -58,7 +63,7 @@ class LineChartViewController: UIViewController, IndicatorInfoProvider {
         containerView?.layer.masksToBounds = true
     }
     
-    func initLineChart(){
+    func initLineChart() throws -> Void {
         
         CNALabel.isHidden = true
         lineChart.isHidden = false
