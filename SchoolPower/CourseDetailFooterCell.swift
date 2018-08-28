@@ -22,7 +22,8 @@ class CourseDetailFooterCell: UITableViewCell {
     
     override func awakeFromNib() {
         
-        theEnd?.text = "theend".localize
+//        theEnd?.text = "theend".localize
+        theEnd?.text = ""
         super.awakeFromNib()
     }
 }
