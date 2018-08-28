@@ -234,7 +234,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     var updatedGradedSubjects : [String] = []
                     
                     // Diff
-                    if subjects.count == oldSubjects.count {
+                    if subjects.count == oldSubjects.count && !subjects.isEmpty {
                         for i in 0...subjects.count - 1 {
                             
                             let newAssignmentListCollection = subjects[i].assignments
