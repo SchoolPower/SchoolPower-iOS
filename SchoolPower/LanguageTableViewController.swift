@@ -46,6 +46,10 @@ class LanguageTableViewController: UITableViewController {
         let selectedLang = LOCALE_SET[indexPath.row]
         DGLocalization.sharedInstance.setLanguage(withCode: selectedLang)
         
+        if #available(iOS 9.0, *) {
+            (UIApplication.shared.delegate as! AppDelegate).reInitShortcuts()
+        }
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLanguage"), object: nil)
         self.navigationController?.popViewController(animated: true)
     }

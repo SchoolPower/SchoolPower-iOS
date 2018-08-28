@@ -24,6 +24,8 @@ let ILD_URL = "https://files.schoolpower.tech/ild.json"
 let BITCOIN_ADDRESS = "1NRdAgeRdapbRe3JQRmNCRfWHR3T664jKf"
 let ETHEREUM_ADDRESS = "0x3C170f8dd9A2B28554f8bA034B0fF72FfF92FBa7"
 
+/* TEST ID */
+//let ADMOB_APP_ID = "ca-app-pub-3940256099942544/2934735716"
 let ADMOB_APP_ID = "ca-app-pub-9841217337381410~2237579488"
 
 let TOKEN_KEY_NAME = "apns_token"
@@ -61,6 +63,15 @@ let LOCALE_SET = [
     Locale().initWithLanguageCode(languageCode: "zh-Hans", countryCode: "cn", name: "China")
 ]
 
+enum SHORT_CUTS {
+    case none
+    case gpa
+    case chart
+    case attendance
+}
+
+var ON_SHORTCUT: SHORT_CUTS = .none
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -77,6 +88,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ThemeManager.applyTheme(theme: userDefaults.bool(forKey: DARK_THEME_KEY_NAME) ? .dark : .light)
         
+        if #available(iOS 9.0, *) {
+            reInitShortcuts()
+        }
+        
         let story = UIStoryboard(name: "Main", bundle: nil)
         var gotoController: UIViewController
         
@@ -85,7 +100,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             gotoController = story.instantiateViewController(withIdentifier: "DashboardNav")
             gotoController.view.tag = 1
             let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
-            UIApplication.shared.delegate?.window??.rootViewController = AppNavigationDrawerController(rootViewController: gotoController, leftViewController: leftViewController, rightViewController: nil)
+            UIApplication.shared.delegate?.window??.rootViewController =
+                AppNavigationDrawerController(
+                    rootViewController: gotoController,
+                    leftViewController: leftViewController,
+                    rightViewController: nil)
             
         } else {
             
@@ -94,6 +113,72 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window!.rootViewController = gotoController
         }
         window!.makeKeyAndVisible()
+    }
+    
+    @available(iOS 9.0, *)
+    func reInitShortcuts() {
+        UIApplication.shared.shortcutItems?.removeAll()
+        UIApplication.shared.shortcutItems?.append(UIMutableApplicationShortcutItem(
+            type: "GPA",
+            localizedTitle: "GPA".localize,
+            localizedSubtitle: nil,
+            icon: UIApplicationShortcutIcon(templateImageName: "ic_grade_white"),
+            userInfo: nil))
+        UIApplication.shared.shortcutItems?.append(UIMutableApplicationShortcutItem(
+            type: "CHART",
+            localizedTitle: "charts".localize,
+            localizedSubtitle: nil,
+            icon: UIApplicationShortcutIcon(templateImageName: "ic_insert_chart_white"),
+            userInfo: nil))
+        UIApplication.shared.shortcutItems?.append(UIMutableApplicationShortcutItem(
+            type: "ATTENDANCE",
+            localizedTitle: "attendance".localize,
+            localizedSubtitle: nil,
+            icon: UIApplicationShortcutIcon(templateImageName: "ic_beenhere_white"),
+            userInfo: nil))
+    }
+    
+    @available(iOS 9.0, *)
+    func application(_
+        application: UIApplication,
+        performActionFor shortcutItem: UIApplicationShortcutItem,
+        completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(handleShortCut(item: shortcutItem))
+    }
+    
+    @available(iOS 9.0, *)
+    func handleShortCut(item: UIApplicationShortcutItem) -> Bool {
+        
+        guard let type = item.type as String? else { return false }
+        
+        switch type {
+        case "GPA":
+            ON_SHORTCUT = .gpa
+            break
+        case "CHART":
+            ON_SHORTCUT = .chart
+            break
+        case "ATTENDANCE":
+            ON_SHORTCUT = .attendance
+            break
+        default:
+            ON_SHORTCUT = .none
+            return false
+        }
+        
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        var gotoController: UIViewController
+        
+        gotoController = story.instantiateViewController(withIdentifier: "DashboardNav")
+        gotoController.view.tag = 1
+        let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
+        UIApplication.shared.delegate?.window??.rootViewController =
+            AppNavigationDrawerController(
+                rootViewController: gotoController,
+                leftViewController: leftViewController,
+                rightViewController: nil)
+        
+        return true
     }
     
     func application(_ application: UIApplication,
@@ -129,6 +214,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         print("Failed to register: \(error)")
     }
+    
     func sendNewAssignmentNotification(messageBody: String, assignmentNum : Int){
         
         if #available(iOS 10.0, *) {

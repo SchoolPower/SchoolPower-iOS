@@ -86,13 +86,16 @@ class MainTableViewController: UITableViewController {
         initUI()
         initValue()
         
+        if ON_SHORTCUT != .none {
+            handleShortcutAction()
+        }
+        
         // send device token for notification
         let token = userDefaults.string(forKey: TOKEN_KEY_NAME)
         if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!) }
     }
     
     deinit {
-        
         if tableView != nil {
             tableView.dg_removePullToRefresh()
         }
@@ -139,19 +142,16 @@ class MainTableViewController: UITableViewController {
                                                       multiplier: 1, constant: 0)
         self.view.addConstraints([horizontalConstraint])
         
-        /* TEST ID */
-        //        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.adUnitID = "ca-app-pub-9841217337381410/3714312680"
+        bannerView.adUnitID = ADMOB_APP_ID
         bannerView.rootViewController = self
-        
         bannerView.load(GADRequest())
     }
     
     func initTableView() {
-        
-        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
+//        Keep these for emergency [AUG 28 2018].
 //        tableView.estimatedRowHeight = kCloseCellHeight
 //        tableView.rowHeight = UITableViewAutomaticDimension
+        cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.backgroundColor = theme.windowBackgroundColor
         tableView.separatorColor = .clear
         tableView.contentInset = UIEdgeInsetsMake(0, 0, bannerView.frame.height, 0)
@@ -171,17 +171,35 @@ class MainTableViewController: UITableViewController {
         tableView.dg_setPullToRefreshBackgroundColor(theme.windowBackgroundColor)
     }
     
+    func handleShortcutAction() {
+        switch ON_SHORTCUT {
+        case .gpa:
+            gpaOnClick()
+            break
+        case .chart:
+            (navigationDrawerController?.leftViewController as! LeftViewController).presentFragment = 1
+            (navigationDrawerController?.leftViewController as! LeftViewController).gotoFragment(section: 0, location: 1)
+            break
+        case .attendance:
+            (navigationDrawerController?.leftViewController as! LeftViewController).presentFragment = 2
+            (navigationDrawerController?.leftViewController as! LeftViewController).gotoFragment(section: 0, location: 2)
+            break
+        case .none:
+            return
+        }
+        ON_SHORTCUT = .none
+    }
+    
     @objc func fabOnClick(sender: UIButton) {
         performSegue(withIdentifier: "gotoDetail", sender: sender)
     }
     
-    @objc func menuOnClick(sender: UINavigationItem) {
-        
+    @objc func menuOnClick() {
         navigationDrawerController?.toggleLeftView()
         (navigationDrawerController?.leftViewController as! LeftViewController).reloadData()
     }
     
-    @objc func gpaOnClick(sender: UINavigationItem) {
+    @objc func gpaOnClick() {
         
         self.GPADialog = GPADialogUtil(view: self.view,
                                        subjectsForGPA: subjects,

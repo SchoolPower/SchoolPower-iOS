@@ -60,9 +60,7 @@ class CourseDetailTableViewController: UITableViewController {
         let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         self.view.addConstraints([horizontalConstraint])
         
-        /* TEST ID */
-//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.adUnitID = "ca-app-pub-9841217337381410/4059063088"
+        bannerView.adUnitID = ADMOB_APP_ID
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
     }
