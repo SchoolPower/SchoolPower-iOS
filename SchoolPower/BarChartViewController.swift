@@ -84,11 +84,12 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         var subjectStrings = [String]()
         
         let termStrings = ["T1","T2","T3","T4"]
+        let accent = Utils.getAccent()
         let termColors = [
-            MDCPalette.red.tint600,
-            MDCPalette.yellow.tint600,
-            MDCPalette.lightGreen.tint600,
-            MDCPalette.blue.tint600
+            accent.adjustHue(by: -30),
+            accent.adjustHue(by: -10),
+            accent.adjustHue(by: 10),
+            accent.adjustHue(by: 30)
         ]
         
         // second run -- group them in terms
@@ -107,7 +108,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
             }
             
             let dataSet = BarChartDataSet(values: group, label: term)
-            dataSet.colors = [termColors[count]]
+            dataSet.colors = [termColors[count]] as! [NSUIColor]
             dataSets.append(dataSet)
             count+=1
         }

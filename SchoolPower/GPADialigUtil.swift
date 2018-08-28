@@ -227,27 +227,3 @@ class GPADialogUtil {
         CATransaction.commit()
     }
 }
-
-extension UIColor {
-    
-    func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
-        return self.adjust(by: abs(percentage))
-    }
-    
-    func darker(by percentage: CGFloat = 30.0) -> UIColor? {
-        return self.adjust(by: -1 * abs(percentage))
-    }
-    
-    func adjust(by percentage: CGFloat = 30.0) -> UIColor? {
-        
-        var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
-        if self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
-            return UIColor.init(hue: hue - percentage / 100,
-                                saturation: saturation + percentage / 100,
-                                brightness: brightness + percentage / 100,
-                                alpha: alpha)
-        } else {
-            return nil
-        }
-    }
-}
