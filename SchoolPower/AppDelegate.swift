@@ -36,6 +36,8 @@ let ILD_URL = "https://files.schoolpower.tech/ild.json"
 let BITCOIN_ADDRESS = "1NRdAgeRdapbRe3JQRmNCRfWHR3T664jKf"
 let ETHEREUM_ADDRESS = "0x3C170f8dd9A2B28554f8bA034B0fF72FfF92FBa7"
 
+let ADMOB_APP_ID = "ca-app-pub-9841217337381410~2237579488"
+
 let TOKEN_KEY_NAME = "apns_token"
 let LANGUAGE_KEY_NAME = "language"
 let DASHBOARD_DISPLAY_KEY_NAME = "dashboardDisplays"
@@ -64,11 +66,12 @@ let CUSTOM_RULES = ["all", "highest_3", "highest_4", "highest_5"]
 
 let JSON_FILE_NAME = "dataMap.json"
 
-let LOCALE_SET = [Locale().initWithLanguageCode(languageCode: Bundle.main.preferredLocalizations.first! as NSString,
-                                                countryCode: "gb", name: "United Kingdom"),
-                  Locale().initWithLanguageCode(languageCode: "en", countryCode: "gb", name: "United Kingdom"),
-                  Locale().initWithLanguageCode(languageCode: "zh-Hant", countryCode: "cn", name: "China"),
-                  Locale().initWithLanguageCode(languageCode: "zh-Hans", countryCode: "cn", name: "China")]
+let LOCALE_SET = [
+    Locale().initWithLanguageCode(languageCode: Bundle.main.preferredLocalizations.first! as NSString, countryCode: "gb", name: "United Kingdom"),
+    Locale().initWithLanguageCode(languageCode: "en", countryCode: "gb", name: "United Kingdom"),
+    Locale().initWithLanguageCode(languageCode: "zh-Hant", countryCode: "cn", name: "China"),
+    Locale().initWithLanguageCode(languageCode: "zh-Hans", countryCode: "cn", name: "China")
+]
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -80,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerUserDefaults()
         DGLocalization.sharedInstance.startLocalization()
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-9841217337381410~2237579488")
+        GADMobileAds.configure(withApplicationID: ADMOB_APP_ID)
         registerForPushNotifications(application: application)
         application.applicationIconBadgeNumber = 0
         
