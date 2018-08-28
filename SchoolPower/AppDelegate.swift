@@ -135,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let notification = UNMutableNotificationContent()
             notification.sound = UNNotificationSound.default()
-            notification.title = "\("attendence_new".localize)"
+            notification.title = "\(String(assignmentNum)) \("notification_new".localize)"
             notification.body = messageBody
             notification.badge = ((notification.badge?.intValue)! + assignmentNum) as NSNumber
             
@@ -155,7 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             notification.soundName = UILocalNotificationDefaultSoundName
             notification.fireDate = Date.init(timeIntervalSinceNow: 0)
             notification.applicationIconBadgeNumber += assignmentNum
-            notification.alertBody = "\(String(assignmentNum)) \("attendence_new".localize): \(messageBody)"
+            notification.alertBody = "\(String(assignmentNum)) \("notification_new".localize): \(messageBody)"
             
             UIApplication.shared.scheduleLocalNotification(notification)
         }
@@ -166,7 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let notification = UNMutableNotificationContent()
             notification.sound = UNNotificationSound.default()
-            notification.title = "notification_new".localize
+            notification.title = "\(String(attendanceNum)) \("attendence_new".localize)"
             notification.body = messageBody
             notification.badge = ((notification.badge?.intValue)! + attendanceNum) as NSNumber
             
@@ -186,7 +186,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             notification.soundName = UILocalNotificationDefaultSoundName
             notification.fireDate = Date.init(timeIntervalSinceNow: 0)
             notification.applicationIconBadgeNumber += attendanceNum
-            notification.alertBody = "\("notification_new".localize): \(messageBody)"
+            notification.alertBody = "\(String(attendanceNum)) \("attendence_new".localize): \(messageBody)"
             
             UIApplication.shared.scheduleLocalNotification(notification)
         }
@@ -196,9 +196,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         if userDefaults.bool(forKey:ENABLE_NOTIFICATION_KEY_NAME)
-            && userDefaults.bool(forKey: LOGGED_IN_KEY_NAME)
-        {
-            let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
+            && userDefaults.bool(forKey: LOGGED_IN_KEY_NAME) {
             
             let username = userDefaults.string(forKey: USERNAME_KEY_NAME)
             let password = userDefaults.string(forKey: PASSWORD_KEY_NAME)
@@ -209,9 +207,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             //Send Post
-            Utils.sendPost(url: GET_DATA_URL,
-                           params: "username=\(username!)&password=\(password!)&version=\(version)&os=ios&action=ios_notification")
-            { (response) in
+            let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
+            Utils.sendPost(
+                url: GET_DATA_URL,
+                params: "username=\(username!)" +
+                    "&password=\(password!)" +
+                    "&version=\(version)" +
+                    "&os=ios" +
+            "&action=manual_get_data") { (value) in
+                
+                let response = value
                 if response.contains("{") {
                     
                     let showGrades = self.userDefaults.bool(forKey: SHOW_GRADES_KEY_NAME)
@@ -227,6 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     var updatedSubjects : [String] = []
                     var updatedGradedSubjects : [String] = []
+                    
                     // Diff
                     if subjects.count == oldSubjects.count {
                         for i in 0...subjects.count - 1 {
@@ -241,26 +247,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 
                                 for it in oldAssignmentListCollection {
                                     if it.title == item.title && it.date == item.date {
-                                        newItem = false // if there is a item in old data that matches its name, then it is not a new assignment.
-                                        if it.score == item.score || it.score == "--"{ // if the score is the same or becoming unpublished, then its grade is not new.
+                                        // if an old item that matches its name, then it is old.
+                                        newItem = false
+                                        if it.score == item.score || it.score == "--"{
+                                            // if the score is the same or becoming unpublished,
+                                            // then old item with old grade
+                                            // (ABS not showing).
                                             newGrade = false
                                         }
-                                        else { // otherwise, the grade is new.
+                                        else {
+                                            // otherwise, old item with new grade
+                                            // (ABS showing)
                                             grade = it.score
                                         }
                                     }
                                 }
-                                if (newItem && item.score != "--") { // if it is new item and have a grade
-                                    newGrade = true // the grade is new.
+                                if (newItem && item.score != "--") {
+                                    // graded new item
+                                    // (ABS showing)
                                     grade = item.score
                                 } else if (item.score == "--"){
+                                    // ungraded new item
+                                    // (shown if showUngraded toggled)
                                     newGrade = false
                                 }
-                                // Possible outcome:
-                                // newItem == false && newGrade == true: when the item is not new but the grade is new (either being changed or just published). In this case, variable grade will be set.
-                                // newItem == false && newGrade == false: when the item and the grade are both not new (either still not published or it is the same grade).
-                                // newItem == true && newGrade == true: when a new graded assignment is published.
-                                // newItem == true && newGrade == false: when a ungraded assignment is published.
                                 
                                 if (newGrade || (newItem && showUngraded)) {
                                     if (newGrade && showGrades){
@@ -271,37 +281,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     }
                                 }
                             }
-                            
-                            var updatedAttendances = [String]()
-                            
-                            for item in attendances {
-                                var newItem = true
-                                for it in oldAttendances {
-                                    if it.subject == item.subject && it.date == item.date && it.code == item.code {
-                                        newItem = false
-                                    }
-                                }
-                                if newItem {
-                                    updatedAttendances.append(item.subject + " - " + item.description)
-                                }
-                            }
-                            var allSubjects : [String] = updatedSubjects
-                            allSubjects.append(contentsOf: updatedGradedSubjects)
-                            if allSubjects.count != 0 {
-                                self.sendNewAssignmentNotification(messageBody: allSubjects.joined(separator: ","), assignmentNum: allSubjects.count)
-                            }
-                            if updatedAttendances.count != 0 {
-                                self.sendNewAttendanceNotification(messageBody: updatedAttendances.joined(separator: ","), attendanceNum: updatedAttendances.count)
-                                completionHandler(.newData)
-                            } else {
-                                if updatedSubjects.count == 0 && updatedGradedSubjects.count == 0{
-                                    completionHandler(.noData)
-                                }else{
-                                    completionHandler(.newData)
-                                }
+                        }
+                    }
+                    
+                    var updatedAttendances = [String]()
+                    
+                    for item in attendances {
+                        var newItem = true
+                        for it in oldAttendances {
+                            if it.subject == item.subject && it.period == item.period
+                                && it.date == item.date && !it.isNew {
+                                // this attendance ain't new
+                                newItem = false
+                                break
                             }
                         }
-                    } else { completionHandler(.noData) }
+                        if newItem {
+                            updatedAttendances.append(item.subject + " - " + item.description)
+                        }
+                    }
+                    
+                    var allSubjects : [String] = updatedSubjects
+                    allSubjects.append(contentsOf: updatedGradedSubjects)
+                    
+                    if allSubjects.count != 0 {
+                        self.sendNewAssignmentNotification(messageBody: allSubjects.joined(separator: ","), assignmentNum: allSubjects.count)
+                    }
+                    if updatedAttendances.count != 0 {
+                        self.sendNewAttendanceNotification(messageBody: updatedAttendances.joined(separator: ","), attendanceNum: updatedAttendances.count)
+                        completionHandler(.newData)
+                    } else {
+                        if allSubjects.count == 0 {
+                            completionHandler(.noData)
+                        }else{
+                            completionHandler(.newData)
+                        }
+                    }
                 } else { completionHandler(.failed) }
             }
         } else { completionHandler(.noData) }
