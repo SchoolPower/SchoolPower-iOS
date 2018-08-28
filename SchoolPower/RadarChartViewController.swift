@@ -26,7 +26,7 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet weak var CNALabel: UILabel!
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "radar".localize)
+        return IndicatorInfo(image: #imageLiteral(resourceName: "baseline_radar_chart_black_24pt").tint(with: .white))
     }
     
     override func viewWillAppear(_ animated: Bool) {

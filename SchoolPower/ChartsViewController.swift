@@ -81,11 +81,10 @@ class ChartsViewController: ButtonBarPagerTabStripViewController {
         buttonBarView.backgroundColor = theme.primaryColor
         settings.style.buttonBarItemsShouldFillAvailiableWidth = true
         settings.style.buttonBarItemBackgroundColor = theme.primaryColor
-        settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 14)
         changeCurrentIndexProgressive = {(oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
-            oldCell?.label.textColor = UIColor.white.withAlphaComponent(0.6)
-            newCell?.label.textColor = .white
+            oldCell?.imageView.contentMode = .center
+            newCell?.imageView.contentMode = .center
         }
     }
     
