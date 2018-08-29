@@ -318,8 +318,13 @@ extension MainTableViewController {
                 
                 if disabled {
                     DispatchQueue.main.async {
-                        self.showDisabledDialog(title: disabled_title, message: disabled_message)
+                        DispatchQueue.main.async {
+                            self.tableView.dg_stopLoading()
+                            self.tableView.reloadData()
+                            self.showDisabledDialog(title: disabled_title, message: disabled_message)
+                        }
                     }
+                    return
                 }
                 
                 Utils.saveHistoryGrade(data: subjects)

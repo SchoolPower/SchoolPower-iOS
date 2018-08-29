@@ -137,7 +137,14 @@ class AttendanceTableViewController: UITableViewController {
                 Utils.saveHistoryGrade(data: subjects)
                 
                 if disabled {
-                    self.showDisabledDialog(title: disabled_title, message: disabled_message)
+                    DispatchQueue.main.async {
+                        DispatchQueue.main.async {
+                            self.tableView.dg_stopLoading()
+                            self.tableView.reloadData()
+                            self.showDisabledDialog(title: disabled_title, message: disabled_message)
+                        }
+                    }
+                    return
                 }
                 
                 // Diff
