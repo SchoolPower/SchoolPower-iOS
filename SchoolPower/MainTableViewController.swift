@@ -435,13 +435,21 @@ extension MainTableViewController {
     
     func needToShowDonate() -> Bool {
         // Show donate every 30 days
-        if isDonated() {
+        if isDonated() || isEarlyDonators() {
             return false
         } else {
             return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
         }
 //                return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
 //                        return true
+    }
+    
+    func isEarlyDonators() -> Bool {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let start120 = formatter.date(from: "2018/07/01")!
+        let end120 = formatter.date(from: "2018/08/28")!
+        return getLastDonateShowedDate().isBetweeen(date: start120, andDate: end120)
     }
     
     func isDonated() -> Bool {
