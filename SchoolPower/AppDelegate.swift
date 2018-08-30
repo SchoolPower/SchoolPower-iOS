@@ -141,43 +141,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @available(iOS 9.0, *)
     func application(_
         application: UIApplication,
-        performActionFor shortcutItem: UIApplicationShortcutItem,
-        completionHandler: @escaping (Bool) -> Void) {
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
         completionHandler(handleShortCut(item: shortcutItem))
     }
     
     @available(iOS 9.0, *)
     func handleShortCut(item: UIApplicationShortcutItem) -> Bool {
         
-        guard let type = item.type as String? else { return false }
-        
-        switch type {
-        case "GPA":
-            ON_SHORTCUT = .gpa
-            break
-        case "CHART":
-            ON_SHORTCUT = .chart
-            break
-        case "ATTENDANCE":
-            ON_SHORTCUT = .attendance
-            break
-        default:
-            ON_SHORTCUT = .none
-            return false
-        }
-        
         let story = UIStoryboard(name: "Main", bundle: nil)
         var gotoController: UIViewController
         
-        gotoController = story.instantiateViewController(withIdentifier: "DashboardNav")
-        gotoController.view.tag = 1
-        let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
-        UIApplication.shared.delegate?.window??.rootViewController =
-            AppNavigationDrawerController(
-                rootViewController: gotoController,
-                leftViewController: leftViewController,
-                rightViewController: nil)
+        if userDefaults.bool(forKey: LOGGED_IN_KEY_NAME) {
+            
+            guard let type = item.type as String? else { return false }
+            
+            switch type {
+            case "GPA":
+                ON_SHORTCUT = .gpa
+                break
+            case "CHART":
+                ON_SHORTCUT = .chart
+                break
+            case "ATTENDANCE":
+                ON_SHORTCUT = .attendance
+                break
+            default:
+                ON_SHORTCUT = .none
+                return false
+            }
+            
+            gotoController = story.instantiateViewController(withIdentifier: "DashboardNav")
+            gotoController.view.tag = 1
+            let leftViewController = story.instantiateViewController(withIdentifier: "Drawer")
+            UIApplication.shared.delegate?.window??.rootViewController =
+                AppNavigationDrawerController(
+                    rootViewController: gotoController,
+                    leftViewController: leftViewController,
+                    rightViewController: nil)
+            
+        } else {
+            
+            gotoController = story.instantiateViewController(withIdentifier: "login")
+            window = UIWindow(frame: Screen.bounds)
+            window!.rootViewController = gotoController
+        }
         
+        window!.makeKeyAndVisible()
         return true
     }
     
