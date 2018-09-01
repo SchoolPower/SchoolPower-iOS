@@ -570,7 +570,6 @@ extension MainTableViewController {
                 (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(dismissAllILD), for: .touchUpInside)
                 (view.viewWithTag(5) as! MDCFlatButton).gone(yes: ILDInfo.hideSecondary)
                 (view.viewWithTag(6) as! MDCFlatButton).gone(yes: ILDInfo.hideDismiss)
-                tableView.reloadSections([0], with: .top)
                 
                 return view
                 
@@ -590,7 +589,6 @@ extension MainTableViewController {
                 (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(gotoDonation), for: .touchUpInside)
                 (view.viewWithTag(5) as! MDCFlatButton).addTarget(self, action: #selector(gotoPromotion), for: .touchUpInside)
                 (view.viewWithTag(6) as! MDCFlatButton).addTarget(self, action: #selector(dismissDonation), for: .touchUpInside)
-                tableView.reloadSections([0], with: .top)
                 
                 return view
                 
