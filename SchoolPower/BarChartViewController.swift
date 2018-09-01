@@ -119,12 +119,10 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
             }
             
             let dataSet = BarChartDataSet(values: group, label: term)
-            dataSet.colors = [termColors[count]] 
+            dataSet.colors = [termColors[count]]
             dataSets.append(dataSet)
             count+=1
         }
-        
-        print(dataSets)
         
         barChart.xAxis.labelPosition = .bottom
         barChart.xAxis.granularity = Double(termStrings.count)
