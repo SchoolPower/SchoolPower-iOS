@@ -75,15 +75,33 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         let gradedSubjects = Utils.getGradedSubjects(subjects: subjects)
         var dataSets = [BarChartDataSet]()
         var subjectStrings = [String]()
+        let termStrings = Utils.sortTerm(terms: Utils.getAllPeriods(subject: gradedSubjects))
         
-        let termStrings = ["T1","T2","T3","T4"]
+//        let termStrings = ["T1","T2","T3","T4"]
         let accent = Utils.getAccent()
-        let termColors = [
-            accent.adjustHue(by: -30),
-            accent.adjustHue(by: -10),
-            accent.adjustHue(by: 10),
-            accent.adjustHue(by: 30)
-        ]
+        
+        var termColors = [UIColor]()
+        let padding = 20
+        let n = termStrings.count
+        let even = n % 2 == 0
+        if even {
+            let offset = padding / 2
+            for i in stride(from: n / 2 - 1, through: 0, by: -1) {
+                termColors.append(accent.adjustHue(by: CGFloat(-padding * i - offset))!)
+            }
+            for i in stride(from: 0, through: n / 2 - 1, by: 1) {
+                termColors.append(accent.adjustHue(by: CGFloat(padding * i + offset))!)
+            }
+        } else {
+            for i in stride(from: (n - 1) / 2, through: 1, by: -1) {
+                termColors.append(accent.adjustHue(by: CGFloat(-padding * i))!)
+            }
+            termColors.append(accent)
+            for i in stride(from: 1, through: (n - 1) / 2, by: 1) {
+                termColors.append(accent.adjustHue(by: CGFloat(padding * i))!)
+            }
+        }
+    
         
         // second run -- group them in terms
         var count = 0
@@ -106,10 +124,12 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
             count+=1
         }
         
+        print(dataSets)
+        
         barChart.xAxis.labelPosition = .bottom
-        barChart.xAxis.granularity = 4.0
+        barChart.xAxis.granularity = Double(termStrings.count)
         barChart.xAxis.axisMinimum = 0.0
-        barChart.xAxis.axisMaximum = Double(4 * gradedSubjects.count)
+        barChart.xAxis.axisMaximum = Double(termStrings.count * gradedSubjects.count)
         barChart.xAxis.centerAxisLabelsEnabled = true
         barChart.xAxis.valueFormatter = BarChartFormatter(subjectStrings: subjectStrings)
         barChart.xAxis.gridColor = theme.secondaryTextColor
@@ -144,7 +164,7 @@ class BarChartFormatter: NSObject, IAxisValueFormatter{
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String{
-        let index = Int(value/4)
+        let index = Int(value/3)
         if index < 0 || index >= mSubjectStrings.count { return "" }
         return mSubjectStrings[index]
     }

@@ -297,11 +297,8 @@ extension Utils {
     static func getAllPeriods(subject: [Subject]) -> NSMutableSet {
         
         let allPeriods = NSMutableSet()
-        var latestPeriods = [String: Grade]()
         
         subject.indices.forEach ({
-            let key = self.getLatestItem(grades: subjects[$0].grades)
-            latestPeriods[key] = subjects[$0].grades[key]
             for keyFilter in subjects[$0].grades.keys {
                 if subjects[$0].grades[keyFilter]?.letter != "--" {
                     allPeriods.add(keyFilter)
@@ -322,6 +319,32 @@ extension Utils {
         
         // overall latest period, usually indicates the current term
         return Utils.getLatestItem(grades: latestPeriods)
+    }
+    
+    static func sortTerm(terms: [String]) -> [String] {
+        var sortableTerms = [SortableTerm]()
+        for term in terms {
+            sortableTerms.append(SortableTerm(raw: term))
+        }
+        let sortedTerms = sortableTerms.sorted(by: { $0.value < $1.value })
+        var result = [String]()
+        for term in sortedTerms {
+            result.append(term.raw)
+        }
+        return result
+    }
+    
+    static func sortTerm(terms: NSMutableSet) -> [String] {
+        var sortableTerms = [SortableTerm]()
+        for term in terms {
+            sortableTerms.append(SortableTerm(raw: term as! String))
+        }
+        let sortedTerms = sortableTerms.sorted(by: { $0.value < $1.value })
+        var result = [String]()
+        for term in sortedTerms {
+            result.append(term.raw)
+        }
+        return result
     }
     
     static func getLatestItem(grades: [String: Grade]) -> String {

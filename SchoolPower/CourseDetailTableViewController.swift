@@ -67,8 +67,9 @@ class CourseDetailTableViewController: UITableViewController {
     
     func initTermList() {
 
-        termsList.append("allterms".localize)
         for (termName, _) in infoItem.grades{ termsList.append(termName) }
+        termsList = Utils.sortTerm(terms: termsList)
+        termsList.insert("allterms".localize, at: 0)
     }
     
     func setAllTerms() {

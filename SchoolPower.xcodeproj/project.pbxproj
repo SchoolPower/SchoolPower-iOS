@@ -31,6 +31,7 @@
 		622248BB210B6E9000E7762E /* CryptoDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622248BA210B6E9000E7762E /* CryptoDialog.swift */; };
 		62245FC420FB4F770093E813 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62245FC320FB4F770093E813 /* InstructionViewController.m */; };
 		62245FC920FB51A50093E813 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62245FC820FB51A40093E813 /* OnboardingContentViewController.m */; };
+		622AC056213A65380032F1B3 /* SortableTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622AC055213A65380032F1B3 /* SortableTerm.swift */; };
 		62368CA51F88825000519608 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62368CA41F88825000519608 /* MessageUI.framework */; };
 		62377E9321044171004DE715 /* TouchThroughCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62377E9221044171004DE715 /* TouchThroughCard.swift */; };
 		62377E9721047F92004DE715 /* transtr.py in Resources */ = {isa = PBXBuildFile; fileRef = 62377E9621047F91004DE715 /* transtr.py */; };
@@ -147,6 +148,7 @@
 		62245FC520FB4FC20093E813 /* InstructionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstructionViewController.h; sourceTree = "<group>"; };
 		62245FC720FB51A40093E813 /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController.h; path = SchoolPower/OnboardingContentViewController.h; sourceTree = SOURCE_ROOT; };
 		62245FC820FB51A40093E813 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = SchoolPower/OnboardingContentViewController.m; sourceTree = SOURCE_ROOT; };
+		622AC055213A65380032F1B3 /* SortableTerm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortableTerm.swift; sourceTree = "<group>"; };
 		62368CA41F88825000519608 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		62377E9221044171004DE715 /* TouchThroughCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchThroughCard.swift; sourceTree = "<group>"; };
 		62377E9621047F91004DE715 /* transtr.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = transtr.py; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				6271028B1F6FDDBA00676290 /* StudentInformation.swift */,
 				62FC12791FADBC3000BCD79D /* Attendance.swift */,
 				6265BBCF2129413F00A901F1 /* ILDNotification.swift */,
+				622AC055213A65380032F1B3 /* SortableTerm.swift */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				62CFC9C21EFA9972002B4A8D /* MainTableViewController.swift in Sources */,
 				6218E23C20E5D853005CBCED /* DonationViewController.swift in Sources */,
 				6297EC201FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift in Sources */,
+				622AC056213A65380032F1B3 /* SortableTerm.swift in Sources */,
 				62C7867E1EFB98AE00CB28ED /* Assignment.swift in Sources */,
 				624BDC531EFE77440052EC5D /* CourseDetailHeaderCell.swift in Sources */,
 				2705427E1F0887880002C7BE /* AboutViewController.swift in Sources */,
