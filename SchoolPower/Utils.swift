@@ -339,6 +339,10 @@ extension Utils {
             else if termsList.contains("T3") && grades["T3"]?.letter != "--" {return "T3"}
             else if termsList.contains("T2") && grades["T2"]?.letter != "--" {return "T2"}
             else if termsList.contains("T1") {return "T1"}
+            else if termsList.contains("Q4") && grades["Q4"]?.letter != "--" {return "Q4"}
+            else if termsList.contains("Q3") && grades["Q3"]?.letter != "--" {return "Q3"}
+            else if termsList.contains("Q2") && grades["Q2"]?.letter != "--" {return "Q2"}
+            else if termsList.contains("Q1") {return "Q1"}
         }
             
         else{ // for latest term
@@ -347,6 +351,10 @@ extension Utils {
             else if termsList.contains("T3") && grades["T3"]?.letter != "--" {return "T3"}
             else if termsList.contains("T2") && grades["T2"]?.letter != "--" {return "T2"}
             else if termsList.contains("T1") {return "T1"}
+            else if termsList.contains("Q4") && grades["Q4"]?.letter != "--" {return "Q4"}
+            else if termsList.contains("Q3") && grades["Q3"]?.letter != "--" {return "Q3"}
+            else if termsList.contains("Q2") && grades["Q2"]?.letter != "--" {return "Q2"}
+            else if termsList.contains("Q1") {return "Q1"}
         }
         
         if termsList.contains("Y1") && grades["Y1"]?.letter != "--" {return "Y1"}
