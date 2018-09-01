@@ -119,7 +119,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
             }
             
             let dataSet = BarChartDataSet(values: group, label: term)
-            dataSet.colors = [termColors[count]] as! [NSUIColor]
+            dataSet.colors = [termColors[count]] 
             dataSets.append(dataSet)
             count+=1
         }
@@ -131,7 +131,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
         barChart.xAxis.axisMinimum = 0.0
         barChart.xAxis.axisMaximum = Double(termStrings.count * gradedSubjects.count)
         barChart.xAxis.centerAxisLabelsEnabled = true
-        barChart.xAxis.valueFormatter = BarChartFormatter(subjectStrings: subjectStrings)
+        barChart.xAxis.valueFormatter = BarChartFormatter(subjectStrings: subjectStrings, termCount: Double(termStrings.count))
         barChart.xAxis.gridColor = theme.secondaryTextColor
         barChart.xAxis.axisLineColor = theme.primaryTextColor
         barChart.xAxis.labelTextColor = theme.primaryTextColor
@@ -158,13 +158,15 @@ class BarChartFormatter: NSObject, IAxisValueFormatter{
     
     private let mFormat = DateFormatter()
     private var mSubjectStrings: [String]
-    init(subjectStrings: [String]){
+    private var mTermCount = 0.0
+    init(subjectStrings: [String], termCount: Double){
         mFormat.dateFormat = "MM/dd"
         mSubjectStrings = subjectStrings
+        mTermCount = termCount
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String{
-        let index = Int(value/3)
+        let index = Int(value / mTermCount)
         if index < 0 || index >= mSubjectStrings.count { return "" }
         return mSubjectStrings[index]
     }
