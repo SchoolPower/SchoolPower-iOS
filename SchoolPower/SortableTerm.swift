@@ -18,6 +18,8 @@ class SortableTerm {
     }
     
     private func valueOfLetter(letter: String) -> Int {
+        // This is so that S1 > T4/Q4, Y1 > S2, X1 > Y1
+        // Don't know what's X, assume it's greater than Y here :P
         switch letter {
         case "T": return 1
         case "Q": return 1
