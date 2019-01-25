@@ -201,12 +201,13 @@ class MainTableViewController: UITableViewController {
     
     @objc func gpaOnClick() {
         
-        self.GPADialog = GPADialogUtil(view: self.view,
+        self.GPADialog = GPADialogUtil(view: UIApplication.shared.delegate?.window??.rootViewController?.view ?? self.view,
                                        subjectsForGPA: subjects,
                                        GPAOfficial: studentInfo.GPA ?? Double.nan)
         if subjects.count == 0 {
             self.GPADialog.GPANotAvailable()
         } else {
+            print("efihfish")
             self.GPADialog.show()
         }
     }
@@ -230,7 +231,7 @@ class MainTableViewController: UITableViewController {
     @objc func birthdayOnClick() {
         
         let standerdWidth = self.view.frame.width * 0.8
-        birthdayDialogAlert = CustomIOSAlertView.init()
+        birthdayDialogAlert = CustomIOSAlertView(parentView: UIApplication.shared.delegate?.window??.rootViewController?.view ?? self.view)
         let birthdayDialog = BirthdayDialog.instanceFromNib(width: standerdWidth)
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: birthdayDialog.bounds.size.height))
         (birthdayDialog.viewWithTag(5) as! MDCFlatButton).addTarget(self, action: #selector(dismissBirthday), for: .touchUpInside)
@@ -743,7 +744,7 @@ extension MainTableViewController: UICollectionViewDelegate, UICollectionViewDat
         let termName = Array(grades.keys)[indexPath.row]
         let grade = grades[termName]!
         let standerdWidth = self.view.frame.width * 0.8
-        let alert = CustomIOSAlertView.init()
+        let alert = CustomIOSAlertView(parentView: UIApplication.shared.delegate?.window??.rootViewController?.view ?? self.view)
         let termDialog = TermDialog.instanceFromNib(
             width: standerdWidth,
             name: termName,

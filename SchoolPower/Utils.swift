@@ -212,6 +212,8 @@ extension Utils {
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("response = \(String(describing: response))")
+                completion("\(String(describing: response))")
+                return
             }
             completion(String(data: data, encoding: .utf8)!)
         }
@@ -233,6 +235,8 @@ extension Utils {
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print("response = \(String(describing: response))")
+                completion("\(String(describing: response))")
+                return
             }
             completion(String(data: data, encoding: .utf8)!)
         }

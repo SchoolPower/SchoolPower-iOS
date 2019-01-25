@@ -196,7 +196,7 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
     func showCryptoDialog(cryptoType: CryptoDialog.CryptoType) {
         
         let standerdWidth = self.view.frame.width * 0.8
-        let alert = CustomIOSAlertView.init()
+        let alert = CustomIOSAlertView(parentView: UIApplication.shared.delegate?.window??.rootViewController?.view ?? self.view)
         let cryptoDialog = CryptoDialog.instanceFromNib(width: standerdWidth, cryptoType: cryptoType)
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: cryptoDialog.bounds.size.height))
         (cryptoDialog.viewWithTag(4) as! MDCCard).addTarget(self, action: #selector(copyAddress), for: .touchUpInside)

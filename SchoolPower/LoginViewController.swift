@@ -7,7 +7,9 @@ import Material
 import MaterialComponents
 import SwiftyJSON
 
-var toPop = true
+// disabled login dialog
+// var toPop = true
+var toPop = false
 
 class LoginViewController: UIViewController {
     
@@ -34,7 +36,6 @@ class LoginViewController: UIViewController {
     }
     
     func popUp() {
-        
         if toPop {
             UIAlertView(title: "notification".localize, message: "only_alert".localize,
                         delegate: nil, cancelButtonTitle: "i_understand".localize).show()

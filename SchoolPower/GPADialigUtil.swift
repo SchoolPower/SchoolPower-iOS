@@ -31,7 +31,7 @@ class GPADialogUtil {
     }
     
     func show () {
-        
+        print("efsoisfnqqq1111")
         allPeriods = Utils.sortTerm(terms: Utils.getAllPeriods(subject: subjectsForGPA))
         currentTerm = allPeriods.index(of: Utils.getLatestPeriod(subject: subjectsForGPA)) ?? -1
         
@@ -87,7 +87,7 @@ class GPADialogUtil {
     private func constructView() {
         
         let standerdWidth = self.view.frame.width * 0.8
-        let alert = CustomIOSAlertView.init()
+        let alert = CustomIOSAlertView(parentView: self.view)
         let subview = UIView(frame: CGRect(x: 0, y: 0, width: standerdWidth, height: standerdWidth * 1.5))
         
         self.gpaDialog = GPADialog.instanceFromNib(width: standerdWidth)
@@ -104,7 +104,7 @@ class GPADialogUtil {
         
         gpaDialog.center = subview.center
         subview.addSubview(gpaDialog)
-        
+        print("232323232")
         alert?.containerView = subview
         alert?.closeOnTouchUpOutside = true
         alert?.buttonTitles = nil

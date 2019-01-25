@@ -182,7 +182,7 @@ extension CourseDetailTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let standerdWidth = self.view.frame.width * 0.8
-        let alert = CustomIOSAlertView.init()
+        let alert = CustomIOSAlertView(parentView: UIApplication.shared.delegate?.window??.rootViewController?.view ?? self.view)
         let assignmentDialog = AssignmentDialog.instanceFromNib(
             width: standerdWidth,
             subject: infoItem.title,
