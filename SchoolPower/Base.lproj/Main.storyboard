@@ -1150,12 +1150,29 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="wAg-a3-GlA" style="IBUITableViewCellStyleDefault" id="u2T-jp-QGz" customClass="SettingsCell" customModule="SchoolPower" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="418" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u2T-jp-QGz" id="nm8-eB-6hq">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Join Feedback QQ Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wAg-a3-GlA">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="jw1-9G-wC5">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="14i-2d-vbp" style="IBUITableViewCellStyleDefault" id="19q-LJ-PgQ">
-                                        <rect key="frame" x="0.0" y="454" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="498" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="19q-LJ-PgQ" id="HI3-7U-vWN">
                                             <rect key="frame" x="0.0" y="0.0" width="376" height="44"/>
@@ -1182,6 +1199,7 @@
                     <connections>
                         <outlet property="getSourceCodeTitle" destination="ZGG-aa-QuB" id="5xx-VY-agD"/>
                         <outlet property="headerCell" destination="SY7-Df-2fe" id="j8D-r7-FIQ"/>
+                        <outlet property="joinFeedbackQQGroupTitle" destination="wAg-a3-GlA" id="Auo-Xq-0UG"/>
                         <outlet property="licensesCell" destination="19q-LJ-PgQ" id="ADi-5d-rd5"/>
                         <outlet property="licensesLable" destination="14i-2d-vbp" id="Lgv-Af-tDw"/>
                         <outlet property="reportBugDetail" destination="guf-Ie-kq2" id="tZm-59-JUq"/>

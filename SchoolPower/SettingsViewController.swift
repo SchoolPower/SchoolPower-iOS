@@ -25,6 +25,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var visitForumTitle: UILabel!
     @IBOutlet weak var visitWebsiteTitle: UILabel!
     @IBOutlet weak var getSourceCodeTitle: UILabel!
+    @IBOutlet weak var joinFeedbackQQGroupTitle: UILabel!
     
     @IBOutlet weak var languageDetail: UILabel?
     @IBOutlet weak var dspDetail: UILabel?
@@ -102,6 +103,7 @@ class SettingsTableViewController: UITableViewController {
         visitForumTitle?.textColor = theme.primaryTextColor
         visitWebsiteTitle?.textColor = theme.primaryTextColor
         getSourceCodeTitle?.textColor = theme.primaryTextColor
+        joinFeedbackQQGroupTitle?.textColor = theme.primaryTextColor
         darkThemeTitle?.textColor = theme.primaryTextColor
         accentColorTitle?.textColor = theme.primaryTextColor
         
@@ -124,6 +126,7 @@ class SettingsTableViewController: UITableViewController {
         visitForumTitle?.text = "feedback_forum".localize
         visitWebsiteTitle?.text = "visit_website".localize
         getSourceCodeTitle?.text = "source_code".localize
+        joinFeedbackQQGroupTitle?.text = "join_feedback_qq_group".localize
         darkThemeTitle?.text = "dark_theme".localize
         accentColorTitle?.text = "accent_color".localize
         
@@ -201,6 +204,9 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
                 break
             case 2:
                 UIApplication.shared.openURL(NSURL(string: CODE_URL)! as URL)
+                break
+            case 3:
+                UIApplication.shared.openURL(NSURL(string: QQ_GROUP_URL)! as URL)
                 break
             default:
                 break

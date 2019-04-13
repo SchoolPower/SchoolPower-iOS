@@ -18,6 +18,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
 
     @IBOutlet weak var visitWebsiteTitle: UILabel!
     @IBOutlet weak var getSourceCodeTitle: UILabel!
+    @IBOutlet weak var joinFeedbackQQGroupTitle: UILabel!
     
     @IBOutlet weak var versionLabel: UILabel!
     
@@ -39,6 +40,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         reportBugTitle?.text = "report_bug".localize
         visitWebsiteTitle?.text = "visit_website".localize
         getSourceCodeTitle?.text = "source_code".localize
+        joinFeedbackQQGroupTitle?.text = "join_feedback_qq_group".localize
         reportBugDetail?.text = "report_bug_summary".localize
         versionLabel?.text =  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     }
@@ -71,6 +73,9 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
                 break
             case 2:
                 UIApplication.shared.openURL(NSURL(string: CODE_URL)! as URL)
+                break
+            case 3:
+                UIApplication.shared.openURL(NSURL(string: QQ_GROUP_URL)! as URL)
                 break
             default:
                 break
