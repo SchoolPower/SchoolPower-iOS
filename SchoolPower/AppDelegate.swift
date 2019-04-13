@@ -204,7 +204,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             userDefaults.register(defaults: [TOKEN_KEY_NAME: token])
             
-            
             Utils.sendNotificationRegistry(token: token)
             
         } else {
@@ -229,19 +228,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if #available(iOS 10.0, *) {
             
-            let notification = UNMutableNotificationContent()
-            notification.sound = UNNotificationSound.default()
-            notification.title = "\(String(assignmentNum)) \("notification_new".localize)"
-            notification.body = messageBody
-            notification.badge = ((notification.badge?.intValue) ?? 0 + assignmentNum) as NSNumber
-            
-            let identifier = "newAssignmentNotification"
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
-            let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: trigger)
-            
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
-                print("Cannot Send Notification")
-            })
+            let center = UNUserNotificationCenter.current()
+            let content = UNMutableNotificationContent()
+            content.title = "\(String(assignmentNum)) \("notification_new".localize)"
+            content.body = messageBody
+            content.sound = UNNotificationSound.default()
+            content.badge = ((content.badge?.intValue) ?? 0 + assignmentNum) as NSNumber
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            center.add(request)
             
         } else {
             
@@ -249,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if #available(iOS 8.2, *) { notification.alertTitle = "SchoolPower" }
             
             notification.soundName = UILocalNotificationDefaultSoundName
-            notification.fireDate = Date.init(timeIntervalSinceNow: 0)
+            notification.fireDate = Date.init(timeIntervalSinceNow: 1)
             notification.applicationIconBadgeNumber += assignmentNum
             notification.alertBody = "\(String(assignmentNum)) \("notification_new".localize): \(messageBody)"
             
@@ -260,19 +255,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if #available(iOS 10.0, *) {
             
-            let notification = UNMutableNotificationContent()
-            notification.sound = UNNotificationSound.default()
-            notification.title = "\(String(attendanceNum)) \("attendence_new".localize)"
-            notification.body = messageBody
-            notification.badge = ((notification.badge?.intValue) ?? 0 + attendanceNum) as NSNumber
-            
-            let identifier = "newAssignmentNotification"
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
-            let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: trigger)
-            
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
-                print("Cannot Send Notification")
-            })
+            let center = UNUserNotificationCenter.current()
+            let content = UNMutableNotificationContent()
+            content.title = "\(String(attendanceNum)) \("attendence_new".localize)"
+            content.body = messageBody
+            content.sound = UNNotificationSound.default()
+            content.badge = ((content.badge?.intValue) ?? 0 + attendanceNum) as NSNumber
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            center.add(request)
             
         } else {
             
@@ -290,7 +281,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Handle silent remote notification and send a local notification
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
+        silentUpdateAndPushLocalNptification(completionHandler: completionHandler)
+    }
+    
+    func silentUpdateAndPushLocalNptification(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if userDefaults.bool(forKey:ENABLE_NOTIFICATION_KEY_NAME)
             && userDefaults.bool(forKey: LOGGED_IN_KEY_NAME) {
             
@@ -372,7 +366,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     if (newGrade && showGrades){
                                         updatedGradedSubjects.append("\(item.title)(\(grade)/\(item.maximumScore))")
                                     }
-                                    else{
+                                    else {
                                         updatedSubjects.append(item.title)
                                     }
                                 }
@@ -396,17 +390,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             updatedAttendances.append(item.subject + " - " + item.description)
                         }
                     }
-                    
                     var allSubjects : [String] = updatedSubjects
                     allSubjects.append(contentsOf: updatedGradedSubjects)
                     
+                    var updated = false
+                    
                     if allSubjects.count != 0 {
-                        self.sendNewAssignmentNotification(messageBody: allSubjects.joined(separator: ","), assignmentNum: allSubjects.count)
+                        updated = true
+                        self.sendNewAssignmentNotification(messageBody: allSubjects.joined(separator: ", "), assignmentNum: allSubjects.count)
+                        completionHandler(.newData)
                     }
                     if updatedAttendances.count != 0 {
-                        self.sendNewAttendanceNotification(messageBody: updatedAttendances.joined(separator: ","), attendanceNum: updatedAttendances.count)
+                        updated = true
+                        self.sendNewAttendanceNotification(messageBody: updatedAttendances.joined(separator: ", "), attendanceNum: updatedAttendances.count)
                         completionHandler(.newData)
-                    } else {
+                    }
+                    if(!updated){
                         if allSubjects.count == 0 {
                             completionHandler(.noData)
                         }else{

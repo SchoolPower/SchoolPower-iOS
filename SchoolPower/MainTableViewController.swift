@@ -207,7 +207,6 @@ class MainTableViewController: UITableViewController {
         if subjects.count == 0 {
             self.GPADialog.GPANotAvailable()
         } else {
-            print("efihfish")
             self.GPADialog.show()
         }
     }
