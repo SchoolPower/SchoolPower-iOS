@@ -490,6 +490,23 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="nEX-Xl-yeh" style="IBUITableViewCellStyleDefault" id="N5N-T8-SfX">
+                                        <rect key="frame" x="0.0" y="211" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N5N-T8-SfX" id="lGw-vt-g5x">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="日本語" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nEX-Xl-yeh">
+                                                    <rect key="frame" x="16" y="0.0" width="319" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -501,6 +518,7 @@
                         <outlet property="itemdef" destination="kz0-Da-deJ" id="Uea-VY-NeT"/>
                         <outlet property="itemdefLable" destination="pyB-iT-kPf" id="mqL-Jl-MZj"/>
                         <outlet property="itemeng" destination="hhB-db-RcU" id="qFm-JH-JdE"/>
+                        <outlet property="itemjap" destination="N5N-T8-SfX" id="MsN-AX-gWl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xWj-40-XIm" userLabel="First Responder" sceneMemberID="firstResponder"/>

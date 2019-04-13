@@ -1,6 +1,6 @@
 
 //
-//  Copyright 2018 SchoolPower Studio
+//  Copyright 2019 SchoolPower Studio
 //
 
 import UIKit
@@ -60,7 +60,8 @@ let LOCALE_SET = [
     Locale().initWithLanguageCode(languageCode: Bundle.main.preferredLocalizations.first! as NSString, countryCode: "gb", name: "United Kingdom"),
     Locale().initWithLanguageCode(languageCode: "en", countryCode: "gb", name: "United Kingdom"),
     Locale().initWithLanguageCode(languageCode: "zh-Hant", countryCode: "cn", name: "China"),
-    Locale().initWithLanguageCode(languageCode: "zh-Hans", countryCode: "cn", name: "China")
+    Locale().initWithLanguageCode(languageCode: "zh-Hans", countryCode: "cn", name: "China"),
+    Locale().initWithLanguageCode(languageCode: "ja", countryCode: "jp", name: "Japan")
 ]
 
 enum SHORT_CUTS {
@@ -257,7 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let center = UNUserNotificationCenter.current()
             let content = UNMutableNotificationContent()
-            content.title = "\(String(attendanceNum)) \("attendence_new".localize)"
+            content.title = "\(String(attendanceNum)) \("attendance_new".localize)"
             content.body = messageBody
             content.sound = UNNotificationSound.default()
             content.badge = ((content.badge?.intValue) ?? 0 + attendanceNum) as NSNumber
@@ -273,7 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             notification.soundName = UILocalNotificationDefaultSoundName
             notification.fireDate = Date.init(timeIntervalSinceNow: 0)
             notification.applicationIconBadgeNumber += attendanceNum
-            notification.alertBody = "\(String(attendanceNum)) \("attendence_new".localize): \(messageBody)"
+            notification.alertBody = "\(String(attendanceNum)) \("attendance_new".localize): \(messageBody)"
             
             UIApplication.shared.scheduleLocalNotification(notification)
         }

@@ -167,6 +167,7 @@
 		6297EC1F1FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSubjectTableViewController.swift; sourceTree = "<group>"; };
 		6297EC211FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateRuleTableViewController.swift; sourceTree = "<group>"; };
 		6297EC231FF0FC16003E8F1C /* GPADialigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPADialigUtil.swift; sourceTree = "<group>"; };
+		629B46D62261CC540052F4F2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62A8FA431EFB66DA00751ACD /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		62AA4E391F033B57009C8CFC /* AppNavigationDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationDrawerController.swift; sourceTree = "<group>"; };
 		62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -585,6 +586,7 @@
 				Base,
 				"zh-Hant",
 				"zh-Hans",
+				ja,
 			);
 			mainGroup = 62CFC9851EFA9940002B4A8D;
 			productRefGroup = 62CFC98F1EFA9940002B4A8D /* Products */;
@@ -837,6 +839,7 @@
 				62C34E2A1F05F5A70078D5F8 /* zh-Hant */,
 				62C34E2F1F05FD6B0078D5F8 /* en */,
 				62C34E301F0608640078D5F8 /* zh-Hans */,
+				629B46D62261CC540052F4F2 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -1,5 +1,5 @@
 //
-//  Copyright 2018 SchoolPower Studio
+//  Copyright 2019 SchoolPower Studio
 //
 
 import Foundation

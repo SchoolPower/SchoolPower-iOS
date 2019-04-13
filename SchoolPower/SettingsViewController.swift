@@ -1,5 +1,5 @@
 //
-//  Copyright 2018 SchoolPower Studio
+//  Copyright 2019 SchoolPower Studio
 //
 
 import UIKit
@@ -85,7 +85,7 @@ class SettingsTableViewController: UITableViewController {
     
     func loadDetails() {
         
-        let descriptionSets = [["default".localize, "English", "繁體中文", "简体中文"],
+        let descriptionSets = [["default".localize, "English", "繁體中文", "简体中文","日本語"],
                                ["thisterm".localize, "thissemester".localize],
                                ["all".localize, "highest_3".localize, "highest_4".localize, "highest_5".localize]]
         

@@ -1,5 +1,5 @@
 //
-//  Copyright 2018 SchoolPower Studio
+//  Copyright 2019 SchoolPower Studio
 //
 
 "dashboard" = "儀表盤";
@@ -26,7 +26,7 @@
 "the_score_of_this_semester" = "這個 Semester 的分數";
 "username" = "用戶名";
 "password" = "密碼";
-"copyright" = "版權所有 © 2017 SchoolPower 工作室";
+"copyright" = "版權所有 © 2019 SchoolPower 工作室";
 "authenticating" = "驗證中...";
 "invalidup" = "用戶名或密碼錯誤";
 "cannot_connect" = "無法連結到服務器";
@@ -62,7 +62,7 @@
 "notification_show_grade" = "在通知裡顯示成績";
 "notification_show_no_grade_assignment" = "通知還沒出分的作業";
 "notification_new" = "項新作業";
-"attendance_new" = "新出勤";
+"attendance_new" = "項新出勤";
 "support" = "支持";
 "report_bug" = "提交Bug";
 "report_bug_summary" = "用電子郵件聯繫開發者";

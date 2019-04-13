@@ -1,5 +1,5 @@
 //
-//  Copyright 2018 SchoolPower Studio
+//  Copyright 2019 SchoolPower Studio
 //
 
 "dashboard" = "Dashboard";
@@ -26,7 +26,7 @@
 "the_score_of_this_semester" = "The score of this Semester";
 "username" = "Username";
 "password" = "Password";
-"copyright" = "Copyright © 2017 SchoolPower Studio";
+"copyright" = "Copyright © 2019 SchoolPower Studio";
 "authenticating" = "Authenticating...";
 "invalidup" = "Invalid Username or Password";
 "cannot_connect" = "Cannot connect to server";

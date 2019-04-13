@@ -1,5 +1,5 @@
 //
-//  Copyright 2018 SchoolPower Studio
+//  Copyright 2019 SchoolPower Studio
 //
 
 import UIKit
@@ -11,6 +11,7 @@ class LanguageTableViewController: UITableViewController {
     @IBOutlet weak var itemeng: UITableViewCell?
     @IBOutlet weak var itemchit: UITableViewCell?
     @IBOutlet weak var itemchis: UITableViewCell?
+    @IBOutlet weak var itemjap: UITableViewCell?
     @IBOutlet weak var itemdefLable: UILabel?
   
     var languageIndex: Int = 0
@@ -27,7 +28,7 @@ class LanguageTableViewController: UITableViewController {
     
     func loadCells() {
         
-        let itemSet = [itemdef, itemeng, itemchit, itemchis]
+        let itemSet = [itemdef, itemeng, itemchit, itemchis, itemjap]
         for item in itemSet {
             item?.accessoryType = .none
             item?.textLabel?.textColor = ThemeManager.currentTheme().primaryTextColor
