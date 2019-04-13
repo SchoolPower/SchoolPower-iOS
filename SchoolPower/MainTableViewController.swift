@@ -434,12 +434,14 @@ extension MainTableViewController {
     }
     
     func needToShowDonate() -> Bool {
+        return false // disable donation message for now.
         // Show donate every 30 days
+        /*
         if isDonated() || isEarlyDonators() {
             return false
         } else {
             return getLastDonateShowedDate().timeIntervalSinceNow * -1 / 60.0 / 60.0 / 24.0 >= 30.0
-        }
+        }*/
 //                return getLastDonateShowedDate().timeIntervalSinceNow * -1 >= 10.0
 //                        return true
     }
