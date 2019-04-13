@@ -93,6 +93,7 @@ class MainTableViewController: UITableViewController {
         // send device token for notification
         let token = userDefaults.string(forKey: TOKEN_KEY_NAME)
         if token != nil && token != "" { Utils.sendNotificationRegistry(token: token!) }
+        displayWebCardIfOniPad()
     }
     
     deinit {
@@ -169,6 +170,16 @@ class MainTableViewController: UITableViewController {
                                                        loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(theme.primaryColor)
         tableView.dg_setPullToRefreshBackgroundColor(theme.windowBackgroundColor)
+    }
+    
+    func displayWebCardIfOniPad() {
+        if UIDevice.current.model.hasPrefix("iPad") {
+            let bundle = Bundle(for: type(of: self))
+            let path = bundle.path(forResource: "ipad_to_web", ofType: "json")!
+            let jsonData = NSData(contentsOfFile: path)
+            let ild = ILDNotification(json: JSON(data: jsonData! as Data))
+            _ = showILD(data: ild)
+        }
     }
     
     func handleShortcutAction() {
@@ -477,24 +488,28 @@ extension MainTableViewController {
         (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Support Us"), animated: true)
         setLastDonateShowedDate(date: Date.init())
         needShowDonate = false
-        dismissAllILD()
+        dismissILDsOnceAndForAll()
     }
     
     @objc func gotoPromotion() {
         (navigationDrawerController?.rootViewController as! UINavigationController).pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Support Us"), animated: true)
         setLastDonateShowedDate(date: Date.init())
         needShowDonate = false
-        dismissAllILD()
+        dismissILDsOnceAndForAll()
     }
     
     @objc func dismissDonation() {
         setLastDonateShowedDate(date: Date.init())
         needShowDonate = false
-        dismissAllILD()
+        dismissILDsOnceAndForAll()
     }
     
-    @objc func dismissAllILD() {
-        
+    @objc func dismissILDsOnceAndForAll() {
+        dismissILDsForAll()
+        dismissILDsOnce()
+    }
+    
+    func dismissILDsForAll() {
         if needDisplayILD && ILDInfo != nil {
             if ILDInfo.onlyOnce {
                 var displayedILDs = userDefaults.stringArray(forKey: DISPLAYED_ILD_KEY_NAME) ?? [String]()
@@ -502,13 +517,34 @@ extension MainTableViewController {
                 userDefaults.set(displayedILDs, forKey: DISPLAYED_ILD_KEY_NAME)
             }
         }
-        
+    }
+    
+    func dismissILDsOnce() {
         needDisplayILD = false
         ILDInfo = nil
         DispatchQueue.main.async {
             self.tableView.sectionHeaderHeight = self.kSectionHeaderHeight
             self.tableView.reloadSections([0], with: .top)
         }
+    }
+    
+    @objc func primaryOnClick() {
+        if (ILDInfo.primaryOnClickListenerIndex == 233) {
+            gotoWebApp()
+        } else {
+            dismissILDsOnceAndForAll()
+        }
+    }
+    
+    @objc func secondaryOnClick() {
+        if (ILDInfo.primaryOnClickListenerIndex == 233) {
+            dismissILDsOnce()
+        }
+    }
+    
+    @objc func gotoWebApp() {
+        UIApplication.shared.openURL(NSURL(string: WEBAPP_URL)! as URL)
+        dismissILDsOnce()
     }
     
     private func showDonateIfNeeded() {
@@ -556,12 +592,18 @@ extension MainTableViewController {
                 case "en": lang = 0
                 case "zh-Hans": lang = 1
                 case "zh-Hant": lang = 2
+                case "ja": lang = 3
                 default: lang = 0
+                }
+                
+                var imageURL = URL(string: ILDInfo.headerImageURL)
+                if (ILDInfo.primaryOnClickListenerIndex == 233) {
+                    imageURL = Bundle.main.url(forResource: "illu_web", withExtension: "svg")!
                 }
                 
                 tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
                 let view = InListDialog.instanceFromNib(
-                    imageURL: URL(string: ILDInfo.headerImageURL)!,
+                    imageURL: imageURL!,
                     title: ILDInfo.titles[lang],
                     message: ILDInfo.messages[lang],
                     primaryText: ILDInfo.primaryTexts[lang],
@@ -569,8 +611,13 @@ extension MainTableViewController {
                     dismissText: ILDInfo.dismissTexts[lang]
                 )
                 
-                (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(dismissAllILD), for: .touchUpInside)
+                if (ILDInfo.primaryOnClickListenerIndex == 233) {
+                    view.viewWithTag(10)?.subviews[0].contentMode = .scaleAspectFill
+                }
+                (view.viewWithTag(4) as! MDCFlatButton).addTarget(self, action: #selector(primaryOnClick), for: .touchUpInside)
+                (view.viewWithTag(5) as! MDCFlatButton).addTarget(self, action: #selector(secondaryOnClick), for: .touchUpInside)
                 (view.viewWithTag(5) as! MDCFlatButton).gone(yes: ILDInfo.hideSecondary)
+                (view.viewWithTag(6) as! MDCFlatButton).addTarget(self, action: #selector(dismissILDsOnceAndForAll), for: .touchUpInside)
                 (view.viewWithTag(6) as! MDCFlatButton).gone(yes: ILDInfo.hideDismiss)
                 
                 return view

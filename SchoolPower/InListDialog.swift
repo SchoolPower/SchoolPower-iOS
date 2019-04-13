@@ -32,7 +32,7 @@ class InListDialog: UIView {
         card.setShadowColor(UIColor.black.withAlphaComponent(0.5), for: .normal)
         card.setShadowColor(UIColor.black.withAlphaComponent(0.5), for: .highlighted)
         
-        let svgImageView = SVGImageView.init(contentsOf: imageURL)
+        let svgImageView = roundedSVGImageView.init(contentsOf: imageURL)
         svgImageView.frame = (view.viewWithTag(10)?.frame)!
         svgImageView.contentMode = .scaleAspectFit
         svgImageView.clipsToBounds = true
@@ -69,7 +69,6 @@ class InListDialog: UIView {
         
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        
         return view
     }
     
@@ -80,5 +79,21 @@ class InListDialog: UIView {
         } else {
             return hitView
         }
+    }
+}
+
+extension UIView {
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+}
+
+class roundedSVGImageView: SVGImageView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.roundCorners(corners: [.topLeft, .topRight], radius: 10)
     }
 }

@@ -48,17 +48,38 @@ class ILDNotification {
     var show: Bool = false
     var uuid: String = ""
     var headerImageURL: String = ""
-    var titles: Array<String> = ["", "", ""]
-    var messages: Array<String> = ["", "", ""]
-    var primaryTexts: Array<String> = ["", "", ""]
-    var secondaryTexts: Array<String> = ["", "", ""]
-    var dismissTexts: Array<String> = ["", "", ""]
+    var titles: Array<String> = ["", "", "", ""]
+    var messages: Array<String> = ["", "", "", ""]
+    var primaryTexts: Array<String> = ["", "", "", ""]
+    var secondaryTexts: Array<String> = ["", "", "", ""]
+    var dismissTexts: Array<String> = ["", "", "", ""]
     var hideDismiss: Bool = true
     var hideSecondary: Bool = true
     var onlyOnce: Bool = true
     
     // Experimental
     var primaryOnClickListenerIndex: Int = -1
+    
+    init() {
+        
+    }
+    
+    init(jsonStr: String) {
+        let json = JSON.init(rawValue: jsonStr) ?? "{}"
+        let notification = json["ildNotification"]
+        show = notification["show"].boolValue
+        uuid = notification["uuid"].stringValue
+        headerImageURL = notification["image"].stringValue
+        titles = notification["titles"].arrayValue.stringArray
+        messages = notification["messages"].arrayValue.stringArray
+        primaryTexts = notification["primaryTexts"].arrayValue.stringArray
+        secondaryTexts = notification["secondaryTexts"].arrayValue.stringArray
+        dismissTexts = notification["dismissTexts"].arrayValue.stringArray
+        hideDismiss = notification["hideDismiss"].boolValue
+        hideSecondary = notification["hideSecondary"].boolValue
+        onlyOnce = notification["onlyOnce"].boolValue
+        primaryOnClickListenerIndex = notification["primaryOnClickListenerIndex"].intValue
+    }
     
     init(json: JSON) {
         let notification = json["ildNotification"]

@@ -1,0 +1,41 @@
+{
+    "ildNotification": {
+        "show": "true",
+        "uuid": "2d6c262b-3465-4cf9-b49d-87aa9216bd88",
+        "image": "",
+        "titles": [
+            "Try the Webapp",
+            "试试我们的网页版",
+            "試試我們的網頁版",
+            "Webapp を試すましょう"
+        ],
+        "messages": [
+            "SchoolPower Webapp is better suited for browsing on large screen devices. \n\nURL: web.schoolpower.tech",
+            "SchoolPower Web 版更适合在大屏设备上浏览。 \n\n网址：web.schoolpower.tech",
+            "SchoolPower Web 版更適合在大屏設備上瀏覽。 \n\n網址：web.schoolpower.tech",
+            "SchoolPower Webapp は、大画面デバイスでの閲覧に適しています。 \n\nサイト：web.schoolpower.tech"
+        ],
+        "primaryTexts": [
+            "GO WEB",
+            "转到 Web",
+            "轉到 Web",
+            "Webに行く"
+        ],
+        "secondaryTexts": [
+            "NOT NOW",
+            "现在不要",
+            "現在不要",
+            "今はやめ"
+        ],
+        "dismissTexts": [
+            "DON'T SHOW AGAIN",
+            "不再显示",
+            "不再顯示",
+            "もう表示ない"
+        ],
+        "hideDismiss": "false",
+        "hideSecondary": "false",
+        "onlyOnce": "true",
+        "primaryOnClickListenerIndex": "233"
+    }
+}

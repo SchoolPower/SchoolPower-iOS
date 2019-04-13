@@ -11,6 +11,7 @@ import UserNotifications
 let GET_DATA_URL = "https://api.schoolpower.tech/api/2.0/get_data.php"
 let REGISTER_URL = "https://api.schoolpower.tech/api/notifications/register.php"
 let FORUM_URL = "https://feedback.schoolpower.studio"
+let WEBAPP_URL = "https://web.schoolpower.tech"
 let WEBSITE_URL = "https://www.schoolpower.tech"
 let CODE_URL = "https://github.com/SchoolPower"
 let QQ_GROUP_URL = "https://jq.qq.com/?_wv=1027&k=5mWt9hW"

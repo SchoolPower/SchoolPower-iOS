@@ -50,6 +50,7 @@
 		6297EC201FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6297EC1F1FF0BFA5003E8F1C /* SelectSubjectTableViewController.swift */; };
 		6297EC221FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6297EC211FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift */; };
 		6297EC241FF0FC16003E8F1C /* GPADialigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6297EC231FF0FC16003E8F1C /* GPADialigUtil.swift */; };
+		629B46DA22621E780052F4F2 /* ipad_to_web.json in Resources */ = {isa = PBXBuildFile; fileRef = 629B46D922621E780052F4F2 /* ipad_to_web.json */; };
 		62A8FA441EFB66DA00751ACD /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 62A8FA431EFB66DA00751ACD /* Podfile */; };
 		62AA4E3C1F033B57009C8CFC /* AppNavigationDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AA4E391F033B57009C8CFC /* AppNavigationDrawerController.swift */; };
 		62AA4E3D1F033B57009C8CFC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */; };
@@ -168,6 +169,7 @@
 		6297EC211FF0BFBB003E8F1C /* CalculateRuleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateRuleTableViewController.swift; sourceTree = "<group>"; };
 		6297EC231FF0FC16003E8F1C /* GPADialigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPADialigUtil.swift; sourceTree = "<group>"; };
 		629B46D62261CC540052F4F2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		629B46D922621E780052F4F2 /* ipad_to_web.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ipad_to_web.json; path = ../ipad_to_web.json; sourceTree = "<group>"; };
 		62A8FA431EFB66DA00751ACD /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		62AA4E391F033B57009C8CFC /* AppNavigationDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationDrawerController.swift; sourceTree = "<group>"; };
 		62AA4E3A1F033B57009C8CFC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 		628EF6421EFB307F008E0C4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				629B46D922621E780052F4F2 /* ipad_to_web.json */,
 				62CFC9911EFA9940002B4A8D /* AppDelegate.swift */,
 				62245FC220FB4F770093E813 /* SchoolPower-Bridging-Header.h */,
 				62C34E2C1F05FAAD0078D5F8 /* DGLocalization.swift */,
@@ -626,6 +629,7 @@
 				6207CECC210A0F42001FC013 /* BirthdayDialog.xib in Resources */,
 				6201D3172013932300A9255C /* AssignmentFlagListItem.xib in Resources */,
 				622248B9210B6D0900E7762E /* CryptoDialog.xib in Resources */,
+				629B46DA22621E780052F4F2 /* ipad_to_web.json in Resources */,
 				6207CECA210A00CA001FC013 /* gift_box.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
