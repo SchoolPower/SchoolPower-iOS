@@ -364,7 +364,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 
                                 if (newGrade || (newItem && showUngraded)) {
                                     if (newGrade && showGrades){
-                                        updatedGradedSubjects.append("\(item.title)(\(grade)/\(item.maximumScore))")
+                                        updatedGradedSubjects.append("\(item.title)(\(item.score)/\(item.maximumScore))")
                                     }
                                     else {
                                         updatedSubjects.append(item.title)
