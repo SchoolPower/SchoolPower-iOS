@@ -148,7 +148,7 @@ extension Utils {
     
     static func readHistoryGrade() -> JSON {
         let jsonStr = readStringFromFile(filename: "history.json") ?? "{}"
-        return JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
+        return try! JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
     }
     
     static func saveHistoryGrade(data: [Subject]?){
@@ -429,7 +429,7 @@ extension Utils {
         StudentInformation, [Attendance], [Subject],
         Bool, String, String, ExtraInfo) {
             
-            let studentData = JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
+            let studentData = try! JSON(data: jsonStr.data(using: .utf8, allowLossyConversion: false)!)
             if (studentData["information"] == JSON.null) { // not successful
                 return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
                         false, "", "", ExtraInfo(avatar: ""))

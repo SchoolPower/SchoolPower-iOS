@@ -18,7 +18,7 @@ class BirthdayDialog: UIView {
         view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
     
-        let lottie = LOTAnimationView(name: "gift_box")
+        let lottie = AnimationView(name: "gift_box")
         
         view.viewWithTag(1)!.setNeedsLayout()
         view.viewWithTag(1)!.layoutIfNeeded()
@@ -28,7 +28,7 @@ class BirthdayDialog: UIView {
         lottie.contentMode = .scaleAspectFit
         lottie.frame.origin.x = 0
         lottie.frame.origin.y = view.viewWithTag(1)!.frame.origin.y
-        lottie.loopAnimation = false
+        lottie.loopMode = .playOnce
         view.addSubview(lottie)
         lottie.play()
         

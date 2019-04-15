@@ -235,7 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let content = UNMutableNotificationContent()
             content.title = "\(String(assignmentNum)) \("notification_new".localize)"
             content.body = messageBody
-            content.sound = UNNotificationSound.default()
+            content.sound = UNNotificationSound.default
             content.badge = ((content.badge?.intValue) ?? 0 + assignmentNum) as NSNumber
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
@@ -262,7 +262,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let content = UNMutableNotificationContent()
             content.title = "\(String(attendanceNum)) \("attendance_new".localize)"
             content.body = messageBody
-            content.sound = UNNotificationSound.default()
+            content.sound = UNNotificationSound.default
             content.badge = ((content.badge?.intValue) ?? 0 + attendanceNum) as NSNumber
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)

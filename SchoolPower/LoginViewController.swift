@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
         let loadingIndicator = UIActivityIndicatorView.init(frame: CGRect(x: 50, y: 50, width: 50, height: 50))
         loadingIndicator.center = self.view.center;
         loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
         loadingIndicator.startAnimating()
         alert.setValue(loadingIndicator, forKey: "accessoryView")
         loadingIndicator.startAnimating()
@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
             if response.contains("Something went wrong!") {
                 self.showSnackbar(msg: "invalidup".localize)
             }else if response.contains("\"alert\""){
-                self.showSnackbar(msg: JSON(data: ("{\(response)}".data(using: .utf8, allowLossyConversion: false)!))["alert"].stringValue)
+                self.showSnackbar(msg: try! JSON(data: ("{\(response)}".data(using: .utf8, allowLossyConversion: false)!))["alert"].stringValue)
             }
             else if response.contains("{") {
                 
@@ -179,11 +179,11 @@ extension LoginViewController {
         passwordField.visibilityIconButton?.tintColor = Utils.getAccent()
                 .withAlphaComponent(passwordField.isSecureTextEntry ? 0.38 : 1.0)
         
-        view.layout(passwordField).center(offsetY: +usernameField.height + 20).left(36).right(36)
+        view.layout(passwordField).center(offsetY: +usernameField.bounds.size.height + 20).left(36).right(36)
     }
     
     fileprivate func prepareAppIcon() {
-        view.layout(appIcon!).center(offsetY: -usernameField.height - 150).center()
+        view.layout(appIcon!).center(offsetY: -usernameField.bounds.size.height - 150).center()
     }
     
     fileprivate func prepareFAB() {
@@ -195,10 +195,10 @@ extension LoginViewController {
         button.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
         view.addSubview(button)
         
-        let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60)
-        let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60)
-        let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 150)
-        let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 60)
+        let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 60)
+        let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 150)
+        let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0)
         
         view.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
     }

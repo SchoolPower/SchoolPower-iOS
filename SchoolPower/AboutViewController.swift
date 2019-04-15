@@ -30,7 +30,7 @@ class AboutViewController: UITableViewController, MFMailComposeViewControllerDel
         
         self.navigationController?.navigationBar.barTintColor = UIColor(rgb: Colors.primary)
         self.tableView.backgroundColor = UIColor(rgb: Colors.primary_dark)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         
         self.navigationDrawerController?.isLeftViewEnabled = false

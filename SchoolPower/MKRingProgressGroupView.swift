@@ -30,7 +30,7 @@ import MKRingProgressView
 @IBDesignable
 class MKRingProgressGroupView: UIView {
 
-    let ring1 = MKRingProgressView()
+    let ring1 = RingProgressView()
     
     @IBInspectable var ring1StartColor: UIColor = .red {
         didSet { ring1.startColor = ring1StartColor }

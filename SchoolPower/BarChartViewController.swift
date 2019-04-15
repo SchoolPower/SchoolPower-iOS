@@ -118,7 +118,7 @@ class BarChartViewController: UIViewController, IndicatorInfoProvider {
                 }
             }
             
-            let dataSet = BarChartDataSet(values: group, label: term)
+            let dataSet = BarChartDataSet(entries: group, label: term)
             dataSet.colors = [termColors[count]]
             dataSets.append(dataSet)
             count+=1

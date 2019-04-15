@@ -24,7 +24,7 @@ class SupportViewController: ButtonBarPagerTabStripViewController {
         
         self.title = "support_us".localize
         self.navigationController?.navigationBar.barTintColor = ThemeManager.currentTheme().primaryColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -46,7 +46,7 @@ class SupportViewController: ButtonBarPagerTabStripViewController {
         settings.style.selectedBarBackgroundColor = Utils.getAccent()
         settings.style.selectedBarHeight = 3
         buttonBarView.backgroundColor = theme.primaryColor
-        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
+        settings.style.buttonBarItemsShouldFillAvailableWidth = true
         settings.style.buttonBarItemBackgroundColor = theme.primaryColor
         settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 14)
         changeCurrentIndexProgressive = {(oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in

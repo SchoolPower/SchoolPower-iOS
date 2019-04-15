@@ -20,7 +20,7 @@ class CourseDetailTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         
@@ -47,7 +47,7 @@ class CourseDetailTableViewController: UITableViewController {
         
         tableView.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         tableView.separatorColor = .clear
-        tableView.contentInset = UIEdgeInsetsMake(20, 0, bannerView.frame.height, 0)
+        tableView.contentInset = UIEdgeInsets.init(top: 20, left: 0, bottom: bannerView.frame.height, right: 0)
     }
     
     func initBannerView() {
@@ -57,7 +57,7 @@ class CourseDetailTableViewController: UITableViewController {
                 y: self.view.frame.size.height - 50, width: 320, height: 50)
         
         self.view.addSubview(bannerView)
-        let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0)
         self.view.addConstraints([horizontalConstraint])
         
         bannerView.adUnitID = ADMOB_APP_ID

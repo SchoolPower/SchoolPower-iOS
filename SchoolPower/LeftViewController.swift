@@ -41,7 +41,7 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
         table?.delegate = self
         table?.dataSource = self
         table?.separatorColor = theme.windowBackgroundColor
-        table?.contentInset = UIEdgeInsetsMake(16, 0, 0, 0)
+        table?.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 0, right: 0)
         table?.backgroundColor = theme.windowBackgroundColor
         
         headerUsername?.text = userDefaults.string(forKey: STUDENT_NAME_KEY_NAME)
@@ -118,7 +118,7 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
     func takePhoto() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePicker.sourceType = .camera
-            imagePicker.delegate = self
+            imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
             imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
@@ -126,16 +126,19 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
     
     func pickImage() {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-            imagePicker.delegate = self
+            imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
             imagePicker.sourceType = .savedPhotosAlbum;
             imagePicker.allowsEditing = false
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         imagePicker.dismiss(animated: true, completion: nil)
-        cropImage(image: info[UIImagePickerControllerOriginalImage] as! UIImage)
+        cropImage(image: info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage)
     }
     
     func cropImage(image: UIImage) {
@@ -157,7 +160,7 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
     func uploadAvatar(image: UIImage) {
         
         // Compress the image in half in case it's too large
-        let data = UIImageJPEGRepresentation(image, 0.5)
+        let data = image.jpegData(compressionQuality: 0.5)
         
         Alamofire.upload(
             multipartFormData: { multipartFormData in
@@ -168,7 +171,7 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
                 switch encodingResult {
                 case .success(let upload, _, _):
                     upload.responseJSON { response in
-                        let responseJson = JSON.init(data: response.data!)
+                        let responseJson = try! JSON.init(data: response.data!)
                         if (responseJson["code"] != "success") {
                             self.closeNavigationDrawer()
                             self.showSnackbar(msg:
@@ -191,7 +194,7 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
                                         let response = value
                                         if response.contains("error") {
                                             DispatchQueue.main.async {
-                                                self.showSnackbar(msg: JSON(data:response.data(using: .utf8, allowLossyConversion: false)!)["error"].stringValue)
+                                                self.showSnackbar(msg: try! JSON(data:response.data(using: .utf8, allowLossyConversion: false)!)["error"].stringValue)
                                             }
                                         }
                                         
@@ -229,7 +232,7 @@ UIActionSheetDelegate, UIAlertViewDelegate, CropViewControllerDelegate, UIImageP
                     }
                     if response.contains("error") {
                         DispatchQueue.main.async {
-                            self.showSnackbar(msg: JSON(data:response.data(using: .utf8, allowLossyConversion: false)!)["error"].stringValue)
+                            self.showSnackbar(msg: try! JSON(data:response.data(using: .utf8, allowLossyConversion: false)!)["error"].stringValue)
                         }
                     } else {
                         self.userDefaults.set("", forKey: USER_AVATAR_KEY_NAME)
@@ -314,13 +317,13 @@ extension LeftViewController {
             switch location {
                 
             case 0:
-                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), duration: 0, options: [], animations: nil, completion: nil)
+                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), completion: nil)
             case 1:
-                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "ChartsNav"), duration: 0, options: [], animations: nil, completion: nil)
+                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "ChartsNav"), completion: nil)
             case 2:
-                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "AttendanceNav"), duration: 0, options: [], animations: nil, completion: nil)
+                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "AttendanceNav"), completion: nil)
             default:
-                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), duration: 0, options: [], animations: nil, completion: nil)
+                navigationDrawerController?.transition(to: mainStory.instantiateViewController(withIdentifier: "DashboardNav"), completion: nil)
             }
             
         } else {
@@ -402,4 +405,14 @@ extension LeftViewController {
         }
         gotoFragment(section: cell.section, location: cell.location)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

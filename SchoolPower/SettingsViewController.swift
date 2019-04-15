@@ -43,7 +43,7 @@ class SettingsTableViewController: UITableViewController {
         
         self.title = "settings".localize
         self.navigationController?.navigationBar.barTintColor = ThemeManager.currentTheme().primaryColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         
@@ -151,7 +151,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     @IBAction func darkThemeSwitchOnChange(_ sender: Any) {
-        UIView.animate(withDuration: 0.5, delay: 0,options: UIViewAnimationOptions.curveEaseOut,animations: {
+        UIView.animate(withDuration: 0.5, delay: 0,options: UIView.AnimationOptions.curveEaseOut,animations: {
             ThemeManager.applyTheme(theme: self.darkThemeSwitch.isOn ? .dark : .light)
             self.viewWillAppear(true)
         }, completion: nil)

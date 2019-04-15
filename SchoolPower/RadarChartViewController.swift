@@ -83,7 +83,7 @@ class RadarChartViewController: UIViewController, IndicatorInfoProvider {
             if periodGrade<minGrade { minGrade=periodGrade }
         }
         
-        let set = RadarChartDataSet(values: entries, label: "Grades")
+        let set = RadarChartDataSet(entries: entries, label: "Grades")
         let accentColor = Utils.getAccent()
         set.fillColor = accentColor
         set.colors = [accentColor]

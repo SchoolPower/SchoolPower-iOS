@@ -52,7 +52,7 @@ extension AccentColorViewController {
         collectionCell.viewWithTag(1)!.backgroundColor = loadAccentColors()[position]
         collectionCell.viewWithTag(2)!.backgroundColor = .clear
         collectionCell.viewWithTag(2)!.borderColor = .white
-        collectionCell.viewWithTag(2)!.borderWidth = 5
+//        collectionCell.viewWithTag(2)!.borderWidthPreset = 5
         collectionCell.viewWithTag(2)!.layer.cornerRadius = (itemDiameter - 10) / 2
         
         if position == indexSelected { collectionCell.viewWithTag(2)!.isHidden = false }
@@ -68,7 +68,7 @@ extension AccentColorViewController {
             
             for item in collectionView.visibleCells {
                 if item.viewWithTag(2)!.isHidden == false {
-                    UIView.animate(withDuration: 0.2, delay: 0,options: UIViewAnimationOptions.curveEaseOut,animations: {
+                    UIView.animate(withDuration: 0.2, delay: 0,options: UIView.AnimationOptions.curveEaseOut,animations: {
                         item.viewWithTag(2)!.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                     }, completion: { finish in item.viewWithTag(2)!.isHidden = true })
                 }
@@ -79,7 +79,7 @@ extension AccentColorViewController {
             selectedView?.isHidden = false
             selectedView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             
-            UIView.animate(withDuration: 0.2, delay: 0,options: UIViewAnimationOptions.curveEaseOut,animations: {
+            UIView.animate(withDuration: 0.2, delay: 0,options: UIView.AnimationOptions.curveEaseOut,animations: {
                 selectedView?.transform = CGAffineTransform(scaleX: 1, y: 1)
             }, completion: nil)
             

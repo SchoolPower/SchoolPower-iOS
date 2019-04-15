@@ -58,7 +58,7 @@ class MainTableViewController: UITableViewController {
         if (Utils.isBirthDay()) { showBirthdayButton() }
         
         self.navigationController?.navigationBar.barTintColor = theme.primaryColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -138,8 +138,8 @@ class MainTableViewController: UITableViewController {
                                        y: self.view.frame.size.height - 50, width: 320, height: 50)
         
         self.view.addSubview(bannerView)
-        let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX,
-                                                      relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX,
+        let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutConstraint.Attribute.centerX,
+                                                      relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.centerX,
                                                       multiplier: 1, constant: 0)
         self.view.addConstraints([horizontalConstraint])
         
@@ -155,8 +155,8 @@ class MainTableViewController: UITableViewController {
         cellHeights = Array(repeating: kCloseCellHeight, count: kRowsCount)
         tableView.backgroundColor = theme.windowBackgroundColor
         tableView.separatorColor = .clear
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, bannerView.frame.height, 0)
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: bannerView.frame.height, right: 0)
+        tableView.sectionHeaderHeight = UITableView.automaticDimension;
         tableView.estimatedSectionHeaderHeight = 300;
         tableView.layoutIfNeeded()
         initRefreshView()
@@ -177,7 +177,7 @@ class MainTableViewController: UITableViewController {
             let bundle = Bundle(for: type(of: self))
             let path = bundle.path(forResource: "ipad_to_web", ofType: "json")!
             let jsonData = NSData(contentsOfFile: path)
-            let ild = ILDNotification(json: JSON(data: jsonData! as Data))
+            let ild = ILDNotification(json: try! JSON(data: jsonData! as Data))
             _ = showILD(data: ild)
         }
     }
@@ -225,8 +225,8 @@ class MainTableViewController: UITableViewController {
     func showBirthdayButton() {
         
         let birthdayButton = MDCFloatingButton(shape: .mini)
-        let animationView = LOTAnimationView(name: "cheer")
-        animationView.loopAnimation = true
+        let animationView = AnimationView(name: "cheer")
+        animationView.loopMode = .loop
         animationView.frame = CGRect(x: 6, y: 5, width: 28, height: 28)
         animationView.isUserInteractionEnabled = false
         birthdayButton.setBackgroundColor(.clear)
@@ -234,7 +234,7 @@ class MainTableViewController: UITableViewController {
         birthdayButton.addSubview(animationView)
         birthdayButton.addTarget(self, action: #selector(birthdayOnClick), for: .touchUpInside)
         let birthdayItem = UIBarButtonItem(customView: birthdayButton)
-        (birthdayItem.customView?.subviews[(birthdayItem.customView?.subviews.count)! - 1] as! LOTAnimationView).play()
+        (birthdayItem.customView?.subviews[(birthdayItem.customView?.subviews.count)! - 1] as! AnimationView).play()
         self.navigationItem.rightBarButtonItems?.append(birthdayItem)
     }
     
@@ -580,7 +580,7 @@ extension MainTableViewController {
         
         if Utils.getFilteredSubjects(subjects: subjects).count == 0 {
             // If there's no cource, always show NothingView
-            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: ThemeManager.currentTheme().noGradeImage, text: "nothing_here".localize)
+            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.bounds.size.width, height: tableView.bounds.size.height, image: ThemeManager.currentTheme().noGradeImage, text: "nothing_here".localize)
             tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
         } else {
             tableView.backgroundView = nil
@@ -601,7 +601,7 @@ extension MainTableViewController {
                     imageURL = Bundle.main.url(forResource: "illu_web", withExtension: "svg")!
                 }
                 
-                tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+                tableView.sectionHeaderHeight = UITableView.automaticDimension;
                 let view = InListDialog.instanceFromNib(
                     imageURL: imageURL!,
                     title: ILDInfo.titles[lang],
@@ -625,7 +625,7 @@ extension MainTableViewController {
             } else if needShowDonate {
                 
                 // Show donation dialog as header
-                tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+                tableView.sectionHeaderHeight = UITableView.automaticDimension;
                 let donation = ILDNotification(json: JSON())
                 donation.show = true
                 let view = InListDialog.instanceFromNib(
@@ -702,18 +702,18 @@ extension MainTableViewController {
         let button = FABButton(image: UIImage(named: "ic_keyboard_arrow_right_white_36pt"), tintColor: .white)
         button.pulseColor = .white
         button.backgroundColor = Utils.getAccent()
-        button.shadowOffset = CGSize.init(width: 0, height: 2.5)
-        button.shadowRadius = 2
-        button.shadowOpacity = 0.2
+//        button.shadowOffset = CGSize.init(width: 0, height: 2.5)
+//        button.shadowRadius = 2
+//        button.shadowOpacity = 0.2
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = indexPath.row
         button.addTarget(self, action: #selector(MainTableViewController.fabOnClick), for: .touchUpInside)
         cell.containerView.addSubview(button)
         
-        let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60)
-        let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60)
-        let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: cell.containerView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: -17.5)
-        let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: cell.containerView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: -63)
+        let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 60)
+        let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 60)
+        let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: cell.containerView, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: -17.5)
+        let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: cell.containerView, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: -63)
         
         cell.containerView.addConstraints([heightConstraint, widthConstraint, verticalConstraint, horizontalConstraint])
         

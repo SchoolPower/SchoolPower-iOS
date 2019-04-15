@@ -32,7 +32,7 @@ class TermDialog: UIView {
         
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        view.bounds.size.height = ((view.viewWithTag(8))?.height)!
+        view.bounds.size.height = ((view.viewWithTag(8))?.bounds.size.height)!
         
         let evalCard = view.viewWithTag(9)
         let commentCard = view.viewWithTag(10)

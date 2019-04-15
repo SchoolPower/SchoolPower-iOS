@@ -58,7 +58,7 @@ class CourseDetailHeaderCell: UITableViewCell, MFMailComposeViewControllerDelega
             headerLetterGrade.text = grade.letter
             leftBackground.backgroundColor = Utils.getColorByGrade(item: grade)
             if infoItem.teacherEmail == "" {
-                emailButton.width = 0
+                emailButton.bounds.size.width = 0
                 emailButton.isHidden = true
             } else {
                 emailButton.tintColor = theme.primaryTextColor.withAlphaComponent(0.2)

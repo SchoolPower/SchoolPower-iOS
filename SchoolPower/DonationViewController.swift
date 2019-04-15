@@ -166,7 +166,7 @@ class DonationViewController: UIViewController, IndicatorInfoProvider {
     func updateNavigationBarWithColor(color: UIColor) {
         
         self.navigationController?.navigationBar.barTintColor = color
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")

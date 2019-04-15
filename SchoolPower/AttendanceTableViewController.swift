@@ -24,7 +24,7 @@ class AttendanceTableViewController: UITableViewController {
                                        style: .plain ,target: self, action: #selector(menuOnClick))
         self.navigationItem.leftBarButtonItems = [menuItem]
         self.navigationController?.navigationBar.barTintColor = theme.primaryColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white;
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -56,7 +56,7 @@ class AttendanceTableViewController: UITableViewController {
         theme = ThemeManager.currentTheme()
         tableView.backgroundColor = theme.windowBackgroundColor
         tableView.separatorColor = .clear
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, bannerView.frame.height, 0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: bannerView.frame.height, right: 0)
     }
     
     func initRefreshView() {
@@ -83,7 +83,7 @@ class AttendanceTableViewController: UITableViewController {
                                        y: self.view.frame.size.height - 50, width: 320, height: 50)
         
         self.view.addSubview(bannerView)
-        let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let horizontalConstraint = NSLayoutConstraint(item: bannerView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0)
         self.view.addConstraints([horizontalConstraint])
         
         bannerView.adUnitID = ADMOB_APP_ID
@@ -236,7 +236,7 @@ extension AttendanceTableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
         if attendanceList.count == 0 {
-            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.width, height: tableView.height, image: ThemeManager.currentTheme().perfectAttendanceImage, text: "perfect_attendance".localize)
+            tableView.backgroundView = NothingView.instanceFromNib(width: tableView.bounds.size.width, height: tableView.bounds.size.height, image: ThemeManager.currentTheme().perfectAttendanceImage, text: "perfect_attendance".localize)
             tableView.backgroundView?.backgroundColor = ThemeManager.currentTheme().windowBackgroundColor
             return UIView()
             
