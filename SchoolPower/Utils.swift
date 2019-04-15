@@ -143,8 +143,6 @@ extension Utils {
     }
     
     static func readDataArrayList() -> (StudentInformation, [Attendance], [Subject], Bool, String, String, ExtraInfo)? {
-        print(121212)
-        print(readStringFromFile(filename: JSON_FILE_NAME)!)
         return parseJsonResult(jsonStr: readStringFromFile(filename: JSON_FILE_NAME)!)
     }
     
@@ -432,7 +430,10 @@ extension Utils {
         Bool, String, String, ExtraInfo) {
             print("1212121212")
             print(jsonStr)
-            let studentData = try! JSON(data: jsonStr.data(using: .utf8)!)
+            guard let studentData = try? JSON(data: jsonStr.data(using: .utf8)!) else {
+                return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
+                        false, "", "", ExtraInfo(avatar: ""))
+            }
             if (studentData["information"] == JSON.null) { // not successful
                 return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
                         false, "", "", ExtraInfo(avatar: ""))
