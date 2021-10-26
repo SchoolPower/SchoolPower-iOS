@@ -21,9 +21,27 @@ class SchoolPowerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSortTerms() {
+        let terms = ["L1", "F2", "E1", "F1", "S1", "F3", "E2", "F4", "L2"]
+        XCTAssertEqual(
+            Utils.sortTerm(terms: terms),
+            ["F1", "F2", "F3", "F4", "L1", "L2", "E1", "E2", "S1"]
+        )
+        XCTAssertEqual(
+            Utils.sortTerm(terms: terms, descendingNumber: true),
+            ["F4", "F3", "F2", "F1", "L2", "L1", "E2", "E1", "S1"]
+        )
+        let sortableTerms: [SortableTerm] = terms.map({ (key) -> SortableTerm in
+            SortableTerm(raw: key, prioritizeSemester: true)
+        })
+        XCTAssertEqual(
+            Utils.sortTerm(terms: sortableTerms, descendingNumber: false),
+            ["L1", "L2", "F1", "F2", "F3", "F4", "E1", "E2", "S1"]
+        )
+        XCTAssertEqual(
+            Utils.sortTerm(terms: sortableTerms, descendingNumber: true),
+            ["L2", "L1", "F4", "F3", "F2", "F1", "E1", "S1"]
+        )
     }
     
     func testPerformanceExample() {

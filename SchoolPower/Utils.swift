@@ -325,25 +325,33 @@ extension Utils {
         return Utils.getLatestItem(grades: latestPeriods)
     }
     
-    static func sortTerm(terms: [String]) -> [String] {
+    static func sortTerm(terms: [String], descendingNumber: Bool = false) -> [String] {
         var sortableTerms = [SortableTerm]()
         for term in terms {
             sortableTerms.append(SortableTerm(raw: term))
         }
-        let sortedTerms = sortableTerms.sorted(by: { $0.value < $1.value })
-        var result = [String]()
-        for term in sortedTerms {
-            result.append(term.raw)
-        }
-        return result
+        return sortTerm(terms: sortableTerms, descendingNumber: descendingNumber)
     }
     
-    static func sortTerm(terms: NSMutableSet) -> [String] {
+    static func sortTerm(terms: NSMutableSet, descendingNumber: Bool = false) -> [String] {
         var sortableTerms = [SortableTerm]()
         for term in terms {
             sortableTerms.append(SortableTerm(raw: term as! String))
         }
-        let sortedTerms = sortableTerms.sorted(by: { $0.value < $1.value })
+        return sortTerm(terms: sortableTerms, descendingNumber: descendingNumber)
+    }
+    
+    static func sortTerm(terms: [SortableTerm], descendingNumber: Bool) -> [String] {
+        let sortedTerms = terms.sorted(by: {
+            if $0.letterValue == $1.letterValue {
+                return descendingNumber
+                    ? $0.index > $1.index
+                    : $0.index < $1.index
+            } else {
+                return $0.letterValue < $1.letterValue
+            }
+            
+        })
         var result = [String]()
         for term in sortedTerms {
             result.append(term.raw)
@@ -352,40 +360,14 @@ extension Utils {
     }
     
     static func getLatestItem(grades: [String: Grade]) -> String {
-        
         let forLatestSemester: Bool = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME) == 1
-        var termsList = [String]()
-        
-        for key in grades.keys { termsList.append(key) }
-        
-        if forLatestSemester{
-            
-            if termsList.contains("S2") && grades["S2"]?.letter != "--" {return "S2"}
-            else if termsList.contains("S1") && grades["S1"]?.letter != "--" {return "S1"}
-            else if termsList.contains("T4") && grades["T4"]?.letter != "--" {return "T4"}
-            else if termsList.contains("T3") && grades["T3"]?.letter != "--" {return "T3"}
-            else if termsList.contains("T2") && grades["T2"]?.letter != "--" {return "T2"}
-            else if termsList.contains("T1") {return "T1"}
-            else if termsList.contains("Q4") && grades["Q4"]?.letter != "--" {return "Q4"}
-            else if termsList.contains("Q3") && grades["Q3"]?.letter != "--" {return "Q3"}
-            else if termsList.contains("Q2") && grades["Q2"]?.letter != "--" {return "Q2"}
-            else if termsList.contains("Q1") {return "Q1"}
+        let termsList: [SortableTerm] = grades.keys.map({ (key) -> SortableTerm in
+            SortableTerm(raw: key, prioritizeSemester: forLatestSemester)
+        })
+        let sortedTerms = sortTerm(terms: termsList, descendingNumber: true)
+        for term in sortedTerms {
+            if grades[term] != nil && grades[term]!.letter != "--" { return term }
         }
-            
-        else{ // for latest term
-            
-            if termsList.contains("T4") && grades["T4"]?.letter != "--" {return "T4"}
-            else if termsList.contains("T3") && grades["T3"]?.letter != "--" {return "T3"}
-            else if termsList.contains("T2") && grades["T2"]?.letter != "--" {return "T2"}
-            else if termsList.contains("T1") {return "T1"}
-            else if termsList.contains("Q4") && grades["Q4"]?.letter != "--" {return "Q4"}
-            else if termsList.contains("Q3") && grades["Q3"]?.letter != "--" {return "Q3"}
-            else if termsList.contains("Q2") && grades["Q2"]?.letter != "--" {return "Q2"}
-            else if termsList.contains("Q1") {return "Q1"}
-        }
-        
-        if termsList.contains("Y1") && grades["Y1"]?.letter != "--" {return "Y1"}
-        
         return ""
     }
     
@@ -428,49 +410,47 @@ extension Utils {
     static func parseJsonResult(jsonStr: String) ->(
         StudentInformation, [Attendance], [Subject],
         Bool, String, String, ExtraInfo) {
-            print("1212121212")
-            print(jsonStr)
-            guard let studentData = try? JSON(data: jsonStr.data(using: .utf8)!) else {
-                return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
-                        false, "", "", ExtraInfo(avatar: ""))
-            }
-            if (studentData["information"] == JSON.null) { // not successful
-                return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
-                        false, "", "", ExtraInfo(avatar: ""))
-            }
-            let studentInfo = StudentInformation(json: studentData["information"])
-            var subjects = [Subject]()
-            for subject in studentData["sections"].arrayValue { subjects.append(Subject(json: subject)) }
-            
-            var attendances = [Attendance]()
-            for attendance in studentData["attendances"].arrayValue { attendances.append(Attendance(json: attendance)) }
-            
-            subjects = subjects.sorted {
-                if $0.blockLetter == "HR(A-E)" { return true }
-                if $1.blockLetter == "HR(A-E)" { return false }
-                return $0.blockLetter < $1.blockLetter
-            }
-            
-            let disabled = studentData["disabled"] != JSON.null
-            var disabled_title = ""
-            var disabled_message = ""
-            
-            if (disabled) {
-                let disableInfo = studentData["disabled"]
-                disabled_title = disableInfo["title"].stringValue
-                disabled_message = disableInfo["message"].stringValue
-            }
-            
-            let extraInfo: ExtraInfo
-            if studentData["additional"] != JSON.null {
-                let additional = studentData["additional"]
-                extraInfo = ExtraInfo(avatar: additional["avatar"].stringValue)
-            } else {
-                extraInfo = ExtraInfo(avatar: "")
-            }
-            
-            return (studentInfo, attendances, subjects,
-                    disabled, disabled_title, disabled_message, extraInfo)
+        guard let studentData = try? JSON(data: jsonStr.data(using: .utf8)!) else {
+            return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
+                    false, "", "", ExtraInfo(avatar: ""))
+        }
+        if (studentData["information"] == JSON.null) { // not successful
+            return (StudentInformation(json: "{}"), [Attendance](), [Subject](),
+                    false, "", "", ExtraInfo(avatar: ""))
+        }
+        let studentInfo = StudentInformation(json: studentData["information"])
+        var subjects = [Subject]()
+        for subject in studentData["sections"].arrayValue { subjects.append(Subject(json: subject)) }
+        
+        var attendances = [Attendance]()
+        for attendance in studentData["attendances"].arrayValue { attendances.append(Attendance(json: attendance)) }
+        
+        subjects = subjects.sorted {
+            if $0.blockLetter == "HR(A-E)" { return true }
+            if $1.blockLetter == "HR(A-E)" { return false }
+            return $0.blockLetter < $1.blockLetter
+        }
+        
+        let disabled = studentData["disabled"] != JSON.null
+        var disabled_title = ""
+        var disabled_message = ""
+        
+        if (disabled) {
+            let disableInfo = studentData["disabled"]
+            disabled_title = disableInfo["title"].stringValue
+            disabled_message = disableInfo["message"].stringValue
+        }
+        
+        let extraInfo: ExtraInfo
+        if studentData["additional"] != JSON.null {
+            let additional = studentData["additional"]
+            extraInfo = ExtraInfo(avatar: additional["avatar"].stringValue)
+        } else {
+            extraInfo = ExtraInfo(avatar: "")
+        }
+        
+        return (studentInfo, attendances, subjects,
+                disabled, disabled_title, disabled_message, extraInfo)
     }
     
     static func isBirthDay() -> Bool {
@@ -533,13 +513,13 @@ extension Utils {
             return String(age)
         }
     }
-
+    
     static func getSuffixForNumber(num: Int) -> String {
         switch (num % 10) {
-            case 1: return "st"
-            case 2: return "nd"
-            case 3: return "rd"
-            default: return "th"
+        case 1: return "st"
+        case 2: return "nd"
+        case 3: return "rd"
+        default: return "th"
         }
     }
     
