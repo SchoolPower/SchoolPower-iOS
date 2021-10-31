@@ -325,32 +325,29 @@ extension Utils {
         return Utils.getLatestItem(grades: latestPeriods)
     }
     
-    static func sortTerm(terms: [String], descendingNumber: Bool = false) -> [String] {
+    static func sortTerm(terms: [String]) -> [String] {
         var sortableTerms = [SortableTerm]()
         for term in terms {
             sortableTerms.append(SortableTerm(raw: term))
         }
-        return sortTerm(terms: sortableTerms, descendingNumber: descendingNumber)
+        return sortTerm(terms: sortableTerms)
     }
     
-    static func sortTerm(terms: NSMutableSet, descendingNumber: Bool = false) -> [String] {
+    static func sortTerm(terms: NSMutableSet) -> [String] {
         var sortableTerms = [SortableTerm]()
         for term in terms {
             sortableTerms.append(SortableTerm(raw: term as! String))
         }
-        return sortTerm(terms: sortableTerms, descendingNumber: descendingNumber)
+        return sortTerm(terms: sortableTerms)
     }
     
-    static func sortTerm(terms: [SortableTerm], descendingNumber: Bool) -> [String] {
+    static func sortTerm(terms: [SortableTerm]) -> [String] {
         let sortedTerms = terms.sorted(by: {
-            if $0.letterValue == $1.letterValue {
-                return descendingNumber
-                    ? $0.index > $1.index
-                    : $0.index < $1.index
-            } else {
+            if $0.index == $1.index {
                 return $0.letterValue < $1.letterValue
+            } else {
+                return $0.index > $1.index
             }
-            
         })
         var result = [String]()
         for term in sortedTerms {
@@ -359,12 +356,21 @@ extension Utils {
         return result
     }
     
+    static func sortTermsByLatest(terms: [SortableTerm]) -> [String] {
+        return terms.sorted(by: {
+            if $0.letterValue == $1.letterValue {
+                return $0.index > $1.index
+            } else {
+                return $0.letterValue < $1.letterValue
+            }
+        }).map { (term) -> String in term.raw }
+    }
+    
     static func getLatestItem(grades: [String: Grade]) -> String {
-        let forLatestSemester: Bool = userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME) == 1
         let termsList: [SortableTerm] = grades.keys.map({ (key) -> SortableTerm in
-            SortableTerm(raw: key, prioritizeSemester: forLatestSemester)
+            SortableTerm(raw: key)
         })
-        let sortedTerms = sortTerm(terms: termsList, descendingNumber: true)
+        let sortedTerms = sortTermsByLatest(terms: termsList)
         for term in sortedTerms {
             if grades[term] != nil && grades[term]!.letter != "--" { return term }
         }
