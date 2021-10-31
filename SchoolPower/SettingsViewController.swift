@@ -87,7 +87,6 @@ class SettingsTableViewController: UITableViewController {
     func loadDetails() {
         
         let descriptionSets = [["default".localize, "English", "繁體中文", "简体中文","日本語"],
-                               ["thisterm".localize, "thissemester".localize],
                                ["all".localize, "highest_3".localize, "highest_4".localize, "highest_5".localize]]
         
         let theme = ThemeManager.currentTheme()
@@ -131,10 +130,9 @@ class SettingsTableViewController: UITableViewController {
         accentColorTitle?.text = "accent_color".localize
         
         languageDetail?.text = descriptionSets[0][userDefaults.integer(forKey: LANGUAGE_KEY_NAME)]
-        dspDetail?.text = descriptionSets[1][userDefaults.integer(forKey: DASHBOARD_DISPLAY_KEY_NAME)]
         calculateRuleDetail?.text = String.init(format: "%@%@%@",
                                                 "calculate_rule_prefix".localize,
-                                                descriptionSets[2][userDefaults.integer(forKey: CALCULATE_RULE_KEY_NAME)].lowercased(),
+                                                descriptionSets[1][userDefaults.integer(forKey: CALCULATE_RULE_KEY_NAME)].lowercased(),
                                                 "calculate_rule_suffix".localize)
         reportBugDetail?.text = "report_bug_summary".localize
         visitForumDetail?.text = "feedback_forum_summary".localize
