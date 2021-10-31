@@ -31,7 +31,6 @@ class GPADialogUtil {
     }
     
     func show () {
-        print("efsoisfnqqq1111")
         allPeriods = Utils.sortTerm(terms: Utils.getAllPeriods(subject: subjectsForGPA))
         currentTerm = allPeriods.index(of: Utils.getLatestPeriod(subject: subjectsForGPA)) ?? -1
         
@@ -104,7 +103,6 @@ class GPADialogUtil {
         
         gpaDialog.center = subview.center
         subview.addSubview(gpaDialog)
-        print("232323232")
         alert?.containerView = subview
         alert?.closeOnTouchUpOutside = true
         alert?.buttonTitles = nil
@@ -207,9 +205,7 @@ class GPADialogUtil {
         ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
         
         let duration = formerStr.contains("nan") ? 0.0 : 1.0
-        percentageLabel?.format = format
-        percentageLabel?.countFrom(fromValue: strPos, to: Float(value * multiplier), withDuration: duration,
-                                   andAnimationType: .EaseOut, andCountingType: .Custom)
+        percentageLabel?.text = String(Float(value * multiplier))
         
         CATransaction.commit()
     }

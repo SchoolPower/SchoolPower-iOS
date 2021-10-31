@@ -12,19 +12,19 @@ import SwiftyJSON
  ],
  "expression": "1(A-E)",
  "finalGrades": {
- "X1": {
+ "S1": {
  "percentage": "0.0",
  "letter": "--"
  },
- "T2": {
+ "F2": {
  "percentage": "0.0",
  "letter": "--"
  },
- "T1": {
+ "F1": {
  "percentage": "80.0",
  "letter": "B"
  },
- "S1": {
+ "L1": {
  "percentage": "80.0",
  "letter": "B"
  }

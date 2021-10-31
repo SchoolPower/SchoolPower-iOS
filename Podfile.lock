@@ -1,9 +1,9 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.8.2)
-  - Charts (3.3):
-    - Charts/Core (= 3.3)
-  - Charts/Core (3.3)
+  - Charts (3.3.0):
+    - Charts/Core (= 3.3.0)
+  - Charts/Core (3.3.0)
   - CropViewController (2.4.0)
   - CustomIOSAlertView (0.9.5)
   - DGElasticPullToRefresh (1.1)
@@ -567,7 +567,6 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - PocketSVG (2.4.2)
-  - SACountingLabel (0.1.1)
   - SwiftSVG (2.3.0)
   - SwiftyJSON (4.3.0)
   - VTAcknowledgementsViewController (1.5.1)
@@ -579,27 +578,25 @@ DEPENDENCIES:
   - Charts
   - CropViewController
   - CustomIOSAlertView
-  - DGElasticPullToRefresh
+  - DGElasticPullToRefresh (from `https://github.com/KennethTsang/DGElasticPullToRefresh`)
   - Google-Mobile-Ads-SDK
   - lottie-ios
   - Material
   - MaterialComponents
   - MKRingProgressView
   - PocketSVG
-  - SACountingLabel
   - SwiftSVG
   - SwiftyJSON
   - VTAcknowledgementsViewController
   - XLPagerTabStrip
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - ActionSheetPicker-3.0
     - Alamofire
     - Charts
     - CropViewController
     - CustomIOSAlertView
-    - DGElasticPullToRefresh
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
@@ -615,16 +612,24 @@ SPEC REPOS:
     - MotionTransitioning
     - nanopb
     - PocketSVG
-    - SACountingLabel
     - SwiftSVG
     - SwiftyJSON
     - VTAcknowledgementsViewController
     - XLPagerTabStrip
 
+EXTERNAL SOURCES:
+  DGElasticPullToRefresh:
+    :git: https://github.com/KennethTsang/DGElasticPullToRefresh
+
+CHECKOUT OPTIONS:
+  DGElasticPullToRefresh:
+    :commit: 274c5fe8998e31ea71a4dc250c7edee51e52a978
+    :git: https://github.com/KennethTsang/DGElasticPullToRefresh
+
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Charts: a5609adcbd70a0f7e15c6984d7e9b5ceecf3b71d
+  Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   CropViewController: a090820b15fc3da68e694d7c192a4708c576828b
   CustomIOSAlertView: cc4fa8e36219be3fd5ebcd40789f5b4aaae0f38e
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
@@ -643,12 +648,11 @@ SPEC CHECKSUMS:
   MotionTransitioning: 23d25edc2f4606efb922403cbac6d81af37aa33a
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PocketSVG: c30139829206a43df2ec203880e3970531facba7
-  SACountingLabel: 6b0c2a177b77e65ea63772e50f4d4285bb6d5a71
   SwiftSVG: a864db6198fbddfd377f8169849580df18512e67
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   VTAcknowledgementsViewController: 3bb742da852a5161dc9f4b017e52f926a41ef5d3
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 9372e529fa8c9dac04a45d2a1c962a66c0e73419
+PODFILE CHECKSUM: c48f46f28919cd239645313d48385d5273974fdb
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.9.1

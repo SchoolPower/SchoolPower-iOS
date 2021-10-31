@@ -4,10 +4,9 @@
 
 import UIKit
 import MKRingProgressView
-import SACountingLabel
 
 var ring: MKRingProgressGroupView?
-var percentageLabel: SACountingLabel?
+var percentageLabel: UILabel?
 var descriptionLabel: UILabel?
 
 class GPADialog: UIView {
@@ -24,7 +23,7 @@ class GPADialog: UIView {
         view.bounds.size.width = width
         view.bounds.size.height = width * 1.5
         ring = view.viewWithTag(1) as? MKRingProgressGroupView
-        percentageLabel = view.viewWithTag(3) as? SACountingLabel
+        percentageLabel = view.viewWithTag(3) as? UILabel
         descriptionLabel = view.viewWithTag(4) as? UILabel
         
         descriptionLabel?.text = "gpamessage".localize
