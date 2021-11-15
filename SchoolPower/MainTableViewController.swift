@@ -598,7 +598,11 @@ extension MainTableViewController {
                 
                 var imageURL = URL(string: ILDInfo.headerImageURL)
                 if (ILDInfo.primaryOnClickListenerIndex == 233) {
-                    imageURL = Bundle.main.url(forResource: "illu_web", withExtension: "svg")!
+                    imageURL = Bundle.main.url(forResource: "illu_web", withExtension: "svg")
+                }
+                
+                if imageURL == nil {
+                    return nil
                 }
                 
                 tableView.sectionHeaderHeight = UITableView.automaticDimension;

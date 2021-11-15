@@ -11,7 +11,7 @@ target "SchoolPower" do
     pod 'Google-Mobile-Ads-SDK'
     pod 'ActionSheetPicker-3.0'
     pod 'VTAcknowledgementsViewController'
-    pod 'MKRingProgressView'
+    pod 'MKRingProgressView', '2.2'
     pod 'CustomIOSAlertView'
     pod 'DGElasticPullToRefresh', :git => 'https://github.com/KennethTsang/DGElasticPullToRefresh'
     pod 'XLPagerTabStrip'

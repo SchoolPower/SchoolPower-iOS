@@ -36,7 +36,7 @@ class MKRingProgressGroupView: UIView {
         didSet { ring1.startColor = ring1StartColor }
     }
     
-    @IBInspectable var ring1EndColor: UIColor = .blue {
+    @IBInspectable var ring1EndColor: UIColor = .red {
         didSet { ring1.endColor = ring1EndColor }
     }
     
