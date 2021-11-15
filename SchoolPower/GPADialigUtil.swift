@@ -109,9 +109,9 @@ class GPADialogUtil {
         alert?.show()
         
         let when = DispatchTime.now() + 0.1
-        DispatchQueue.main.asyncAfter(deadline: when) {
+//        DispatchQueue.main.asyncAfter(deadline: when) {
             self.updateData(segmentPos: 0)
-        }
+//        }
     }
     
     @objc func segmentOnClick() {
@@ -190,23 +190,18 @@ class GPADialogUtil {
     
     @objc func animateProgressView(value: Double = 0, divider: Double = 1, multiplier: Double = 100, format: String = "%.3f%%") {
         
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(1.0)
+//        CATransaction.begin()
+//        CATransaction.setAnimationDuration(0.0)
         
-        let formerStr = percentageLabel?.text ?? ""
-        var strPos: Float = 0
-        if formerStr != "" {
-            strPos = Float(formerStr.dropLast())!
-        }
+        let startColor = Utils.getColorByLetterGrade(
+            letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: value / divider * 100))
         
         ring?.ring1.progress = value.isNaN ? 0.0 : value / divider
-        ring?.ring1.startColor = Utils.getColorByLetterGrade(
-            letterGrade: Utils.getLetterGradeByPercentageGrade(percentageGrade: value / divider * 100))
-        ring?.ring1.endColor = (ring?.ring1.startColor)!.lighter(by: 10)!
+        ring?.ring1.startColor = startColor
+        ring?.ring1.endColor = startColor
         
-        let duration = formerStr.contains("nan") ? 0.0 : 1.0
         percentageLabel?.text = String(Float(value * multiplier))
         
-        CATransaction.commit()
+//        CATransaction.commit()
     }
 }

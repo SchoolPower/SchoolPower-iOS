@@ -553,7 +553,7 @@ PODS:
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
-  - MKRingProgressView (2.2.2)
+  - MKRingProgressView (2.2)
   - Motion (1.4.3):
     - Motion/Core (= 1.4.3)
   - Motion/Core (1.4.3)
@@ -583,7 +583,7 @@ DEPENDENCIES:
   - lottie-ios
   - Material
   - MaterialComponents
-  - MKRingProgressView
+  - MKRingProgressView (= 2.2)
   - PocketSVG
   - SwiftSVG
   - SwiftyJSON
@@ -641,7 +641,7 @@ SPEC CHECKSUMS:
   MaterialComponents: c2045515505992357e210b33cb3ffc3a404a14fd
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
-  MKRingProgressView: b558eff66a648bd77b11f61cfc5603ae96008077
+  MKRingProgressView: 6a8eb219f65d1f7ac27ad1986a4f42160b2f7640
   Motion: 153ba49692997888556c7a95207278a8b1f8be95
   MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
   MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
@@ -653,6 +653,6 @@ SPEC CHECKSUMS:
   VTAcknowledgementsViewController: 3bb742da852a5161dc9f4b017e52f926a41ef5d3
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: c48f46f28919cd239645313d48385d5273974fdb
+PODFILE CHECKSUM: f4f905893d2060821c420de8979343b2e3c98840
 
 COCOAPODS: 1.9.1

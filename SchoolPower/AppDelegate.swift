@@ -8,8 +8,9 @@ import Material
 import GoogleMobileAds
 import UserNotifications
 
-let GET_DATA_URL = "https://api.schoolpower.tech/api/2.0/get_data.php"
-let REGISTER_URL = "https://api.schoolpower.tech/api/notifications/register.php"
+let GET_DATA_URL = "https://api-fc.schoolpower.tech/api/2.0/get_data.php"
+let REGISTER_URL = "https://api-fc.schoolpower.tech/api/notifications/register.php"
+let AVATAR_URL = "https://api-fc.schoolpower.tech/api/2.0/set_avatar.php"
 let FORUM_URL = "https://feedback.schoolpower.studio"
 let WEBAPP_URL = "https://web.schoolpower.tech"
 let WEBSITE_URL = "https://www.schoolpower.tech"
@@ -18,7 +19,6 @@ let QQ_GROUP_URL = "https://jq.qq.com/?_wv=1027&k=5mWt9hW"
 let SUPPORT_EMAIL = "harryyunull@gmail.com"
 let ANDROID_DOWNLOAD_ADDRESS = "https://api.schoolpower.tech/dist/latest.php"
 let IOS_DOWNLOAD_ADDRESS = "https://itunes.apple.com/cn/app/schoolpower/id1255370309"
-let AVATAR_URL = "https://api.schoolpower.tech/api/2.0/set_avatar.php"
 let IMAGE_UPLOAD_URL = "https://sm.ms/api/upload"
 let PAYPAL_DONATION_URL = "https://paypal.me/GWang828"
 let ILD_URL = "https://files.schoolpower.tech/ild.json"
